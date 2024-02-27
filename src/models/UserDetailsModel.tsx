@@ -2,10 +2,10 @@ interface UserDetailModels {
     firstName?: string,
     lastName?: string,
     email?:string,
+    birthDate?: Date,
     password?: string;
     id?: number;
     role?: Roles;
-    ability?: Ability[];
 }
 
 interface Roles{
@@ -13,9 +13,5 @@ interface Roles{
     name? : string;
 }
 
-interface Ability{
-    id?: number;
-    name?: string;
-}
 
 export default UserDetailModels;

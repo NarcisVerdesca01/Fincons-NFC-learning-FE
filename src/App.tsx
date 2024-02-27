@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
+import Login from "./component/login/Login";
+import Register from "./component/register/Register";
+import HomePage from "./component/homePage/HomePage";
+import ProtectedRoutes from "./services/ProtectedRoutes";
+import Prova from './component/prova/prova1';
+
 
 function App() {
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <Router>
+        <Routes>
+        <Route
+            path="/"
+            element={<ProtectedRoutes />}
+          >
+            <Route
+              path="/homePage"
+              element={<HomePage />}
+            ></Route>
+            <Route
+              path="/prova"
+              element={<Prova />}
+            ></Route>
+        </Route>
+          <Route
+            path="/authentication"
+            element={
+              <Login
+              />
+            }
+          ></Route>
+          <Route path="/register" element={<Register />}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }

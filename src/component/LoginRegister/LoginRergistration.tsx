@@ -5,6 +5,7 @@ import './LoginRegistration.css'
 
 
 const LoginRegistration = () => {
+    
     const cardFront = <Login />;
     const cardBack = <Register />;
     const [isFlipped, setFlipped] = useState('');

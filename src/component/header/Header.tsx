@@ -1,21 +1,58 @@
 import React, { useState } from 'react';
 import './Header.css';
 import Login from '../login/Login';
+import LoginRegistrationService from '../../services/LoginRegistrationService';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router';
+import UserDetailModels from '../../models/UserDetailsModel';
 
 
 const Header = () => {
+    const navigate = useNavigate();
+    const auth = Cookies.get("jwt-token");
+    const [isHidden, setIsHidden] = useState<boolean>(true);
+
+    const handleLogout = () => {
+        Cookies.remove("jwt-token");
+        console.log("sono appena uscito")
+        navigate("/authentication");
+        setIsHidden(true);
+    };
+
 
     return (
         <div className={`body`}>
-            <div className={`container`}>
-                <div>ciao</div>
-                <div>sono</div>
-                <div>eeeeeeeeeeeeeeeee</div>
-                <div>eeeeeeeeeeeeeeeeeeeeee</div>
-                <div>eeeeeeeeeeeeeeeeeeeeee</div>
+            <div className={`firstComponentHeader`}>
+                <h4>NFC E-Learning web site</h4>
+            </div>
+            <div className={`secondComponentHeader`}>
+                <div>
+                    <button className={`buttonNavBar`}>
+                        Home Page
+                    </button>
+                </div>
+                <div>
+                    <button className={`buttonNavBar`}>
+                        Courses
+                    </button>
+                </div>
+                <div>
+                    <button className={`buttonNavBar`}>
+                        Quiz
+                    </button>
+                </div>
+                <div>
+                    <button className={`buttonNavBar`}>
+                        Lessons
+                    </button>
+                </div>
+                <div>
+                    <button className={`buttonNavBar`} onClick={handleLogout}>
+                        Logout
+                    </button>
+                </div>
             </div>
         </div>
-
     );
 };
 

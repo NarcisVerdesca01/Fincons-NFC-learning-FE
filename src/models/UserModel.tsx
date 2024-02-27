@@ -7,8 +7,7 @@ interface User {
     email: string,
     password: string,
     birthDate: Date,
-    confirmPassword: string,
-    abilities: Ability[],
+    confirmPassword: string
 }
 
 export default User;

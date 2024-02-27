@@ -1,12 +1,10 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import User from "../../models/UserModel";
 import LoginRegistrationService from "../../services/LoginRegistrationService";
 import classes from "./Register.module.css";
-import UserModel from "../../models/UserModel";
-import Ability from "../../models/AbilityModel";
 
 const RegisterPageComponent = () => {
   const [input, setInput] = useState<User>();
@@ -76,171 +74,147 @@ const RegisterPageComponent = () => {
   };
 
   const handleBackToLogin = () => {
-    navigate("/login");
+    navigate("/authentication");
   };
 
   const handleRegistration = () => {
-    LoginRegistrationService.registrationService(input!);
+    console.log(input?.birthDate.toLocaleDateString())
+    //LoginRegistrationService.registrationService(input!);
   };
 
-
-  const [abilities, setAbilities] = useState<Ability[]>([{
-    name: "",
-  }]);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAbilities([{
-      ...abilities,
-      name: e.target.value,
-    }]);
-  };
   return (
-    <form className={classes["form"]}>
-      <div className={classes["title"]}>
-        <h3>
-          Register
-        </h3>
-      </div>
-      <div className={classes["field"]}>
-        <input
-          name="firstName"
-          value={input?.firstName}
-          onChange={(e) => {
-            setInput({
-              ...input!,
-              [e.target.name]: e.target.value,
-            })
-          }}
-          className={classes["input-field"]}
-          placeholder="First Name"
-        />
-      </div>
-      <div className={classes["field"]}>
-        <input
-          name="lastName"
-          value={input?.lastName}
-          onChange={(e) => {
-            setInput({
-              ...input!,
-              [e.target.name]: e.target.value,
-            });
-          }}
-          className={classes["input-field"]
-          }
-          placeholder="Last Name"
-        />
-      </div>
-      <div className={classes["field"]}>
-        <input
-          name="email"
-          value={input?.email}
-          onChange={(e) => {
-            setInput({
-              ...input!,
-              [e.target.name]: e.target.value,
-            });
-          }}
-          type="email"
-          className={classes["input-field"]
-          }
-          id="floatingInputInvalid"
-          placeholder="Email"
-        />
-      </div>
-      <div className={classes["field"]}>
-        <input
-          name="ability"
-          value={abilities[0].name}
-          onChange={(e) => {
-            setAbilities({
-              ...abilities!,
-              [e.target.name]: e.target.value,
-            });
-          }}
-          type="text"
-          className={classes["input-field"]}
-          id="floatingInputInvalid"
-          placeholder="Ability"
-          required
-        />
-      </div>
-      <div className={classes["field"]}>
-        <input
-          type="date"
-          name="birthDate"
-          className={classes["input-field"]}
-          onChange={(e) => {
-            setInput({
-              ...input!,
-              birthDate: new Date(e.target.value),
-            });
-          }}
-        ></input>
-      </div>
-      <div className={classes["field"]}>
-        <input
-          onFocus={showDetails}
-          onBlur={showDetails}
-          type={passwordShow}
-          name="password"
-          value={input?.password}
-          placeholder="Insert your password here"
-          onChange={(e) => {
-            setInput({
-              ...input!,
-              [e.target.name]: e.target.value,
-            });
-          }}
-          className={classes["input-field"]}
-        />
-        <button
-          type="button"
-          className={classes["eye"]}
-          onClick={showPassword}
-        >
-          {iconToShow}
-        </button>
-      </div>
-      <div className={classes["field"]}>
-        <input
-          type={confirmPasswordShow}
-          name="confirmPassword"
-          value={input?.confirmPassword}
-          placeholder="Repeat your password here"
-          onChange={(e) => {
-            setInput({
-              ...input!,
-              [e.target.name]: e.target.value,
-            });
-          }}
-          className={classes["input-field"]}
-        />
-        <button
-          type="button"
-          className={classes["eye"]}
-          onClick={showPasswordConfirm}
-        >
-          {iconToShowConfirm}
-        </button>
-      </div>
+    <div className={`container1`}>
+      <form className={classes["form"]}>
+        <div className={classes["title"]}>
+          <h3>
+            Register
+          </h3>
+        </div>
+        <div className={classes["field"]}>
+          <input
+            name="firstName"
+            value={input?.firstName}
+            
+            onChange={(e) => {
+              console.log(e.target.value)
+              setInput({
+                ...input!,
+                [e.target.name]: e.target.value,
+              })
+            }}
+            className={classes["input-field"]}
+            placeholder="First Name"
+          />
+        </div>
+        <div className={classes["field"]}>
+          <input
+            name="lastName"
+            value={input?.lastName}
+            onChange={(e) => {
+              setInput({
+                ...input!,
+                [e.target.name]: e.target.value,
+              });
+            }}
+            className={classes["input-field"]
+            }
+            placeholder="Last Name"
+          />
+        </div>
+        <div className={classes["field"]}>
+          <input
+            name="email"
+            value={input?.email}
+            onChange={(e) => {
+              setInput({
+                ...input!,
+                [e.target.name]: e.target.value,
+              });
+            }}
+            type="email"
+            className={classes["input-field"]
+            }
+            placeholder="Email"
+          />
+        </div>
+        <div className={classes["field"]}>
+          <input
+            type="date"
+            name="birthDate"
+            className={classes["input-field"]}
+            onChange={(e) => {
+              setInput({
+                ...input!,
+                [e.target.value]: e.target.value,
+              });
+            }}
+          ></input>
+        </div>
+        <div className={classes["field"]}>
+          <input
+            onFocus={showDetails}
+            onBlur={showDetails}
+            type={passwordShow}
+            name="password"
+            value={input?.password}
+            placeholder="Insert your password here"
+            onChange={(e) => {
+              setInput({
+                ...input!,
+                [e.target.name]: e.target.value,
+              });
+            }}
+            className={classes["input-field"]}
+          />
+          <button
+            type="button"
+            className={classes["eye"]}
+            onClick={showPassword}
+          >
+            {iconToShow}
+          </button>
+        </div>
+        <div className={classes["field"]}>
+          <input
+            type={confirmPasswordShow}
+            name="confirmPassword"
+            value={input?.confirmPassword}
+            placeholder="Repeat your password here"
+            onChange={(e) => {
+              setInput({
+                ...input!,
+                [e.target.name]: e.target.value,
+              });
+            }}
+            className={classes["input-field"]}
+          />
+          <button
+            type="button"
+            className={classes["eye"]}
+            onClick={showPasswordConfirm}
+          >
+            {iconToShowConfirm}
+          </button>
+        </div>
 
-      <div className={classes["btn"]}>
-        <button
-          type="button"
-          className={classes["button1"]}
-          onClick={handleBackToLogin}
-        >
-          Go back to login
-        </button>
-        <button
-          type="button"
-          className={classes["button2"]}
-          onClick={handleRegistration}
-        >
-          Registration
-        </button>
-      </div>
-    </form>
+        <div className={classes["btn"]}>
+          <button
+            type="button"
+            className={classes["button1"]}
+            onClick={handleBackToLogin}
+          >
+            Go back to login
+          </button>
+          <button
+            type="button"
+            className={classes["button2"]}
+            onClick={handleRegistration}
+          >
+            Registration
+          </button>
+        </div>
+      </form>
+    </div>
   );
 };
 
