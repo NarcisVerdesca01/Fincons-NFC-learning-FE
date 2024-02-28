@@ -6,6 +6,7 @@ import Register from "./component/register/Register";
 import HomePage from "./component/homePage/HomePage";
 import ProtectedRoutes from "./services/ProtectedRoutes";
 import Prova from './component/prova/prova1';
+import Course from "./component/courses/Course";
 
 
 function App() {
@@ -22,6 +23,10 @@ function App() {
             <Route
               path="/homePage"
               element={<HomePage />}
+            ></Route>
+            <Route
+              path="/courses"
+              element={<Course />}
             ></Route>
             <Route
               path="/prova"

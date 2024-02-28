@@ -5,6 +5,7 @@ interface Course {
     id: number,
     name: string,
     description: string,
+    backgroundImage: string,
     lessons: Lesson[],
     abilities: Ability[],
     createDate: Date,

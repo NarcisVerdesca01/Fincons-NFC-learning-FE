@@ -19,38 +19,48 @@ const Header = () => {
         setIsHidden(true);
     };
 
+    const goToCourses = () => {
+        navigate("/courses")
+    }
+    const goToHomePage = () => {
+        navigate("/homePage")
+    }
+
 
     return (
-        <div className={`body`}>
+        <div className={`bodyHeader`}>
             <div className={`firstComponentHeader`}>
                 <h4>NFC E-Learning web site</h4>
             </div>
             <div className={`secondComponentHeader`}>
-                <div>
-                    <button className={`buttonNavBar`}>
-                        Home Page
-                    </button>
+                <div className={`navbarHeader`}>
+                    <div>
+                        <button className={`buttonNavBar`} onClick={goToHomePage}>
+                            Home Page
+                        </button>
+                    </div>
+                    <div>
+                        <button className={`buttonNavBar`} onClick={goToCourses}>
+                            Courses
+                        </button>
+                    </div>
+                    <div>
+                        <button className={`buttonNavBar`}>
+                            Quiz
+                        </button>
+                    </div>
+                    <div>
+                        <button className={`buttonNavBar`}>
+                            Lessons
+                        </button>
+                    </div>
+                    <div>
+                        <button className={`buttonNavBar`} onClick={handleLogout}>
+                            Logout
+                        </button>
+                    </div>
                 </div>
-                <div>
-                    <button className={`buttonNavBar`}>
-                        Courses
-                    </button>
-                </div>
-                <div>
-                    <button className={`buttonNavBar`}>
-                        Quiz
-                    </button>
-                </div>
-                <div>
-                    <button className={`buttonNavBar`}>
-                        Lessons
-                    </button>
-                </div>
-                <div>
-                    <button className={`buttonNavBar`} onClick={handleLogout}>
-                        Logout
-                    </button>
-                </div>
+
             </div>
         </div>
     );
