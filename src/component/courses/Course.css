@@ -1,4 +1,5 @@
 .containerCourse {
+    margin-top: 10vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -12,6 +13,7 @@
     justify-items: center;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
+    margin-bottom: 10vh;
 }
 
 .cardCourse {
@@ -36,6 +38,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 2px solid black;
 }
 
 .imgCardCourse{
