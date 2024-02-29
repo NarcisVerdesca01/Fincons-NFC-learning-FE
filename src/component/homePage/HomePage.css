@@ -1,20 +1,94 @@
-.body{
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-}
-
-.containerCourses{
-    width: 100vw;
+.bodyHomePage{
+    margin-top: 12vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 10vh;
+}
+
+.containerLegend{
+    background-color: transparent;
+    height: 5em;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    margin-top: 2vh;
+    box-shadow: 0.5px 0.5px 0.5px black;
 }
 
-
-
-.header{
-    margin: 0%;   
+.containerTitleLegend{
+    width: 70%;
 }
+
+.titleLegend{
+    margin: 0;
+    margin-left: 1.3em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 1.3em;
+    font-weight: 900;
+    color: black;
+}
+
+.containerButtonLegend{
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.buttonLegend{
+    background-color: transparent;
+    border: none;
+    font-size: 1.3em;
+    padding: 1em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.buttonLegend:hover{
+    color: rgb(0, 0, 0);
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid rgb(0, 0, 0);
+
+}
+
+.containerWhoWeAre{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80vh;
+}
+
+.textWhoWeAre{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.containerImgWhoWeAre{
+    width: 50%;
+    background-image: url("../../assets/imgHomePage1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+}
+
+.containerTitleWhoWeAre{
+    height: 30%;
+}
+
+.titleWhoWeAre{
+    margin-left: 0.5em;
+    font-size: 3.5em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.containerDescriptionWhoWeAre{
+    height: 70%;
+}
+
+.descriptionWhoWeAre{
+    margin-left: 2.5em;
+    margin-right: 2.5em; 
+    font-size: 1.1em;
+}
+
