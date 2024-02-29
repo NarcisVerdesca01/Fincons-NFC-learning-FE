@@ -17,6 +17,11 @@ const Course = () => {
         });
     }, []);
 
+    const gotToPage = (idCorso : any) =>{
+        console.log(idCorso, "sono nel metodo goToPage")
+        navigate("/course_page/" + idCorso)
+    }
+
 
     return (
         <div className={`containerCourse`}>
@@ -27,7 +32,7 @@ const Course = () => {
             <div className={`containerCardCourse`}>
                 {courseList.map((course: CourseModel) => (
                     <div className={`cardCourse`}>
-                        <div className={`containerImgCardCourse`}>
+                        <div className={`containerImgCardCourse`} onClick={() => gotToPage(course?.id)}>
                             <img src={course.backgroundImage ? course.backgroundImage : 'https://cdn.icon-icons.com/icons2/510/PNG/512/person_icon-icons.com_50075.png'} alt={course.name} className={`imgCardCourse`} />
                         </div>
                         <div className={`titleCardCourse`}>

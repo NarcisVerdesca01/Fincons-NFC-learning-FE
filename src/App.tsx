@@ -7,6 +7,7 @@ import HomePage from "./component/homePage/HomePage";
 import ProtectedRoutes from "./services/ProtectedRoutes";
 import Prova from './component/prova/prova1';
 import Course from "./component/courses/Course";
+import PageCourse from "./component/pageCourse/PageCourse";
 
 
 function App() {
@@ -27,6 +28,10 @@ function App() {
             <Route
               path="/courses"
               element={<Course />}
+            ></Route>
+            <Route
+              path="/course_page/:idCourse"
+              element={<PageCourse />}
             ></Route>
             <Route
               path="/prova"
