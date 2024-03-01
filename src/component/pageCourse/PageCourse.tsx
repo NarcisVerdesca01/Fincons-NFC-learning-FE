@@ -21,9 +21,9 @@ const PageCourse = () => {
 
   return (
     <>
-      <div className={`containerCourse`}>
-        <Header />
-        <div className={`containerTitleCourse`}>
+      <Header />
+      <div className={`containerPageCourse`}>
+        <div className={`containerTitlePageCourse`}>
           <h1>{course?.name}</h1>
         </div>
         <div className={`containerContextCourse`}>
@@ -41,8 +41,6 @@ const PageCourse = () => {
             </p>
           </div>
         </div>
-      </div>
-      <div className={`containerCourse`}>
         <div className={`containerContextCourse`}>
           <div className={`titleResources`}>
             <h1>Resources</h1>

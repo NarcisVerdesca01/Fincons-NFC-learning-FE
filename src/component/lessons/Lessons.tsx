@@ -8,7 +8,7 @@ const Lessons = () => {
     
     return (
         <>
-        <div className={`containerCourse`}>
+        <div className={`containerLessons`}>
         
         </div>
         </>
