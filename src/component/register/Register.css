@@ -1,0 +1,106 @@
+.containerRegister{
+    background-image: url("../../assets/wallpaper.jpeg");
+    background-position: top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardRegister{
+    border-radius: 15px;
+    background-color: transparent;
+    backdrop-filter: blur(10px);
+    transition: .4s ease-in-out;
+}
+
+.cardRegister:hover{
+    background-image:  linear-gradient(transparent, #0005);
+    box-shadow: 0 0 5px #00e91f, 0 0 15px #00e91f, 0 0 25px #00e91f, 0 0 100px #00e91f ;
+}
+
+.formRegister {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding-left: 4em;
+    padding-right: 4em;
+    padding-bottom: 0.4em;
+    border-radius: 20px;
+}
+
+.titleRegister {
+    text-align: center;
+    margin: 2em;
+    margin-top: 4em;
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+}
+
+.fieldRegister {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5em;
+    border-radius: 25px;
+    padding: 0.6em;
+    border: none;
+    outline: none;
+    text-align: center;
+    color: white;
+    background-color: #000000;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+}
+
+.input-iconRegister {
+    height: 1.5em;
+    width: 1.5em;
+    fill: rgb(0, 255, 200);
+}
+
+.input-fieldRegister {
+    background: none;
+    border: none;
+    outline: none;
+    width: 15em;
+    font-size: large;
+    color: rgb(255, 255, 255);
+}
+
+.buttonRegister {
+    margin: 1em;
+    padding: 0.5em;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-color: rgb(0, 22, 36);
+    font-size: large;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.buttonRegister:hover {
+    background-image:  linear-gradient(transparent, #0005);
+    box-shadow: 0 0 5px #00e91f, 0 0 15px #00e91f, 0 0 25px #00e91f, 0 0 100px #00e91f ;
+}
+
+.eyeRegister {
+    width: 2em;
+    height: 2em;
+    border: none;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.btnRegister{
+    display: flex;
+}

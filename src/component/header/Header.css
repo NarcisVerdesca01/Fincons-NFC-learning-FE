@@ -1,0 +1,80 @@
+.bodyHeader{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.firstComponentHeader{
+    height: 5em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    box-shadow: 3px 3px 3px black;
+    position: fixed;
+    background-color:#0081eb;
+    z-index: 1;
+}
+
+.containerTitleHeader{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 40%;
+}
+
+.titleHeader{
+    margin: 0;;
+    margin-left: 2em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2em;
+    font-weight: 900;
+    color: rgb(0, 0, 0);
+}
+
+.navbarHeader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+}
+
+.containerNavBarHeader{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.containerButtonNavBar{
+    width: 15em;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttonNavBar{
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    color: rgb(0, 0, 0);
+    transition: transform 0.6s;
+}
+
+.nameButton{
+    margin: 0%;
+    padding: 0.6em;
+}
+
+.buttonNavBar:hover{
+    border: 2px solid black;
+    border-radius: 15px;
+    box-shadow: 4px 4px 4px black;
+    transform: scale(1.05);
+}
