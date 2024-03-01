@@ -21,8 +21,8 @@ const PageCourse = () => {
 
   return (
     <>
+      <Header />
       <div className={`containerCourse`}>
-        <Header />
         <div className={`containerTitleCourse`}>
           <h1>{course?.name}</h1>
         </div>
@@ -32,12 +32,18 @@ const PageCourse = () => {
           </div>
           <div className={`textCourse`}>
             <p className={`textCourse2`}>
-              The “Java” course was created with the aim of teaching you how to
-              become a Java programmer in a very short time and in the simplest
-              and most linear way possible. Never programmed before? No problem!
-              We start from scratch, therefore from the basics of programming
-              and with a little perseverance you will be able to learn all the
-              main syntax of the language.
+              Welcome to The Complete MySQL Bootcamp: From SQL Beginner to
+              Expert. This course is 100% up-to-date We answer absolutely every
+              question our students ask and the responses we give are thoroughly
+              detailed Why to learn SQL? Because according to the latest Stack
+              Overflow Survey, SQL takes third place (54.7%) among the most
+              popular programming, scripting and markup languages. How will my
+              lessons look? Straight to the point, no time wasted! Firstly, all
+              theory will be explained on slides and after you get the concept,
+              we show you how it works in practice. Will I have lots of
+              practice? This course comes packed with lots of exercises to
+              effectively practice and actually use SQL in order to help you
+              advance quickly.
             </p>
           </div>
         </div>
@@ -49,9 +55,9 @@ const PageCourse = () => {
           </div>
         </div>
         <div className={`containerResources`}>
-          <div>Resources</div>
-          <div>Resources</div>
-          <div>Resources</div>
+          <div className={`descriptionResources`}>
+            <h4> This Resources will be utlity fo your study</h4>
+          </div>
         </div>
       </div>
     </>

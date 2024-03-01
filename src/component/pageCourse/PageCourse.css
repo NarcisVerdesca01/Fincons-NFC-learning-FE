@@ -18,12 +18,7 @@
     height: 20em;
     margin-left: -18em;
 }
-.textCourse2:hover {
-    text-align: center;
-    color: red;
-    font-size: 1.7em;
-    font-family: 'Times New Roman', Times, serif;
-}
+
 .textCourse2 {
     margin-top: 2.5em;
     font-size: 1.7em;
@@ -46,11 +41,21 @@
     font-family: 'Times New Roman', Times, serif;
     width: 41em;
     margin-left: 1em;
+    border-color: black;
 }
 
 .containerResources {
     display: inline-grid;
     display: grid;
     grid-template-rows: 1fr 1fr;
+}
+
+.descriptionResources{
+    margin-top: 2.5em;
+    font-size: 1.7em;
+    text-align: left;
+    font-family: 'Times New Roman', Times, serif;
+    width: 41em;
+    margin-left: 1em;
 }
 
