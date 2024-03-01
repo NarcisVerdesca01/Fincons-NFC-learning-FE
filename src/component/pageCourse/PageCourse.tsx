@@ -6,35 +6,34 @@ import "./PageCourse.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
 
-interface Props{
+interface Props {
   courseId: number;
-  setCourseId: React.Dispatch<React.SetStateAction<number | undefined>>
+  setCourseId: React.Dispatch<React.SetStateAction<number | undefined>>;
 }
 
-const PageCourse = (props:Props) => {
+const PageCourse = (props: Props) => {
   const [course, setCourse] = useState<CourseModel>();
-  const [lessonList, setLessonList] = useState<LessonModel[]>([])
+  const [lessonList, setLessonList] = useState<LessonModel[]>([]);
   const navigate = useNavigate();
   const { idCourse } = useParams();
   const idCourse_page = parseInt(idCourse!);
 
-
   useEffect(() => {
     CourseService.getCourseById(idCourse_page!).then((res) => {
       setCourse(res.data.data);
-      console.log(idCourse_page , " idCourse_page");
+      console.log(idCourse_page, " idCourse_page");
       props.setCourseId(idCourse_page);
-      console.log(res.data.data.lessons, "sono qui in PageCourse res.data.data.lessons");
-      setLessonList(res.data.data.lessons)
+      console.log(
+        res.data.data.lessons,
+        "sono qui in PageCourse res.data.data.lessons"
+      );
+      setLessonList(res.data.data.lessons);
     });
   }, [idCourse]);
 
   const gotToPage = (idPage: any) => {
     navigate("/lesson_page/" + idPage);
   };
-
-
-
 
   return (
     <>
@@ -49,7 +48,18 @@ const PageCourse = (props:Props) => {
           </div>
           <div className={`textCourse`}>
             <p className={`textCourse2`}>
-              {course?.description}
+              Welcome to The Complete MySQL Bootcamp: From SQL Beginner to
+              Expert. This course is 100% up-to-date We answer absolutely every
+              question our students ask and the responses we give are thoroughly
+              detailed Why to learn SQL? Because according to the latest Stack
+              Overflow Survey, SQL takes third place (54.7%) among the most
+              popular programming, scripting and markup languages. How will my
+              lessons look? Straight to the point, no time wasted! Firstly, all
+              theory will be explained on slides and after you get the concept,
+              we show you how it works in practice. Will I have lots of
+              practice? This course comes packed with lots of exercises to
+              effectively practice and actually use SQL in order to help you
+              advance quickly.
             </p>
           </div>
         </div>
@@ -62,8 +72,10 @@ const PageCourse = (props:Props) => {
           {lessonList.map((lessons: any) => (
             <div className={`cardPageCourseLesson`}>
               <div className={`cardLessonPageCorseLesson`}>
-                <button className={`buttonLesson`} 
-                onClick={() => gotToPage(lessons?.id)}>
+                <button
+                  className={`buttonLesson`}
+                  onClick={() => gotToPage(lessons?.id)}
+                >
                   {lessons.lesson.title}
                 </button>
               </div>
