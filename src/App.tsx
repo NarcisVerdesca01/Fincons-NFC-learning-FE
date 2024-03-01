@@ -17,7 +17,7 @@ function App() {
     <div id="app">
       <Router>
         <Routes>
-        <Route
+          <Route
             path="/"
             element={<ProtectedRoutes />}
           >
@@ -37,7 +37,7 @@ function App() {
               path="/prova"
               element={<Prova />}
             ></Route>
-        </Route>
+          </Route>
           <Route
             path="/authentication"
             element={

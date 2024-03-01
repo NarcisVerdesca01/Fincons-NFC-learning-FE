@@ -4,8 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import CourseService from "../../services/CourseService";
 import "./PageCourse.css";
 import Header from "../header/Header";
-import Ability from "../../models/AbilityModel";
-import AbilityService from "../../services/AbilityService";
 
 const PageCourse = () => {
   const [course, setCourse] = useState<CourseModel>();
@@ -32,12 +30,7 @@ const PageCourse = () => {
           </div>
           <div className={`textCourse`}>
             <p className={`textCourse2`}>
-              The “Java” course was created with the aim of teaching you how to
-              become a Java programmer in a very short time and in the simplest
-              and most linear way possible. Never programmed before? No problem!
-              We start from scratch, therefore from the basics of programming
-              and with a little perseverance you will be able to learn all the
-              main syntax of the language.
+              {course?.description}
             </p>
           </div>
         </div>
