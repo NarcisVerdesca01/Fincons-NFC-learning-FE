@@ -15,7 +15,6 @@ const token = Cookies.get("jwt-token")
 
 const LoginRegistrationService = {
   registrationService(user: User) {
-    console.log(user)
     return axios.post(REGISTRATION_URI, user);
   },
 
@@ -36,7 +35,6 @@ const LoginRegistrationService = {
   },
 
   loginService(loginInput: LoginUserModel) {
-    console.log(loginInput, "login input ")
     return axios.post(
       LOGIN_URI,
       loginInput

@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './Header.css';
 import utils from "../../utils/Utils";
-
-import Login from '../login/Login';
-import LoginRegistrationService from '../../services/LoginRegistrationService';
 import Cookies from 'js-cookie';
-import { useNavigate } from 'react-router';
-import UserDetailModels from '../../models/UserDetailsModel';
 import { jwtDecode } from 'jwt-decode';
-
+import { getUserDetails } from '../../services/UserServiceDetails';
+import { useNavigate } from 'react-router';
+import UserService from '../../services/UserService';
 
 const Header = () => {
     const navigate = useNavigate();
     const [isHidden, setIsHidden] = useState<boolean>(true);
-
 
     const handleLogout = () => {
         Cookies.remove("jwt-token");
@@ -28,7 +24,25 @@ const Header = () => {
     const goToHomePage = () => {
         navigate("/homePage")
     }
+    const goToPageDedicatedCourses = () => {
+        navigate("/page_dedicated_courses")
+    }
 
+    const auth = Cookies.get("jwt-token")
+    const decodedJwt = jwtDecode(auth!)
+    const userEmail = decodedJwt.sub
+
+    const [adminNavBar, setAdminNavBar] = useState<boolean>(false);
+    const [tutorNavBar, setTutorNavBar] = useState<boolean>(false);
+    useEffect(() => {
+        UserService.getUserDetails(userEmail!).then((res) => {
+            if(res.data.data.roles[0].name == "ROLE_ADMIN"){
+                setAdminNavBar(true)
+            } else if (res.data.data.roles[0].name == "ROLE_TUTOR"){
+                setTutorNavBar(true)
+            }
+        });
+    }, [userEmail!]);
 
     return (
         <div className={`bodyHeader`}>
@@ -49,15 +63,24 @@ const Header = () => {
                             </button>
                         </div>
                         <div className={`containerButtonNavBar`}>
-                            <button className={`buttonNavBar`}>
-                                <p className={`nameButton`}>My courses</p>
-                            </button>
-                        </div>
-                        <div className={`containerButtonNavBar`}>
-                            <button className={`buttonNavBar`}>
-                                <p className={`nameButton`}>Profile</p>
-                            </button>
-                        </div>
+                                <button className={`buttonNavBar`} onClick={goToPageDedicatedCourses}>
+                                    <p className={`nameButton`}>My courses</p>
+                                </button>
+                            </div>
+                        {tutorNavBar && (
+                            <div className={`containerButtonNavBar`}>
+                                 <button className={`buttonNavBar`} onClick={goToPageDedicatedCourses}>
+                                    <p className={`nameButton`}>Settings</p>
+                                </button>
+                            </div>
+                        )}
+                        {adminNavBar && (
+                            <div className={`containerButtonNavBar`}>
+                                <button className={`buttonNavBar`}>
+                                    <p className={`nameButton`}>Settings</p>
+                                </button>
+                            </div>
+                        )}
                         <div className={`containerButtonNavBar`}>
                             <button className={`buttonNavBar`} onClick={handleLogout}>
                                 <p className={`nameButton`}>Logout</p>

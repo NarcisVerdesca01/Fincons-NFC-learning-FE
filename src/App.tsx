@@ -8,9 +8,13 @@ import ProtectedRoutes from "./services/ProtectedRoutes";
 import Prova from './component/prova/prova1';
 import Course from "./component/courses/Course";
 import PageCourse from "./component/pageCourse/PageCourse";
+import PageDedicatedCourse from "./component/pageDedicatedCourse/PageDedicatedCourse";
+import { useState } from "react";
+import PageLesson from "./component/Lesson/PageLesson";
 
 
 function App() {
+
 
 
   return (
@@ -34,8 +38,20 @@ function App() {
               element={<PageCourse />}
             ></Route>
             <Route
+              path="/lesson_page/:idPage"
+              element={<PageLesson />}
+            ></Route>
+            <Route
               path="/prova"
               element={<Prova />}
+            ></Route>
+            <Route
+              path="/page_dedicated_courses"
+              element={<PageDedicatedCourse />}
+            ></Route>
+            <Route
+              path="/settings"
+              element={<PageDedicatedCourse />}
             ></Route>
         </Route>
           <Route
@@ -45,6 +61,14 @@ function App() {
               />
             }
           ></Route>
+          <Route
+            path="/"
+            element={
+              <Login
+              />
+            }
+          ></Route>
+          
           <Route path="/register" element={<Register />}></Route>
         </Routes>
       </Router>

@@ -4,20 +4,28 @@ import { useNavigate, useParams } from "react-router-dom";
 import CourseService from "../../services/CourseService";
 import "./PageCourse.css";
 import Header from "../header/Header";
-import Ability from "../../models/AbilityModel";
-import AbilityService from "../../services/AbilityService";
+import LessonModel from "../../models/LessonModel";
 
 const PageCourse = () => {
   const [course, setCourse] = useState<CourseModel>();
-
+  const [lessonList, setLessonList] = useState<LessonModel[]>([])
   const navigate = useNavigate();
   const { idCourse } = useParams();
   const idCourse_page = parseInt(idCourse!);
+
+
   useEffect(() => {
     CourseService.getCourseById(idCourse_page).then((res) => {
       setCourse(res.data.data);
+      console.log(res.data.data.lessons);
+      setLessonList(res.data.data.lessons)
     });
   }, [idCourse]);
+
+  const gotToPage = (idPage: any) => {
+    navigate("/lesson_page/" + idPage);
+  };
+
 
   return (
     <>
@@ -32,12 +40,7 @@ const PageCourse = () => {
           </div>
           <div className={`textCourse`}>
             <p className={`textCourse2`}>
-              The “Java” course was created with the aim of teaching you how to
-              become a Java programmer in a very short time and in the simplest
-              and most linear way possible. Never programmed before? No problem!
-              We start from scratch, therefore from the basics of programming
-              and with a little perseverance you will be able to learn all the
-              main syntax of the language.
+              {course?.description}
             </p>
           </div>
         </div>
@@ -47,9 +50,16 @@ const PageCourse = () => {
           </div>
         </div>
         <div className={`containerResources`}>
-          <div>Resources</div>
-          <div>Resources</div>
-          <div>Resources</div>
+          {lessonList.map((lessons: any) => (
+            <div className={`cardPageCourseLesson`}>
+              <div className={`cardLessonPageCorseLesson`}>
+                <button className={`buttonLesson`} 
+                onClick={() => gotToPage(lessons?.id)}>
+                  {lessons.lesson.title}
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>
