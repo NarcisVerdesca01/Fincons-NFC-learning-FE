@@ -18,12 +18,17 @@
     height: 20em;
     margin-left: -18em;
 }
-
+.textCourse2:hover {
+    text-align: center;
+    color: rgb(179, 131, 131);
+    font-size: 1.7em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .textCourse2 {
     margin-top: 2.5em;
     font-size: 1.7em;
     text-align: center;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 41em;
 
 }
@@ -31,14 +36,14 @@
     margin-left: 1em;
     font-size: 2em;
     text-align: left;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .titleResources {
     margin-top: 2.5em;
     font-size: 1.7em;
     text-align: left;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 41em;
     margin-left: 1em;
     border-color: black;
