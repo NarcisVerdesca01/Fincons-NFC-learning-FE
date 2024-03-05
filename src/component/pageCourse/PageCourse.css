@@ -20,7 +20,7 @@
 }
 .textCourse2:hover {
     text-align: center;
-    color: rgb(179, 131, 131);
+    color: rgb(173, 170, 170);
     font-size: 1.7em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -30,7 +30,6 @@
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     width: 41em;
-
 }
 .containerTitleCourse {
     margin-left: 1em;
@@ -38,7 +37,6 @@
     text-align: left;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 .titleResources {
     margin-top: 2.5em;
     font-size: 1.7em;
@@ -48,13 +46,11 @@
     margin-left: 1em;
     border-color: black;
 }
-
 .containerResources {
     display: inline-grid;
     display: grid;
     grid-template-rows: 1fr 1fr;
 }
-
 .descriptionResources{
     margin-top: 2.5em;
     font-size: 1.7em;
@@ -63,4 +59,3 @@
     width: 41em;
     margin-left: 1em;
 }
-

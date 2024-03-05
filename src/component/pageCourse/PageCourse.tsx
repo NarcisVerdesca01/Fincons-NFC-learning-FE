@@ -9,7 +9,6 @@ import AbilityService from "../../services/AbilityService";
 
 const PageCourse = () => {
   const [course, setCourse] = useState<CourseModel>();
-
   const navigate = useNavigate();
   const { idCourse } = useParams();
   const idCourse_page = parseInt(idCourse!);
@@ -63,5 +62,4 @@ const PageCourse = () => {
     </>
   );
 };
-
 export default PageCourse;

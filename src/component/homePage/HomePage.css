@@ -56,13 +56,35 @@
     width: 100%;
     height: 80vh;
 }
-
+.containerWhatIsIt{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80vh;
+}
+.containerWhatWeOffer{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 80vh;
+}
 .textWhoWeAre{
     display: flex;
     flex-direction: column;
     width: 50%;
 }
-
+.textWhatIsIt{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+.textWhatWeOffer{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
 .containerImgWhoWeAre{
     width: 50%;
     background-image: url("../../assets/imgHomePage1.jpg");
@@ -71,22 +93,67 @@
     background-size: cover;
     height: auto;
 }
-
+.containerImgWhatIsIt{
+    width: 50%;
+    background-image: url("../../assets/imgHomePage2.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+}
+.containerImgWhatWeOffer{
+    width: 50%;
+    background-image: url("../../assets/imgHomePage3.jpeg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: auto;
+}
 .containerTitleWhoWeAre{
     height: 30%;
 }
-
+.containerTitleWhatWeOffer{
+    height: 30%;
+}
+.containerTitleWhatIsIt{
+    height: 30%;
+}
 .titleWhoWeAre{
     margin-left: 0.5em;
     font-size: 3.5em;
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
-
+.titleWhatIsIt{
+    margin-left: 0.5em;
+    font-size: 3.5em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+.titleWhatWeOffer{
+    margin-left: 0.5em;
+    font-size: 3.5em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
 .containerDescriptionWhoWeAre{
+    height: 70%;
+}
+.containerDescriptionWhatIsIt{
+    height: 70%;
+}
+.containerDescriptionWhatWeOffer{
     height: 70%;
 }
 
 .descriptionWhoWeAre{
+    margin-left: 2.5em;
+    margin-right: 2.5em; 
+    font-size: 1.1em;
+}
+.descriptionWhatIsIt{
+    margin-left: 2.5em;
+    margin-right: 2.5em; 
+    font-size: 1.1em;
+}
+.descriptionWhatWeOffer{
     margin-left: 2.5em;
     margin-right: 2.5em; 
     font-size: 1.1em;
