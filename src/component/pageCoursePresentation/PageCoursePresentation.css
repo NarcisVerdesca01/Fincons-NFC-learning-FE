@@ -1,4 +1,4 @@
-.containerPageDedicatedCourse{
+.containerPageCourse{
     margin-top: 6em;
     display: flex;
     justify-content: center;
@@ -7,7 +7,7 @@
     width: 100%;
 }
 
-.imageCardDedicatedCourse {
+.imageCardCourse {
     width: 50em;
     height: 50em;
     height: auto;
@@ -17,15 +17,29 @@
     width: 30em;
     height: 20em;
 }
-.containerContextDedicatedCourse {
+.containerContextCourse {
     display: inline-grid;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-.textDedicatedCourse  {
+.textCourse  {
     width: 30em;
     height: 20em;
     margin-left: -18em;
+}
+.textCourse2:hover {
+    text-align: center;
+    color: red;
+    font-size: 1.7em;
+    font-family: 'Times New Roman', Times, serif;
+}
+.textCourse2 {
+    margin-top: 2.5em;
+    font-size: 1.7em;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    width: 41em;
+
 }
 .containerTitlePageCourse {
     margin-left: 1em;
@@ -43,8 +57,15 @@
     margin-left: 1em;
 }
 
+.containerResources {
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5em;
+}
 
-.cardLessonPageDedicatedCorseLesson{
+.cardLessonPageCorseLesson{
     background-color: aqua;
     width: 10em;
     height: 10em;

@@ -2,16 +2,11 @@ import { useEffect, useState } from "react";
 import CourseModel from "../../models/CourseModel";
 import { useNavigate, useParams } from "react-router-dom";
 import CourseService from "../../services/CourseService";
-import "./PageCourse.css";
+import "./PageCoursePresentation.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
 
-interface Props{
-  courseId: number;
-  setCourseId: React.Dispatch<React.SetStateAction<number | undefined>>
-}
-
-const PageCourse = (props:Props) => {
+const PageCourse = () => {
   const [course, setCourse] = useState<CourseModel>();
   const [lessonList, setLessonList] = useState<LessonModel[]>([])
   const navigate = useNavigate();
@@ -20,21 +15,12 @@ const PageCourse = (props:Props) => {
 
 
   useEffect(() => {
-    CourseService.getCourseById(idCourse_page!).then((res) => {
+    CourseService.getCourseById(idCourse_page).then((res) => {
       setCourse(res.data.data);
-      console.log(idCourse_page , " idCourse_page");
-      props.setCourseId(idCourse_page);
-      console.log(res.data.data.lessons, "sono qui in PageCourse res.data.data.lessons");
+      console.log(res.data.data.lessons);
       setLessonList(res.data.data.lessons)
     });
   }, [idCourse]);
-
-  const gotToPage = (idPage: any) => {
-    navigate("/lesson_page/" + idPage);
-  };
-
-
-
 
   return (
     <>
@@ -57,18 +43,6 @@ const PageCourse = (props:Props) => {
           <div className={`titleResources`}>
             <h1>Resources</h1>
           </div>
-        </div>
-        <div className={`containerResources`}>
-          {lessonList.map((lessons: any) => (
-            <div className={`cardPageCourseLesson`}>
-              <div className={`cardLessonPageCorseLesson`}>
-                <button className={`buttonLesson`} 
-                onClick={() => gotToPage(lessons?.id)}>
-                  {lessons.lesson.title}
-                </button>
-              </div>
-            </div>
-          ))}
         </div>
       </div>
     </>
