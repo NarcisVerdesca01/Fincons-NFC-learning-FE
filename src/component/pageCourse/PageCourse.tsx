@@ -86,5 +86,4 @@ const PageCourse = (props: Props) => {
     </>
   );
 };
-
 export default PageCourse;
