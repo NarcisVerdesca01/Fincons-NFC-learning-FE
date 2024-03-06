@@ -70,15 +70,11 @@ const PageCourse = (props: Props) => {
         </div>
         <div className={`containerResources`}>
           {lessonList.map((lessons: any) => (
-            <div className={`cardPageCourseLesson`}>
-              <div className={`cardLessonPageCorseLesson`}>
-                <button
-                  className={`buttonLesson`}
-                  onClick={() => gotToPage(lessons?.id)}
-                >
-                  {lessons.lesson.title}
-                </button>
-              </div>
+            <div className={`cardLessonPageCorse`}>
+              <button className={`buttonLesson`}
+                onClick={() => gotToPage(lessons?.id)}>
+                {lessons.lesson.title}
+              </button>
             </div>
           ))}
         </div>
