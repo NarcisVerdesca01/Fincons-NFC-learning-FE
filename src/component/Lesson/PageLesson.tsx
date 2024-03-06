@@ -7,6 +7,7 @@ import "./PageLesson.css";
 import CourseService from "../../services/CourseService";
 import Course from "../../models/CourseModel";
 import Footer from "../footer/Footer";
+import Footer from "../footer/Footer";
 interface Props {
   idCourse: number;
 }
