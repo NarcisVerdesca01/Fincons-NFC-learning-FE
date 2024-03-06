@@ -22,7 +22,7 @@
 .titleLegend{
     margin: 0;
     margin-left: 1.3em;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.3em;
     font-weight: 900;
     color: black;
@@ -61,14 +61,14 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 80vh;
+    height: 40em;
 }
 .containerWhatWeOffer{
     margin-top: 2em;
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 80vh;
+    height: 40em;
 }
 .textWhoWeAre{
     display: flex;
@@ -86,28 +86,46 @@
     width: 50%;
 }
 .containerImgWhoWeAre{
-    width: 50%;
+    width:40%;
+    height: 30%;
     background-image: url("../../assets/imgHomePage1.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: auto;
+    border: 2px solid;
+    padding: 8px;
+    border-radius: 25px;
+    margin-right: 1em;
+    margin-left: 10em;
 }
 .containerImgWhatIsIt{
-    width: 50%;
+    width: 40%;
+    height: 30%;
     background-image: url("../../assets/imgHomePage2.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: auto;
+    border: 2px solid;
+    padding: 8px;
+    border-radius: 25px;
+    margin-right: 1em;
+    margin-left: 1em;
 }
 .containerImgWhatWeOffer{
-    width: 50%;
+    width: 40%;
+    height: 30%;
     background-image: url("../../assets/imgHomePage3.jpeg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: auto;
+    border: 2px solid;
+    padding: 8px;
+    border-radius: 25px;
+    margin-right: 1em;
+    margin-left: 10em;
 }
 .containerTitleWhoWeAre{
     height: 30%;
@@ -121,23 +139,24 @@
 .titleWhoWeAre{
     margin-left: 0.5em;
     font-size: 3.5em;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .titleWhatIsIt{
-    margin-left: 0.5em;
+    margin-left:1em;
     font-size: 3.5em;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .titleWhatWeOffer{
     margin-left: 0.5em;
     font-size: 3.5em;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .containerDescriptionWhoWeAre{
     height: 70%;
 }
 .containerDescriptionWhatIsIt{
     height: 70%;
+    margin-left: 2em;
 }
 .containerDescriptionWhatWeOffer{
     height: 70%;
@@ -147,15 +166,22 @@
     margin-left: 2.5em;
     margin-right: 2.5em; 
     font-size: 1.1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .descriptionWhatIsIt{
     margin-left: 2.5em;
     margin-right: 2.5em; 
     font-size: 1.1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .descriptionWhatWeOffer{
     margin-left: 2.5em;
     margin-right: 2.5em; 
     font-size: 1.1em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.descriptionTitleWhatWeOffer{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:rgb(35, 111, 197)
+}
