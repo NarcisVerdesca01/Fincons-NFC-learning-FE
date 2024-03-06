@@ -6,7 +6,12 @@ import "./PageCourse.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
 
-const PageCourse = () => {
+interface Props {
+  courseId: number;
+  setCourseId: React.Dispatch<React.SetStateAction<number | undefined>>;
+}
+
+const PageCourse = (props: Props) => {
   const [course, setCourse] = useState<CourseModel>();
   const [lessonList, setLessonList] = useState<LessonModel[]>([]);
   const navigate = useNavigate();
@@ -14,9 +19,14 @@ const PageCourse = () => {
   const idCourse_page = parseInt(idCourse!);
 
   useEffect(() => {
-    CourseService.getCourseById(idCourse_page).then((res) => {
+    CourseService.getCourseById(idCourse_page!).then((res) => {
       setCourse(res.data.data);
-      console.log(res.data.data.lessons);
+      console.log(idCourse_page, " idCourse_page");
+      props.setCourseId(idCourse_page);
+      console.log(
+        res.data.data.lessons,
+        "sono qui in PageCourse res.data.data.lessons"
+      );
       setLessonList(res.data.data.lessons);
     });
   }, [idCourse]);

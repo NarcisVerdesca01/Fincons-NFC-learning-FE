@@ -16,7 +16,7 @@ const Course = () => {
   }, []);
 
   const gotToPage = (idCorso: any) => {
-    navigate("/course_page/" + idCorso);
+    navigate("/course_page_presentation/" + idCorso);
   };
 
   return (

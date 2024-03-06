@@ -5,23 +5,22 @@ import Login from "./component/login/Login";
 import Register from "./component/register/Register";
 import HomePage from "./component/homePage/HomePage";
 import ProtectedRoutes from "./services/ProtectedRoutes";
-import Prova from './component/prova/prova1';
 import Course from "./component/courses/Course";
 import PageCourse from "./component/pageCourse/PageCourse";
 import PageDedicatedCourse from "./component/pageDedicatedCourse/PageDedicatedCourse";
 import { useState } from "react";
 import PageLesson from "./component/Lesson/PageLesson";
+import PageCoursePresentation from "./component/pageCoursePresentation/PageCoursePresentation";
 
 
 function App() {
-
-
+  const [idCourse, setIdCourse] = useState<number | undefined>();
 
   return (
     <div id="app">
       <Router>
         <Routes>
-        <Route
+          <Route
             path="/"
             element={<ProtectedRoutes />}
           >
@@ -35,15 +34,15 @@ function App() {
             ></Route>
             <Route
               path="/course_page/:idCourse"
-              element={<PageCourse />}
+              element={<PageCourse courseId={idCourse!} setCourseId={setIdCourse} />}
+            ></Route>
+            <Route
+              path="/course_page_presentation/:idCourse"
+              element={<PageCoursePresentation />}
             ></Route>
             <Route
               path="/lesson_page/:idPage"
-              element={<PageLesson />}
-            ></Route>
-            <Route
-              path="/prova"
-              element={<Prova />}
+              element={<PageLesson idCourse={idCourse!} />}
             ></Route>
             <Route
               path="/page_dedicated_courses"
@@ -51,9 +50,9 @@ function App() {
             ></Route>
             <Route
               path="/settings"
-              element={<PageDedicatedCourse />}
+            //element={<Settings />}
             ></Route>
-        </Route>
+          </Route>
           <Route
             path="/authentication"
             element={
@@ -68,7 +67,7 @@ function App() {
               />
             }
           ></Route>
-          
+
           <Route path="/register" element={<Register />}></Route>
         </Routes>
       </Router>

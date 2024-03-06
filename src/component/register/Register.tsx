@@ -174,7 +174,7 @@ const RegisterPageComponent = () => {
               {iconToShow}
             </button>
           </div>
-          {/*<div className={`fieldRegister`}>
+          <div className={`fieldRegister`}>
             <input
               type={confirmPasswordShow}
               name="confirmPassword"
@@ -195,7 +195,7 @@ const RegisterPageComponent = () => {
             >
               {iconToShowConfirm}
             </button>
-            </div>*/}
+          </div>
 
           <div className={`btnRegister`}>
             <button
