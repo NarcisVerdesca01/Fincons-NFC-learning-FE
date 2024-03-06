@@ -5,20 +5,20 @@ import CourseService from "../../services/CourseService";
 import "./PageCoursePresentation.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
+import Footer from "../footer/Footer";
 
 const PageCoursePresentation = () => {
   const [course, setCourse] = useState<CourseModel>();
-  const [lessonList, setLessonList] = useState<LessonModel[]>([])
+  const [lessonList, setLessonList] = useState<LessonModel[]>([]);
   const navigate = useNavigate();
   const { idCourse } = useParams();
   const idCourse_page = parseInt(idCourse!);
-
 
   useEffect(() => {
     CourseService.getCourseById(idCourse_page).then((res) => {
       setCourse(res.data.data);
       console.log(res.data.data.lessons);
-      setLessonList(res.data.data.lessons)
+      setLessonList(res.data.data.lessons);
     });
   }, [idCourse]);
 
@@ -31,12 +31,14 @@ const PageCoursePresentation = () => {
         </div>
         <div className={`containerContextCoursePresentation`}>
           <div className={`imageCardCoursePresentation`}>
-            <img src={course?.backgroundImage} alt="" className={`imageStyleCoursePresentation`} />
+            <img
+              src={course?.backgroundImage}
+              alt=""
+              className={`imageStyleCoursePresentation`}
+            />
           </div>
           <div className={`containerTextCoursePresentation`}>
-            <p className={`textCoursePresentation`}>
-              {course?.description}
-            </p>
+            <p className={`textCoursePresentation`}>{course?.description}</p>
           </div>
         </div>
         <div className={`containerTitleResourcesCoursePresentation`}>
