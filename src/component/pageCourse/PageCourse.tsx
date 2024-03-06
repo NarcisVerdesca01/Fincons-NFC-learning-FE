@@ -44,26 +44,15 @@ const PageCourse = (props: Props) => {
         </div>
         <div className={`containerContextCourse`}>
           <div className={`imageCardCourse`}>
-            <img src={course?.backgroundImage} alt="" className="imageStyle" />
+            <img src={course?.backgroundImage} alt="" className={`imageStyleCourse`} />
           </div>
-          <div className={`textCourse`}>
-            <p className={`textCourse2`}>
-              Welcome to The Complete MySQL Bootcamp: From SQL Beginner to
-              Expert. This course is 100% up-to-date We answer absolutely every
-              question our students ask and the responses we give are thoroughly
-              detailed Why to learn SQL? Because according to the latest Stack
-              Overflow Survey, SQL takes third place (54.7%) among the most
-              popular programming, scripting and markup languages. How will my
-              lessons look? Straight to the point, no time wasted! Firstly, all
-              theory will be explained on slides and after you get the concept,
-              we show you how it works in practice. Will I have lots of
-              practice? This course comes packed with lots of exercises to
-              effectively practice and actually use SQL in order to help you
-              advance quickly.
+          <div className={`containerTextCourse`}>
+            <p className={`textCourse`}>
+              {course?.description}
             </p>
           </div>
         </div>
-        <div className={`containerContextCourse`}>
+        <div className={`containerTitleResources`}>
           <div className={`titleResources`}>
             <h1>Resources</h1>
           </div>
@@ -71,7 +60,7 @@ const PageCourse = (props: Props) => {
         <div className={`containerResources`}>
           {lessonList.map((lessons: any) => (
             <div className={`cardLessonPageCorse`}>
-              <button className={`buttonLesson`}
+              <button className={`buttonLessonCourse`}
                 onClick={() => gotToPage(lessons?.id)}>
                 {lessons.lesson.title}
               </button>

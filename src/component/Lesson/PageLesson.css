@@ -1,6 +1,6 @@
 .containerPageLesson{
     margin-top: 6em;
-    margin-bottom: 5em;
+    height: 100em;
 }
 
 .containerTitlePageLesson{
@@ -37,6 +37,12 @@
     height: 8em;
     border-radius: 15px;
     cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.9s;
+}
+
+.cardPageLesson:hover{
+    transform: scale(1.1);
 }
 
 .containerImageLesson{
@@ -44,6 +50,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+}
+
+.imageLesson{
+    height: 100%;
 }
 
 .containerTitleLesson{

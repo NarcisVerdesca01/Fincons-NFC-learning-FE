@@ -29,13 +29,17 @@ const Header = () => {
     }
 
     const auth = Cookies.get("jwt-token")
+    console.log(auth)
     const decodedJwt = jwtDecode(auth!)
+    console.log(decodedJwt)
     const userEmail = decodedJwt.sub
+    console.log(userEmail)
 
     const [adminNavBar, setAdminNavBar] = useState<boolean>(false);
     const [tutorNavBar, setTutorNavBar] = useState<boolean>(false);
     useEffect(() => {
         UserService.getUserDetails(userEmail!).then((res) => {
+            console.log(res)
             if(res.data.data.roles[0].name == "ROLE_ADMIN"){
                 setAdminNavBar(true)
             } else if (res.data.data.roles[0].name == "ROLE_TUTOR"){

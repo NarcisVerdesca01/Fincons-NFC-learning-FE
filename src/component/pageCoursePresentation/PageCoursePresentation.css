@@ -1,0 +1,53 @@
+.containerPageCoursePresentation {
+    margin-top: 6em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    margin-bottom: 6em;
+}
+
+.imageCardCoursePresentation {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageStyleCoursePresentation {
+    width: 70%;
+    border-radius: 15px;
+}
+
+.containerContextCoursePresentation {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.containerTextCoursePresentation {
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.containerTitlePageCoursePresentation {
+    margin-left: 1em;
+    font-size: 2em;
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.containerTitleResourcesCoursePresentation {
+    width: 100%;
+}
+
+.titleResourcesCoursePresentation {
+    margin-top: 2.5em;
+    font-size: 1.7em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 41em;
+    margin-left: 1em;
+    border-color: black;
+}

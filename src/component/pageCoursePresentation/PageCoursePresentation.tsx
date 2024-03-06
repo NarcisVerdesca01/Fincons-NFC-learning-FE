@@ -6,7 +6,7 @@ import "./PageCoursePresentation.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
 
-const PageCourse = () => {
+const PageCoursePresentation = () => {
   const [course, setCourse] = useState<CourseModel>();
   const [lessonList, setLessonList] = useState<LessonModel[]>([])
   const navigate = useNavigate();
@@ -25,22 +25,22 @@ const PageCourse = () => {
   return (
     <>
       <Header />
-      <div className={`containerPageCourse`}>
-        <div className={`containerTitlePageCourse`}>
+      <div className={`containerPageCoursePresentation`}>
+        <div className={`containerTitlePageCoursePresentation`}>
           <h1>{course?.name}</h1>
         </div>
-        <div className={`containerContextCourse`}>
-          <div className={`imageCardCourse`}>
-            <img src={course?.backgroundImage} alt="" className="imageStyle" />
+        <div className={`containerContextCoursePresentation`}>
+          <div className={`imageCardCoursePresentation`}>
+            <img src={course?.backgroundImage} alt="" className={`imageStyleCoursePresentation`} />
           </div>
-          <div className={`textCourse`}>
-            <p className={`textCourse2`}>
+          <div className={`containerTextCoursePresentation`}>
+            <p className={`textCoursePresentation`}>
               {course?.description}
             </p>
           </div>
         </div>
-        <div className={`containerContextCourse`}>
-          <div className={`titleResources`}>
+        <div className={`containerTitleResourcesCoursePresentation`}>
+          <div className={`titleResourcesCoursePresentation`}>
             <h1>Resources</h1>
           </div>
         </div>
@@ -49,4 +49,4 @@ const PageCourse = () => {
   );
 };
 
-export default PageCourse;
+export default PageCoursePresentation;

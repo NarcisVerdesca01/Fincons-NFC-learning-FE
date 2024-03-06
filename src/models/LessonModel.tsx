@@ -11,7 +11,8 @@ interface Lesson {
     createDate: Date,
     lastModified: Date,
     createdBy: string,
-    lastModifiedBy: string
+    lastModifiedBy: string,
+    backgroundImage: string,
 }
 
 export default Lesson;
