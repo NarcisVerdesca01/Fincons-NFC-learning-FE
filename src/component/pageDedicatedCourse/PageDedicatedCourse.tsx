@@ -2,15 +2,20 @@ import { useEffect, useState } from "react";
 import CourseModel from "../../models/CourseModel";
 import { useNavigate } from "react-router-dom";
 import CourseService from "../../services/CourseService";
-import "./Course.css";
+import "./PageDedicatedCourse.css";
 import Header from "../header/Header";
+import Cookies from "js-cookie";
+import { jwtDecode } from "jwt-decode";
 
-const Course = () => {
+const PageDedicatedCourse = () => {
   const [courseList, setCourseList] = useState<CourseModel[]>([]);
+  const auth = Cookies.get("jwt-token")
+    const decodedJwt = jwtDecode(auth!)
+    const userEmail = decodedJwt.sub
   const navigate = useNavigate();
 
   useEffect(() => {
-    CourseService.getCourses().then((res) => {
+    CourseService.getCourseByEmail(userEmail).then((res) => {
       setCourseList(res.data.data);
     });
   }, []);
@@ -24,7 +29,7 @@ const Course = () => {
       <Header />
       <div className={`containerCourse`}>
         <div className={`containerTitleCourse`}>
-          <h1>Our Course</h1>
+          <h1>My Course</h1>
         </div>
         <div className={`containerCardCourse`}>
           {courseList.map((course: CourseModel) => (
@@ -34,12 +39,16 @@ const Course = () => {
                 onClick={() => gotToPage(course?.id)}
               >
                 <img
-                  src={course.backgroundImage ? course.backgroundImage : "https://cdn.icon-icons.com/icons2/510/PNG/512/person_icon-icons.com_50075.png"}
+                  src={
+                    course.backgroundImage
+                      ? course.backgroundImage
+                      : "https://cdn.icon-icons.com/icons2/510/PNG/512/person_icon-icons.com_50075.png"
+                  }
                   alt={course.name}
                   className={`imgCardCourse`}
                 />
               </div>
-              <div className={`titleCardCourse`}>
+              <div className={`titleCardPageCourse`}>
                 <h3>{course.name}</h3>
               </div>
             </div>
@@ -50,4 +59,4 @@ const Course = () => {
   );
 };
 
-export default Course;
+export default PageDedicatedCourse;

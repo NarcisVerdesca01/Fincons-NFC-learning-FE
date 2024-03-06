@@ -58,7 +58,6 @@ const Login = () => {
       (res) => {
         Cookies.set("jwt-token", res.data.accessToken)
         navigate("/homePage")
-        console.log(res.data.accessToken, "res")
       }
     );
   };

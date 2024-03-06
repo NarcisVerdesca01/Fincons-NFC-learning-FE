@@ -11,6 +11,7 @@ const GET_BY_ID = COURSE_URI + "/find-by-id"
 const CREATE_COURSE = COURSE_URI + "/create"
 const UPDATE_COURSE = COURSE_URI + "/update"
 const DELETE_COURSE = COURSE_URI + "/delete"
+const DEDICATED_COURSE = COURSE_URI + "/dedicated-courses"
 
 const token = Cookies.get("jwt-token");
 const config = {
@@ -24,6 +25,10 @@ const CourseService = {
 
     getCourseById(courseId: number | undefined) {
         return axios.get(GET_BY_ID + "/" + courseId, { headers: { Authorization: `Bearer ${token}` } })
+    },
+    
+    getCourseByEmail(email: string | undefined) {
+        return axios.get(DEDICATED_COURSE, { params: { email: email }, headers: { Authorization: `Bearer ${token}` } })
     },
 
     createCourse(course: Course) {

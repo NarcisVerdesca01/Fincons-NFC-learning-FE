@@ -4,25 +4,32 @@ import { useNavigate, useParams } from "react-router-dom";
 import CourseService from "../../services/CourseService";
 import "./PageCourse.css";
 import Header from "../header/Header";
-import Ability from "../../models/AbilityModel";
-import AbilityService from "../../services/AbilityService";
+import LessonModel from "../../models/LessonModel";
 
 const PageCourse = () => {
   const [course, setCourse] = useState<CourseModel>();
+  const [lessonList, setLessonList] = useState<LessonModel[]>([]);
   const navigate = useNavigate();
   const { idCourse } = useParams();
   const idCourse_page = parseInt(idCourse!);
+
   useEffect(() => {
     CourseService.getCourseById(idCourse_page).then((res) => {
       setCourse(res.data.data);
+      console.log(res.data.data.lessons);
+      setLessonList(res.data.data.lessons);
     });
   }, [idCourse]);
+
+  const gotToPage = (idPage: any) => {
+    navigate("/lesson_page/" + idPage);
+  };
 
   return (
     <>
       <Header />
-      <div className={`containerCourse`}>
-        <div className={`containerTitleCourse`}>
+      <div className={`containerPageCourse`}>
+        <div className={`containerTitlePageCourse`}>
           <h1>{course?.name}</h1>
         </div>
         <div className={`containerContextCourse`}>
@@ -46,17 +53,24 @@ const PageCourse = () => {
             </p>
           </div>
         </div>
-      </div>
-      <div className={`containerCourse`}>
         <div className={`containerContextCourse`}>
           <div className={`titleResources`}>
             <h1>Resources</h1>
           </div>
         </div>
         <div className={`containerResources`}>
-          <div className={`descriptionResources`}>
-            <h4> This Resources will be utlity fo your study</h4>
-          </div>
+          {lessonList.map((lessons: any) => (
+            <div className={`cardPageCourseLesson`}>
+              <div className={`cardLessonPageCorseLesson`}>
+                <button
+                  className={`buttonLesson`}
+                  onClick={() => gotToPage(lessons?.id)}
+                >
+                  {lessons.lesson.title}
+                </button>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </>
