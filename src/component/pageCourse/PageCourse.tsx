@@ -6,12 +6,12 @@ import "./PageCourse.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
 
-interface Props{
+interface Props {
   courseId: number;
   setCourseId: React.Dispatch<React.SetStateAction<number | undefined>>
 }
 
-const PageCourse = (props:Props) => {
+const PageCourse = (props: Props) => {
   const [course, setCourse] = useState<CourseModel>();
   const [lessonList, setLessonList] = useState<LessonModel[]>([])
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const PageCourse = (props:Props) => {
   useEffect(() => {
     CourseService.getCourseById(idCourse_page!).then((res) => {
       setCourse(res.data.data);
-      console.log(idCourse_page , " idCourse_page");
+      console.log(idCourse_page, " idCourse_page");
       props.setCourseId(idCourse_page);
       console.log(res.data.data.lessons, "sono qui in PageCourse res.data.data.lessons");
       setLessonList(res.data.data.lessons)
@@ -60,13 +60,11 @@ const PageCourse = (props:Props) => {
         </div>
         <div className={`containerResources`}>
           {lessonList.map((lessons: any) => (
-            <div className={`cardPageCourseLesson`}>
-              <div className={`cardLessonPageCorseLesson`}>
-                <button className={`buttonLesson`} 
+            <div className={`cardLessonPageCorse`}>
+              <button className={`buttonLesson`}
                 onClick={() => gotToPage(lessons?.id)}>
-                  {lessons.lesson.title}
-                </button>
-              </div>
+                {lessons.lesson.title}
+              </button>
             </div>
           ))}
         </div>

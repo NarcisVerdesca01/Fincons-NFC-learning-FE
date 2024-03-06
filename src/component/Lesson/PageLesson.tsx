@@ -54,7 +54,7 @@ const PageLesson = (props : Props) => {
           </div>
           <div className={`containerListLessons`}>
           {lessonList.map((lesson: any) => (
-            <div className={`cardPageCourseLesson`} onClick={() =>gotToPage(lesson.lesson.id)}>
+            <div className={`cardPageLesson`} onClick={() =>gotToPage(lesson.lesson.id)}>
               <div className={`containerImageLesson`}>
                 <img src={lesson.lesson.backgroundImage} alt={lesson.lesson.title} />
               </div>
