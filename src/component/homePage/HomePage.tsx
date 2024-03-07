@@ -31,9 +31,7 @@ const HomePage = () => {
               </h3>
             </div>
             <div className={`containerDescriptionWhoWeAre`}>
-              <h5 className={`descriptionTitleWhoWeAre`}>
-                ITS Apulia Digital Maker
-              </h5>
+              <h5 className={`descriptionTitleWhoWeAre`}>The team of NFC</h5>
               <p className={`descriptionWhoWeAre`}>
                 has always promoted innovative training methods in order to
                 offer a complete and effective study experience. We are interns
