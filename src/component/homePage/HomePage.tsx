@@ -31,7 +31,21 @@ const HomePage = () => {
               </h3>
             </div>
             <div className={`containerDescriptionWhoWeAre`}>
-              <p className={`descriptionWhoWeAre`}></p>
+              <h5 className={`descriptionTitleWhoWeAre`}>
+                ITS Apulia Digital Maker
+              </h5>
+              <p className={`descriptionWhoWeAre`}>
+                has always promoted innovative training methods in order to
+                offer a complete and effective study experience. We are interns
+                at Fincons Group and our platform is structured into multiple
+                levels so as to offer useful and effective content. <br></br>
+                Innovation has moved and continues to move across all learning
+                areas with the aim of looking at possible technological
+                innovations including:
+              </p>
+              <h5 className={`descriptionTitleWhoWeAre`}>
+                E-Learning platforms.
+              </h5>
             </div>
           </div>
           <div className={`containerImgWhoWeAre`}></div>
