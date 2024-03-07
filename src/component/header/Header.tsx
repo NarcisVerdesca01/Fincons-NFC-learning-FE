@@ -27,19 +27,21 @@ const Header = () => {
     const goToPageDedicatedCourses = () => {
         navigate("/page_dedicated_courses")
     }
+    const goToSettingsTutor = () => {
+        navigate("/settings_tutor")
+    }
+    const goToSettingsAdmin = () => {
+        navigate("/settings_admin")
+    }
 
     const auth = Cookies.get("jwt-token")
-    console.log(auth)
     const decodedJwt = jwtDecode(auth!)
-    console.log(decodedJwt)
     const userEmail = decodedJwt.sub
-    console.log(userEmail)
 
     const [adminNavBar, setAdminNavBar] = useState<boolean>(false);
     const [tutorNavBar, setTutorNavBar] = useState<boolean>(false);
     useEffect(() => {
         UserService.getUserDetails(userEmail!).then((res) => {
-            console.log(res)
             if(res.data.data.roles[0].name == "ROLE_ADMIN"){
                 setAdminNavBar(true)
             } else if (res.data.data.roles[0].name == "ROLE_TUTOR"){
@@ -73,14 +75,14 @@ const Header = () => {
                             </div>
                         {tutorNavBar && (
                             <div className={`containerButtonNavBar`}>
-                                 <button className={`buttonNavBar`} onClick={goToPageDedicatedCourses}>
+                                 <button className={`buttonNavBar`} onClick={goToSettingsTutor}>
                                     <p className={`nameButton`}>Settings</p>
                                 </button>
                             </div>
                         )}
                         {adminNavBar && (
                             <div className={`containerButtonNavBar`}>
-                                <button className={`buttonNavBar`}>
+                                <button className={`buttonNavBar`} onClick={goToSettingsAdmin}>
                                     <p className={`nameButton`}>Settings</p>
                                 </button>
                             </div>

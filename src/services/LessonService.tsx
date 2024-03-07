@@ -26,8 +26,8 @@ const LessonService = {
     getLessonById(lessonId: number | undefined) {
         return axios.get(GET_BY_ID + "/" + lessonId, { headers: { Authorization: `Bearer ${token}` } })
     },
-    createLesson(course: Lesson) {
-        return axios.post(CREATE_LESSON, course, config)
+    createLesson(lesson: Lesson) {
+        return axios.post(CREATE_LESSON, lesson, config)
     },
 
     updateCourse(lessonId: number, updatedLesson: Lesson) {
