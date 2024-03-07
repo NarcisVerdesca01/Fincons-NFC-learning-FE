@@ -85,3 +85,13 @@
     border: none;
     width: 100%;
 }
+
+.containerTextCourse{
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10em;
+    margin-right:9em;
+    margin-left: 7em;
+    text-align: center;
+}
