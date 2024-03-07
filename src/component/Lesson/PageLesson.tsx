@@ -17,12 +17,14 @@ const PageLesson = (props: Props) => {
   const navigate = useNavigate();
   const { idPage } = useParams();
   const idLesson_page = parseInt(idPage!);
+ 
 
   useEffect(() => {
     LessonService.getLessonById(idLesson_page).then((res) => {
       //console.log(res.data.data.courses[0].course.name, "sono qui");
       //console.log(res.data.data);
       setLesson(res.data.data);
+     
       //console.log(res.data.data.courses[0])
     });
   }, [idPage]);
@@ -47,7 +49,11 @@ const PageLesson = (props: Props) => {
           <h1>{lesson?.title}</h1>
         </div>
         <div className={`bodyLesson`}>
-          <div className={`containerContentsLesson`}></div>
+          <div className={`containerContentsLesson`}>
+             <iframe className={`iFrameContent`} src={lesson?.content.content} frameBorder="0"></iframe>
+
+
+          </div>
           <div className={`containerListLessons`}>
             {lessonList.map((lesson: any) => (
               <div

@@ -1,13 +1,22 @@
-.footer{
-    background-color: aqua;
+
+.footer-style {
+    background-color: rgb(33, 108, 213);
+    min-width: 100% !important;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    padding-top: 3em;
 }
-.footer-menu-list{
-    background-color: aqua;
+
+.footer-text {
+    display: flex;
+    color: #2F4858;
+    font-size: medium;
+    justify-content: center;
+    margin-top: 2em;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
-.footer-content-column{
-    background-color: aqua;
+
+.text-center{
+    color:black;
 }
-.footer-content{
-    background-color: aqua;
-}
-  
