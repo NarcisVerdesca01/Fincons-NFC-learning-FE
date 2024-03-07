@@ -11,6 +11,8 @@ import PageDedicatedCourse from "./component/pageDedicatedCourse/PageDedicatedCo
 import { useState } from "react";
 import PageLesson from "./component/Lesson/PageLesson";
 import PageCoursePresentation from "./component/pageCoursePresentation/PageCoursePresentation";
+import SettingsAdmin from "./component/settingsAdmin/SettingsAdmin";
+import SettingsTutor from "./component/settingsTutor/SettingTutor";
 
 
 function App() {
@@ -49,8 +51,12 @@ function App() {
               element={<PageDedicatedCourse />}
             ></Route>
             <Route
-              path="/settings"
-            //element={<Settings />}
+              path="/settings_admin"
+              element={<SettingsAdmin />}
+            ></Route>
+            <Route
+              path="/settings_tutor"
+              element={<SettingsTutor />}
             ></Route>
           </Route>
           <Route
