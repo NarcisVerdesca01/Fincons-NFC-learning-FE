@@ -17,27 +17,29 @@ const PageLesson = (props: Props) => {
   const navigate = useNavigate();
   const { idPage } = useParams();
   const idLesson_page = parseInt(idPage!);
- 
+  
+  console.log(idLesson_page, "lesson_page id")
 
   useEffect(() => {
     LessonService.getLessonById(idLesson_page).then((res) => {
       //console.log(res.data.data.courses[0].course.name, "sono qui");
-      //console.log(res.data.data);
+      console.log(res ," res");
       setLesson(res.data.data);
      
       //console.log(res.data.data.courses[0])
     });
-  }, [idPage]);
+  }, [idLesson_page]);
 
   useEffect(() => {
     CourseService.getCourseById(props.idCourse!).then((res) => {
-      console.log(props.idCourse, "sono in pageLesson");
+      console.log(props.idCourse, "sono in pageLesson corso id");
       console.log(res.data.data);
       setLessonList(res.data.data.lessons);
     });
   }, [props.idCourse]);
 
-  const gotToPage = (idPage: any) => {
+  const gotToLessonPage = (idPage: any) => {
+    console.log(idPage)
     navigate("/lesson_page/" + idPage);
   };
 
@@ -50,7 +52,7 @@ const PageLesson = (props: Props) => {
         </div>
         <div className={`bodyLesson`}>
           <div className={`containerContentsLesson`}>
-             <iframe className={`iFrameContent`} src={lesson?.content?.content} frameBorder="0" allowFullScreen></iframe>
+             <iframe className={`iFrameContent`} src={lesson?.content?.content} frameBorder="0" allowFullScreen ></iframe>
 
 
           </div>
@@ -58,12 +60,12 @@ const PageLesson = (props: Props) => {
             {lessonList.map((lesson: any) => (
               <div
                 className={`cardPageLesson`}
-                onClick={() => gotToPage(lesson.lesson.id)}
+                onClick={() => gotToLessonPage(lesson?.lesson.id)}
               >
                 <div className={`containerImageLesson`}>
                   <img
-                    src={lesson.lesson.backgroundImage}
-                    alt={lesson.lesson.title}
+                    src={lesson?.lesson.backgroundImage ? lesson.lesson.backgroundImage : "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png"}
+                    alt={lesson?.lesson.title}
                     className={`imageLesson`}
                   />
                 </div>

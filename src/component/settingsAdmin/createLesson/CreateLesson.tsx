@@ -33,6 +33,7 @@ const CreateLesson = () => {
                                 className="form-control"
                                 value={lesson?.title}
                                 onChange={(e) => {
+                                    console.log(lesson?.title)
                                     setLesson({
                                         ...lesson!,
                                         [e.target.name]: e.target.value,
@@ -49,6 +50,7 @@ const CreateLesson = () => {
                                 className="form-control"
                                 value={lesson?.backgroundImage}
                                 onChange={(e) => {
+                                    console.log(lesson?.backgroundImage)
                                     setLesson({
                                         ...lesson!,
                                         [e.target.name]: e.target.value,

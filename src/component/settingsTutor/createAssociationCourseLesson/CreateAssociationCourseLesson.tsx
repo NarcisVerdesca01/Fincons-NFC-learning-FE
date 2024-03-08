@@ -28,8 +28,8 @@ const CreateAssociationCourseLesson = () => {
     }, []);
 
     const saveCourseLesson = () => {
-        console.log(courseId.course)
-        console.log(courseLesson.lesson)
+        console.log(courseId)
+        console.log(courseLesson)
         CourseLessonService.createCourseLesson(courseId.course, courseLesson.lesson);
         navigate("/settings_tutor")
         

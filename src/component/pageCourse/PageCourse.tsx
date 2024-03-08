@@ -30,10 +30,11 @@ const PageCourse = (props: Props) => {
       );
       setLessonList(res.data.data.lessons);
     });
-  }, [idCourse]);
+  }, [idCourse_page]);
 
   const gotToPage = (idPage: any) => {
     navigate("/lesson_page/" + idPage);
+    console.log(idPage)
   };
 
   return (
@@ -62,7 +63,7 @@ const PageCourse = (props: Props) => {
           {lessonList.map((lessons: any) => (
             <div className={`cardLessonPageCorse`}>
               <button className={`buttonLessonCourse`}
-                onClick={() => gotToPage(lessons?.id)}>
+                onClick={() => gotToPage(lessons?.lesson.id)}>
                 {lessons.lesson.title}
               </button>
             </div>
