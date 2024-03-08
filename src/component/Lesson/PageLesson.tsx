@@ -50,7 +50,7 @@ const PageLesson = (props: Props) => {
         </div>
         <div className={`bodyLesson`}>
           <div className={`containerContentsLesson`}>
-             <iframe className={`iFrameContent`} src={lesson?.content?.content} frameBorder="0"></iframe>
+             <iframe className={`iFrameContent`} src={lesson?.content?.content} frameBorder="0" allowFullScreen></iframe>
 
 
           </div>
