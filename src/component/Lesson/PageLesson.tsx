@@ -51,11 +51,14 @@ const PageLesson = (props: Props) => {
           <h1>{lesson?.title}</h1>
         </div>
         <div className={`bodyLesson`}>
+          
           <div className={`containerContentsLesson`}>
              <iframe className={`iFrameContent`} src={lesson?.content?.content} frameBorder="0" allowFullScreen ></iframe>
 
 
           </div>
+
+
           <div className={`containerListLessons`}>
             {lessonList.map((lesson: any) => (
               <div
