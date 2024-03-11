@@ -8,17 +8,17 @@ const Footer = () => {
         <div className={`container`}>
           <div className="row">
             <div className={`col text-center`}>
-              <h4>Follow us on the social media</h4>
+              <h4>Follow us</h4>
               <div>
                 <p>
-                  Instagram <i className={`bi bi-instagram`}></i>
+                  Instagram <i className={`footer-icon bi bi-instagram`}></i>
                 </p>
 
                 <p>
-                  Twitter <i className={`bi bi-twitter-x`}></i>
+                  Twitter <i className={`footer-icon bi bi-twitter-x`}></i>
                 </p>
                 <p>
-                  Facebook <i className={`bi bi-facebook`}></i>
+                  Facebook <i className={`footer-icon bi bi-facebook`}></i>
                 </p>
               </div>
             </div>
@@ -26,11 +26,11 @@ const Footer = () => {
               <h4>Contacts</h4>
               <div>
                 <p>
-                  Telephone <i className={`bi bi-telephone`}></i>
+                  Telephone <i className={`footer-icon bi bi-telephone`}></i>
                   <br></br>+39 000 000 00 00
                 </p>
                 <p>
-                  Email <i className={`bi bi-envelope`}></i>
+                  Email <i className={`footer-icon bi bi-envelope`}></i>
                   <br></br>example.example@finconsgroup.com
                 </p>
               </div>
@@ -39,7 +39,8 @@ const Footer = () => {
               <h4>Team</h4>
               <div>
                 <p>
-                  NFC E-LEARNING TEAM <i className={`bi bi-people`}></i>
+                  NFC E-LEARNING TEAM{" "}
+                  <i className={`footer-icon bi bi-people`}></i>
                 </p>
               </div>
             </div>

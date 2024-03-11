@@ -1,6 +1,6 @@
 
 .footer-style {
-    background-color: rgb(33, 108, 213);
+    background-color: #bcc1c5;
     min-width: 100% !important;
     margin-bottom: 1em;
     padding-bottom: 1em;
@@ -19,4 +19,7 @@
 
 .text-center{
     color:black;
+}
+.footer-icon{
+    color: rgb(157, 48, 48);
 }

@@ -6,7 +6,7 @@ import Lesson from "../../models/LessonModel";
 import "./PageLesson.css";
 import CourseService from "../../services/CourseService";
 import Course from "../../models/CourseModel";
-import Footer from "../footer/Footer";
+import "bootstrap-icons/font/bootstrap-icons.css";
 interface Props {
   idCourse: number;
 }
@@ -17,14 +17,13 @@ const PageLesson = (props: Props) => {
   const navigate = useNavigate();
   const { idPage } = useParams();
   const idLesson_page = parseInt(idPage!);
- 
 
   useEffect(() => {
     LessonService.getLessonById(idLesson_page).then((res) => {
       //console.log(res.data.data.courses[0].course.name, "sono qui");
       //console.log(res.data.data);
       setLesson(res.data.data);
-     
+
       //console.log(res.data.data.courses[0])
     });
   }, [idPage]);
@@ -40,7 +39,9 @@ const PageLesson = (props: Props) => {
   const gotToPage = (idPage: any) => {
     navigate("/lesson_page/" + idPage);
   };
-
+  const goBack = () => {
+    navigate(-1);
+  };
   return (
     <>
       <Header />
@@ -48,12 +49,21 @@ const PageLesson = (props: Props) => {
         <div className={`containerTitlePageLesson`}>
           <h1>{lesson?.title}</h1>
         </div>
+        <div className={`containerButtonBack`}>
+          <button className={`buttonBack`} onClick={goBack}>
+            <i className="bi bi-arrow-left"></i>
+          </button>
+        </div>
         <div className={`bodyLesson`}>
           <div className={`containerContentsLesson`}>
-             <iframe className={`iFrameContent`} src={lesson?.content?.content} frameBorder="0" allowFullScreen></iframe>
-
-
+            <iframe
+              className={`iFrameContent`}
+              src={lesson?.content?.content}
+              frameBorder="0"
+              allowFullScreen
+            ></iframe>
           </div>
+
           <div className={`containerListLessons`}>
             {lessonList.map((lesson: any) => (
               <div

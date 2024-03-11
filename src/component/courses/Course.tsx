@@ -26,6 +26,7 @@ const Course = () => {
         <div className={`containerTitleCourse`}>
           <h1>Our Course</h1>
         </div>
+
         <div className={`containerCardCourse`}>
           {courseList.map((course: CourseModel) => (
             <div className={`cardCourse`}>
@@ -34,7 +35,11 @@ const Course = () => {
                 onClick={() => gotToPage(course?.id)}
               >
                 <img
-                  src={course.backgroundImage ? course.backgroundImage : "https://cdn.icon-icons.com/icons2/510/PNG/512/person_icon-icons.com_50075.png"}
+                  src={
+                    course.backgroundImage
+                      ? course.backgroundImage
+                      : "https://cdn.icon-icons.com/icons2/510/PNG/512/person_icon-icons.com_50075.png"
+                  }
                   alt={course.name}
                   className={`imgCardCourse`}
                 />

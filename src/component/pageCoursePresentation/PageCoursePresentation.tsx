@@ -5,7 +5,6 @@ import CourseService from "../../services/CourseService";
 import "./PageCoursePresentation.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
-import Footer from "../footer/Footer";
 
 const PageCoursePresentation = () => {
   const [course, setCourse] = useState<CourseModel>();

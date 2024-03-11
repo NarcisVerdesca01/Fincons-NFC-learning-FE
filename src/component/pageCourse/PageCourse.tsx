@@ -5,8 +5,6 @@ import CourseService from "../../services/CourseService";
 import "./PageCourse.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
-import Footer from "../footer/Footer";
-
 interface Props {
   courseId: number;
   setCourseId: React.Dispatch<React.SetStateAction<number | undefined>>;
@@ -43,6 +41,7 @@ const PageCourse = (props: Props) => {
         <div className={`containerTitlePageCourse`}>
           <h1>{course?.name}</h1>
         </div>
+        
         <div className={`containerContextCourse`}>
           <div className={`imageCardCourse`}>
             <img src={course?.backgroundImage} alt="" className={`imageStyleCourse`} />
