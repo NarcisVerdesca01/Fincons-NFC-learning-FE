@@ -10,13 +10,10 @@ import Footer from "../footer/Footer";
 
 const PageDedicatedCourse = () => {
   const [courseList, setCourseList] = useState<CourseModel[]>([]);
-  const auth = Cookies.get("jwt-token");
-  const decodedJwt = jwtDecode(auth!);
-  const userEmail = decodedJwt.sub;
   const navigate = useNavigate();
 
   useEffect(() => {
-    CourseService.getCourseByEmail(userEmail).then((res) => {
+    CourseService.getCourseByEmail().then((res) => {
       setCourseList(res.data.data);
     });
   }, []);

@@ -3,6 +3,7 @@ import "./SettingsAdmin.css";
 import ButtonCreateAbility from "./buttonSettings/ButtonCreateAbility";
 import ButtonCreateCourse from "./buttonSettings/ButtonCreateCourse";
 import ButtonCreateLesson from "./buttonSettings/ButtonCreateLesson";
+import ButtonUpdateCourse from "./buttonSettings/ButtonUpdateCourse";
 
 
 const SettingsAdmin = () => {
@@ -13,21 +14,62 @@ const SettingsAdmin = () => {
             <Header />
             <div className={`containerSettingsAdmin`}>
                 <div>
-                    <h1>Settings </h1>
+                    <h1>Settings</h1>
                 </div>
-                <div className={`optionSettings`}>
-                    <p className={`descriptionOptionSettings`}>Create Course</p>
-                    <ButtonCreateCourse />
+                <div className={`sectionContainer`}>
+                    <div className={`containerOptions`}>
+                        <p>Create section</p>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Create Course</p>
+                            <ButtonCreateCourse />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Create Lesson</p>
+                            <ButtonCreateLesson />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Create Ability</p>
+                            <ButtonCreateAbility />
+                        </div>
+                    </div>
+                    <div className={`containerOptions`}>
+                        <p>Associate section</p>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Associate...</p>
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Associate...</p>
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Associate...</p>
+                        </div>
+                    </div>
+                    <div className={`containerOptions`}>
+                        <p>Update section</p>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Update Course</p>
+                            <ButtonUpdateCourse />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Update Lesson</p>
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Update Ability</p>
+                        </div>
+                    </div>
+                    <div className={`containerOptions`}>
+                        <p>Delete section</p>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Delete Course</p>
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Delete Lesson</p>
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Delete Ability</p>
+                        </div>
+                    </div>
                 </div>
-                <div className={`optionSettings`}>
-                    <p  className={`descriptionOptionSettings`}>Create Lesson</p>
-                    <ButtonCreateLesson />
-                </div>
-                <div className={`optionSettings`}>
-                    <p  className={`descriptionOptionSettings`}>Create Lesson</p>
-                    <ButtonCreateAbility />
-                </div>
-                
             </div>
         </>
     );
