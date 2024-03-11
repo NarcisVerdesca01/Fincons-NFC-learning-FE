@@ -1,5 +1,6 @@
 import Header from "../header/Header";
 import "./SettingsAdmin.css";
+import ButtonCreateAbility from "./buttonSettings/ButtonCreateAbility";
 import ButtonCreateCourse from "./buttonSettings/ButtonCreateCourse";
 import ButtonCreateLesson from "./buttonSettings/ButtonCreateLesson";
 
@@ -21,6 +22,10 @@ const SettingsAdmin = () => {
                 <div className={`optionSettings`}>
                     <p  className={`descriptionOptionSettings`}>Create Lesson</p>
                     <ButtonCreateLesson />
+                </div>
+                <div className={`optionSettings`}>
+                    <p  className={`descriptionOptionSettings`}>Create Lesson</p>
+                    <ButtonCreateAbility />
                 </div>
                 
             </div>
