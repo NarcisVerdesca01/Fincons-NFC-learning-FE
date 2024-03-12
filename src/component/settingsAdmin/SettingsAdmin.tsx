@@ -1,5 +1,6 @@
 import Header from "../header/Header";
 import "./SettingsAdmin.css";
+import ButtonCreateAbility from "./buttonSettings/ButtonCreateAbility";
 import ButtonCreateCourse from "./buttonSettings/ButtonCreateCourse";
 import ButtonCreateLesson from "./buttonSettings/ButtonCreateLesson";
 import { useNavigate } from "react-router-dom";
