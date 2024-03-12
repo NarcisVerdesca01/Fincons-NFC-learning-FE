@@ -33,6 +33,9 @@ const PageCourse = (props: Props) => {
   const gotToPage = (idPage: any) => {
     navigate("/lesson_page/" + idPage);
   };
+  const goBack = () => {
+    navigate(-1);
+  };
 
   return (
     <>
@@ -41,15 +44,21 @@ const PageCourse = (props: Props) => {
         <div className={`containerTitlePageCourse`}>
           <h1>{course?.name}</h1>
         </div>
-        
+        <div className={`containerButtonBack`}>
+          <button className={`buttonBack`} onClick={goBack}>
+            <i className="bi bi-arrow-left"></i>
+          </button>
+        </div>
         <div className={`containerContextCourse`}>
           <div className={`imageCardCourse`}>
-            <img src={course?.backgroundImage} alt="" className={`imageStyleCourse`} />
+            <img
+              src={course?.backgroundImage}
+              alt=""
+              className={`imageStyleCourse`}
+            />
           </div>
           <div className={`containerTextCourse`}>
-            <p className={`textCourse`}>
-              {course?.description}
-            </p>
+            <p className={`textCourse`}>{course?.description}</p>
           </div>
         </div>
         <div className={`containerTitleResources`}>
@@ -60,8 +69,10 @@ const PageCourse = (props: Props) => {
         <div className={`containerResources`}>
           {lessonList.map((lessons: any) => (
             <div className={`cardLessonPageCorse`}>
-              <button className={`buttonLessonCourse`}
-                onClick={() => gotToPage(lessons?.id)}>
+              <button
+                className={`buttonLessonCourse`}
+                onClick={() => gotToPage(lessons?.id)}
+              >
                 {lessons.lesson.title}
               </button>
             </div>
