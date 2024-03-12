@@ -1,6 +1,7 @@
 import Header from "../header/Header";
 import "./SettingsTutor.css";
 import ButtonCreateAssociationCourseLesson from "./buttonSettingsTutor/ButtonCreateAssocationCourseLesson";
+import CreateAssociationCourseLesson from "./createAssociationCourseLesson/CreateAssociationCourseLesson";
 
 
 

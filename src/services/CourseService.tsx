@@ -27,8 +27,8 @@ const CourseService = {
         return axios.get(GET_BY_ID + "/" + courseId, { headers: { Authorization: `Bearer ${token}` } })
     },
     
-    getCourseByEmail(email: string | undefined) {
-        return axios.get(DEDICATED_COURSE, { params: { email: email }, headers: { Authorization: `Bearer ${token}` } })
+    getCourseByEmail() {
+        return axios.get(DEDICATED_COURSE, { headers: { Authorization: `Bearer ${token}` } })
     },
 
     createCourse(course: Course) {
@@ -37,14 +37,14 @@ const CourseService = {
 
     updateCourse(courseId: number, updatedCourse: Course) {
         return axios.put(
-            UPDATE_COURSE,
+            UPDATE_COURSE + "/" + courseId,
             {
                 name: updatedCourse.name,
                 description: updatedCourse.description,
-                backgroundImage: updatedCourse.backgroundImage
+                backgroundImage: updatedCourse.backgroundImage,
+                imageResource: updatedCourse.imageResource
             },
             {
-                params: { id: courseId },
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`

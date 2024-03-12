@@ -28,7 +28,7 @@ const PageCourse = (props: Props) => {
       );
       setLessonList(res.data.data.lessons);
     });
-  }, [idCourse]);
+  }, [idCourse_page]);
 
   const gotToPage = (idPage: any) => {
     navigate("/lesson_page/" + idPage);

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import CreateLesson from '../lesson/CreateLesson';
+import CreateAbility from '../ability/CreateAbility';
 
 
-const ButtonCreateLesson = () => {
+const ButtonCreateAbility = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -20,11 +20,11 @@ const ButtonCreateLesson = () => {
                 backdrop="static"
                 keyboard={false}>
                 <Modal.Body>
-                    <CreateLesson />
+                    <CreateAbility />
                 </Modal.Body>
             </Modal>
         </>
     );
 }
 
-export default ButtonCreateLesson;
+export default ButtonCreateAbility;

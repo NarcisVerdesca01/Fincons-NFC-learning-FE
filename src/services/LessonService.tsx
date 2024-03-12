@@ -30,14 +30,14 @@ const LessonService = {
         return axios.post(CREATE_LESSON, lesson, config)
     },
 
-    updateCourse(lessonId: number, updatedLesson: Lesson) {
+    updateLesson(lessonId: number, updatedLesson: Lesson) {
         return axios.put(
-            UPDATE_LESSON,
+            UPDATE_LESSON + "/" + lessonId,
             {
-                name: updatedLesson,
+                title: updatedLesson.title,
+                backgroundImage: updatedLesson.backgroundImage
             },
             {
-                params: { id: lessonId },
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`

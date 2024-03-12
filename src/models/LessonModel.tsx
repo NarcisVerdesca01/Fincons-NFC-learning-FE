@@ -5,6 +5,7 @@ import Quiz from "./QuizModel";
 interface Lesson {
     id?: number,
     title: string,
+    backgroundImage: string,
     courses?: Course[],
     quiz?: Quiz,
     content?: Content,
@@ -12,7 +13,6 @@ interface Lesson {
     lastModified?: Date,
     createdBy?: string,
     lastModifiedBy?: string,
-    backgroundImage?: string,
 }
 
 export default Lesson;
