@@ -22,6 +22,12 @@
     border: 2px solid black;
 }
 
+.containerQuizOfLesson {
+     border: 1px solid black;
+     
+  
+}
+
 .iFrameContent{
     width: 100%;
     height: 100%;

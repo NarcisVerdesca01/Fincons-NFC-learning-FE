@@ -17,15 +17,15 @@ const PageLesson = (props: Props) => {
   const navigate = useNavigate();
   const { idPage } = useParams();
   const idLesson_page = parseInt(idPage!);
-  
+
   console.log(idLesson_page, "lesson_page id")
 
   useEffect(() => {
     LessonService.getLessonById(idLesson_page).then((res) => {
       //console.log(res.data.data.courses[0].course.name, "sono qui");
-      console.log(res ," res");
+      console.log(res, " res");
       setLesson(res.data.data);
-     
+
       //console.log(res.data.data.courses[0])
     });
   }, [idLesson_page]);
@@ -38,9 +38,17 @@ const PageLesson = (props: Props) => {
     });
   }, [props.idCourse]);
 
+  console.log(lesson?.quiz?.id, "quiz id --------")
+
   const gotToLessonPage = (idPage: any) => {
     console.log(idPage)
     navigate("/lesson_page/" + idPage);
+  };
+
+
+  const gotToQuizPage = (idQuiz: any) => {
+    console.log("L'id del quiz è: " + idQuiz)
+    navigate("/quiz_page/" + idQuiz);
   };
 
   return (
@@ -51,12 +59,13 @@ const PageLesson = (props: Props) => {
           <h1>{lesson?.title}</h1>
         </div>
         <div className={`bodyLesson`}>
-          
+
           <div className={`containerContentsLesson`}>
-             <iframe className={`iFrameContent`} src={lesson?.content?.content} frameBorder="0" allowFullScreen ></iframe>
+            <iframe className={`iFrameContent`} src={lesson?.content?.content} frameBorder="0" allowFullScreen ></iframe>
 
 
           </div>
+
 
 
           <div className={`containerListLessons`}>
@@ -75,10 +84,23 @@ const PageLesson = (props: Props) => {
                 <div className={`containerTitleLesson`}>
                   <h5 className={`titleLesson`}>{lesson.lesson.title}</h5>
                 </div>
+
+
               </div>
             ))}
           </div>
+          <div className={`containerQuizOfLesson`}>
+            <button onClick={() => gotToQuizPage(lesson?.quiz?.id)}>vai al quiz</button>
+          </div>
+
+
+
         </div>
+
+
+
+
+
       </div>
     </>
   );
