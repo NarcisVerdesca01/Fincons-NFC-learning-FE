@@ -8,7 +8,7 @@ import ProtectedRoutes from "./services/ProtectedRoutes";
 import Course from "./component/courses/Course";
 import PageCourse from "./component/pageCourse/PageCourse";
 import PageDedicatedCourse from "./component/pageDedicatedCourse/PageDedicatedCourse";
-import { useState } from "react";
+import { ChangeEvent, SetStateAction, useState } from "react";
 import PageLesson from "./component/Lesson/PageLesson";
 import PageCoursePresentation from "./component/pageCoursePresentation/PageCoursePresentation";
 import SettingsAdmin from "./component/settingsAdmin/SettingsAdmin";
@@ -32,7 +32,13 @@ function App() {
             ></Route>
             <Route
               path="/courses"
-              element={<Course />}
+              element={<Course changeFilterHandler={function (event: ChangeEvent<HTMLInputElement>): void {
+                throw new Error("Function not implemented.");
+              } } tableData={undefined} setTableData={function (value: any): void {
+                throw new Error("Function not implemented.");
+              } } filter={undefined} setfilter={function (value: SetStateAction<string | undefined>): void {
+                throw new Error("Function not implemented.");
+              } } toDisplay={undefined} />}
             ></Route>
             <Route
               path="/course_page/:idCourse"

@@ -5,7 +5,16 @@ import CourseService from "../../services/CourseService";
 import "./Course.css";
 import Header from "../header/Header";
 
-const Course = () => {
+interface Props {
+  changeFilterHandler: React.ChangeEventHandler<HTMLInputElement>;
+  tableData: any;
+  setTableData: React.Dispatch<React.SetStateAction<any | undefined>>;
+  filter: string | undefined;
+  setfilter: React.Dispatch<React.SetStateAction<string | undefined>>;
+  toDisplay: string | undefined;
+}
+
+const Course = (props: Props) => {
   const [courseList, setCourseList] = useState<CourseModel[]>([]);
   const navigate = useNavigate();
 
@@ -19,6 +28,14 @@ const Course = () => {
     navigate("/course_page_presentation/" + idCorso);
   };
 
+  const [search, setSearch] = useState<string>("");
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+  const fiteredData = props.tableData?.data?.flter((course: any) => {
+    return course.name.toLowerCase().includes(search.toLowerCase());
+  });
+
   return (
     <>
       <Header />
@@ -26,7 +43,19 @@ const Course = () => {
         <div className={`containerTitleCourse`}>
           <h1>Our Course</h1>
         </div>
-
+        <div className={`containerButtonSearch`}>
+          <button className={`buttonSearch btn-filter`}>
+            <input
+              type="text"
+              className={`inputButtonSearch`}
+              placeholder="Search for names"
+              aria-label="Search for names"
+              aria-describedby="basic-addon1"
+              value={search}
+              onChange={handleSearchChange}
+            />
+          </button>
+        </div>
         <div className={`containerCardCourse`}>
           {courseList.map((course: CourseModel) => (
             <div className={`cardCourse`}>
