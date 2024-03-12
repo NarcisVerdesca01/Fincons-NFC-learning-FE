@@ -1,0 +1,26 @@
+.quizBox{
+    border: 1px solid green;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70vh;
+    width: 50%;
+}
+
+
+.quizTitle{
+    border: 1px solid red;
+}
+
+.questionBox{
+    border: 1px solid black;
+    width:50%;
+    margin: 5px;
+    padding: 5px;
+}
+
+.sendQuizButton{
+   margin-top: 5%;
+}
