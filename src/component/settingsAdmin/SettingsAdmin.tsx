@@ -3,6 +3,7 @@ import "./SettingsAdmin.css";
 import ButtonCreateAbility from "./buttonSettings/ButtonCreateAbility";
 import ButtonCreateCourse from "./buttonSettings/ButtonCreateCourse";
 import ButtonCreateLesson from "./buttonSettings/ButtonCreateLesson";
+import ButtonUpdateAbility from "./buttonSettings/ButtonUpdateAbility";
 import ButtonUpdateCourse from "./buttonSettings/ButtonUpdateCourse";
 import ButtonUpdateLesson from "./buttonSettings/ButtonUpdateLesson";
 
@@ -57,6 +58,7 @@ const SettingsAdmin = () => {
                         </div>
                         <div className={`optionSettings`}>
                             <p className={`descriptionOptionSettings`}>Update Ability</p>
+                            <ButtonUpdateAbility />
                         </div>
                     </div>
                     <div className={`containerOptions`}>

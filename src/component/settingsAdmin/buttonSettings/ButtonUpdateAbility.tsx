@@ -2,9 +2,10 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import UpdateLesson from '../lesson/UpdateLesson';
+import UpdateAbility from '../ability/UpdateAbility';
 
 
-const ButtonUpdateLesson = () => {
+const ButtonUpdateAbility = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -19,11 +20,11 @@ const ButtonUpdateLesson = () => {
                 onHide={handleClose}
                 keyboard={false}>
                 <Modal.Body>
-                    <UpdateLesson />
+                    <UpdateAbility />
                 </Modal.Body>
             </Modal>
         </>
     );
 }
 
-export default ButtonUpdateLesson;
+export default ButtonUpdateAbility;
