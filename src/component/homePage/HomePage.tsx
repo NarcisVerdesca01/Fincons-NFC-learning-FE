@@ -31,19 +31,22 @@ const HomePage = () => {
               </h3>
             </div>
             <div className={`containerDescriptionWhoWeAre`}>
-              <h5 className={`descriptionTitleWhoWeAre`}>The team of NFC</h5>
               <p className={`descriptionWhoWeAre`}>
-                has always promoted innovative training methods in order to
-                offer a complete and effective study experience. We are interns
-                at Fincons Group and our platform is structured into multiple
-                levels so as to offer useful and effective content. <br></br>
-                Innovation has moved and continues to move across all learning
-                areas with the aim of looking at possible technological
-                innovations including:
+                <h4 className={`descriptionTitleWhoWeAre`}>The team of NFC</h4>
+                <p>
+                  has always promoted innovative training methods in order to
+                  offer a complete and effective study experience. We are
+                  interns at Fincons Group and our platform is structured into
+                  multiple levels so as to offer useful and effective content.{" "}
+                  <br></br>
+                  Innovation has moved and continues to move across all learning
+                  areas with the aim of looking at possible technological
+                  innovations including:
+                </p>
+                <h4 className={`descriptionTitleWhoWeAre`}>
+                  E-Learning platforms.
+                </h4>
               </p>
-              <h5 className={`descriptionTitleWhoWeAre`}>
-                E-Learning platforms.
-              </h5>
             </div>
           </div>
           <div className={`containerImgWhoWeAre`}></div>
@@ -67,7 +70,6 @@ const HomePage = () => {
                   is distance learning. <br></br>The term e-learning was coined
                   in the late 1990s which described it as
                 </p>
-                <br></br>
                 <h5 className={`descriptionTitleWhatWeOffer`}>
                   “the way network technology designs, distributes, selects,
                   administers and expands training”

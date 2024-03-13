@@ -4,19 +4,13 @@ import { useNavigate } from "react-router-dom";
 import CourseService from "../../services/CourseService";
 import "./PageDedicatedCourse.css";
 import Header from "../header/Header";
-import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
-import Footer from "../footer/Footer";
 
 const PageDedicatedCourse = () => {
   const [courseList, setCourseList] = useState<CourseModel[]>([]);
-  const auth = Cookies.get("jwt-token");
-  const decodedJwt = jwtDecode(auth!);
-  const userEmail = decodedJwt.sub;
   const navigate = useNavigate();
 
   useEffect(() => {
-    CourseService.getCourseByEmail(userEmail).then((res) => {
+    CourseService.getCourseByEmail().then((res) => {
       setCourseList(res.data.data);
     });
   }, []);

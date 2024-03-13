@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Header.css';
-import utils from "../../utils/Utils";
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
-import { getUserDetails } from '../../services/UserServiceDetails';
 import { useNavigate } from 'react-router';
 import UserService from '../../services/UserService';
 
