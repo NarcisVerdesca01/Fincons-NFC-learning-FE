@@ -1,10 +1,9 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import UpdateLesson from "../lesson/UpdateLesson";
-import UpdateAbility from "../ability/UpdateAbility";
 
-const ButtonUpdateAbility = () => {
+
+const ButtonDeleteAbility = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -12,16 +11,16 @@ const ButtonUpdateAbility = () => {
   return (
     <>
       <Button variant="info" onClick={handleShow} style={{ margin: "0.5em" }}>
-        Update Ability <i className="bi bi-person-fill-add"></i>
+        Delete Ability <i className="bi bi-person-fill-add"></i>
       </Button>
 
-      <Modal show={show} onHide={handleClose} keyboard={false}>
+{/*      <Modal show={show} onHide={handleClose} keyboard={false}>
         <Modal.Body>
-          <UpdateAbility />
+          <DeleteAbility />
         </Modal.Body>
-      </Modal>
+  </Modal>*/}
     </>
   );
 };
 
-export default ButtonUpdateAbility;
+export default ButtonDeleteAbility;
