@@ -1,30 +1,29 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import CreateAbility from '../ability/CreateAbility';
 
 
-const ButtonCreateAbility = () => {
+
+const ButtonDeleteCourse = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Add a new ability <i className="bi bi-person-fill-add"></i>
+            <Button variant="info" onClick={handleShow} style={{ margin: "0.5em" }}>
+                Update Course <i className="bi bi-person-fill-add"></i>
             </Button>
 
-            <Modal show={show}
+            {/*<Modal show={show}
                 onHide={handleClose}
-                backdrop="static"
                 keyboard={false}>
                 <Modal.Body>
-                    <CreateAbility />
+                    <DeleteCourse />
                 </Modal.Body>
-            </Modal>
+    </Modal>*/}
         </>
     );
 }
 
-export default ButtonCreateAbility;
+export default ButtonDeleteCourse;
