@@ -23,7 +23,7 @@ const LessonService = {
         return axios.get(GET_ALL_URI, config);
     },
 
-    getLessonById(lessonId: number | undefined) {
+    getLessonById(lessonId: number) {
         return axios.get(GET_BY_ID + "/" + lessonId, { headers: { Authorization: `Bearer ${token}` } })
     },
     createLesson(lesson: Lesson) {

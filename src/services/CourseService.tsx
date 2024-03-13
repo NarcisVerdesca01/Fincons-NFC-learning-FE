@@ -23,7 +23,7 @@ const CourseService = {
         return axios.get(GET_ALL_URI, config);
     },
 
-    getCourseById(courseId: number | undefined) {
+    getCourseById(courseId: number) {
         return axios.get(GET_BY_ID + "/" + courseId, { headers: { Authorization: `Bearer ${token}` } })
     },
     

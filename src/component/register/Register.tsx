@@ -78,7 +78,7 @@ const RegisterPageComponent = () => {
   };
 
   const handleRegistration = () => {
-    LoginRegistrationService.registrationService(input!);
+    LoginRegistrationService.registrationStudentService(input!);
     navigate("/authentication")
   };
 

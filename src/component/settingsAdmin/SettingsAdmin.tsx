@@ -7,6 +7,7 @@ import ButtonCreateLesson from "./buttonSettings/ButtonCreateLesson";
 import ButtonUpdateAbility from "./buttonSettings/ButtonUpdateAbility";
 import ButtonUpdateCourse from "./buttonSettings/ButtonUpdateCourse";
 import ButtonUpdateLesson from "./buttonSettings/ButtonUpdateLesson";
+import ButtonRegisterTutor from "./buttonSettings/ButtonRegisterTutor";
 
 
 const SettingsAdmin = () => {
@@ -33,6 +34,10 @@ const SettingsAdmin = () => {
                         <div className={`optionSettings`}>
                             <p className={`descriptionOptionSettings`}>Create Ability</p>
                             <ButtonCreateAbility />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Register Tutor</p>
+                            <ButtonRegisterTutor />
                         </div>
                     </div>
                     <div className={`containerOptions`}>

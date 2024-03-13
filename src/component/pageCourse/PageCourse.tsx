@@ -20,6 +20,7 @@ const PageCourse = (props: Props) => {
   useEffect(() => {
     CourseService.getCourseById(idCourse_page!).then((res) => {
       setCourse(res.data.data);
+      console.log(res.data.data);
       console.log(idCourse_page, " idCourse_page");
       props.setCourseId(idCourse_page);
       console.log(
@@ -31,7 +32,9 @@ const PageCourse = (props: Props) => {
   }, [idCourse_page]);
 
   const gotToPage = (idPage: any) => {
+    console.log(idPage, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     navigate("/lesson_page/" + idPage);
+    
   };
   const goBack = () => {
     navigate(-1);
@@ -71,7 +74,7 @@ const PageCourse = (props: Props) => {
             <div className={`cardLessonPageCorse`}>
               <button
                 className={`buttonLessonCourse`}
-                onClick={() => gotToPage(lessons?.id)}
+                onClick={() => gotToPage(lessons?.lesson.id)}
               >
                 {lessons.lesson.title}
               </button>

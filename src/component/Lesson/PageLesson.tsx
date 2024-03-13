@@ -13,15 +13,17 @@ interface Props {
 
 const PageLesson = (props: Props) => {
   const [lesson, setLesson] = useState<Lesson>();
-  const [lessonList, setLessonList] = useState<Course[]>([]);
+  const [lessonList, setLessonList] = useState<Lesson[]>([]);
   const navigate = useNavigate();
   const { idPage } = useParams();
   const idLesson_page = parseInt(idPage!);
+  console.log(idPage)
 
   useEffect(() => {
-    LessonService.getLessonById(idLesson_page).then((res) => {
+    LessonService.getLessonById(idLesson_page!).then((res) => {
       //console.log(res.data.data.courses[0].course.name, "sono qui");
-      console.log(res.data.data ," res");
+      console.log(idLesson_page, "idLessonPage")
+      //console.log(res.data.data ," res");
       setLesson(res.data.data);
 
       //console.log(res.data.data.courses[0])
@@ -31,7 +33,7 @@ const PageLesson = (props: Props) => {
   useEffect(() => {
     CourseService.getCourseById(props.idCourse!).then((res) => {
       console.log(props.idCourse, "sono in pageLesson corso id");
-      console.log(res.data.data);
+      console.log(res.data.data.lessons);
       setLessonList(res.data.data.lessons);
     });
   }, [props.idCourse]);

@@ -33,3 +33,9 @@
     box-shadow: 4px 4px 4px rgb(0, 0, 0);
     transform: scale(1.05);
 }
+
+.sectionContainer{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+}
