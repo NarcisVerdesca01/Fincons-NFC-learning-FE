@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
-import { useAsyncValue, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../header/Header";
 import LessonService from "../../services/LessonService";
 import Lesson from "../../models/LessonModel";
 import "./PageLesson.css";
 import CourseService from "../../services/CourseService";
-import Course from "../../models/CourseModel";
 import "bootstrap-icons/font/bootstrap-icons.css";
 interface Props {
   idCourse: number;

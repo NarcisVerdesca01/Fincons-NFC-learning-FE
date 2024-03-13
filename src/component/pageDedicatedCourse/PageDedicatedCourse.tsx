@@ -4,9 +4,6 @@ import { useNavigate } from "react-router-dom";
 import CourseService from "../../services/CourseService";
 import "./PageDedicatedCourse.css";
 import Header from "../header/Header";
-import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
-import Footer from "../footer/Footer";
 
 const PageDedicatedCourse = () => {
   const [courseList, setCourseList] = useState<CourseModel[]>([]);
