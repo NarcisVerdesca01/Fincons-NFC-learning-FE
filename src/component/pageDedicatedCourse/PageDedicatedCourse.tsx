@@ -11,7 +11,7 @@ const PageDedicatedCourse = () => {
 
   useEffect(() => {
     CourseService.getCourseByEmail().then((res) => {
-      setCourseList(res.data.data);
+      setCourseList(res.data);
     });
   }, []);
 

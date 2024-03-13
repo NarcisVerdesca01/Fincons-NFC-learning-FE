@@ -23,7 +23,7 @@ const PageLesson = (props: Props) => {
       //console.log(res.data.data.courses[0].course.name, "sono qui");
       console.log(idLesson_page, "idLessonPage")
       //console.log(res.data.data ," res");
-      setLesson(res.data.data);
+      setLesson(res.data);
 
       //console.log(res.data.data.courses[0])
     });
@@ -32,8 +32,8 @@ const PageLesson = (props: Props) => {
   useEffect(() => {
     CourseService.getCourseById(props.idCourse!).then((res) => {
       console.log(props.idCourse, "sono in pageLesson corso id");
-      console.log(res.data.data.lessons);
-      setLessonList(res.data.data.lessons);
+      console.log(res.data.lessons);
+      setLessonList(res.data.lessons);
     });
   }, [props.idCourse]);
 

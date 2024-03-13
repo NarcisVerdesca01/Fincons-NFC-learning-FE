@@ -19,15 +19,15 @@ const PageCourse = (props: Props) => {
 
   useEffect(() => {
     CourseService.getCourseById(idCourse_page!).then((res) => {
-      setCourse(res.data.data);
-      console.log(res.data.data);
+      setCourse(res.data);
+      console.log(res.data);
       console.log(idCourse_page, " idCourse_page");
       props.setCourseId(idCourse_page);
       console.log(
-        res.data.data.lessons,
+        res.data.lessons,
         "sono qui in PageCourse res.data.data.lessons"
       );
-      setLessonList(res.data.data.lessons);
+      setLessonList(res.data.lessons);
     });
   }, [idCourse_page]);
 

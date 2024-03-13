@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import LoginUserModel from "../../models/LoginUserModel";
@@ -52,13 +52,12 @@ const Login = () => {
     }
   };
 
-  const handleLogin = async (e: any) => {
+  const handleLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     try {
-      const res = await LoginRegistrationService.loginService(input);
-      if (res.status === 200) {
-        Cookies.set("jwt-token", res.data.accessToken);
+      const response = await LoginRegistrationService.loginService(input);
+      if (response.status === 200) {
+        Cookies.set("jwt-token", response.data.accessToken);
         navigate("/homePage");
       } else {
         setErrorMessage("Errore nel login. Controlla le tue credenziali e riprova.");

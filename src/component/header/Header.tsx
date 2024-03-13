@@ -3,18 +3,17 @@ import './Header.css';
 import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router';
-import UserService from '../../services/UserService';
+import LoginRegistrationService from '../../services/LoginRegistrationService';
 
 const Header = () => {
     const navigate = useNavigate();
-    const [isHidden, setIsHidden] = useState<boolean>(true);
 
     const handleLogout = () => {
         Cookies.remove("jwt-token");
-        console.log("sono appena uscito")
+        console.log("sono appena uscito");
         navigate("/authentication");
-        setIsHidden(true);
-    };
+        window.location.reload(); // Reload the page to ensure that the old token is removed
+      };
 
     const goToCourses = () => {
         navigate("/courses")
@@ -38,15 +37,21 @@ const Header = () => {
 
     const [adminNavBar, setAdminNavBar] = useState<boolean>(false);
     const [tutorNavBar, setTutorNavBar] = useState<boolean>(false);
+    const token = Cookies.get("jwt-token");
+
     useEffect(() => {
-        UserService.getUserDetails(userEmail!).then((res) => {
-            if(res.data.data.roles[0].name == "ROLE_ADMIN"){
-                setAdminNavBar(true)
-            } else if (res.data.data.roles[0].name == "ROLE_TUTOR"){
-                setTutorNavBar(true)
-            }
-        });
-    }, [userEmail!]);
+            LoginRegistrationService.getUserDetails().then((res) => {
+                console.log(res.data.roles[0].name, "get userDetails");
+                console.log(res.data.email, "get userDetails");
+                if (res.data.roles[0].name === "ROLE_ADMIN") {
+                    console.log(res.data.roles[0].name, "getUserDetails res.data.roles[0].name");
+                    setAdminNavBar(true);
+                } else if (res.data.roles[0].name === "ROLE_TUTOR") {
+                    setTutorNavBar(true);
+                }
+            });
+        
+    });
 
     return (
         <div className={`bodyHeader`}>
@@ -67,13 +72,13 @@ const Header = () => {
                             </button>
                         </div>
                         <div className={`containerButtonNavBar`}>
-                                <button className={`buttonNavBar`} onClick={goToPageDedicatedCourses}>
-                                    <p className={`nameButton`}>My courses</p>
-                                </button>
-                            </div>
+                            <button className={`buttonNavBar`} onClick={goToPageDedicatedCourses}>
+                                <p className={`nameButton`}>My courses</p>
+                            </button>
+                        </div>
                         {tutorNavBar && (
                             <div className={`containerButtonNavBar`}>
-                                 <button className={`buttonNavBar`} onClick={goToSettingsTutor}>
+                                <button className={`buttonNavBar`} onClick={goToSettingsTutor}>
                                     <p className={`nameButton`}>Settings</p>
                                 </button>
                             </div>

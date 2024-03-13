@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import UpdateLesson from '../lesson/UpdateLesson';
 import UpdateAbility from '../ability/UpdateAbility';
 
 

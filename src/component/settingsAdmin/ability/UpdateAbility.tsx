@@ -11,7 +11,7 @@ const UpdateAbility = () => {
 
     useEffect(() => {
         AbilityService.getAbilities().then((res) => {
-            setAbilities(res.data.data);
+            setAbilities(res.data);
         });
     }, []);
 

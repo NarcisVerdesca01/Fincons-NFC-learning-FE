@@ -11,14 +11,14 @@ const UpdateCourse = () => {
 
     useEffect(() => {
         CourseService.getCourses().then((res) => {
-            setCourses(res.data.data);
+            setCourses(res.data);
         });
     }, []);
 
     useEffect(() => {
         if (selectedCourseId !== null) {
             CourseService.getCourseById(selectedCourseId).then((res) => {
-                setCourse(res.data.data);
+                setCourse(res.data);
             });
         }
     }, [selectedCourseId]);

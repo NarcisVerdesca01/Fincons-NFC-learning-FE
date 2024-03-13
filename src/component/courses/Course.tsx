@@ -11,7 +11,7 @@ const Course = () => {
 
   useEffect(() => {
     CourseService.getCourses().then((res) => {
-      setCourseList(res.data.data);
+      setCourseList(res.data);
     });
   }, []);
 

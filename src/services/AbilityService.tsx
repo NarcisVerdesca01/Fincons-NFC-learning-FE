@@ -2,36 +2,53 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import Ability from "../models/AbilityModel";
 
-const ABILITY_API_BASE_URL =
-    "http://localhost:8080/nfc-learning";
+const ABILITY_API_BASE_URL = "http://localhost:8080/nfc-learning";
 const VERSION_URI = ABILITY_API_BASE_URL + "/v1";
 const ABILITY_URI = VERSION_URI + "/ability";
 const GET_ALL_URI = ABILITY_URI + "/list";
-const GET_BY_ID = ABILITY_URI + "/find-by-id"
-const CREATE_ABILITY = ABILITY_URI + "/create"
-const UPDATE_ABILITY = ABILITY_URI + "/update"
-const DELETE_ABILITY = ABILITY_URI + "/delete"
+const GET_BY_ID = ABILITY_URI + "/find-by-id";
+const CREATE_ABILITY = ABILITY_URI + "/create";
+const UPDATE_ABILITY = ABILITY_URI + "/update";
+const DELETE_ABILITY = ABILITY_URI + "/delete";
 
 const token = Cookies.get("jwt-token");
 const config = {
     headers: { Authorization: `Bearer ${token}` },
 };
 
-const AbilityService = {
-    getAbilities() {
-        return axios.get(GET_ALL_URI, config);
-    },
+const getAbilities = async () => {
+    try {
+        const response = await axios.get(GET_ALL_URI, config);
+        return response.data;
+    } catch (error) {
+        console.error("Error getting abilities:", error);
+        throw error;
+    }
+};
 
-    getAbilityById(abilityId: number | undefined) {
-        return axios.get(GET_BY_ID + "/" + abilityId, { headers: { Authorization: `Bearer ${token}` } })
-    },
+const getAbilityById = async (abilityId: number | undefined) => {
+    try {
+        const response = await axios.get(GET_BY_ID + "/" + abilityId, { headers: { Authorization: `Bearer ${token}` } });
+        return response.data;
+    } catch (error) {
+        console.error("Error getting ability by ID:", error);
+        throw error;
+    }
+};
 
-    createAbility(ability: Ability) {
-        return axios.post(CREATE_ABILITY, ability, config)
-    },
+const createAbility = async (ability: Ability) => {
+    try {
+        const response = await axios.post(CREATE_ABILITY, ability, config);
+        return response.data;
+    } catch (error) {
+        console.error("Error creating ability:", error);
+        throw error;
+    }
+};
 
-    updateAbility(abilityId: number, updatedAbility: Ability) {
-        return axios.put(
+const updateAbility = async (abilityId: number, updatedAbility: Ability) => {
+    try {
+        const response = await axios.put(
             UPDATE_ABILITY + "/" + abilityId,
             {
                 name: updatedAbility.name
@@ -43,11 +60,29 @@ const AbilityService = {
                 }
             }
         );
-    },
-
-    deleteAbility(abilityId: number | undefined) {
-        return axios.delete(DELETE_ABILITY, { params: { id: abilityId } })
+        return response.data;
+    } catch (error) {
+        console.error("Error updating ability:", error);
+        throw error;
     }
-}
+};
+
+const deleteAbility = async (abilityId: number | undefined) => {
+    try {
+        const response = await axios.delete(DELETE_ABILITY, { params: { id: abilityId } });
+        return response.data;
+    } catch (error) {
+        console.error("Error deleting ability:", error);
+        throw error;
+    }
+};
+
+const AbilityService = {
+    getAbilities,
+    getAbilityById,
+    createAbility,
+    updateAbility,
+    deleteAbility
+};
 
 export default AbilityService;
