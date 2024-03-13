@@ -14,7 +14,6 @@ import PageCoursePresentation from "./component/pageCoursePresentation/PageCours
 import SettingsAdmin from "./component/settingsAdmin/SettingsAdmin";
 import SettingsTutor from "./component/settingsTutor/SettingTutor";
 
-
 function App() {
   const [idCourse, setIdCourse] = useState<number | undefined>();
 
@@ -22,27 +21,14 @@ function App() {
     <div id="app">
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={<ProtectedRoutes />}
-          >
-            <Route
-              path="/homePage"
-              element={<HomePage />}
-            ></Route>
-            <Route
-              path="/courses"
-              element={<Course changeFilterHandler={function (event: ChangeEvent<HTMLInputElement>): void {
-                throw new Error("Function not implemented.");
-              } } tableData={undefined} setTableData={function (value: any): void {
-                throw new Error("Function not implemented.");
-              } } filter={undefined} setfilter={function (value: SetStateAction<string | undefined>): void {
-                throw new Error("Function not implemented.");
-              } } toDisplay={undefined} />}
-            ></Route>
+          <Route path="/" element={<ProtectedRoutes />}>
+            <Route path="/homePage" element={<HomePage />}></Route>
+            <Route path="/courses" element={<Course />}></Route>
             <Route
               path="/course_page/:idCourse"
-              element={<PageCourse courseId={idCourse!} setCourseId={setIdCourse} />}
+              element={
+                <PageCourse courseId={idCourse!} setCourseId={setIdCourse} />
+              }
             ></Route>
             <Route
               path="/course_page_presentation/:idCourse"
@@ -56,29 +42,11 @@ function App() {
               path="/page_dedicated_courses"
               element={<PageDedicatedCourse />}
             ></Route>
-            <Route
-              path="/settings_admin"
-              element={<SettingsAdmin />}
-            ></Route>
-            <Route
-              path="/settings_tutor"
-              element={<SettingsTutor />}
-            ></Route>
+            <Route path="/settings_admin" element={<SettingsAdmin />}></Route>
+            <Route path="/settings_tutor" element={<SettingsTutor />}></Route>
           </Route>
-          <Route
-            path="/authentication"
-            element={
-              <Login
-              />
-            }
-          ></Route>
-          <Route
-            path="/"
-            element={
-              <Login
-              />
-            }
-          ></Route>
+          <Route path="/authentication" element={<Login />}></Route>
+          <Route path="/" element={<Login />}></Route>
 
           <Route path="/register" element={<Register />}></Route>
         </Routes>
