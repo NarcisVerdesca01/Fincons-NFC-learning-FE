@@ -1,4 +1,3 @@
-import Ability from "./AbilityModel";
 
 interface User {
     id: number,

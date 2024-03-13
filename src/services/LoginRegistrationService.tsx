@@ -7,15 +7,26 @@ import LoginUserModel from "../models/LoginUserModel";
 const REGISTRATION_LOGIN_BASE_URI =
   "http://localhost:8080/nfc-learning";
 const VERSION_URI = REGISTRATION_LOGIN_BASE_URI + "/v1/auth";
-const REGISTRATION_URI = VERSION_URI + "/student/register";
+const REGISTRATION_STUDENT_URI = VERSION_URI + "/student/register";
+const REGISTRATION_TUTOR_URI = VERSION_URI + "/tutor/register";
 const LOGIN_URI = VERSION_URI + "/login";
 const USER_DETAILS_URI = VERSION_URI + "/email";
 const UPDATE_USER_DETAILS = VERSION_URI + "/update-user"
 const token = Cookies.get("jwt-token")
 
 const LoginRegistrationService = {
-  registrationService(user: User) {
-    return axios.post(REGISTRATION_URI, user);
+  registrationStudentService(user: User) {
+    return axios.post(REGISTRATION_STUDENT_URI, user);
+  },
+
+  registrationTutorService(user: User) {
+    return axios.post(
+      REGISTRATION_TUTOR_URI,
+      user,
+      {
+        headers: { Authorization: `Bearer ${token}`}
+      }
+      );
   },
 
   updateUserData(updatedUserDetails : UserDetailsModel){

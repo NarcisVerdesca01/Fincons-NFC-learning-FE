@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CourseService from "../../../services/CourseService";
-import Course from "../../../models/CourseModel";
 import Lesson from "../../../models/LessonModel";
 import LessonService from "../../../services/LessonService";
 

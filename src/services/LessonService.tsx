@@ -23,21 +23,21 @@ const LessonService = {
         return axios.get(GET_ALL_URI, config);
     },
 
-    getLessonById(lessonId: number | undefined) {
+    getLessonById(lessonId: number) {
         return axios.get(GET_BY_ID + "/" + lessonId, { headers: { Authorization: `Bearer ${token}` } })
     },
     createLesson(lesson: Lesson) {
         return axios.post(CREATE_LESSON, lesson, config)
     },
 
-    updateCourse(lessonId: number, updatedLesson: Lesson) {
+    updateLesson(lessonId: number, updatedLesson: Lesson) {
         return axios.put(
-            UPDATE_LESSON,
+            UPDATE_LESSON + "/" + lessonId,
             {
-                name: updatedLesson,
+                title: updatedLesson.title,
+                backgroundImage: updatedLesson.backgroundImage
             },
             {
-                params: { id: lessonId },
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`

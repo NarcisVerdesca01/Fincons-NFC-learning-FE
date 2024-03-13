@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import CreateLesson from '../lesson/CreateLesson';
+import RegisterTutor from '../registerTutor/RegisterTutor';
 
 
-const ButtonCreateLesson = () => {
+const ButtonCreateCourse = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -17,14 +17,13 @@ const ButtonCreateLesson = () => {
 
             <Modal show={show}
                 onHide={handleClose}
-                backdrop="static"
                 keyboard={false}>
                 <Modal.Body>
-                    <CreateLesson />
+                    <RegisterTutor />
                 </Modal.Body>
             </Modal>
         </>
     );
 }
 
-export default ButtonCreateLesson;
+export default ButtonCreateCourse;

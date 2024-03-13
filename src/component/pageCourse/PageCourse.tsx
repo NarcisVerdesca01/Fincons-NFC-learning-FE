@@ -5,8 +5,6 @@ import CourseService from "../../services/CourseService";
 import "./PageCourse.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
-import Footer from "../footer/Footer";
-
 interface Props {
   courseId: number;
   setCourseId: React.Dispatch<React.SetStateAction<number | undefined>>;
@@ -22,6 +20,7 @@ const PageCourse = (props: Props) => {
   useEffect(() => {
     CourseService.getCourseById(idCourse_page!).then((res) => {
       setCourse(res.data.data);
+      console.log(res.data.data);
       console.log(idCourse_page, " idCourse_page");
       props.setCourseId(idCourse_page);
       console.log(
@@ -33,8 +32,12 @@ const PageCourse = (props: Props) => {
   }, [idCourse_page]);
 
   const gotToPage = (idPage: any) => {
+    console.log(idPage, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     navigate("/lesson_page/" + idPage);
-    console.log(idPage)
+    
+  };
+  const goBack = () => {
+    navigate(-1);
   };
 
   return (
@@ -44,14 +47,21 @@ const PageCourse = (props: Props) => {
         <div className={`containerTitlePageCourse`}>
           <h1>{course?.name}</h1>
         </div>
+        <div className={`containerButtonBack`}>
+          <button className={`buttonBack`} onClick={goBack}>
+            <i className="bi bi-arrow-left"></i>
+          </button>
+        </div>
         <div className={`containerContextCourse`}>
           <div className={`imageCardCourse`}>
-            <img src={course?.backgroundImage} alt="" className={`imageStyleCourse`} />
+            <img
+              src={course?.backgroundImage}
+              alt=""
+              className={`imageStyleCourse`}
+            />
           </div>
           <div className={`containerTextCourse`}>
-            <p className={`textCourse`}>
-              {course?.description}
-            </p>
+            <p className={`textCourse`}>{course?.description}</p>
           </div>
         </div>
         <div className={`containerTitleResources`}>
@@ -62,8 +72,10 @@ const PageCourse = (props: Props) => {
         <div className={`containerResources`}>
           {lessonList.map((lessons: any) => (
             <div className={`cardLessonPageCorse`}>
-              <button className={`buttonLessonCourse`}
-                onClick={() => gotToPage(lessons?.lesson.id)}>
+              <button
+                className={`buttonLessonCourse`}
+                onClick={() => gotToPage(lessons?.lesson.id)}
+              >
                 {lessons.lesson.title}
               </button>
             </div>

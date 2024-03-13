@@ -1,31 +1,30 @@
 import { useEffect, useState } from "react";
-import { useAsyncValue, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Header from "../header/Header";
 import LessonService from "../../services/LessonService";
 import Lesson from "../../models/LessonModel";
 import "./PageLesson.css";
 import CourseService from "../../services/CourseService";
-import Course from "../../models/CourseModel";
-import Footer from "../footer/Footer";
+import "bootstrap-icons/font/bootstrap-icons.css";
 interface Props {
   idCourse: number;
 }
 
 const PageLesson = (props: Props) => {
   const [lesson, setLesson] = useState<Lesson>();
-  const [lessonList, setLessonList] = useState<Course[]>([]);
+  const [lessonList, setLessonList] = useState<Lesson[]>([]);
   const navigate = useNavigate();
   const { idPage } = useParams();
   const idLesson_page = parseInt(idPage!);
-  
-  console.log(idLesson_page, "lesson_page id")
+  console.log(idPage)
 
   useEffect(() => {
-    LessonService.getLessonById(idLesson_page).then((res) => {
+    LessonService.getLessonById(idLesson_page!).then((res) => {
       //console.log(res.data.data.courses[0].course.name, "sono qui");
-      console.log(res ," res");
+      console.log(idLesson_page, "idLessonPage")
+      //console.log(res.data.data ," res");
       setLesson(res.data.data);
-     
+
       //console.log(res.data.data.courses[0])
     });
   }, [idLesson_page]);
@@ -33,7 +32,7 @@ const PageLesson = (props: Props) => {
   useEffect(() => {
     CourseService.getCourseById(props.idCourse!).then((res) => {
       console.log(props.idCourse, "sono in pageLesson corso id");
-      console.log(res.data.data);
+      console.log(res.data.data.lessons);
       setLessonList(res.data.data.lessons);
     });
   }, [props.idCourse]);
@@ -42,7 +41,9 @@ const PageLesson = (props: Props) => {
     console.log(idPage)
     navigate("/lesson_page/" + idPage);
   };
-
+  const goBack = () => {
+    navigate(-1);
+  };
   return (
     <>
       <Header />
@@ -50,14 +51,21 @@ const PageLesson = (props: Props) => {
         <div className={`containerTitlePageLesson`}>
           <h1>{lesson?.title}</h1>
         </div>
+        <div className={`containerButtonBack`}>
+          <button className={`buttonBack`} onClick={goBack}>
+            <i className="bi bi-arrow-left"></i>
+          </button>
+        </div>
         <div className={`bodyLesson`}>
           
           <div className={`containerContentsLesson`}>
-             <iframe className={`iFrameContent`} src={lesson?.content?.content} frameBorder="0" allowFullScreen ></iframe>
-
-
+            <iframe
+              className={`iFrameContent`}
+              src={lesson?.content?.content}
+              frameBorder="0"
+              allowFullScreen
+            ></iframe>
           </div>
-
 
           <div className={`containerListLessons`}>
             {lessonList.map((lesson: any) => (

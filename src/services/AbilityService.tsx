@@ -18,7 +18,7 @@ const config = {
 };
 
 const AbilityService = {
-    getAbilitys() {
+    getAbilities() {
         return axios.get(GET_ALL_URI, config);
     },
 
@@ -32,12 +32,11 @@ const AbilityService = {
 
     updateAbility(abilityId: number, updatedAbility: Ability) {
         return axios.put(
-            UPDATE_ABILITY,
+            UPDATE_ABILITY + "/" + abilityId,
             {
                 name: updatedAbility.name
             },
             {
-                params: { id: abilityId },
                 headers: {
                     'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
