@@ -3,7 +3,7 @@ import QuestionModel from "../../models/QuestionModel";
 import QuizModel from "../../models/QuizModel";
 import { useParams } from "react-router-dom";
 import QuizService from "../../services/QuizService";
-import AnswerModel from "../../models/AnswerModel";
+
 import "./QuizPage.css";
 interface Props {
     quizId: number | undefined;
@@ -17,6 +17,11 @@ const QuizPage = (props: Props) => {
     const [userAnswers, setUserAnswers] = useState<{ [key: number]: number[] }>({});
     const [quiz, setQuiz] = useState<QuizModel>();
     const [questionList, setQuestionList] = useState<QuestionModel[]>([]);
+    const [nameOfStudent, setnameOfStudent] = useState(null);
+    const [totalScoreQuiz, setTotalScoreQuiz] = useState(null);
+    const [lessonToRepeat, setlessonToRepeat] = useState(null);
+    const [showSubmitButton, setShowSubmitButton] = useState<boolean>(true);
+    const [quizSubmitted, setQuizSubmitted] = useState(false);
 
 
     useEffect(() => {
@@ -51,13 +56,13 @@ const QuizPage = (props: Props) => {
         setUserAnswers((prevAnswers) => {
             const updatedAnswers = { ...prevAnswers };
             const maxSelectableAnswers = questionList[currentQuestionIndex].answers.filter(answer => answer.correct).length;
-    
+
             // Verifica se la domanda corrente ha più di una risposta corretta
             const multipleCorrectAnswers = maxSelectableAnswers > 1;
-    
+
             // Verifica se la risposta selezionata è già presente nell'array delle risposte per la domanda corrente
             const isAnswerSelected = updatedAnswers[questionId]?.includes(answerId);
-    
+
             // Se l'opzione è già selezionata, rimuoviamola
             if (isAnswerSelected) {
                 updatedAnswers[questionId] = updatedAnswers[questionId]?.filter(id => id !== answerId);
@@ -72,7 +77,7 @@ const QuizPage = (props: Props) => {
                     ? [...updatedAnswers[questionId], answerId]
                     : [answerId];
             }
-    
+
             // Disabilita le checkbox non selezionate quando il numero massimo di risposte corrette è stato raggiunto
             if (multipleCorrectAnswers) {
                 const checkboxes = document.querySelectorAll<HTMLInputElement>(`input[type="checkbox"][name="question-${questionId}"]`);
@@ -80,11 +85,11 @@ const QuizPage = (props: Props) => {
                     checkbox.disabled = !checkbox.checked && updatedAnswers[questionId]?.length >= maxSelectableAnswers;
                 });
             }
-    
+
             return updatedAnswers;
         });
     };
-    
+
 
 
 
@@ -105,6 +110,14 @@ const QuizPage = (props: Props) => {
         QuizService.sendQuizResult(quizId, answersMap)
             .then((response) => {
                 console.log('Risposte inviate con successo:', response.data);
+                console.log('Total score: ', response.data.data.totalScore);
+                console.log('Nome: ', response.data.data.user.firstName);
+                //TODO - LEZIONE DA RIPETERE SETLESSONTOREPEAT
+                setnameOfStudent(response.data.data.user.firstName);
+                setTotalScoreQuiz(response.data.data.totalScore);
+
+                setShowSubmitButton(false);
+                setQuizSubmitted(true);
             })
             .catch((error) => {
                 console.error('Errore durante l\'invio delle risposte:', error);
@@ -112,19 +125,42 @@ const QuizPage = (props: Props) => {
     };
 
     const currentQuestion = questionList[currentQuestionIndex];
+
+    let scoreMessage = null;
+    const totalScorePercentage = totalScoreQuiz !== null ? Math.floor(totalScoreQuiz) : null;
+    if (totalScorePercentage !== null) {
+        if (totalScorePercentage === 100) {
+            scoreMessage = <span style={{ color: 'green' }}>Ottimo lavoro {nameOfStudent}! Hai risposto correttamente a tutte le domande del quiz!</span>;
+        } else if (totalScorePercentage < 40) {
+            scoreMessage = <span style={{ color: 'red' }}>Peccato {nameOfStudent}, non hai superato il test. Hai risposto correttamente solo al {totalScorePercentage}% delle domande del quiz.</span>;
+        } else if (totalScorePercentage >= 40 && totalScorePercentage < 60) {
+            scoreMessage = <span style={{ color: 'red' }}>Test non superato. Potresti fare di meglio {nameOfStudent}! Hai risposto correttamente al {totalScorePercentage}% delle domande del quiz. Ci sei quasi!</span>;
+        } else if (totalScorePercentage >= 60) {
+            scoreMessage = <span style={{ color: 'green' }}>Test superato {nameOfStudent}! Hai risposto correttamente al {totalScorePercentage}% delle domande del quiz.</span>;
+        }
+    }
+
+
+
     return (
         <>
             <h1>Ciaooo id quiz: {quiz?.id}</h1>
 
 
-            <div className="quizBox">                
+            <div className="quizBox">
 
                 <div className="quizTitle"><h1>{quiz?.title}</h1></div>
 
-                {currentQuestion && (
+                {!quizSubmitted && currentQuestion && (
                     <div className="questionCard">
-                        <h2>Domanda {currentQuestionIndex + 1} su {questionList.length}</h2>
-                        <h3>{currentQuestion.textQuestion}</h3>
+                        <div className="indexQuestion">
+                            <h2>Domanda {currentQuestionIndex + 1} su {questionList.length}</h2>
+                        </div>
+
+                        <div className="textQuestion">
+                            <h3>{currentQuestion.textQuestion}</h3>
+                        </div>
+
 
                         {currentQuestion.answers.map((answer) => (
                             <div key={answer.id}>
@@ -151,9 +187,16 @@ const QuizPage = (props: Props) => {
 
                         <div className="navigationButtons">
                             <button onClick={goToPreviousQuestion} disabled={currentQuestionIndex === 0}> Back </button>
-                            <button onClick={goToNextQuestion} disabled={currentQuestionIndex === questionList.length - 1 || !userAnswers[currentQuestion.id] || userAnswers[currentQuestion.id]?.length === 0}>Forward</button>
+                            <button onClick={goToNextQuestion} disabled={currentQuestionIndex === questionList.length - 1 || !userAnswers[currentQuestion.id] || userAnswers[currentQuestion.id]?.length === 0}>Next</button>
                         </div>
-                        <button className="sendQuizButton" disabled={!areAllQuestionsAnswered()} onClick={sendAnswers}>Invia</button>
+                        {showSubmitButton && <button className="sendQuizButton" disabled={!areAllQuestionsAnswered()} onClick={sendAnswers}>Invia</button>}
+                    </div>
+                )}
+
+                {quizSubmitted && (
+                    <div className="quizSubmittedMessage">
+                        <h2>Quiz inviato con successo!</h2>
+                        {scoreMessage && <div className="scoreMessage">{scoreMessage}</div>}
                     </div>
                 )}
 

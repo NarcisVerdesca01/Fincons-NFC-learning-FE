@@ -1,17 +1,29 @@
 .quizBox{
-    border: 1px solid green;
-    padding: 10px;
+    border: 1px solid green;    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 70vh;
+    min-height: 50vh;
+    height: auto;
     width: 50%;
 }
 
 
 .quizTitle{
     border: 1px solid red;
+    margin-top:2%;
+}
+
+.indexQuestion{
+    border: 1px solid black;
+    margin-top: 2%;
+}
+
+.textQuestion{
+    border: 1px  solid red dashed;
+    margin-top: 1%;
+   
 }
 
 .questionBox{
