@@ -43,6 +43,12 @@ const PageLesson = (props: Props) => {
     console.log(idPage)
     navigate("/lesson_page/" + idPage);
   };
+
+  const goToQuizPage = (idQuiz: any) => {
+    console.log("L'id del quiz è: " + idQuiz)
+    navigate("/quiz_page/" + idQuiz);
+  };
+
   const goBack = () => {
     navigate(-1);
   };
@@ -91,7 +97,7 @@ const PageLesson = (props: Props) => {
             ))}
           </div>
           <div className={`containerQuizOfLesson`}>
-            <button onClick={() => gotToQuizPage(lesson?.quiz?.id)}>vai al quiz</button>
+            <button onClick={() => goToQuizPage(lesson?.quiz?.id)}>vai al quiz</button>
           </div>
 
 
