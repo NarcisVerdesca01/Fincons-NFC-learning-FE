@@ -37,10 +37,18 @@ const PageLesson = (props: Props) => {
     });
   }, [props.idCourse]);
 
+  console.log(lesson?.quiz?.id, "quiz id --------")
+
   const gotToLessonPage = (idPage: any) => {
     console.log(idPage)
     navigate("/lesson_page/" + idPage);
   };
+
+  const goToQuizPage = (idQuiz: any) => {
+    console.log("L'id del quiz è: " + idQuiz)
+    navigate("/quiz_page/" + idQuiz);
+  };
+
   const goBack = () => {
     navigate(-1);
   };
@@ -57,6 +65,7 @@ const PageLesson = (props: Props) => {
           </button>
         </div>
         <div className={`bodyLesson`}>
+
           <div className={`containerContentsLesson`}>
             <iframe
               className={`iFrameContent`}
@@ -82,10 +91,23 @@ const PageLesson = (props: Props) => {
                 <div className={`containerTitleLesson`}>
                   <h5 className={`titleLesson`}>{lesson.lesson.title}</h5>
                 </div>
+
+
               </div>
             ))}
           </div>
+          <div className={`containerQuizOfLesson`}>
+            <button onClick={() => goToQuizPage(lesson?.quiz?.id)}>vai al quiz</button>
+          </div>
+
+
+
         </div>
+
+
+
+
+
       </div>
     </>
   );

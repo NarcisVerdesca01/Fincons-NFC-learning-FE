@@ -13,13 +13,14 @@ import PageLesson from "./component/Lesson/PageLesson";
 import PageCoursePresentation from "./component/pageCoursePresentation/PageCoursePresentation";
 import SettingsAdmin from "./component/settingsAdmin/SettingsAdmin";
 import SettingsTutor from "./component/settingsTutor/SettingTutor";
+import QuizPage from "./component/quizPage/QuizPage";
 import LoginRegister from "./component/loginRegister/LoginRegister";
 import Spinner from "./component/spinner/Spinner";
 
 
 function App() {
   const [idCourse, setIdCourse] = useState<number | undefined>();
-
+  const [idQuiz, setIdQuiz] = useState<number | undefined>();
   return (
     <div id="app">
       <Router>
@@ -51,6 +52,10 @@ function App() {
             <Route
               path="/lesson_page/:idPage"
               element={<PageLesson idCourse={idCourse!} />}
+            ></Route>
+            <Route
+              path="/quiz_page/:idQuiz"
+              element={<QuizPage quizId={idQuiz!} setQuizId={setIdQuiz}/>}
             ></Route>
             <Route
               path="/page_dedicated_courses"
