@@ -11,7 +11,7 @@ const Spinner = () => {
       setShowSpinner(false);
       navigate("/homePage");
       window.location.reload(); // Reload the page
-    }, 5000);
+    }, 2000);
   }, []);
 
   const handleTransitionEnd = () => {

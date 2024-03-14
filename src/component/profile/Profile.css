@@ -1,0 +1,39 @@
+.componentPageProfile{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.containerProfile{
+    margin-top: 6em;
+    width: 90%;
+}
+
+.containerCredencial{
+    border: 2px solid black;
+    border-top-left-radius: 10em;
+    border-bottom-right-radius: 10em;
+    width: 50%;
+    margin: 0%;
+    display: flex;
+    justify-content: center;
+}
+
+.detailsUser{
+    width: 85%;
+    margin-top: 4em;
+    margin-bottom: 4em;
+}
+
+.nameProfile{
+    font-size: 2.5em;
+    margin: 0%;
+}
+
+.emailProfile{
+    font-size: 2em;
+    margin: 0%;
+}

@@ -16,6 +16,7 @@ import SettingsTutor from "./component/settingsTutor/SettingTutor";
 import QuizPage from "./component/quizPage/QuizPage";
 import LoginRegister from "./component/loginRegister/LoginRegister";
 import Spinner from "./component/spinner/Spinner";
+import Profile from "./component/profile/Profile";
 
 
 function App() {
@@ -72,6 +73,10 @@ function App() {
             <Route
               path="/login_register"
               element={<LoginRegister />}
+            ></Route>
+            <Route
+              path="/profile"
+              element={<Profile />}
             ></Route>
             
             

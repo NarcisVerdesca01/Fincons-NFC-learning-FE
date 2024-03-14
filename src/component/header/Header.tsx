@@ -30,6 +30,9 @@ const Header = () => {
     const goToSettingsAdmin = () => {
         navigate("/settings_admin")
     }
+    const goToProfile = () => {
+        navigate("/profile")
+    }
 
     const auth = Cookies.get("jwt-token")
     const decodedJwt = jwtDecode(auth!)
@@ -90,6 +93,11 @@ const Header = () => {
                                 </button>
                             </div>
                         )}
+                        <div className={`containerButtonNavBar`}>
+                            <button className={`buttonNavBar`} onClick={goToProfile}>
+                                <p className={`nameButton`}>Profile</p>
+                            </button>
+                        </div>
                         <div className={`containerButtonNavBar`}>
                             <button className={`buttonNavBar`} onClick={handleLogout}>
                                 <p className={`nameButton`}>Logout</p>
