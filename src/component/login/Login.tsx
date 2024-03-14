@@ -22,9 +22,6 @@ const Login = () => {
     password: "",
   });
 
-  const goToRegister = () => {
-    navigate("/register");
-  };
 
   useEffect(() => {
     if (Cookies.get("jwt-token") !== undefined) {
@@ -58,7 +55,7 @@ const Login = () => {
       const response = await LoginRegistrationService.loginService(input);
       if (response.status === 200) {
         Cookies.set("jwt-token", response.data.accessToken);
-        navigate("/homePage");
+        navigate("/spinner");
       } else {
         setErrorMessage("Errore nel login. Controlla le tue credenziali e riprova.");
       }
@@ -128,15 +125,7 @@ const Login = () => {
               >
                 Sign in
               </button>
-              <button
-                type="button"
-                className={`buttonLogin`}
-                onClick={goToRegister}
-              >
-                Sign up
-              </button>
             </div>
-
             <button className={`buttonLogin`}>
               Did you forget your password?
             </button>

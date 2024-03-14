@@ -201,13 +201,6 @@ const RegisterPageComponent = () => {
             <button
               type="button"
               className={`buttonRegister`}
-              onClick={handleBackToLogin}
-            >
-              Go back to login
-            </button>
-            <button
-              type="button"
-              className={`buttonRegister`}
               onClick={handleRegistration}
             >
               Registration

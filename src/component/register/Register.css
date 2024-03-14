@@ -1,26 +1,11 @@
-.containerRegister{
-    background-image: url("../../assets/wallpaper.jpeg");
-    background-position: top;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+
 
 .cardRegister{
     border-radius: 15px;
-    background-color: transparent;
-    backdrop-filter: blur(10px);
-    transition: .4s ease-in-out;
+    background-color: white;
+
 }
 
-.cardRegister:hover{
-    background-image:  linear-gradient(transparent, #0005);
-    box-shadow: 0 0 5px #00e91f, 0 0 15px #00e91f, 0 0 25px #00e91f, 0 0 100px #00e91f ;
-}
 
 .formRegister {
     display: flex;
@@ -36,7 +21,7 @@
     text-align: center;
     margin: 2em;
     margin-top: 4em;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
     font-size: 1.2em;
 }
 
@@ -51,7 +36,7 @@
     outline: none;
     text-align: center;
     color: white;
-    background-color: #000000;
+    background-color: #ffffff;
     box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
 }
 
@@ -67,7 +52,8 @@
     outline: none;
     width: 15em;
     font-size: large;
-    color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    overflow: hidden;
 }
 
 .buttonRegister {
@@ -86,8 +72,7 @@
 }
 
 .buttonRegister:hover {
-    background-image:  linear-gradient(transparent, #0005);
-    box-shadow: 0 0 5px #00e91f, 0 0 15px #00e91f, 0 0 25px #00e91f, 0 0 100px #00e91f ;
+    transform: scale(1.05);
 }
 
 .eyeRegister {
