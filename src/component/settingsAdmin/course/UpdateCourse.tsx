@@ -124,7 +124,7 @@ const UpdateCourse = () => {
                                         }}
                                     ></input>
                                 </div>
-                                <button className="btn btn-success" onClick={UpdateCourse}>
+                                <button type="button" className="btn btn-success" onClick={UpdateCourse}>
                                     update
                                 </button>
                                 <button className="btn btn-danger" onClick={backToSettings}>

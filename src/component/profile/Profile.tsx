@@ -25,23 +25,26 @@ const Profile = () => {
     return (
         <div className={`componentPageProfile`}>
             <Header />
-            <div className={`containerProfile`}>
-                <div className={`containerCredencial`}>
-                    <div className={`detailsUser`}>
-                        <p className={`nameProfile`}>{user?.firstName} {user?.lastName}</p>
-                        <p className={`emailProfile`}>{user?.email}</p>
-                    </div>
-
-                </div>
-                <div className={`containerCoursesUser`}>
-                    {abilities?.map((ability: any) => (
-                        <div className={``} >
-                            <p>Ability:</p>
-                            <p>{ability.ability.name}</p>
-
+            <div className={`containerUserProfile`}>
+                <div className={`subContainerUserProfile`}>
+                    <div className={`containerMenu`}>
+                        <div className={`userDetails`}>
+                            <p>{user?.firstName}{user?.lastName}</p>
+                            <p>{user?.email}</p>
                         </div>
-                    ))}
+                        <div className={`userDetails`}>
+                            <p>Abilities</p>
+                        </div>
+                        <div className={`userDetails`}>
+                            <p>Courses</p>
+                        </div>
+                        <div className={`userDetails`}>
+                            <p>Lessons</p>
+                        </div>
+                    </div>
+                    <div className={`containerAll`}>
 
+                    </div>
                 </div>
             </div>
         </div>

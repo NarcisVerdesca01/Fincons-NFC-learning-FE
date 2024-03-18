@@ -14,15 +14,15 @@ const Spinner = () => {
     }, 2000);
   }, []);
 
-  const handleTransitionEnd = () => {
+  /*const handleTransitionEnd = () => {
     navigate("/homePage");
     window.location.reload(); // ricarica la pagina
-  };
+  };*/
 
   return (
     <div>
       {showSpinner && (
-        <div className="lds-spinner" onTransitionEnd={handleTransitionEnd}>
+        <div className="lds-spinner" >
           <div></div>
           <div></div>
           <div></div>
