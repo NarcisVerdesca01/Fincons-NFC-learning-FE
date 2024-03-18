@@ -5,8 +5,8 @@
     align-items: center;
     margin: 0%;
     padding: 0%;
-    width: 100%;
-    height: 100vh;
+    width: 95%;
+    height: 90vh;
   }
   .lds-spinner div {
     transform-origin: 40px 40px;
@@ -16,8 +16,6 @@
     content: " ";
     display: block;
     position: absolute;
-    top: 3px;
-    left: 37px;
     width: 6px;
     height: 18px;
     border-radius: 20%;

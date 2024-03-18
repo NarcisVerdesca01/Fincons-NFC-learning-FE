@@ -18,7 +18,7 @@ const UpdateAbility = () => {
     useEffect(() => {
         if (selectedAbilityId !== null) {
             AbilityService.getAbilityById(selectedAbilityId).then((res) => {
-                setAbility(res.data.data);
+                setAbility(res.data);
             });
         }
     }, [selectedAbilityId]);

@@ -2,15 +2,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Lesson from "../../../models/LessonModel";
 import LessonService from "../../../services/LessonService";
+import './CreateLesson.css'
 
 const CreateLesson = () => {
     const [lesson, setLesson] = useState<Lesson>();
     const navigate = useNavigate();
+    const [createDisabled, setCreateDisabled] = useState(true);
+    const [titleError, setTitleError] = useState(false);
 
-    const saveCourse = () => {
+    const saveLesson = () => {
         LessonService.createLesson(lesson!);
         navigate("/settings_admin")
     }
+
+
 
     const backToSettings = () => {
         navigate("/settings_admin")
@@ -26,16 +31,21 @@ const CreateLesson = () => {
                             <label>Title</label>
                             <input
                                 type="string"
-                                placeholder="title"
-                                name="title"
-                                className="form-control"
+                                placeholder={lesson?.title}
+                                name="name"
+                                className={`form-control ${titleError ? 'border-red-500' : ''}`}
                                 value={lesson?.title}
                                 onChange={(e) => {
-                                    console.log(lesson?.title)
+                                    if (e.target.value.length > 255) {
+                                        setTitleError(true);
+                                    } else {
+                                        setTitleError(false);
+                                    }
                                     setLesson({
                                         ...lesson!,
-                                        [e.target.name]: e.target.value,
+                                        title: e.target.value
                                     });
+                                    setCreateDisabled(e.target.value.length === 0 || titleError);
                                 }}
                             ></input>
                         </div>
@@ -56,7 +66,7 @@ const CreateLesson = () => {
                                 }}
                             ></input>
                         </div>
-                        <button className='btn btn-success' onClick={saveCourse}>add</button>
+                        <button className='btn btn-success' disabled={createDisabled} onClick={saveLesson}>add</button>
                         <button className='btn btn-danger' onClick={backToSettings}>back</button>
                     </form>
                 </div>

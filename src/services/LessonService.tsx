@@ -10,6 +10,7 @@ const GET_ALL_URI = LESSON_URI + "/list";
 const GET_BY_ID = LESSON_URI + "/find-by-id";
 const CREATE_LESSON = LESSON_URI + "/add";
 const UPDATE_LESSON = LESSON_URI + "/update";
+const ASSOCIATE_CONTENT_LESSON = LESSON_URI + "/lesson-content-association";
 const DELETE_LESSON = LESSON_URI + "/delete";
 
 const token = Cookies.get("jwt-token");
@@ -68,6 +69,8 @@ const updateLesson = async (lessonId: number, updatedLesson: Lesson) => {
         throw error;
     }
 };
+
+
 
 const deleteLesson = async (lessonId: number | undefined) => {
     try {
