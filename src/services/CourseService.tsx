@@ -83,7 +83,7 @@ const updateCourse = async (courseId: number, updatedCourse: Course) => {
 
 const deleteCourse = async (courseId: number | undefined) => {
     try {
-        const response = await axios.delete(DELETE_COURSE, { params: { id: courseId } });
+        const response = await axios.put(DELETE_COURSE, { params: { id: courseId } });
         return response.data;
     } catch (error) {
         console.error("Error deleting course:", error);

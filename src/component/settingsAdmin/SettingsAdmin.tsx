@@ -8,6 +8,7 @@ import ButtonUpdateAbility from "./buttonSettings/ButtonUpdateAbility";
 import ButtonUpdateCourse from "./buttonSettings/ButtonUpdateCourse";
 import ButtonUpdateLesson from "./buttonSettings/ButtonUpdateLesson";
 import ButtonRegisterTutor from "./buttonSettings/ButtonRegisterTutor";
+import ButtonDeleteCourse from "./buttonSettings/ButtonDeleteCourse";
 
 
 const SettingsAdmin = () => {
@@ -71,6 +72,7 @@ const SettingsAdmin = () => {
                         <p>Delete section</p>
                         <div className={`optionSettings`}>
                             <p className={`descriptionOptionSettings`}>Delete Course</p>
+                            <ButtonDeleteCourse />
                         </div>
                         <div className={`optionSettings`}>
                             <p className={`descriptionOptionSettings`}>Delete Lesson</p>
