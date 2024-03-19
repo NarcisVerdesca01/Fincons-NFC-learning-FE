@@ -7,7 +7,7 @@
 
 .subContainerUserProfile{
     margin-top: 6em;
-    background-color: aqua;
+    background-color: rgb(196, 32, 160);
     height: 100%;
     width: 90%;
     display: flex;
@@ -15,7 +15,7 @@
 }
 
 .containerMenu{
-    background-color: cadetblue;
+    background-color: rgb(255, 255, 255);
     width: 30%;
     display: flex;
     justify-content: center;
@@ -24,12 +24,12 @@
 
 .containerAll{
     width: 70%;
-    background-color: aquamarine;
+    background-color: rgb(102, 24, 41);
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 .userDetails{
-    background-color: bisque;
+    background-color: rgb(228, 192, 149);
     text-align: center;
 }

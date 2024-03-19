@@ -1,3 +1,4 @@
+
 interface UserDetailModels {
     firstName?: string,
     lastName?: string,
@@ -6,8 +7,9 @@ interface UserDetailModels {
     password?: string;
     id?: number;
     role?: Roles;
-}
+    
 
+}
 interface Roles{
     id?: number;
     name? : string;
