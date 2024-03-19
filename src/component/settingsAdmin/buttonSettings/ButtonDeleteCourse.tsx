@@ -11,8 +11,8 @@ const ButtonDeleteCourse = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Add <i className="bi bi-person-fill-add"></i>
+            <Button variant="danger" onClick={handleShow} style={{ margin: "0.5em" }}>
+                Delete
             </Button>
 
             <Modal show={show}

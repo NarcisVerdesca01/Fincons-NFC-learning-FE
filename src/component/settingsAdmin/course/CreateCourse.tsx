@@ -11,6 +11,7 @@ const CreateCourse = () => {
   const [nameErrorMessage, setNameErrorMessage] = useState('');
   const [descriptionError, setDescriptionError] = useState(false);
   const [descriptionErrorMessage, setDescriptionErrorMessage] = useState('');
+  const [createDisabled, setCreateDisabled] = useState(true);
     const navigate = useNavigate();
     const saveCourse = () => {
         CourseService.createCourse(course!);
@@ -28,10 +29,10 @@ const CreateCourse = () => {
 
         if (name === 'name' && (inputLength < 1 || inputLength > 255)) {
             setError(true);
-            setErrorMessage('Name must be between 1 and 255 characters');
+            setNameErrorMessage('Name must be between 1 and 255 characters');
           } else if (name === 'description' && (inputLength < 1 || inputLength > 5000)) {
             setError(true);
-            setErrorMessage('Description must be between 1 and 5000 characters');
+            setDescriptionErrorMessage('Description must be between 1 and 5000 characters');
           } else {
             setError(false);
             setErrorMessage('');
@@ -41,6 +42,8 @@ const CreateCourse = () => {
             ...course!,
             [name]: inputValue
         });
+
+        setCreateDisabled(inputLength === 0 || nameError && descriptionError);
     };
 
     return (
@@ -106,7 +109,7 @@ const CreateCourse = () => {
                                 }}
                             ></input>
                         </div>
-                        <button className='btn btn-success' disabled={nameError || descriptionError} onClick={saveCourse}>add</button>
+                        <button className='btn btn-success' disabled={createDisabled} onClick={saveCourse}>add</button>
                         <button className='btn btn-danger' onClick={backToSettings}>back</button>
                     </form>
                 </div>

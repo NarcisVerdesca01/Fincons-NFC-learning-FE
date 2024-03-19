@@ -4,14 +4,10 @@ import CourseService from "../../../services/CourseService";
 import Course from "../../../models/CourseModel";
 import './UpdateCourse.css'
 
-const UpdateCourse = () => {
+const DeleteCourse = () => {
     const [courses, setCourses] = useState<Course[]>([]);
     const [selectedCourseId, setSelectedCourseId] = useState<number | null>(null);
     const [course, setCourse] = useState<Course>();
-    const [nameError, setNameError] = useState(false);
-    const [nameErrorMessage, setNameErrorMessage] = useState('');
-    const [descriptionError, setDescriptionError] = useState(false);
-    const [descriptionErrorMessage, setDescriptionErrorMessage] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,17 +18,13 @@ const UpdateCourse = () => {
 
     useEffect(() => {
         if (selectedCourseId !== null) {
-            CourseService.getCourseById(selectedCourseId).then((res) => {
+            CourseService.getCourseById(selectedCourseId!).then((res) => {
                 setCourse(res.data);
             });
         }
     }, [selectedCourseId]);
 
     const DeleteCourse = () => {
-        if (nameError || descriptionError) {
-            return;
-        }
-
         CourseService.deleteCourse(selectedCourseId!);
         navigate("/settings_admin");
     };
@@ -100,4 +92,4 @@ const UpdateCourse = () => {
     );
 };
 
-export default UpdateCourse;
+export default DeleteCourse;

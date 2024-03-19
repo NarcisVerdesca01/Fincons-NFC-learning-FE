@@ -18,32 +18,40 @@ const config = {
     headers: { Authorization: `Bearer ${token}` },
 };
 
-const CourseLessonService = {
 
-    getCourseLessons() {
-        return axios.get(GET_ALL_URI, config);
-    },
 
-    createCourseLesson(
-        courseId:  any,
-        lessonId: any
-        
-        ) {
-            console.log(courseId, "service")
-            console.log(lessonId)
-        return axios.post(
-            CREATE_COURSE_LESSON,
-            {
-                course: {
-                    id: courseId
-                },
-                lesson: {
-                    id: lessonId
-                },
+const getCourseLessons = async () => {
+    try {
+        const response = await axios.get(GET_ALL_URI, config);
+        return response.data;
+    } catch (error) {
+        console.error("Error getting courses:", error);
+        throw error;
+    }
+};
+
+const createCourseLesson = async (courseId: number, lessonId: number) => {
+    try {
+        const response = await axios.post(CREATE_COURSE_LESSON, {
+            course: {
+                id: courseId
             },
-            config
-        );
-    },
+            lesson: {
+                id: lessonId
+            }
+        },
+            config);
+        return response.data;
+    } catch (error) {
+        console.error("Error getting courses:", error);
+        throw error;
+    }
+
 }
+
+const CourseLessonService = {
+    getCourseLessons,
+    createCourseLesson
+};
 
 export default CourseLessonService;

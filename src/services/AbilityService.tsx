@@ -67,12 +67,26 @@ const updateAbility = async (abilityId: number, updatedAbility: Ability) => {
     }
 };
 
-const deleteAbility = async (abilityId: number | undefined) => {
+const deleteAbility = async (abilityId: number) => {
     try {
-        const response = await axios.delete(DELETE_ABILITY, { params: { id: abilityId } });
-        return response.data;
+        console.log(abilityId, "ability service");
+        const response = await axios.put(
+            DELETE_ABILITY,
+            {},
+            {
+                params: {
+                    id: abilityId
+                },
+                headers: { 
+                    Authorization: `Bearer ${token}` 
+                }
+            }
+        )
+        console.log(response,"carllo")
+        //return response.data;
     } catch (error) {
-        console.error("Error deleting ability:", error);
+        console.log("sono in error")
+        console.error("Error deleting course:", error);
         throw error;
     }
 };

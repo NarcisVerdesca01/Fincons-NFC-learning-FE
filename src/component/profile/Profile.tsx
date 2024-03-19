@@ -3,15 +3,14 @@ import { useNavigate } from 'react-router';
 import LoginRegistrationService from '../../services/LoginRegistrationService';
 import Header from '../header/Header';
 import User from '../../models/UserModel';
-import './Profile.css'
-import Course from '../../models/CourseModel';
+import './Profile.css';
 import Ability from '../../models/AbilityModel';
 
 const Profile = () => {
     const navigate = useNavigate();
 
     const [user, setUser] = useState<User>();
-    const [abilities, setAbilities] = useState<any>();
+    const [abilities, setAbilities] = useState<Ability[]>([]);
     useEffect(() => {
         LoginRegistrationService.getUserDetails().then((res) => {
             console.log(res.data.abilities, "get userDetails");
@@ -19,7 +18,7 @@ const Profile = () => {
             setAbilities(res.data.abilities);
 
         });
-
+ 
     }, []);
 
     return (
@@ -34,6 +33,11 @@ const Profile = () => {
                         </div>
                         <div className={`userDetails`}>
                             <p>Abilities</p>
+                            {abilities?.map((ability: any) => (
+                                <div className={``}>
+                                    ciao {ability.ability.name}
+                                </div>
+                            ))}
                         </div>
                         <div className={`userDetails`}>
                             <p>Courses</p>
