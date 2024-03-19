@@ -19,6 +19,10 @@ const SettingsTutor = () => {
                     <p  className={`descriptionOptionSettings`}>Associate Course to Lesson</p>
                     <ButtonCreateAssociationCourseLesson />
                 </div>
+{/*               <div className={`optionSettings`}>
+                    <p  className={`descriptionOptionSettings`}>Associate Content to Lesson</p>
+                    <ButtonCreateAssociationCourseLesson />
+    </div>*/}
                 
             </div>
         </>

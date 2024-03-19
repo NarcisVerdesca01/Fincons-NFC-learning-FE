@@ -33,7 +33,7 @@ const Profile = () => {
                             <p>{user?.email}</p>
                         </div>
                         <div className={`userDetails`}>
-                            <p>Abilities</p>
+                            <p>Ability</p>
                         </div>
                         <div className={`userDetails`}>
                             <p>Courses</p>
