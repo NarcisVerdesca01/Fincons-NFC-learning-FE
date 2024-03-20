@@ -10,7 +10,8 @@ const QuizResults = () => {
 
     useEffect(() => {
         QuizResultsService.getQuizResults().then((res) => {
-            console.log(res)
+            console.log(res.data)
+
             setQuizResults(res.data);
         });
     }, []);
@@ -34,6 +35,7 @@ const QuizResults = () => {
                                     <th scope="col">Email</th>
                                     <th scope="col">Quiz Title</th>
                                     <th scope="col">Total Score</th>
+                                    <th scope="col">Date</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -46,6 +48,7 @@ const QuizResults = () => {
                                         <td>{quizResult.user.email}</td>
                                         <td>{quizResult.quiz.title}</td>
                                         <td>{quizResult.totalScore}%</td>
+                                        <td>{quizResult.whenDone ?JSON.stringify( quizResult.whenDone) : "N/A"}</td>
                                     </tr>
                                     );
                                 })}

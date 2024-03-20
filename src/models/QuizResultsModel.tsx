@@ -6,7 +6,8 @@ interface QuizResultsModel {
     id: number,
     user: User,
     quiz: Quiz,
-    totalScore: number
+    totalScore: number,
+    whenDone:Date
 }
 
 export default QuizResultsModel;
