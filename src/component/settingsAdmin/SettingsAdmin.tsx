@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router";
 import Header from "../header/Header";
 import "./SettingsAdmin.css";
 import ButtonCreateAbility from "./buttonSettings/ButtonCreateAbility";
