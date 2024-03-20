@@ -72,9 +72,21 @@ const updateLesson = async (lessonId: number, updatedLesson: Lesson) => {
 
 
 
-const deleteLesson = async (lessonId: number | undefined) => {
+const deleteLesson = async (lessonId: number) => {
     try {
-        const response = await axios.delete(DELETE_LESSON, { params: { id: lessonId } });
+        const response = await axios.put(
+            DELETE_LESSON,
+            {},
+            {
+                params: {
+                    id: lessonId
+                },
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
         return response.data;
     } catch (error) {
         console.error("Error deleting lesson:", error);

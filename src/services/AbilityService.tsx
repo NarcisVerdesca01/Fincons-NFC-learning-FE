@@ -11,14 +11,10 @@ const CREATE_ABILITY = ABILITY_URI + "/create";
 const UPDATE_ABILITY = ABILITY_URI + "/update";
 const DELETE_ABILITY = ABILITY_URI + "/delete";
 
-const token = Cookies.get("jwt-token");
-const config = {
-    headers: { Authorization: `Bearer ${token}` },
-};
-
 const getAbilities = async () => {
+    const token = Cookies.get("jwt-token");
     try {
-        const response = await axios.get(GET_ALL_URI, config);
+        const response = await axios.get(GET_ALL_URI, { headers: { Authorization: `Bearer ${token}` } });
         return response.data;
     } catch (error) {
         console.error("Error getting abilities:", error);
@@ -27,6 +23,7 @@ const getAbilities = async () => {
 };
 
 const getAbilityById = async (abilityId: number | undefined) => {
+    const token = Cookies.get("jwt-token");
     try {
         const response = await axios.get(GET_BY_ID + "/" + abilityId, { headers: { Authorization: `Bearer ${token}` } });
         return response.data;
@@ -37,8 +34,9 @@ const getAbilityById = async (abilityId: number | undefined) => {
 };
 
 const createAbility = async (ability: Ability) => {
+    const token = Cookies.get("jwt-token");
     try {
-        const response = await axios.post(CREATE_ABILITY, ability, config);
+        const response = await axios.post(CREATE_ABILITY, ability, { headers: { Authorization: `Bearer ${token}` } });
         return response.data;
     } catch (error) {
         console.error("Error creating ability:", error);
@@ -47,6 +45,7 @@ const createAbility = async (ability: Ability) => {
 };
 
 const updateAbility = async (abilityId: number, updatedAbility: Ability) => {
+    const token = Cookies.get("jwt-token");
     try {
         const response = await axios.put(
             UPDATE_ABILITY + "/" + abilityId,
@@ -55,7 +54,6 @@ const updateAbility = async (abilityId: number, updatedAbility: Ability) => {
             },
             {
                 headers: {
-                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
                 }
             }
@@ -67,12 +65,27 @@ const updateAbility = async (abilityId: number, updatedAbility: Ability) => {
     }
 };
 
-const deleteAbility = async (abilityId: number | undefined) => {
+const deleteAbility = async (abilityId: number) => {
+    const token = Cookies.get("jwt-token");
     try {
-        const response = await axios.delete(DELETE_ABILITY, { params: { id: abilityId } });
+        console.log(abilityId, "ability service");
+        const response = await axios.put(
+            DELETE_ABILITY,
+            {},
+            {
+                params: {
+                    id: abilityId
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        )
+        console.log(response, "carllo")
         return response.data;
     } catch (error) {
-        console.error("Error deleting ability:", error);
+        console.log("sono in error")
+        console.error("Error deleting course:", error);
         throw error;
     }
 };

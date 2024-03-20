@@ -71,7 +71,7 @@ const updateContent = async (contentId: number, updateContent: Content) => {
 
 const deleteContent = async (contentId: number | undefined) => {
     try {
-        const response = await axios.delete(DELETE_CONTENT, { params: { id: contentId } });
+        const response = await axios.put(DELETE_CONTENT, { params: { id: contentId } });
         return response.data;
     } catch (error) {
         console.error("Error deleting content:", error);

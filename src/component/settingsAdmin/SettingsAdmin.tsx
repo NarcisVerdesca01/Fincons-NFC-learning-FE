@@ -23,7 +23,7 @@ const SettingsAdmin = () => {
         </div>
         <div className={`sectionContainer`}>
           <div className={`containerOptions`}>
-            <p className={`textCreate`}>Create section</p>
+            <p className={`text`}>Create section</p>
             <div className={`containerImageSettingsCreate`}></div>
             <div className={`optionSettings`}>
               <div>
@@ -39,7 +39,7 @@ const SettingsAdmin = () => {
             </div>
           </div>
           <div className={`containerOptions`}>
-            <p className={`textAssociate`}>Associate section</p>
+            <p className={`text`}>Associate section</p>
             <div className={`containerImageSettingsAssociate`}></div>
             <div className={`optionSettings`}>
               <ButtonAssociate />
@@ -50,7 +50,7 @@ const SettingsAdmin = () => {
             </div>
           </div>
           <div className={`containerOptions`}>
-            <p className={`textUpdate`}>Update section</p>
+            <p className={`text`}>Update section</p>
             <div className={`containerImageSettingsUpdate`}></div>
             <div className={`optionSettings`}>
               <ButtonUpdateCourse />
@@ -61,7 +61,7 @@ const SettingsAdmin = () => {
             </div>
           </div>
           <div className={`containerOptions`}>
-            <p className={`textDelete`}>Delete section</p>
+            <p className={`text`}>Delete section</p>
             <div className={`containerImageSettingsDelete`}></div>
             <div className={`optionSettings`}>
               <ButtonDeleteCourse />

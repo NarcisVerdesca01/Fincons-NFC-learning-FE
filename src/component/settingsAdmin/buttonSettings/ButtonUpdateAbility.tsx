@@ -11,8 +11,8 @@ const ButtonUpdateAbility = () => {
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button variant="info" onClick={handleShow} style={{ margin: "0.5em" }}>
-        Update Ability <i className="bi bi-person-fill-add"></i>
+      <Button variant="warning" onClick={handleShow} style={{ margin: "0.5em" }}>
+        Update <i className="bi bi-person-fill-add"></i>
       </Button>
 
       <Modal show={show} onHide={handleClose} keyboard={false}>

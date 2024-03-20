@@ -13,13 +13,17 @@ const DELETE_COURSE = COURSE_URI + "/delete";
 const DEDICATED_COURSE = COURSE_URI + "/dedicated-courses";
 
 const token = Cookies.get("jwt-token");
-const config = {
-    headers: { Authorization: `Bearer ${token}` },
-};
 
 const getCourses = async () => {
     try {
-        const response = await axios.get(GET_ALL_URI, config);
+        const response = await axios.get(
+            GET_ALL_URI,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
         return response.data;
     } catch (error) {
         console.error("Error getting courses:", error);
@@ -29,7 +33,14 @@ const getCourses = async () => {
 
 const getCourseById = async (courseId: number) => {
     try {
-        const response = await axios.get(GET_BY_ID + "/" + courseId, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await axios.get(
+            GET_BY_ID + "/" + courseId,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
         return response.data;
     } catch (error) {
         console.error("Error getting course by ID:", error);
@@ -37,9 +48,16 @@ const getCourseById = async (courseId: number) => {
     }
 };
 
-const getCourseByEmail = async () => {
+const getCourseDedicated = async () => {
     try {
-        const response = await axios.get(DEDICATED_COURSE, { headers: { Authorization: `Bearer ${token}` } });
+        const response = await axios.get(
+            DEDICATED_COURSE,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
         return response.data;
     } catch (error) {
         console.error("Error getting course by email:", error);
@@ -49,7 +67,15 @@ const getCourseByEmail = async () => {
 
 const createCourse = async (course: Course) => {
     try {
-        const response = await axios.post(CREATE_COURSE, course, config);
+        const response = await axios.post(
+            CREATE_COURSE,
+            course,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
         return response.data;
     } catch (error) {
         console.error("Error creating course:", error);
@@ -69,7 +95,6 @@ const updateCourse = async (courseId: number, updatedCourse: Course) => {
             },
             {
                 headers: {
-                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
                 }
             }
@@ -81,9 +106,21 @@ const updateCourse = async (courseId: number, updatedCourse: Course) => {
     }
 };
 
-const deleteCourse = async (courseId: number | undefined) => {
+const deleteCourse = async (courseId: number) => {
     try {
-        const response = await axios.delete(DELETE_COURSE, { params: { id: courseId } });
+        console.log(courseId)
+        const response = await axios.put(
+            DELETE_COURSE,
+            {},
+            {
+                params: {
+                    id: courseId
+                },
+                headers: { 
+                    Authorization: `Bearer ${token}` 
+                } 
+            }
+        );
         return response.data;
     } catch (error) {
         console.error("Error deleting course:", error);
@@ -94,7 +131,7 @@ const deleteCourse = async (courseId: number | undefined) => {
 const CourseService = {
     getCourses,
     getCourseById,
-    getCourseByEmail,
+    getCourseDedicated,
     createCourse,
     updateCourse,
     deleteCourse

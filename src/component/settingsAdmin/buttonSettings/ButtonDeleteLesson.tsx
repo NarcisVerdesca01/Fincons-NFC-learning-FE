@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import UpdateLesson from '../lesson/UpdateLesson';
+import DeleteLesson from '../lesson/DeleteLesson';
 
 
 const ButtonDeleteLesson = () => {
@@ -11,17 +11,17 @@ const ButtonDeleteLesson = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="info" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Delete Lesson <i className="bi bi-person-fill-add"></i>
+            <Button variant="danger" onClick={handleShow} style={{ margin: "0.5em" }}>
+                Delete
             </Button>
 
-            {/*<Modal show={show}
+            <Modal show={show}
                 onHide={handleClose}
                 keyboard={false}>
                 <Modal.Body>
                     <DeleteLesson />
                 </Modal.Body>
-    </Modal>*/}
+            </Modal>
         </>
     );
 }
