@@ -7,7 +7,6 @@ import ButtonUpdateAbility from "./buttonSettings/ButtonUpdateAbility";
 import ButtonUpdateCourse from "./buttonSettings/ButtonUpdateCourse";
 import ButtonUpdateLesson from "./buttonSettings/ButtonUpdateLesson";
 import ButtonRegisterTutor from "./buttonSettings/ButtonRegisterTutor";
-import ButtonAssociate from "./buttonSettings/ButtonAssociateCourseAbility";
 import ButtonDeleteCourse from "./buttonSettings/ButtonDeleteCourse";
 import ButtonDeleteLesson from "./buttonSettings/ButtonDeleteLesson";
 import ButtonDeleteAbility from "./buttonSettings/ButtonDeleteAbility";
