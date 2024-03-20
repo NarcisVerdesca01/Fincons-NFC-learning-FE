@@ -18,13 +18,13 @@ const CreateAssociationQuizLesson = () => {
 
     useEffect(() => {
         QuizService.getQuizzes().then((res1) => {
-            setQuiz(res1.data.data);
+            setQuiz(res1.data);
         })
     }, []);
 
     useEffect(() => {
         LessonService.getLessons().then((res2) => {
-            setLesson(res2.data.data);
+            setLesson(res2.data);
         })
     }, []);
 

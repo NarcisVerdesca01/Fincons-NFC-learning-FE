@@ -13,16 +13,16 @@ const CREATE_COURSE_LESSON = COURSE_LESSON_URI + "/add";
 const UPDATE_COURSE_LESSON = COURSE_LESSON_URI + "/update";
 const DELETE_COURSE_LESSON = COURSE_LESSON_URI + "/delete";
 
-const token = Cookies.get("jwt-token");
-const config = {
-    headers: { Authorization: `Bearer ${token}` },
-};
 
 
 
 const getCourseLessons = async () => {
+    const token = Cookies.get("jwt-token");
+
     try {
-        const response = await axios.get(GET_ALL_URI, config);
+        const response = await axios.get(GET_ALL_URI, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
         return response.data;
     } catch (error) {
         console.error("Error getting courses:", error);
@@ -31,6 +31,8 @@ const getCourseLessons = async () => {
 };
 
 const createCourseLesson = async (courseId: number, lessonId: number) => {
+    const token = Cookies.get("jwt-token");
+
     try {
         const response = await axios.post(CREATE_COURSE_LESSON, {
             course: {
@@ -40,7 +42,9 @@ const createCourseLesson = async (courseId: number, lessonId: number) => {
                 id: lessonId
             }
         },
-            config);
+        {
+            headers: { Authorization: `Bearer ${token}` },
+        });
         return response.data;
     } catch (error) {
         console.error("Error getting courses:", error);

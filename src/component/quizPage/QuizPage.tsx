@@ -21,7 +21,6 @@ const QuizPage = (props: Props) => {
     const [nameOfStudent, setnameOfStudent] = useState(null);
     const [lessonOfQuiz, setLessonOfQuiz] = useState<number | null>(null);
     const [totalScoreQuiz, setTotalScoreQuiz] = useState(null);
-    const [lessonToRepeat, setlessonToRepeat] = useState(null);
     const [showSubmitButton, setShowSubmitButton] = useState<boolean>(false);
     const [quizSubmitted, setQuizSubmitted] = useState(false);
     const [showRedoQuizButton, setShowRedoQuizButton] = useState(true);
@@ -49,7 +48,7 @@ const QuizPage = (props: Props) => {
                 const response = await QuizService.checkQuizResult(quizId);
                 console.log(response);
 
-                if (response.data.data) {
+                if (response.data) {
                     console.log("Il quiz è stato già svolto dallo studente.");
                     setQuizAlreadyDone(true);
                     if (userWantToDoItAgain) {
@@ -78,10 +77,10 @@ const QuizPage = (props: Props) => {
         const getTheQuizById = async () => {
             try {
                 const res = await QuizService.getQuizById(quizId!);
-                setQuiz(res.data.data);
-                setLessonOfQuiz(res.data.data.lesson.id);
-                console.log(res.data.data.lessons, "sono qui in QuizPage res.data.data.quiz");
-                setQuestionList(res.data.data.questions);
+                setQuiz(res.data);
+                setLessonOfQuiz(res.data.lesson.id);
+                console.log(res.data.lessons, "sono qui in QuizPage res.data.data.quiz");
+                setQuestionList(res.data.questions);
             } catch (error) {
                 console.error("Errore durante il recupero del quiz:", error);
                 // Gestisci gli errori in base alle tue esigenze
@@ -98,7 +97,6 @@ const QuizPage = (props: Props) => {
             setMaxSelectableAnswers(maxSelectableAnswers);
         }
     }, [currentQuestion]);
-
 
     //prossima domanda
     const goToNextQuestion = () => {
@@ -119,7 +117,6 @@ const QuizPage = (props: Props) => {
         return questionList?.every(question => userAnswers?.[question.id] !== undefined);
     };
 
-    //
     const handleAnswerSelection = (questionId: number, answerId: number) => {
         setUserAnswers((prevAnswers) => {
             const updatedAnswers = { ...prevAnswers };
@@ -130,10 +127,8 @@ const QuizPage = (props: Props) => {
             if (maxSelectableAnswers !== undefined) {
                 // Verifica se la domanda corrente ha più di una risposta corretta
                 const multipleCorrectAnswers = maxSelectableAnswers > 1;
-
                 // Verifica se la risposta selezionata è già presente nell'array delle risposte per la domanda corrente
                 const isAnswerSelected = updatedAnswers[questionId]?.includes(answerId);
-
                 // Se l'opzione è già selezionata, rimuoviamola
                 if (isAnswerSelected) {
                     updatedAnswers[questionId] = updatedAnswers[questionId]?.filter(id => id !== answerId);
@@ -148,7 +143,6 @@ const QuizPage = (props: Props) => {
                         ? [...updatedAnswers[questionId], answerId]
                         : [answerId];
                 }
-
                 // Disabilita le checkbox non selezionate quando il numero massimo di risposte corrette è stato raggiunto
                 if (multipleCorrectAnswers) {
                     const checkboxes = document.querySelectorAll<HTMLInputElement>(`input[type="checkbox"][name="question-${questionId}"]`);
@@ -156,21 +150,9 @@ const QuizPage = (props: Props) => {
                         checkbox.disabled = !checkbox.checked && updatedAnswers[questionId]?.length >= maxSelectableAnswers;
                     });
                 }
-
-
-
-
             } else {
                 console.error("maxSelectableAnswers is undefined");
             }
-
-
-
-
-
-
-
-
             return updatedAnswers;
         });
     };
@@ -205,8 +187,8 @@ const QuizPage = (props: Props) => {
             if (quizAlreadyDone) {
                 console.log("Sto usando il metodo put");
                 const response = await QuizService.reSendQuizResult(quizId, answersMap);
-                setnameOfStudent(response.data.data.user.firstName);
-                setTotalScoreQuiz(response.data.data.totalScore);
+                setnameOfStudent(response.data.user.firstName);
+                setTotalScoreQuiz(response.data.totalScore);
                 setShowSubmitButton(false);
                 setQuizSubmitted(true);
                 setQuiz(null);
@@ -215,28 +197,19 @@ const QuizPage = (props: Props) => {
                 console.log("Sto usando il metodo post");
                 const response = await QuizService.sendQuizResult(quizId, answersMap);
                 console.log('Risposte inviate con successo:', response.data);
-                console.log('Total score: ', response.data.data.totalScore);
-                console.log('Nome: ', response.data.data.user.firstName);
+                console.log('Total score: ', response.data.totalScore);
+                console.log('Nome: ', response.data.user.firstName);
                 //TODO - LEZIONE DA RIPETERE SETLESSONTOREPEAT
-                setnameOfStudent(response.data.data.user.firstName);
-                setTotalScoreQuiz(response.data.data.totalScore);
+                setnameOfStudent(response.data.user.firstName);
+                setTotalScoreQuiz(response.data.totalScore);
                 setShowSubmitButton(false);
                 setQuizSubmitted(true);
-
             }
         } catch (error) {
             console.error('Errore durante l\'invio delle risposte:', error);
             // Gestisci gli errori in base alle tue esigenze
         }
-
-
-
-
-
     };
-
-
-
     let scoreMessage = null;
     const totalScorePercentage = totalScoreQuiz !== null ? Math.floor(totalScoreQuiz) : null;
     if (totalScorePercentage !== null) {
@@ -252,28 +225,17 @@ const QuizPage = (props: Props) => {
             scoreMessage = <span style={{ color: 'green' }}>Test superato {nameOfStudent}! Hai risposto correttamente al {totalScorePercentage}% delle domande del quiz.</span>;
         }
     }
-
-
-
     return (
         <div className="center-content">
-
             {quiz?.id && (
                 <div>
                     <h2>Quiz della lezione: {quiz?.lesson.title} e id lesson: {quiz?.lesson?.id}</h2>
                 </div>
             )}
-
-
             {quizAlreadyDone ? (
                 <div>
-
-
-
-
-
                     {showRedoQuizButton && (
-                        <div style={{textAlign: "center"}}>
+                        <div style={{ textAlign: "center" }}>
                             <div className="alert alert-warning" role="alert">
                                 Hai già svolto questo quiz!
                                 Vuoi riprovarci?
@@ -282,53 +244,33 @@ const QuizPage = (props: Props) => {
                                 <button className="btn btn-outline-secondary" onClick={handleRedoQuiz}>RIESEGUI IL QUIZ</button>
                             </div>
                         </div>
-
                     )}
-
-
-
                     {userWantToDoItAgain ? (
-
                         <div>
                             <p>L'utente vuole rifarlo</p>
                         </div>
-
-
-
                     ) : (
                         <p>L'utente non vuole rifarlo</p>
                     )}
-
-
                 </div>
-
             ) : (
                 <div>
                     <p>Il quiz non è stato ancora svolto</p>
                 </div>
-
             )
-
             }
-
             {/*NUOVO COMPONENTE QUIZ*/}
             {questionList && questionList.length > 0 && (
                 <div className="card" style={{ marginTop: "10%", marginBottom: "10%", width: "50%" }} >
-
                     <div className="card-header header-quiz">
                         <h4 className="quiz-title"> {quiz?.title}</h4>
-
                         <p className="question-index">Domanda {currentQuestionIndex + 1} su {questionList.length}</p>
-
                     </div>
-
                     {!quizSubmitted && currentQuestion && (
                         <div>
-
                             <div className="text-question">
                                 <h5>{currentQuestion.textQuestion}</h5>
                             </div>
-
                             <div className="answer-section d-flex flex-column  align-items-center">
                                 {currentQuestion.answers.map((answer) => (
                                     <div key={answer.id} className="form-check single-answer-section ">
@@ -352,10 +294,8 @@ const QuizPage = (props: Props) => {
                                         )}
                                         <label className="form-check-label" htmlFor={`answer-${answer.id}`}>{answer.text}</label>
                                     </div>
-
                                 ))}
                             </div>
-
                             <div className="card-footer navigationButtons question-buttons-div">
                                 <button className="btn btn-light quiz-control-button" onClick={goToPreviousQuestion} disabled={currentQuestionIndex === 0}>
                                     <i className="bi bi-arrow-left-circle"></i>
@@ -364,18 +304,13 @@ const QuizPage = (props: Props) => {
                                     <i className="bi bi-arrow-right-circle"></i>
                                 </button>
                             </div>
-
-
                             {showSubmitButton && (
                                 <div className="card-footer send-quiz-button">
                                     <button className="btn btn-outline-dark" disabled={!areAllQuestionsAnswered()} onClick={sendAnswers}>Invia</button>
                                 </div>
                             )}
-
-
                         </div>
                     )}
-
                     {quizSubmitted && (
                         <div className="quiz-submitted-message">
                             <h4 className="quiz-done-label">Quiz terminato!</h4>
@@ -386,17 +321,8 @@ const QuizPage = (props: Props) => {
                         </div>
                     )}
                 </div>
-
             )}
-
-
         </div>
     );
-
-
-
 };
-
-
-
 export default QuizPage;
