@@ -41,8 +41,11 @@ const PageLesson = (props: Props) => {
     console.log(idPage)
     navigate("/lesson_page/" + idPage);
   };
-
   
+  const gotToQuizPage = (idQuiz: any) => {
+    console.log(idQuiz)
+    navigate("/quiz_page/" + idQuiz);
+  };
 
   const goBack = () => {
     navigate(-1);

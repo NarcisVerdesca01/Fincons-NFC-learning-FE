@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal';
 import CreateAssociationQuizLesson from '../createAssociationQuizLesson/CreateAssociationQuizLesson';
 
 
-const ButtonCreateAssociationCourseLesson = () => {
+const ButtonCreateAssociationQuizLesson = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -28,4 +28,4 @@ const ButtonCreateAssociationCourseLesson = () => {
     );
 }
 
-export default ButtonCreateAssociationCourseLesson;
+export default ButtonCreateAssociationQuizLesson;
