@@ -42,7 +42,7 @@ const PageLesson = (props: Props) => {
     navigate("/lesson_page/" + idPage);
   };
   
-  const gotToQuizPage = (idQuiz: any) => {
+  const goToQuizPage = (idQuiz: any) => {
     console.log(idQuiz)
     navigate("/quiz_page/" + idQuiz);
   };
@@ -94,11 +94,11 @@ const PageLesson = (props: Props) => {
               </div>
             ))}
           </div>
-          {/*<div className={`containerQuizOfLesson`}>
+          {<div className={`containerQuizOfLesson`}>
             <button onClick={() => goToQuizPage(lesson?.quiz?.id)}>vai al quiz</button>
           </div>
 
-*/}
+}
 
             </div>
 

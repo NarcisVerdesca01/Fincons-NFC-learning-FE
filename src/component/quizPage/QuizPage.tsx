@@ -304,7 +304,6 @@ const QuizPage = (props: Props) => {
 
             ) : (
                 <div>
-                    getTheQuizById();
                     <p>Il quiz non è stato ancora svolto</p>
                 </div>
 
