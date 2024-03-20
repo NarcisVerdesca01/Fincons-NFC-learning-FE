@@ -12,7 +12,7 @@ const ButtonCreateCourse = () => {
     return (
         <>
             <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Add a new course<i className="bi bi-person-fill-add"></i>
+                Course <i className="bi bi-plus-circle"></i>
             </Button>
 
             <Modal show={show}
