@@ -14,6 +14,10 @@ import PageCoursePresentation from "./component/pageCoursePresentation/PageCours
 import SettingsAdmin from "./component/settingsAdmin/SettingsAdmin";
 import SettingsTutor from "./component/settingsTutor/SettingTutor";
 import QuizPage from "./component/quizPage/QuizPage";
+import LoginRegister from "./component/loginRegister/LoginRegister";
+import Spinner from "./component/spinner/Spinner";
+import Profile from "./component/profile/Profile";
+
 
 function App() {
   const [idCourse, setIdCourse] = useState<number | undefined>();
@@ -29,6 +33,10 @@ function App() {
             <Route
               path="/homePage"
               element={<HomePage />}
+            ></Route>
+            <Route
+              path="/spinner"
+              element={<Spinner />}
             ></Route>
             <Route
               path="/courses"
@@ -62,8 +70,22 @@ function App() {
               path="/settings_tutor"
               element={<SettingsTutor />}
             ></Route>
+            <Route
+              path="/login_register"
+              element={<LoginRegister />}
+            ></Route>
+            <Route
+              path="/profile"
+              element={<Profile />}
+            ></Route>
+            
+            
           </Route>
           <Route
+              path="/authentication"
+              element={<LoginRegister />}
+            ></Route>
+          {/*<Route
             path="/authentication"
             element={
               <Login
@@ -76,7 +98,7 @@ function App() {
               <Login
               />
             }
-          ></Route>
+          ></Route>*/}
 
           <Route path="/register" element={<Register />}></Route>
         </Routes>

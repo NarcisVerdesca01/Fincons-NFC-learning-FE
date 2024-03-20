@@ -2,30 +2,34 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Lesson from "../../../models/LessonModel";
 import LessonService from "../../../services/LessonService";
+import './UpdateLesson.css'
 
 const UpdateLesson = () => {
     const [lessons, setLessons] = useState<Lesson[]>([]);
     const [selectedLessonId, setSelectedLessonId] = useState<number | null>(null);
     const [lesson, setLesson] = useState<Lesson>();
+    const [updateDisabled, setUpdateDisabled] = useState(true);
+
+    const [titleError, setTitleError] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         LessonService.getLessons().then((res) => {
-            setLessons(res.data.data);
+            setLessons(res.data);
         });
     }, []);
 
     useEffect(() => {
         if (selectedLessonId !== null) {
             LessonService.getLessonById(selectedLessonId).then((res) => {
-                setLesson(res.data.data);
+                setLesson(res.data);
             });
         }
     }, [selectedLessonId]);
 
     const UpdateLesson = () => {
-            LessonService.updateLesson(selectedLessonId!, lesson!);
-            navigate("/settings_admin");
+        LessonService.updateLesson(selectedLessonId!, lesson!);
+        navigate("/settings_admin");
     };
 
     const backToSettings = () => {
@@ -35,11 +39,11 @@ const UpdateLesson = () => {
     return (
         <div>
             <div>
-                <h3>Update Course</h3>
+                <h3>Update Lesson</h3>
                 <div>
                     <form>
                         <div className="form-group">
-                            <label>Course</label>
+                            <label>Lesson</label>
                             <select
                                 name="course"
                                 className="form-select"
@@ -66,13 +70,19 @@ const UpdateLesson = () => {
                                         type="string"
                                         placeholder={lesson.title}
                                         name="name"
-                                        className="form-control"
+                                        className={`form-control ${titleError ? 'border-red-500' : ''}`}
                                         value={lesson.title}
                                         onChange={(e) => {
+                                            if (e.target.value.length > 255) {
+                                                setTitleError(true);
+                                            } else {
+                                                setTitleError(false);
+                                            }
                                             setLesson({
                                                 ...lesson,
                                                 title: e.target.value
                                             });
+                                            setUpdateDisabled(e.target.value.length === 0 || titleError);
                                         }}
                                     ></input>
                                 </div>
@@ -92,7 +102,7 @@ const UpdateLesson = () => {
                                         }}
                                     ></input>
                                 </div>
-                                <button className="btn btn-success" onClick={UpdateLesson}>
+                                <button className="btn btn-success" disabled={updateDisabled} onClick={UpdateLesson}>
                                     update
                                 </button>
                                 <button className="btn btn-danger" onClick={backToSettings}>

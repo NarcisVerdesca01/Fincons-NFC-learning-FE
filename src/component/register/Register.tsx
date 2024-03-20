@@ -73,13 +73,19 @@ const RegisterPageComponent = () => {
     }
   };
 
-  const handleBackToLogin = () => {
-    navigate("/authentication");
-  };
-
   const handleRegistration = () => {
+    if (!input?.firstName || !input?.lastName || !input?.email || !input?.password || !input?.confirmPassword) {
+      alert("Please fill out all the fields before submitting the form.");
+      return;
+    }
+  
+    if (input.password !== input.confirmPassword) {
+      alert("The passwords do not match. Please try again.");
+      return;
+    }
+  
     LoginRegistrationService.registrationStudentService(input!);
-    navigate("/authentication")
+    navigate("/authentication");
   };
 
   return (
@@ -198,13 +204,6 @@ const RegisterPageComponent = () => {
           </div>
 
           <div className={`btnRegister`}>
-            <button
-              type="button"
-              className={`buttonRegister`}
-              onClick={handleBackToLogin}
-            >
-              Go back to login
-            </button>
             <button
               type="button"
               className={`buttonRegister`}

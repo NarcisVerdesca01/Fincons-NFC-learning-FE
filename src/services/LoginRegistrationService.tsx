@@ -6,58 +6,65 @@ import LoginUserModel from "../models/LoginUserModel";
 
 const REGISTRATION_LOGIN_BASE_URI =
   "http://localhost:8080/nfc-learning";
-const VERSION_URI = REGISTRATION_LOGIN_BASE_URI + "/v1/auth";
-const REGISTRATION_STUDENT_URI = VERSION_URI + "/student/register";
-const REGISTRATION_TUTOR_URI = VERSION_URI + "/tutor/register";
-const LOGIN_URI = VERSION_URI + "/login";
+const VERSION_URI = REGISTRATION_LOGIN_BASE_URI + "/v1";
+const REGISTRATION_STUDENT_URI = VERSION_URI + "/auth/student/register";
+const REGISTRATION_TUTOR_URI = VERSION_URI + "/auth/tutor/register";
+const LOGIN_URI = VERSION_URI + "/auth/login";
 const USER_DETAILS_URI = VERSION_URI + "/email";
 const UPDATE_USER_DETAILS = VERSION_URI + "/update-user"
 const token = Cookies.get("jwt-token")
 
-const LoginRegistrationService = {
-  registrationStudentService(user: User) {
-    return axios.post(REGISTRATION_STUDENT_URI, user);
-  },
+ const registrationStudentService = async (user: User) => {
+  return await axios.post(REGISTRATION_STUDENT_URI, user);
+}
 
-  registrationTutorService(user: User) {
-    return axios.post(
-      REGISTRATION_TUTOR_URI,
-      user,
-      {
-        headers: { Authorization: `Bearer ${token}`}
-      }
-      );
-  },
-
-  updateUserData(updatedUserDetails : UserDetailsModel){
-    return axios.put(
-      UPDATE_USER_DETAILS,
-      {
-        firstName: updatedUserDetails.firstName,
-        lastName: updatedUserDetails.lastName,
-        email: updatedUserDetails.email,
-        password: updatedUserDetails.password
-      },
-      {
-        params: { email: updatedUserDetails.email },
-        headers: { Authorization: `Bearer ${token}`}
-      }
-    )
-  },
-
-  loginService(loginInput: LoginUserModel) {
-    return axios.post(
-      LOGIN_URI,
-      loginInput
-    )
-  },
-
-  getUserDetails(userEmail: string | undefined) {
-    return axios.get(USER_DETAILS_URI, {
-      params: { email: userEmail },
+ const registrationTutorService = async (user: User) => {
+  return await axios.post(
+    REGISTRATION_TUTOR_URI,
+    user,
+    {
       headers: { Authorization: `Bearer ${token}`}
-    });
-  },
+    }
+  );
+}
+
+ const updateUserData = async (updatedUserDetails : UserDetailsModel) => {
+  return await axios.put(
+    UPDATE_USER_DETAILS,
+    {
+      firstName: updatedUserDetails.firstName,
+      lastName: updatedUserDetails.lastName,
+      email: updatedUserDetails.email,
+      password: updatedUserDetails.password
+    },
+    {
+      params: { email: updatedUserDetails.email },
+      headers: { Authorization: `Bearer ${token}`}
+    }
+  )
+}
+
+const loginService = async (loginInput: LoginUserModel) => {
+  const response = await axios.post(
+    LOGIN_URI,
+    loginInput
+  );
+  return response;
+}
+
+ const getUserDetails = async () => {
+  const response = await axios.get(USER_DETAILS_URI, {
+    headers: { Authorization: `Bearer ${token}`}
+  });
+  return response.data;
+}
+
+const LoginRegistrationService = {
+  getUserDetails,
+  loginService,
+  registrationStudentService,
+  registrationTutorService,
+  updateUserData
 };
 
 export default LoginRegistrationService;

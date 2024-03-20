@@ -1,7 +1,9 @@
+import User from "./UserModel";
 
 interface Ability {
     id?: number,
-    name: string
+    name: string,
+    user: User
 }
 
 export default Ability;

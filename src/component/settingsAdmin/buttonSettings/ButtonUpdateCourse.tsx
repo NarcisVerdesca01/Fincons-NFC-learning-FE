@@ -12,7 +12,7 @@ const ButtonUpdateCourse = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="info" onClick={handleShow} style={{ margin: "0.5em" }}>
+            <Button variant="warning" onClick={handleShow} style={{ margin: "0.5em" }}>
                 Update <i className="bi bi-person-fill-add"></i>
             </Button>
 

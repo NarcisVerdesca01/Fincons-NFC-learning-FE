@@ -9,11 +9,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid black;
 }
 
 .descriptionOptionSettings{
     margin: 0%;
+
 }
 .buttonBack {
     background-color: transparent;
@@ -29,7 +29,6 @@
     border-radius: 15px;
 }
 .buttonBack:hover{
-
     box-shadow: 4px 4px 4px rgb(0, 0, 0);
     transform: scale(1.05);
 }
@@ -39,3 +38,51 @@
     display: flex;
     justify-content: space-around;
 }
+.containerImageSettingsCreate {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 15em;
+    height: 20em;
+    background-repeat: no-repeat;
+    background-image: url("../../assets/imgSettings.jpg");
+}
+.text{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 2em;
+    color: rgb(147, 48, 48);
+}
+.optionSettingsCreate{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.containerImageSettingsUpdate{
+    display: flex;
+    width: 15em;
+    height: 20em;
+    margin-left: -5em;
+    background-repeat: no-repeat;
+    background-image: url("../../assets/imgSettingsUpdate.jpg");
+    margin-left: 1em;
+}
+.containerImageSettingsAssociate{
+    display: flex;
+    width: 15em;
+    height: 20em;
+    margin-left: -5em;
+    background-repeat: no-repeat;
+    background-image: url("../../assets/imgSettingsAssociate.jpg");
+    margin-left: 1em;
+}
+.containerImageSettingsDelete{
+    display: flex;
+    width: 15em;
+    height: 20em;
+    margin-left: -5em;
+    background-repeat: no-repeat;
+    background-image: url("../../assets/imgSettingsDelete.jpg");
+    margin-left: 1em;
+}
+

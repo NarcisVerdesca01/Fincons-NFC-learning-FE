@@ -16,14 +16,13 @@ const PageLesson = (props: Props) => {
   const navigate = useNavigate();
   const { idPage } = useParams();
   const idLesson_page = parseInt(idPage!);
-  console.log(idPage)
 
   useEffect(() => {
     LessonService.getLessonById(idLesson_page!).then((res) => {
       //console.log(res.data.data.courses[0].course.name, "sono qui");
       console.log(idLesson_page, "idLessonPage")
       //console.log(res.data.data ," res");
-      setLesson(res.data.data);
+      setLesson(res.data);
 
       //console.log(res.data.data.courses[0])
     });
@@ -32,12 +31,11 @@ const PageLesson = (props: Props) => {
   useEffect(() => {
     CourseService.getCourseById(props.idCourse!).then((res) => {
       console.log(props.idCourse, "sono in pageLesson corso id");
-      console.log(res.data.data.lessons);
-      setLessonList(res.data.data.lessons);
+      console.log(res.data.lessons);
+      setLessonList(res.data.lessons);
     });
   }, [props.idCourse]);
 
-  console.log(lesson?.quiz?.id, "quiz id --------")
 
   const gotToLessonPage = (idPage: any) => {
     console.log(idPage)
@@ -96,13 +94,13 @@ const PageLesson = (props: Props) => {
               </div>
             ))}
           </div>
-          <div className={`containerQuizOfLesson`}>
-            <button onClick={() => gotToQuizPage(lesson?.quiz?.id)}>vai al quiz</button>
+          {/*<div className={`containerQuizOfLesson`}>
+            <button onClick={() => goToQuizPage(lesson?.quiz?.id)}>vai al quiz</button>
           </div>
 
+*/}
 
-
-        </div>
+            </div>
 
 
 

@@ -7,4 +7,4 @@ interface CourseLesson {
   lesson?: Lesson
 }
 
-export default Course;
+export default CourseLesson;
