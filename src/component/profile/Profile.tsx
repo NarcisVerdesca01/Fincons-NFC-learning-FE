@@ -30,11 +30,13 @@ const Profile = () => {
     });
   }, []);
 
-  
   return (
     <div className={`componentPageProfile`}>
       {/* <Header />*/}
       <div className={`containerUserProfile`}>
+        <div className={`containerTitleHeader`}>
+          <h3 className={`titleHeader`}>User Details:</h3>
+        </div>
         <div className={`containerMenu`}>
           <div className={`userDetails`}>
             <p>
@@ -48,16 +50,19 @@ const Profile = () => {
           </div>
 
           <div className={`userDetails`}>
-            <p>Birthdate:{user?.birthDate?.toString()}</p>
+            <p>
+              Birthdate:<br></br>
+              {user?.birthDate?.toString()}
+            </p>
           </div>
 
           <div className={`userDetails`}>
             Abilities:
-            {/*   {abilities?.map((ability: any) => (
-                <div>{ability?.ability.name}</div>
-           ))}*/}
+            {abilities?.map((ability: any) => (
+              <div>{ability?.ability.name}</div>
+            ))}
           </div>
-
+          <br></br>
           <div className={`userDetails`}>
             <p>Courses:</p>
             {course?.name}
@@ -67,7 +72,9 @@ const Profile = () => {
           </div>
           <div className={`userDetails`}>
             <p>
-              Hai partecipato a: {quiz?.title} <br></br>con punteggio: {}
+              Hai partecipato a: <br></br>
+              {quiz?.title} <br></br>con punteggio: {}
+              <br></br>
             </p>
           </div>
         </div>

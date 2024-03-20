@@ -12,7 +12,7 @@ const ButtonDeleteAbility = () => {
     return (
         <>
             <Button variant="danger" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Delete
+                Ability <i className="bi bi-trash3"></i>
             </Button>
 
             <Modal show={show}
