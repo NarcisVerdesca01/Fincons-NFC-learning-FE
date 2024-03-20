@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import QuestionModel from "../../models/QuestionModel";
 import QuizModel from "../../models/QuizModel";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import QuizService from "../../services/QuizService";
 
 import "./QuizPage.css";
@@ -11,6 +11,7 @@ interface Props {
 }
 
 const QuizPage = (props: Props) => {
+    const navigate = useNavigate();
     const { idQuiz } = useParams();
     const quizId = parseInt(idQuiz!);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -18,10 +19,12 @@ const QuizPage = (props: Props) => {
     const [quiz, setQuiz] = useState<QuizModel | null>();
     const [questionList, setQuestionList] = useState<QuestionModel[] | null>([]);
     const [nameOfStudent, setnameOfStudent] = useState(null);
+    const [lessonOfQuiz, setLessonOfQuiz] = useState<number | null>(null);
     const [totalScoreQuiz, setTotalScoreQuiz] = useState(null);
     const [lessonToRepeat, setlessonToRepeat] = useState(null);
     const [showSubmitButton, setShowSubmitButton] = useState<boolean>(false);
     const [quizSubmitted, setQuizSubmitted] = useState(false);
+    const [showRedoQuizButton, setShowRedoQuizButton] = useState(true);
 
     //variabile di stato per verificare se il quiz è stato già svolto dallo studente 
     const [maxSelectableAnswers, setMaxSelectableAnswers] = useState<number>();
@@ -50,12 +53,14 @@ const QuizPage = (props: Props) => {
                     console.log("Il quiz è stato già svolto dallo studente.");
                     setQuizAlreadyDone(true);
                     if (userWantToDoItAgain) {
+                        setCurrentQuestionIndex(0);
+                        setUserAnswers(null);
                         setQuiz(null);
-                        setQuizSubmitted(false);
                         setQuestionList(null);
                         setnameOfStudent(null);
-                        setUserAnswers(null);
-                        setCurrentQuestionIndex(0);
+                        setTotalScoreQuiz(null);
+                        setShowSubmitButton(false);
+                        setQuizSubmitted(false);
 
                         getTheQuizById();
 
@@ -74,6 +79,7 @@ const QuizPage = (props: Props) => {
             try {
                 const res = await QuizService.getQuizById(quizId!);
                 setQuiz(res.data.data);
+                setLessonOfQuiz(res.data.data.lesson.id);
                 console.log(res.data.data.lessons, "sono qui in QuizPage res.data.data.quiz");
                 setQuestionList(res.data.data.questions);
             } catch (error) {
@@ -169,8 +175,15 @@ const QuizPage = (props: Props) => {
         });
     };
 
+    const gotToLessonPage = (idLesson: any) => {
+        console.log(idLesson)
+        navigate("/lesson_page/" + idLesson);
+    };
 
-
+    const handleRedoQuiz = () => {
+        setuserWantToDoItAgain(true);
+        setShowRedoQuizButton(false);
+    }
 
     const sendAnswers = async () => {
         if (!quizId || !quiz) {
@@ -179,7 +192,7 @@ const QuizPage = (props: Props) => {
         }
 
         const answersMap: { [key: number]: number[] } = {};
-        Object.keys(userAnswers ??{}).forEach((questionId) => {
+        Object.keys(userAnswers ?? {}).forEach((questionId) => {
             if (userAnswers) {
                 const questionIdNum = parseInt(questionId, 10);
                 answersMap[questionIdNum] = userAnswers[questionIdNum];
@@ -209,6 +222,7 @@ const QuizPage = (props: Props) => {
                 setTotalScoreQuiz(response.data.data.totalScore);
                 setShowSubmitButton(false);
                 setQuizSubmitted(true);
+
             }
         } catch (error) {
             console.error('Errore durante l\'invio delle risposte:', error);
@@ -242,13 +256,37 @@ const QuizPage = (props: Props) => {
 
 
     return (
-        <>
-            <h1>Ciaooo id quiz: {quiz?.id}</h1>
+        <div className="center-content">
+
+            {quiz?.id && (
+                <div>
+                    <h2>Quiz della lezione: {quiz?.lesson.title} e id lesson: {quiz?.lesson?.id}</h2>
+                </div>
+            )}
+
 
             {quizAlreadyDone ? (
                 <div>
-                    <p>Il quiz  è stato già svolto</p>
-                    <button onClick={() => setuserWantToDoItAgain(true)}>RIFAI IL QUIZ</button>
+
+
+
+
+
+                    {showRedoQuizButton && (
+                        <div style={{textAlign: "center"}}>
+                            <div className="alert alert-warning" role="alert">
+                                Hai già svolto questo quiz!
+                                Vuoi riprovarci?
+                            </div>
+                            <div>
+                                <button className="btn btn-outline-secondary" onClick={handleRedoQuiz}>RIESEGUI IL QUIZ</button>
+                            </div>
+                        </div>
+
+                    )}
+
+
+
                     {userWantToDoItAgain ? (
 
                         <div>
@@ -266,79 +304,13 @@ const QuizPage = (props: Props) => {
 
             ) : (
                 <div>
+                    getTheQuizById();
                     <p>Il quiz non è stato ancora svolto</p>
                 </div>
 
             )
 
             }
-
-
-
-            <div className="quizBox">
-
-                <div className="quizTitle"><h1>{quiz?.title}</h1></div>
-
-                {!quizSubmitted && currentQuestion && (
-                    <div className="questionCard">
-
-                        <div className="indexQuestion">
-                            <h2>Domanda {currentQuestionIndex + 1} su {questionList.length}</h2>
-                        </div>
-
-                        <div className="textQuestion">
-                            <h3>{currentQuestion.textQuestion}</h3>
-                            {/* 
-                        
-                          {maxSelectableAnswers && maxSelectableAnswers >1 && (                                
-                                <p>Seleziona le {maxSelectableAnswers} risposte corrette. </p>
-                            )}  
-                        */}
-                        </div>
-
-
-                        {currentQuestion.answers.map((answer) => (
-                            <div key={answer.id}>
-                                {currentQuestion.answers.filter(ans => ans.correct).length > 1 ? (
-                                    // Se ci sono più risposte corrette, utilizza checkbox
-                                    <input type="checkbox"
-                                        id={`answer-${answer.id}`}
-                                        name={`question-${currentQuestion.id}`}
-                                        value={answer.id}
-                                        checked={userAnswers?.[currentQuestion.id]?.includes(answer.id) || false}
-                                        onChange={() => handleAnswerSelection(currentQuestion.id, answer.id)} />
-                                ) : (
-                                    // Altrimenti, utilizza radio button per vero o falso o per domande che contengono solo una risposta esatta
-                                    <input type="radio"
-                                        id={`answer-${answer.id}`}
-                                        name={`question-${currentQuestion.id}`}
-                                        value={answer.id}
-                                        checked={userAnswers?.[currentQuestion.id]?.includes(answer.id) || false}
-                                        onChange={() => handleAnswerSelection(currentQuestion.id, answer.id)} />
-                                )}
-                                <label htmlFor={`answer-${answer.id}`}>{answer.text}</label>
-                            </div>
-                        ))}
-
-                        <div className="navigationButtons">
-                            <button onClick={goToPreviousQuestion} disabled={currentQuestionIndex === 0}> Back </button>
-                            <button onClick={goToNextQuestion} disabled={currentQuestionIndex === questionList.length - 1 || !userAnswers?.[currentQuestion.id] || userAnswers[currentQuestion.id]?.length === 0}>Next</button>
-                        </div>
-                        {showSubmitButton && <button className="sendQuizButton" disabled={!areAllQuestionsAnswered()} onClick={sendAnswers}>Invia</button>}
-                    </div>
-                )}
-
-                {quizSubmitted && (
-                    <div className="quizSubmittedMessage">
-                        <h2>Quiz inviato con successo!</h2>
-                        {scoreMessage && <div className="scoreMessage">{scoreMessage}</div>}
-                    </div>
-                )}
-
-            </div>
-
-
-
 
             {/*NUOVO COMPONENTE QUIZ*/}
             {questionList && questionList.length > 0 && (
@@ -385,12 +357,12 @@ const QuizPage = (props: Props) => {
                                 ))}
                             </div>
 
-                            <div className="card-footer navigationButtons question-buttons">
-                                <button className="btn btn-light" onClick={goToPreviousQuestion} disabled={currentQuestionIndex === 0}>
-                                    <i className="bi bi-arrow-left-circle-fill"></i>
+                            <div className="card-footer navigationButtons question-buttons-div">
+                                <button className="btn btn-light quiz-control-button" onClick={goToPreviousQuestion} disabled={currentQuestionIndex === 0}>
+                                    <i className="bi bi-arrow-left-circle"></i>
                                 </button>
-                                <button className="btn btn-light" onClick={goToNextQuestion} disabled={currentQuestionIndex === questionList.length - 1 || !userAnswers?.[currentQuestion.id] || userAnswers[currentQuestion.id]?.length === 0}>
-                                    <i className="bi bi-arrow-right-circle-fill"></i>
+                                <button className="btn btn-light quiz-control-button" onClick={goToNextQuestion} disabled={currentQuestionIndex === questionList.length - 1 || !userAnswers?.[currentQuestion.id] || userAnswers[currentQuestion.id]?.length === 0}>
+                                    <i className="bi bi-arrow-right-circle"></i>
                                 </button>
                             </div>
 
@@ -409,6 +381,9 @@ const QuizPage = (props: Props) => {
                         <div className="quiz-submitted-message">
                             <h4 className="quiz-done-label">Quiz terminato!</h4>
                             {scoreMessage && <div className="quiz-done-label-message">{scoreMessage}</div>}
+                            {lessonOfQuiz && (
+                                <button onClick={() => gotToLessonPage(lessonOfQuiz)}>Torna alla lezione</button>
+                            )}
                         </div>
                     )}
                 </div>
@@ -416,7 +391,7 @@ const QuizPage = (props: Props) => {
             )}
 
 
-        </>
+        </div>
     );
 
 
