@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import DeleteAbility from '../ability/DeleteAbility';
+import DeleteLesson from '../lesson/DeleteLesson';
 
 
-const ButtonDeleteAbility = () => {
+const ButtonDeleteLesson = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -19,11 +19,11 @@ const ButtonDeleteAbility = () => {
                 onHide={handleClose}
                 keyboard={false}>
                 <Modal.Body>
-                    <DeleteAbility />
+                    <DeleteLesson />
                 </Modal.Body>
             </Modal>
         </>
     );
 }
 
-export default ButtonDeleteAbility;
+export default ButtonDeleteLesson;

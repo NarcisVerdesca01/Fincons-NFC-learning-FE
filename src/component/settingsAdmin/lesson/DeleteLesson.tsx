@@ -1,33 +1,31 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Ability from "../../../models/AbilityModel";
-import AbilityService from "../../../services/AbilityService";
-import Cookies from "js-cookie";
+import Lesson from "../../../models/LessonModel";
+import LessonService from "../../../services/LessonService";
 
-const DeleteAbility = () => {
-    const [abilities, setAblilities] = useState<Ability[]>([]);
-    const [abilityId, setAbilityId] = useState<number | null>(null);
-    const [ability, setAbility] = useState<Ability>();
+const DeleteLesson = () => {
+    const [lessons, setLessons] = useState<Lesson[]>([]);
+    const [lessonId, setLessonId] = useState<number | null>(null);
+    const [lesson, setLesson] = useState<Lesson>();
     const navigate = useNavigate();
 
     useEffect(() => {
-        AbilityService.getAbilities().then((res) => {
-            setAblilities(res.data);
+        LessonService.getLessons().then((res) => {
+            setLessons(res.data);
         });
     }, []);
 
     useEffect(() => {
-        if (abilityId !== null) {
-            AbilityService.getAbilityById(abilityId!).then((res) => {
-                setAbility(res.data);
+        if (lessonId !== null) {
+            LessonService.getLessonById(lessonId!).then((res) => {
+                setLesson(res.data);
             });
         }
-    }, [abilityId]);
+    }, [lessonId]);
 
-    const DeleteAbility = () => {
-        console.log(abilityId) 
-        AbilityService.deleteAbility(abilityId!)
-        
+    const DeleteLesson = () => {
+        console.log(lessonId) 
+        LessonService.deleteLesson(lessonId!)
         navigate("/settings_admin");
     };
 
@@ -38,37 +36,45 @@ const DeleteAbility = () => {
     return (
         <div>
             <div>
-                <h3>Delete Ability</h3>
+                <h3>Delete Lesson</h3>
                 <div>
                     <form>
                         <div className="form-group">
-                            <label>Ability</label>
+                            <label>Lesson</label>
                             <select
                                 name="course"
                                 className="form-select"
                                 aria-label="Default select example"
                                 onChange={(e) => {
                                     console.log(Number(e.target.value))
-                                    setAbilityId(Number(e.target.value));
+                                    setLessonId(Number(e.target.value));
                                 }}
                             >
                                 <option selected>Select the Course to Delete</option>
-                                {abilities.map((ability) => {
+                                {lessons.map((lesson) => {
                                     return (
-                                        <option key={ability.id} value={ability.id}>
-                                            {ability.name}
+                                        <option key={lesson.id} value={lesson.id}>
+                                            {lesson.title}
                                         </option>
                                     );
                                 })}
                             </select>
                         </div>
-                        {ability && (
+                        {lesson && (
                             <>
                                 <div>
                                     <label>Name: </label>
-                                    <p>{ability.name}</p>
+                                    <p>{lesson.title}</p>
                                 </div>
-                                <button className="btn btn-success" onClick={DeleteAbility}>
+                                <div>
+                                    <label>BackgroundImage: </label>
+                                    <p>{lesson.backgroundImage}</p>
+                                </div>
+                                <div>
+                                    <label>Created by: </label>
+                                    <p>{lesson.createdBy}</p>
+                                </div>
+                                <button className="btn btn-success" onClick={DeleteLesson}>
                                     delete
                                 </button>
                                 <button className="btn btn-danger" onClick={backToSettings}>
@@ -83,4 +89,4 @@ const DeleteAbility = () => {
     );
 };
 
-export default DeleteAbility;
+export default DeleteLesson;

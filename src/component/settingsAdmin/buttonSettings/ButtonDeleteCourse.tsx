@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DeleteCourse from '../course/DeleteCourse';
+import './StyleModals.css'
 
 
 const ButtonDeleteCourse = () => {
@@ -17,9 +18,10 @@ const ButtonDeleteCourse = () => {
 
             <Modal show={show}
                 onHide={handleClose}
-                backdrop="static"
-                keyboard={false}>
-                <Modal.Body>
+                keyboard={false}
+                className={`modal`}>
+                <Modal.Body
+                className={`modalBody`}>
                     <DeleteCourse />
                 </Modal.Body>
             </Modal>

@@ -106,15 +106,15 @@ const updateCourse = async (courseId: number, updatedCourse: Course) => {
     }
 };
 
-const deleteCourse = async (id: number) => {
+const deleteCourse = async (courseId: number) => {
     try {
-        console.log(id)
+        console.log(courseId)
         const response = await axios.put(
             DELETE_COURSE,
             {},
             {
                 params: {
-                    courseId: id
+                    id: courseId
                 },
                 headers: { 
                     Authorization: `Bearer ${token}` 

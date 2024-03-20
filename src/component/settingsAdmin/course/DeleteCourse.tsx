@@ -77,7 +77,7 @@ const DeleteCourse = () => {
                                     <label>imageResource: </label>
                                     <p>{course.imageResource}</p>
                                 </div>
-                                <button type="button" className="btn btn-success" onClick={DeleteCourse}>
+                                <button className="btn btn-success" onClick={DeleteCourse}>
                                     delete
                                 </button>
                                 <button className="btn btn-danger" onClick={backToSettings}>
