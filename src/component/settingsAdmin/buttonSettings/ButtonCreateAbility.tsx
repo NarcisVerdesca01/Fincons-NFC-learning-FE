@@ -12,7 +12,7 @@ const ButtonCreateAbility = () => {
     return (
         <>
             <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Add <i className="bi bi-person-fill-add"></i>
+                Add a new ability <i className="bi bi-person-fill-add"></i>
             </Button>
 
             <Modal show={show}
