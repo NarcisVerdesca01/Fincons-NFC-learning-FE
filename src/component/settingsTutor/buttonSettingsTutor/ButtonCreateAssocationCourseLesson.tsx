@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import CreateAssociationQuizLesson from '../createAssociationQuizLesson/CreateAssociationQuizLesson';
+import CreateAssociationCourseLesson from '../createAssociationCourseLesson/CreateAssociationCourseLesson';
 
 
 const ButtonCreateAssociationCourseLesson = () => {
@@ -21,7 +21,7 @@ const ButtonCreateAssociationCourseLesson = () => {
                 backdrop="static"
                 keyboard={false}>
                 <Modal.Body>
-                    <CreateAssociationQuizLesson />
+                    <CreateAssociationCourseLesson />
                 </Modal.Body>
             </Modal>
         </>
