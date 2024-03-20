@@ -48,7 +48,7 @@ const getCourseById = async (courseId: number) => {
     }
 };
 
-const getCourseByEmail = async () => {
+const getCourseDedicated = async () => {
     try {
         const response = await axios.get(
             DEDICATED_COURSE,
@@ -131,7 +131,7 @@ const deleteCourse = async (courseId: number) => {
 const CourseService = {
     getCourses,
     getCourseById,
-    getCourseByEmail,
+    getCourseDedicated,
     createCourse,
     updateCourse,
     deleteCourse

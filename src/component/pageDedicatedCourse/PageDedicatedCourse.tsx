@@ -10,7 +10,7 @@ const PageDedicatedCourse = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    CourseService.getCourseByEmail().then((res) => {
+    CourseService.getCourseDedicated().then((res) => {
       setCourseList(res.data);
     });
   }, []);
