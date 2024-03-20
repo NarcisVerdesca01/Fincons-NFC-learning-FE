@@ -3,20 +3,11 @@
     height: 100%;
     display: flex;
     justify-content: center;
+    background-color: rgb(207, 178, 185);
 }
-
-.subContainerUserProfile{
-    margin-top: 6em;
-    background-color: rgb(196, 32, 160);
-    height: 100%;
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-}
-
 .containerMenu{
     background-color: rgb(255, 255, 255);
-    width: 30%;
+    width: 40%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -30,6 +21,7 @@
     flex-direction: column;
 }
 .userDetails{
-    background-color: rgb(228, 192, 149);
+    background-color: rgb(207, 178, 185);
     text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
