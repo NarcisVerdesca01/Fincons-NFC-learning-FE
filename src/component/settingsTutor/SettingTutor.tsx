@@ -40,7 +40,6 @@ const SettingsTutor = () => {
                             <ButtonQuizResults />
                         </div>
                     </div>
-                
                 </div>
             </div>
         </>
