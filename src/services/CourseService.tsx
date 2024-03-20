@@ -12,9 +12,9 @@ const UPDATE_COURSE = COURSE_URI + "/update";
 const DELETE_COURSE = COURSE_URI + "/delete";
 const DEDICATED_COURSE = COURSE_URI + "/dedicated-courses";
 
-const token = Cookies.get("jwt-token");
 
 const getCourses = async () => {
+    const token = Cookies.get("jwt-token");
     try {
         const response = await axios.get(
             GET_ALL_URI,
@@ -32,6 +32,8 @@ const getCourses = async () => {
 };
 
 const getCourseById = async (courseId: number) => {
+
+    const token = Cookies.get("jwt-token");
     try {
         const response = await axios.get(
             GET_BY_ID + "/" + courseId,
@@ -49,6 +51,8 @@ const getCourseById = async (courseId: number) => {
 };
 
 const getCourseDedicated = async () => {
+
+    const token = Cookies.get("jwt-token");
     try {
         const response = await axios.get(
             DEDICATED_COURSE,
@@ -66,6 +70,8 @@ const getCourseDedicated = async () => {
 };
 
 const createCourse = async (course: Course) => {
+
+    const token = Cookies.get("jwt-token");
     try {
         const response = await axios.post(
             CREATE_COURSE,
@@ -84,6 +90,8 @@ const createCourse = async (course: Course) => {
 };
 
 const updateCourse = async (courseId: number, updatedCourse: Course) => {
+
+    const token = Cookies.get("jwt-token");
     try {
         const response = await axios.put(
             UPDATE_COURSE + "/" + courseId,
@@ -107,6 +115,8 @@ const updateCourse = async (courseId: number, updatedCourse: Course) => {
 };
 
 const deleteCourse = async (courseId: number) => {
+
+    const token = Cookies.get("jwt-token");
     try {
         console.log(courseId)
         const response = await axios.put(
@@ -116,9 +126,9 @@ const deleteCourse = async (courseId: number) => {
                 params: {
                     id: courseId
                 },
-                headers: { 
-                    Authorization: `Bearer ${token}` 
-                } 
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             }
         );
         return response.data;
