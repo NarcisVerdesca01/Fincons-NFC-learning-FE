@@ -2,7 +2,6 @@ import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import AssociationAbilityCourse from "../ability_course/AssociationAbilityCourse";
-import React from "react";
 
 const ButtonAssociateAbilityCourse = () => {
   const [show, setShow] = useState(false);

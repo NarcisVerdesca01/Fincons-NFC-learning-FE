@@ -1,28 +1,26 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CourseLessonService from "../../../services/CourseLessonService";
 import Course from "../../../models/CourseModel";
-import Lesson from "../../../models/LessonModel";
 import CourseService from "../../../services/CourseService";
-import LessonService from "../../../services/LessonService";
-import CourseLessonModel from "../../../models/CourseLessonModel";
-import AbilityCourse from "../../../models/AbilityCourse";
 import AbilityService from "../../../services/AbilityService";
 import AbilityCourseService from "../../../services/AbilityCourseService";
 import Ability from "../../../models/AbilityModel";
+import User from "../../../models/UserModel";
+import LoginRegistrationService from "../../../services/LoginRegistrationService";
+import AbilityUserService from "../../../services/AbilityUserService";
 
 const CreateAssociationCourseLesson = () => {
-    const [course, setCourse] = useState<any>();
+    const [user, setUser] = useState<User>();
     const [ability, setAbility] = useState<any>();
-    const [courseId, setCourseId] = useState<any>();
     const [abilityId, setAbilityId] = useState<any>();
     const navigate = useNavigate();
 
     useEffect(() => {
-        CourseService.getCourses().then((res) => {
-            setCourse(res.data);
-        })
-    }, []);
+        LoginRegistrationService.getUserDetails().then((res) => {
+          console.log(res.data, "get userDetails");
+          setUser(res.data);
+        });
+      }, []);
 
     useEffect(() => {
         AbilityService.getAbilities().then((res) => {
@@ -31,9 +29,9 @@ const CreateAssociationCourseLesson = () => {
     }, []);
 
     const saveCourseLesson = () => {
-        console.log("ability id ", abilityId)
-        console.log("course id ", courseId)
-        AbilityCourseService.createAbilityCourse(abilityId.ability, courseId.course);
+        console.log("ability id ", abilityId.ability)
+        console.log("user id ", user)
+        AbilityUserService.createAbilityUser(abilityId.ability)
         navigate("/settings_admin");
     }
 
@@ -44,29 +42,12 @@ const CreateAssociationCourseLesson = () => {
     return (
         <div>
             <div>
-                <h3> Associate Course with Ability </h3>
+                <h3> Associate User with Ability </h3>
                 <div>
                     <form>
                         <div className="form-group">
-                            <label>Course</label>
-                            <select
-                                name="course"
-                                className="form-select"
-                                aria-label="Default select example"
-                                onChange={(e) => {
-                                    console.log(Number(e.target.value))
-                                    setCourseId({
-                                        [e.target.name]: e.target.value
-                                    });
-                                }}
-                            >
-                                <option selected>Select the Course</option>
-                                {course?.map((courses: Course, index: any) => {
-                                    return (
-                                        <option key={index} value={courses.id}>{courses.name}</option>
-                                    );
-                                })}
-                            </select>
+                            <div>User: <text>{user?.firstName} {user?.lastName}</text></div>
+                            
                         </div>
                         <div className="form-group">
                             <label>Ability</label>
