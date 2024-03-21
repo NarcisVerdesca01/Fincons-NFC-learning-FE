@@ -13,7 +13,7 @@ const ButtonDeleteCourse = () => {
     return (
         <>
             <Button variant="danger" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Delete
+                Course <i className="bi bi-trash3"></i>
             </Button>
 
             <Modal show={show}

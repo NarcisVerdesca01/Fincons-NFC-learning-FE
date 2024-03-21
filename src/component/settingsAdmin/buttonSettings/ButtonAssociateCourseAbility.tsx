@@ -1,19 +1,19 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 
-const ButtonAssociate = () => {
+const ButtonAssociateCourseAbility = () => {
   const [show, setShow] = useState(false);
   const handleShow = () => setShow(true);
   return (
     <>
       <Button
-        variant="success"
+        variant="primary"
         onClick={handleShow}
         style={{ margin: "0.5em" }}
       >
-        Associate... <i className="bi bi-person-fill-add"></i>
+        Course to Ability <i className="bi bi-person-fill-add"></i>
       </Button>
     </>
   );
 };
-export default ButtonAssociate;
+export default ButtonAssociateCourseAbility;

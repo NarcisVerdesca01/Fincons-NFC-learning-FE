@@ -13,14 +13,14 @@ const UPDATE_LESSON = LESSON_URI + "/update";
 const ASSOCIATE_CONTENT_LESSON = LESSON_URI + "/lesson-content-association";
 const DELETE_LESSON = LESSON_URI + "/delete";
 
-const token = Cookies.get("jwt-token");
-const config = {
-    headers: { Authorization: `Bearer ${token}` },
-};
 
 const getLessons = async () => {
+    const token = Cookies.get("jwt-token");
+
     try {
-        const response = await axios.get(GET_ALL_URI, config);
+        const response = await axios.get(GET_ALL_URI, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
         return response.data;
     } catch (error) {
         console.error("Error getting lessons:", error);
@@ -29,6 +29,8 @@ const getLessons = async () => {
 };
 
 const getLessonById = async (lessonId: number) => {
+    const token = Cookies.get("jwt-token");
+
     try {
         const response = await axios.get(GET_BY_ID + "/" + lessonId, { headers: { Authorization: `Bearer ${token}` } });
         return response.data;
@@ -39,8 +41,12 @@ const getLessonById = async (lessonId: number) => {
 };
 
 const createLesson = async (lesson: Lesson) => {
+    const token = Cookies.get("jwt-token");
+
     try {
-        const response = await axios.post(CREATE_LESSON, lesson, config);
+        const response = await axios.post(CREATE_LESSON, lesson, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
         return response.data;
     } catch (error) {
         console.error("Error creating lesson:", error);
@@ -49,6 +55,8 @@ const createLesson = async (lesson: Lesson) => {
 };
 
 const updateLesson = async (lessonId: number, updatedLesson: Lesson) => {
+    const token = Cookies.get("jwt-token");
+
     try {
         const response = await axios.put(
             UPDATE_LESSON + "/" + lessonId,
@@ -58,7 +66,6 @@ const updateLesson = async (lessonId: number, updatedLesson: Lesson) => {
             },
             {
                 headers: {
-                    'Content-Type': 'application/json',
                     Authorization: `Bearer ${token}`
                 }
             }
@@ -73,6 +80,8 @@ const updateLesson = async (lessonId: number, updatedLesson: Lesson) => {
 
 
 const deleteLesson = async (lessonId: number) => {
+    const token = Cookies.get("jwt-token");
+
     try {
         const response = await axios.put(
             DELETE_LESSON,

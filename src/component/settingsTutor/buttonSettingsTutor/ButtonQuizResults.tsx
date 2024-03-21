@@ -1,29 +1,30 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import DeleteAbility from '../ability/DeleteAbility';
+import QuizResults from '../quizResults/QuizResults';
 
-
-const ButtonDeleteAbility = () => {
+const ButtonCreateQuiz = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="danger" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Ability <i className="bi bi-trash3"></i>
+            <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
+                View <i className="bi bi-patch-question"></i>
             </Button>
+
 
             <Modal show={show}
                 onHide={handleClose}
+                backdrop="static"
                 keyboard={false}>
                 <Modal.Body>
-                    <DeleteAbility />
+                    <QuizResults/>
                 </Modal.Body>
             </Modal>
         </>
     );
 }
 
-export default ButtonDeleteAbility;
+export default ButtonCreateQuiz;

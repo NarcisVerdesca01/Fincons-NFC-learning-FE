@@ -15,7 +15,7 @@ const ButtonCreateLesson = () => {
         onClick={handleShow}
         style={{ margin: "0.5em" }}
       >
-        Add a new lesson <i className="bi bi-person-fill-add"></i>
+        Lesson <i className="bi bi-plus-circle"></i>
       </Button>
 
       <Modal

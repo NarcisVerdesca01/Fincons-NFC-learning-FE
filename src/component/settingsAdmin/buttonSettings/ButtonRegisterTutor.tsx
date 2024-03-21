@@ -15,7 +15,7 @@ const ButtonCreateCourse = () => {
         onClick={handleShow}
         style={{ margin: "0.5em" }}
       >
-        Add a new tutor <i className="bi bi-person-fill-add"></i>
+        Tutor <i className="bi bi-plus-circle"></i>
       </Button>
 
       <Modal show={show} onHide={handleClose} keyboard={false}>

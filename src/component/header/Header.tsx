@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router';
 import LoginRegistrationService from '../../services/LoginRegistrationService';
+import ButtonProfile from '../profile/ButtonProfile';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -94,14 +95,15 @@ const Header = () => {
                             </div>
                         )}
                         <div className={`containerButtonNavBar`}>
-                            <button className={`buttonNavBar`} onClick={goToProfile}>
-                                <p className={`nameButton`}>Profile</p>
-                            </button>
-                        </div>
-                        <div className={`containerButtonNavBar`}>
                             <button className={`buttonNavBar`} onClick={handleLogout}>
                                 <p className={`nameButton`}>Logout</p>
                             </button>
+                        </div>
+                        <div className={`containerButtonNavBar`}>
+                            {/*<button className={`buttonNavBar`} onClick={goToProfile}>
+                                <p className={`nameButton`}>Profile</p>
+                        </button>*/}
+                        <ButtonProfile/>
                         </div>
                     </div>
 

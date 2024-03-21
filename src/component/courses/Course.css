@@ -6,7 +6,6 @@
     height: auto;
     width: 100%;
 }
-
 .containerCardCourse {
     margin-top: 2em;
     display: grid;
@@ -15,7 +14,6 @@
     gap: 25px;
     margin-bottom: 5em;
 }
-
 .cardCourse {
     border: 1px solid rgb(0, 0, 0);
     width: 90%;
@@ -25,17 +23,14 @@
     overflow: hidden;
     box-shadow: 5px 5px 5px rgb(0, 0, 0);
 }
-
 .cardCourse:hover {
     transform: scale(1.05);
 }
-
 .containerTitleCourse {
     margin-top: 0;
     display: flex;
     justify-content: center;
 }
-
 .containerImgCardCourse{
     display: flex;
     height: 70%;
@@ -43,12 +38,10 @@
     align-items: center;
     border-bottom: 2px solid black;
 }
-
 .imgCardCourse{
     width: 100%;
     height: 17em;
 }
-
 .titleCardCourse{
     height: 30%;
     display: flex;

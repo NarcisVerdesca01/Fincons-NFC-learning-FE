@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router";
 import Header from "../header/Header";
 import "./SettingsAdmin.css";
 import ButtonCreateAbility from "./buttonSettings/ButtonCreateAbility";
@@ -8,10 +7,12 @@ import ButtonUpdateAbility from "./buttonSettings/ButtonUpdateAbility";
 import ButtonUpdateCourse from "./buttonSettings/ButtonUpdateCourse";
 import ButtonUpdateLesson from "./buttonSettings/ButtonUpdateLesson";
 import ButtonRegisterTutor from "./buttonSettings/ButtonRegisterTutor";
-import ButtonAssociate from "./buttonSettings/ButtonAssociate";
+import ButtonAssociate from "./buttonSettings/ButtonAssociateCourseAbility";
 import ButtonDeleteCourse from "./buttonSettings/ButtonDeleteCourse";
 import ButtonDeleteLesson from "./buttonSettings/ButtonDeleteLesson";
 import ButtonDeleteAbility from "./buttonSettings/ButtonDeleteAbility";
+import ButtonAssociateUserAbility from "./buttonSettings/ButtonAssociateUserAbility";
+import ButtonAssociateCourseAbility from "./buttonSettings/ButtonAssociateCourseAbility";
 
 const SettingsAdmin = () => {
   return (
@@ -26,28 +27,25 @@ const SettingsAdmin = () => {
             <p className={`text`}>Create section</p>
             <div className={`containerImageSettingsCreate`}></div>
             <div className={`optionSettings`}>
-              <div>
-                <ButtonCreateCourse />
-                <ButtonCreateLesson />
-              </div>
+              <ButtonCreateCourse />
+              <ButtonCreateLesson />
             </div>
             <div className={`optionSettings`}>
-              <div>
-                <ButtonCreateAbility />
-                <ButtonRegisterTutor />
-              </div>
+              <ButtonCreateAbility />
+              <ButtonRegisterTutor />
             </div>
           </div>
           <div className={`containerOptions`}>
             <p className={`text`}>Associate section</p>
             <div className={`containerImageSettingsAssociate`}></div>
             <div className={`optionSettings`}>
-              <ButtonAssociate />
-              <ButtonAssociate />
+              <ButtonAssociateUserAbility />
             </div>
-            <div className={`optionSetting`}>
-    
+            <div className={`optionSettings`}>
+              <ButtonAssociateCourseAbility />
             </div>
+
+            <div className={`optionSetting`}></div>
           </div>
           <div className={`containerOptions`}>
             <p className={`text`}>Update section</p>
