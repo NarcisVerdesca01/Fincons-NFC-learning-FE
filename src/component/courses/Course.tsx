@@ -11,12 +11,12 @@ const Course = () => {
 
   useEffect(() => {
     CourseService.getCourses().then((res) => {
-      setCourseList(res.data.data);
+      setCourseList(res.data);
     });
   }, []);
 
   const gotToPage = (idCorso: any) => {
-    navigate("/course_page/" + idCorso);
+    navigate("/course_page_presentation/" + idCorso);
   };
 
   return (
@@ -26,6 +26,7 @@ const Course = () => {
         <div className={`containerTitleCourse`}>
           <h1>Our Course</h1>
         </div>
+
         <div className={`containerCardCourse`}>
           {courseList.map((course: CourseModel) => (
             <div className={`cardCourse`}>

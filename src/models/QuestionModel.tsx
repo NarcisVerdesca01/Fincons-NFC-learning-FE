@@ -1,13 +1,12 @@
 import Quiz from "./QuizModel";
-import WrongAnswer from "./WrongAnswerModel";
+import AnswerModel from "./AnswerModel";
 
 interface Question {
     id: number,
     textQuestion: string,
-    correctAnswer: string,
-    wrongAnswer: WrongAnswer[],
+    answers: AnswerModel[];
     quiz: Quiz,
-    score: number
+    valueOfQuestion: number
 }
 
 export default Question;
