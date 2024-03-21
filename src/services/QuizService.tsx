@@ -8,16 +8,46 @@ const VERSION_URI = API_BASE_URL + "/v1";
 const QUIZ_URI = VERSION_URI + "/quiz";
 const CREATE_QUIZ = QUIZ_URI + "/create";
 const GET_ALL_URI = QUIZ_URI + "/list";
+const GET_ALL_URI_NO_ASSOCIATED_LESSON = QUIZ_URI + "/list-no-association-lesson";
+const GET_ALL_URI_NO_ASSOCIATED_QUESTION = QUIZ_URI + "/list-no-association-question";
 const GET_BY_ID = QUIZ_URI + "/find-by-id";
 const SEND_QUIZ = VERSION_URI + "/quiz-student-result/calculate-and-save";
 const RESEND_QUIZ = VERSION_URI + "/quiz-student-result/quiz-redo";
 const ASSOCIATE_WITH_LESSON = QUIZ_URI + "/associatelesson";
+const ASSOCIATE_WITH_QUESTION = QUIZ_URI + "/associatequestion";
 const CHECK_QUIZ = VERSION_URI + "/quiz-student-result/check";
+
 
 const getQuizzes = async () => {
   const token = Cookies.get("jwt-token");
   try {
     const response = await axios.get(GET_ALL_URI, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error getting lessons:", error);
+    throw error;
+  }
+};
+
+const getQuizzesWithoutAssociationWithLesson = async () => {
+  const token = Cookies.get("jwt-token");
+  try {
+    const response = await axios.get(GET_ALL_URI_NO_ASSOCIATED_LESSON, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error getting lessons:", error);
+    throw error;
+  }
+};
+
+const getQuizzesWithoutAssociationWithQuestion = async () => {
+  const token = Cookies.get("jwt-token");
+  try {
+    const response = await axios.get(GET_ALL_URI_NO_ASSOCIATED_QUESTION, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data;
@@ -100,16 +130,29 @@ const associateQuizToLesson = async (quizId: number, lessonId: number) => {
   }
 };
 
-
+const associateQuizToQuestion = async (quizId: number, questionId: number) => {
+  const token = Cookies.get("jwt-token");
+  const url = `${ASSOCIATE_WITH_QUESTION}?idQuiz=${quizId}&idQuestion=${questionId}`;
+  try {
+    const response = await axios.put(url, {}, { headers: { Authorization: `Bearer ${token}` } });
+    return response.data;
+  } catch (error) {
+    console.error("Error getting lessons:", error);
+    throw error;
+  }
+};
 
 const QuizService = {
   getQuizzes,
+  getQuizzesWithoutAssociationWithLesson,
+  getQuizzesWithoutAssociationWithQuestion,
   createQuiz,
   getQuizById,
   sendQuizResult,
   reSendQuizResult,
   checkQuizResult,
-  associateQuizToLesson
+  associateQuizToLesson,
+  associateQuizToQuestion
 }
 
 export default QuizService;

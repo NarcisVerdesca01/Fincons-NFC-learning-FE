@@ -4,36 +4,35 @@ import CourseLessonService from "../../../services/CourseLessonService";
 import Quiz from "../../../models/QuizModel";
 import Lesson from "../../../models/LessonModel";
 import QuizService from "../../../services/QuizService";
-import LessonService from "../../../services/LessonService";
-import QuizLessonModel from "../../../models/QuizLessonModel";
+import QuestionService from "../../../services/QuestionService";
+import QuestionModel from "../../../models/QuestionModel";
 
 
-const CreateAssociationQuizLesson = () => {
-    const [quizLesson, setQuizLesson] = useState<QuizLessonModel | any>();
+const CreateAssociationQuizQuestion = () => {
     const [quizId, setQuizId] = useState<number | any>();
-    const [lessonId, setLessonId] = useState<number | any>();
-    const [lesson, setLesson] = useState<QuizLessonModel | any>();
+    const [questionId, setQuestionId] = useState<number | any>();
+    const [questions, setQuestions] = useState<QuestionModel | any>();
     const [quiz, setQuiz] = useState<any>();
     const navigate = useNavigate();
 
     useEffect(() => {
-        QuizService.getQuizzesWithoutAssociationWithLesson().then((res1) => {
+        QuizService.getQuizzes().then((res1) => {
             setQuiz(res1.data);
         })
     }, []);
 
     useEffect(() => {
-        LessonService.getNotAssociatedLessons().then((res2) => {
-            setLesson(res2.data);
+        QuestionService.getQuestionsWithoutAssociationWithQuiz().then((res2) => {
+            setQuestions(res2.data);
         })
     }, []);
 
   
 
-    const saveQuizLesson = () => {
+    const saveQuizQuestion = () => {
         console.log("id quiz: ",quizId)
-        console.log("id lesson:", quizLesson)
-        QuizService.associateQuizToLesson(quizId, lessonId);
+        console.log("id ESTION:", questionId)
+        QuizService.associateQuizToQuestion(quizId, questionId);
         navigate("/settings_tutor")        
     }
 
@@ -44,7 +43,7 @@ const CreateAssociationQuizLesson = () => {
     return (
         <div>
             <div>
-                <h3> Associate Quiz with Lesson </h3>
+                <h3> Associate Quiz with Question </h3>
                 <div>
                     <form>
                         <div className="form-group">
@@ -64,23 +63,23 @@ const CreateAssociationQuizLesson = () => {
                             </select>
                         </div>
                         <div className="form-group">
-                            <label>Lesson</label>
+                            <label>Question</label>
                             <select
-                                name="lesson"
+                                name="question"
                                 className="form-select"
                                 aria-label="Default select example"
                                 onChange={(e) => {
-                                    setLessonId(parseInt(e.target.value));}}>
-                                <option selected>Select the Lesson</option>
-                                {lesson?.map((lesson: Lesson, index: any) => {
+                                    setQuestionId(parseInt(e.target.value));}}>
+                                <option selected>Select the Question</option>
+                                {questions?.map((question: QuestionModel, index: any) => {
                                     return (
-                                        <option key={index} value={lesson?.id}>{lesson?.title}</option>
+                                        <option key={index} value={question?.id}>{question?.textQuestion}</option>
                                     );
                                 })}
                             </select>
                         </div>
 
-                        <button className='btn btn-success' onClick={saveQuizLesson}>add</button>
+                        <button className='btn btn-success' onClick={saveQuizQuestion}>add</button>
                         <button className='btn btn-danger' onClick={backToSettingsCourseLesson}>Back</button>
                     </form>
                 </div>
@@ -89,4 +88,4 @@ const CreateAssociationQuizLesson = () => {
     );
 };
 
-export default CreateAssociationQuizLesson;
+export default CreateAssociationQuizQuestion;
