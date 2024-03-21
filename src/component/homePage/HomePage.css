@@ -5,7 +5,6 @@
     justify-content: center;
     margin-bottom: 5em;
 }
-
 .containerLegend{
     background-color: transparent;
     height: 5em;
@@ -13,27 +12,24 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: 0.5px 0.5px 0.5px black;
+    background-color: #DCDDFC;
 }
-
 .containerTitleLegend{
     width: 70%;
 }
-
 .titleLegend{
     margin: 0;
     margin-left: 1.3em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.3em;
     font-weight: 900;
-    color: black;
+    color:  #0E111E;
 }
-
 .containerButtonLegend{
     width: 30%;
     display: flex;
     justify-content: space-around;
 }
-
 .buttonLegend{
     background-color: transparent;
     border: none;
@@ -41,46 +37,20 @@
     padding: 1em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-
 .buttonLegend:hover{
-    color: rgb(147, 48, 48);
+    color: #0E111E;
     padding-bottom: 0.5em;
-    border-bottom: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid #0E111E;
 
 }
-
-.containerWhoWeAre{
+.containerSectionHome{
     margin-top: 2em;
     display: flex;
     flex-direction: row;
     width: 100%;
     height: 40em;
 }
-.containerWhatIsIt{
-    margin-top: 2em;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 40em;
-}
-.containerWhatWeOffer{
-    margin-top: 2em;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 40em;
-}
-.textWhoWeAre{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
-.textWhatIsIt{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
-.textWhatWeOffer{
+.textSectionHome{
     display: flex;
     flex-direction: column;
     width: 50%;
@@ -93,7 +63,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: auto;
-    border: 2px solid;
+    border: 2px solid #0E111E;
     padding: 8px;
     border-radius: 25px;
     margin-right: 1em;
@@ -107,7 +77,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: auto;
-    border: 2px solid;
+    border: 2px solid #0E111E;
     padding: 8px;
     border-radius: 25px;
     margin-right: 1em;
@@ -121,71 +91,34 @@
     background-repeat: no-repeat;
     background-size: cover;
     height: auto;
-    border: 2px solid;
+    border: 2px solid #0E111E;
     padding: 8px;
     border-radius: 25px;
     margin-right: 1em;
     margin-left: 10em;
 }
-.containerTitleWhoWeAre{
+.containerTitleSection{
     height: 30%;
 }
-.containerTitleWhatWeOffer{
-    height: 30%;
-}
-.containerTitleWhatIsIt{
-    height: 30%;
-}
-.titleWhoWeAre{
+.titleSection{
     margin-left: 1em;
     font-size: 3.5em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.titleWhatIsIt{
-    margin-left:1em;
-    font-size: 3.5em;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.titleWhatWeOffer{
-    margin-left: 1em;
-    font-size: 3.5em;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.containerDescriptionWhoWeAre{
+.containerDescription{
     height: 70%;
 }
 .containerDescriptionWhatIsIt{
     height: 70%;
     margin-left: 2em;
 }
-.containerDescriptionWhatWeOffer{
-    height: 70%;
-}
-
-.descriptionWhoWeAre{
+.descriptionSection{
     margin-left: 2.5em;
     margin-right: 2.5em; 
     font-size: 1.1em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.descriptionWhatIsIt{
-    margin-left: 2.5em;
-    margin-right: 2.5em; 
-    font-size: 1.1em;
+.descriptionTitleSection{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.descriptionWhatWeOffer{
-    margin-left: 2.5em;
-    margin-right: 2.5em; 
-    font-size: 1.1em;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.descriptionTitleWhatWeOffer{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:rgb(147, 48, 48)
-}
-.descriptionTitleWhoWeAre{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:rgb(147, 48, 48);
+    color:#6f47c5;
 }

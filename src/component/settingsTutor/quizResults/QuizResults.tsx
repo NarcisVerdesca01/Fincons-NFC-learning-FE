@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import QuizResultsModel from "../../../models/QuizResultsModel";
 import QuizResultsService from "../../../services/QuizResultsService";
+import { Modal } from "react-bootstrap";
 
 const QuizResults = () => {
     const [quizResults, setQuizResults] = useState<QuizResultsModel[]>([]);
@@ -20,44 +21,52 @@ const QuizResults = () => {
         navigate("/settings_tutor")
     }
 
+    const getScoreColor = (score: number) => {
+        if (score > 50) {
+            return "text-success";
+        } else if (score < 50) {
+            return "text-danger";
+        } else {
+            return "text-warning";
+        }
+    };
+
     return (
-        <div>
-            <div>
-                <h3> View Quiz Results </h3>
-                <div>
-                    <form>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Id</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Quiz Title</th>
-                                    <th scope="col">Total Score</th>
-                                    <th scope="col">Date</th>
+
+        <div style={{ overflowX: "auto" }}>
+            <h3 className="display-4 text-danger text-center">Quiz Results</h3>
+            <form>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" className="display-6 text-center ">Id</th>
+                            <th scope="col" className="display-6 text-center">First</th>
+                            <th scope="col" className="display-6 text-center">Last</th>
+                            <th scope="col" className="display-6 text-center">Email</th>
+                            <th scope="col" className="display-6 text-center">Quiz</th>
+                            <th scope="col" className="display-6 text-center">Score</th>
+                            <th scope="col" className="display-6 text-center">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {quizResults.map((quizResult) => {
+                            return (
+                                <tr key={quizResult.id}>
+                                    <th scope="row"> {quizResult.id}</th>
+                                    <td className="text-center font-weight-bold">{quizResult.user.firstName}</td>
+                                    <td className="text-center font-weight-bold">{quizResult.user.lastName}</td>
+                                    <td className="text-center fw-light">{quizResult.user.email}</td>
+                                    <td className="text-center fw-light">{quizResult.quiz.title}</td>
+                                    <td className={`text-center font-weight-bold ${getScoreColor(quizResult.totalScore)}`}>{quizResult.totalScore}%</td>
+                                    <td className="text-center fw-light">{quizResult.whenDone ? JSON.stringify(quizResult.whenDone) : "N/A"}</td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {quizResults.map((quizResult) => {
-                                    return (
-                                        <tr key = {quizResult.id}>
-                                        <th scope="row"> {quizResult.id}</th>
-                                        <td>{quizResult.user.firstName}</td>
-                                        <td>{quizResult.user.lastName}</td>
-                                        <td>{quizResult.user.email}</td>
-                                        <td>{quizResult.quiz.title}</td>
-                                        <td>{quizResult.totalScore}%</td>
-                                        <td>{quizResult.whenDone ?JSON.stringify( quizResult.whenDone) : "N/A"}</td>
-                                    </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
-                        <button className='btn btn-danger' onClick={backToSettings}>Indietro</button>
-                    </form>
-                </div>
-            </div>
+                            );
+                        })}
+                    </tbody>
+                </table>
+                <button className='btn btn-danger text-center"' onClick={backToSettings}>Indietro</button>
+            </form>
+
         </div>
     );
 };

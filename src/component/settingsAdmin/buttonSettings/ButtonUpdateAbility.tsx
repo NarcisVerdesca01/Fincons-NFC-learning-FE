@@ -15,7 +15,7 @@ const ButtonUpdateAbility = () => {
         onClick={handleShow}
         style={{ margin: "0.5em" }}
       >
-        Ability <i className="bi bi-arrow-clockwise"></i>
+        Ability <i className="bi bi-arrow-repeat"></i>
       </Button>
 
       <Modal show={show} onHide={handleClose} keyboard={false}>

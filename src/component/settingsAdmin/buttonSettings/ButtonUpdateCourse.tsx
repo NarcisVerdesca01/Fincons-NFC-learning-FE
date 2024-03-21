@@ -12,7 +12,7 @@ const ButtonUpdateCourse = () => {
     return (
         <>
             <Button variant="warning" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Course <i className="bi bi-arrow-clockwise"></i>
+                Course <i className="bi bi-arrow-repeat"></i>
             </Button>
 
             <Modal show={show}

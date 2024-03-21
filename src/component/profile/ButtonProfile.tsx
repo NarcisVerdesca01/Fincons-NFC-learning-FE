@@ -2,7 +2,6 @@ import { Button, Modal } from "react-bootstrap";
 import Profile from "./Profile";
 import { useState } from "react";
 
-
 const ButtonProfile = () => {
   const [show, setShow] = useState(false);
 
@@ -16,7 +15,8 @@ const ButtonProfile = () => {
 
       <Modal show={show} onHide={handleClose} keyboard={false}>
         <Modal.Body>
-          <Profile />
+          <Profile 
+          />
         </Modal.Body>
       </Modal>
     </>

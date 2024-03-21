@@ -61,11 +61,11 @@
     align-items: center;
     justify-content: center;
     border: 0;
-    color: rgb(148, 47, 47);
+    color: #804DF0;
     transition: transform 0.6s;
     margin-left: 4.5em;
     width: 5em;
-    border: 2px solid rgb(148, 47, 47);
+    border: 2px solid #804DF0;
     border-radius: 15px;
 }
 .buttonBack:hover{
