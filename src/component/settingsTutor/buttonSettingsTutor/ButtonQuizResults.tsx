@@ -18,7 +18,9 @@ const ButtonCreateQuiz = () => {
             <Modal show={show}
                 onHide={handleClose}
                 backdrop="static"
-                keyboard={false}>
+                keyboard={false}
+                size='lg'
+                >
                 <Modal.Body>
                     <QuizResults/>
                 </Modal.Body>
