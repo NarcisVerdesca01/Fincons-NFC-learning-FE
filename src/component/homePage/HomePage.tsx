@@ -23,16 +23,16 @@ const HomePage = () => {
             </a>
           </div>
         </div>
-        <div className={`containerWhoWeAre`} id="whoWeAre">
-          <div className={`textWhoWeAre`}>
-            <div className={`containerTitleWhoWeAre`}>
-              <h3 className={`titleWhoWeAre`}>
+        <div className={`containerSectionHome`} id="whoWeAre">
+          <div className={`textSectionHome`}>
+            <div className={`containerTitleSection`}>
+              <h3 className={`titleSection`}>
                 Welcome to our E-Learning web site
               </h3>
             </div>
-            <div className={`containerDescriptionWhoWeAre`}>
-              <p className={`descriptionWhoWeAre`}>
-                <h4 className={`descriptionTitleWhoWeAre`}>The team of NFC</h4>
+            <div className={`containerDescription`}>
+              <p className={`descriptionSection`}>
+                <h4 className={`descriptionTitleSection`}>The team of NFC</h4>
                 <p>
                   has always promoted innovative training methods in order to
                   offer a complete and effective study experience. We are
@@ -43,7 +43,7 @@ const HomePage = () => {
                   areas with the aim of looking at possible technological
                   innovations including:
                 </p>
-                <h4 className={`descriptionTitleWhoWeAre`}>
+                <h4 className={`descriptionTitleSection`}>
                   E-Learning platforms.
                 </h4>
               </p>
@@ -51,15 +51,15 @@ const HomePage = () => {
           </div>
           <div className={`containerImgWhoWeAre`}></div>
         </div>
-        <div className={`containerWhatIsIt`} id="whatIsIt">
+        <div className={`containerSectionHome`} id="whatIsIt">
           <div className={`containerImgWhatIsIt`}></div>
-          <div className={`textWhatIsIt`}>
-            <div className={`containerTitleWhatIsIt`}>
-              <h3 className={`titleWhatIsIt`}>What is it?</h3>
+          <div className={`textSectionHome`}>
+            <div className={`containerTitleSection`}>
+              <h3 className={`titleSection`}>What is it?</h3>
             </div>
             <div className={`containerDescriptionWhatIsIt`}>
-              <p className={`descriptionWhatIsIt`}>
-                <h4 className={`descriptionTitleWhatWeOffer`}>
+              <p className={`descriptionSection`}>
+                <h4 className={`descriptionTitleSection`}>
                   To explane it simply
                 </h4>
                 <p>
@@ -70,7 +70,7 @@ const HomePage = () => {
                   is distance learning. <br></br>The term e-learning was coined
                   in the late 1990s which described it as
                 </p>
-                <h5 className={`descriptionTitleWhatWeOffer`}>
+                <h5 className={`descriptionTitleSection`}>
                   “the way network technology designs, distributes, selects,
                   administers and expands training”
                 </h5>
@@ -87,14 +87,14 @@ const HomePage = () => {
             </div>
           </div>
         </div>
-        <div className={`containerWhatWeOffer`} id="whatWeOffer">
-          <div className={`textWhatWeOffer`}>
-            <div className={`containerTitleWhatWeOffer`}>
-              <h3 className={`titleWhatWeOffer`}>What we offer</h3>
+        <div className={`containerSectionHome`} id="whatWeOffer">
+          <div className={`textSectionHome`}>
+            <div className={`containerTitleSection`}>
+              <h3 className={`titleSection`}>What we offer</h3>
             </div>
-            <div className={`containerDescriptionWhatWeOffer`}>
-              <p className={`descriptionWhatWeOffer`}>
-                <h4 className={`descriptionTitleWhatWeOffer`}>
+            <div className={`containerDescription`}>
+              <p className={`descriptionSection`}>
+                <h4 className={`descriptionTitleSection`}>
                   A single platform to manage and monitor your training courses!
                 </h4>
                 <p>
