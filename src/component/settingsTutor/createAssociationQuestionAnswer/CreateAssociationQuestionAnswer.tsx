@@ -18,7 +18,7 @@ const CreateAssociationQuestionAnswer = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        QuestionService.getQuestionsWithoutAssociationWithAnswer().then((res1) => {
+        QuestionService.getQuestions().then((res1) => {
             setQuestions(res1.data);
         })
     }, []);

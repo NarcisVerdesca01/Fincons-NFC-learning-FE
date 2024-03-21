@@ -16,7 +16,7 @@ const CreateAssociationQuizQuestion = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        QuizService.getQuizzesWithoutAssociationWithQuestion().then((res1) => {
+        QuizService.getQuizzes().then((res1) => {
             setQuiz(res1.data);
         })
     }, []);
