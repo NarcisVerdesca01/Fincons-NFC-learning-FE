@@ -38,8 +38,8 @@ const CreateQuiz = () => {
                                 }}
                             ></input>
                         </div>
-                        <button className='btn btn-success' onClick={saveQuiz}>Crea Corso</button>
-                        <button className='btn btn-danger' onClick={backToSettings}>Indietro</button>
+                        <button className='btn btn-success' onClick={saveQuiz}>Create Quiz</button>
+                        <button className='btn btn-danger' onClick={backToSettings}>Back</button>
                     </form>
                 </div>
             </div>
