@@ -126,7 +126,7 @@ const deleteAbilityCourse = async (courseId: number) => {
     }
 };
 
-const CourseService = {
+const AbilityCourseService = {
     getAbilityCourses,
     getAbilityCourseById,
     createAbilityCourse,
@@ -134,4 +134,4 @@ const CourseService = {
     deleteAbilityCourse
 };
 
-export default CourseService;
+export default AbilityCourseService;

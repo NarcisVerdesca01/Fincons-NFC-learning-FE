@@ -12,7 +12,6 @@ import AbilityCourseService from "../../../services/AbilityCourseService";
 import Ability from "../../../models/AbilityModel";
 
 const CreateAssociationCourseLesson = () => {
-    const [abilityCourse, setAbilityCourse] = useState<AbilityCourse>();
     const [course, setCourse] = useState<any>();
     const [ability, setAbility] = useState<any>();
     const [courseId, setCourseId] = useState<any>();
