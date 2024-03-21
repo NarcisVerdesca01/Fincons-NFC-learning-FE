@@ -34,17 +34,22 @@ const createCourseLesson = async (courseId: number, lessonId: number) => {
     const token = Cookies.get("jwt-token");
 
     try {
-        const response = await axios.post(CREATE_COURSE_LESSON, {
-            course: {
-                id: courseId
+        const response = await axios.post(
+            CREATE_COURSE_LESSON,
+            {
+                course: {
+                    id: courseId
+                },
+                lesson: {
+                    id: lessonId
+                }
             },
-            lesson: {
-                id: lessonId
+            {
+                headers: { 
+                    Authorization: `Bearer ${token}` 
+                },
             }
-        },
-        {
-            headers: { Authorization: `Bearer ${token}` },
-        });
+        );
         return response.data;
     } catch (error) {
         console.error("Error getting courses:", error);

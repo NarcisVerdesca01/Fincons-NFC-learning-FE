@@ -1,8 +1,8 @@
 import Header from "../header/Header";
 import "./SettingsTutor.css";
 import ButtonCreateAssociationCourseLesson from "./buttonSettingsTutor/ButtonCreateAssocationCourseLesson";
-import ButtonCreateAssociationQuizLesson from "./buttonSettingsTutor/ButtonCreateAssocationQuizLesson";
 import ButtonQuizResults from "./buttonSettingsTutor/ButtonQuizResults";
+import ButtonCreateAssociationQuizLesson from "./buttonSettingsTutor/ButtonCreateAssocationQuizLesson";
 import ButtonCreateQuiz from "./buttonSettingsTutor/ButtonCreateQuiz";
 
 const SettingsTutor = () => {
@@ -32,7 +32,6 @@ const SettingsTutor = () => {
                             <ButtonCreateAssociationQuizLesson />
                         </div>
                     </div>
-                
                     <div className={`containerOptions`}>
                         <p>View section</p>
                         <div className={`optionSettings`}>
