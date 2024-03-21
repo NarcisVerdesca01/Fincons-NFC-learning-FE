@@ -2,7 +2,6 @@ import { Button, Modal } from "react-bootstrap";
 import Profile from "./Profile";
 import { useState } from "react";
 
-
 const ButtonProfile = () => {
   const [show, setShow] = useState(false);
 
@@ -10,7 +9,7 @@ const ButtonProfile = () => {
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button variant="light" onClick={handleShow} style={{ margin: "0.5em" }}>
+      <Button variant=" " onClick={handleShow} style={{ margin: "0.5em" }}>
         <i className="bi bi-person-fill"></i>
       </Button>
 

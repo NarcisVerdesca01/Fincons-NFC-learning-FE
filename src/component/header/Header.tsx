@@ -103,7 +103,7 @@ const Header = () => {
                             {/*<button className={`buttonNavBar`} onClick={goToProfile}>
                                 <p className={`nameButton`}>Profile</p>
                         </button>*/}
-                        <ButtonProfile/>
+                        <p className={`nameButton`}><ButtonProfile /></p>
                         </div>
                     </div>
 
