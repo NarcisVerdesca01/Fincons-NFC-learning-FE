@@ -1,5 +1,5 @@
 .footer-style {
-    background-color: #BA8EF0;
+    background-color: #0E111E;
     min-width: 100% !important;
     margin-bottom: 1em;
     padding-bottom: 1em;
@@ -7,7 +7,7 @@
 }
 .footer-text {
     display: flex;
-    color: #2F4858;
+    color: #EDF1FA;
     font-size: medium;
     justify-content: center;
     margin-top: 2em;
@@ -15,8 +15,8 @@
     padding-bottom: 0;
 }
 .text-center{
-    color:black;
+    color:#EDF1FA;
 }
 .footer-icon{
-    color: #804DF0;
+    color: #d1aadd;
 }

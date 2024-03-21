@@ -25,7 +25,7 @@ const Profile = () => {
       console.log(res.data, "get userDetails");
       setUser(res.data);
       setAbilities(res.data.abilities);
-      setCourse(res.data.abilities[0].courses);
+      setCourse(res.data);
       setLesson(res);
     });
   }, []);
@@ -33,49 +33,42 @@ const Profile = () => {
   return (
     <div className={`componentPageProfile`}>
       {/* <Header />*/}
+      <div className={`containerTitleProfile`}>
+        <h3 className={`titleHeaderProfile`}>User Details:</h3>
+      </div>
       <div className={`containerUserProfile`}>
-        <div className={`containerTitleHeader`}>
-          <h3 className={`titleHeader`}>User Details:</h3>
-        </div>
-        <div className={`containerMenu`}>
+        <div className={`containerMenuProfile`}>
           <div className={`userDetails`}>
-            <p>
-              Name: <br></br>
-              {user?.firstName} {user?.lastName}
-            </p>
-            <p>
-              Email: <br></br>
-              {user?.email}
-            </p>
-          </div>
-
-          <div className={`userDetails`}>
-            <p>
-              Birthdate:<br></br>
-              {user?.birthDate?.toString()}
-            </p>
-          </div>
-
-          <div className={`userDetails`}>
-            Abilities:
-            {abilities?.map((ability: any) => (
-              <div>{ability?.ability.name}</div>
-            ))}
-          </div>
-          <br></br>
-          <div className={`userDetails`}>
-            <p>Courses:</p>
-            {course?.name}
-          </div>
-          <div className={`userDetails`}>
-            <p>Lessons:</p>
-          </div>
-          <div className={`userDetails`}>
-            <p>
-              Hai partecipato a: <br></br>
-              {quiz?.title} <br></br>con punteggio: {}
+            <p className={`profileAnagraphic`}>Name:</p>
+            <p className={`profileAnagraphic`}>Surname:</p>
+            <p className={`profileAnagraphic`}>Email:</p>
+            <p className={`profileAnagraphic`}>Birthdate:</p>
+            <p className={`profileAnagraphic`}>Abilities:</p>
+            <p className={`profileAnagraphic`}>Courses:</p>
+            <p className={`profileAnagraphic`}>Lessons:</p>
+            <p className={`profileAnagraphic`}>
+              Hai partecipato a:
+              <br></br>con punteggio: {}
               <br></br>
             </p>
+          </div>
+        </div>
+
+        <div className={`containerMenu`}>
+          <div className={`userDetails`}>
+            <p>{user?.firstName}</p>
+            <p>{user?.lastName}</p>
+            <p>{user?.email}</p>
+            <p>{user?.birthDate?.toString()}</p>
+            <p>
+              {abilities?.map((ability: any) => (
+                <div>{ability?.ability?.name}</div>
+              ))}{" "}
+            </p>
+
+            <p>corsi</p>
+            <p>lezioni</p>
+            <p>quiz{quiz?.title}</p>
           </div>
         </div>
       </div>
