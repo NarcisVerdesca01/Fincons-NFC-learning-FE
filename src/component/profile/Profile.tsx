@@ -59,7 +59,7 @@ const Profile = () => {
           <div className={`userDetails`}>
             Abilities:
             {abilities?.map((ability: any) => (
-              <div>{ability?.ability.name}</div>
+              <div>{ability?.ability?.name}</div>
             ))}
           </div>
           <br></br>
