@@ -10,13 +10,12 @@ const ButtonCreateCourse = () => {
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button
-        variant="success"
-        onClick={handleShow}
-        style={{ margin: "0.5em" }}
-      >
-        Tutor <i className="bi bi-plus-circle"></i>
-      </Button>
+      <button
+                className={`buttonModalCreate`}
+                onClick={handleShow}
+                style={{ margin: "0.5em" }}>
+                <span className={`frontCreate`}>Tutor <i className="bi bi-plus-circle"></i></span>
+            </button>
 
       <Modal show={show} onHide={handleClose} keyboard={false}>
         <Modal.Body>
