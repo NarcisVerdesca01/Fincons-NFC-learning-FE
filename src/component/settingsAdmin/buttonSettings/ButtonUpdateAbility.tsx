@@ -10,13 +10,12 @@ const ButtonUpdateAbility = () => {
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button
-        variant="warning"
+      <button
+        className={`buttonModalUpdate`}
         onClick={handleShow}
-        style={{ margin: "0.5em" }}
-      >
-        Ability <i className="bi bi-arrow-repeat"></i>
-      </Button>
+        style={{ margin: "0.5em" }}>
+        <span className={`frontUpdate`}>Ability <i className="bi bi-trash3"></i></span>
+      </button>
 
       <Modal show={show} onHide={handleClose} keyboard={false}>
         <Modal.Body>
