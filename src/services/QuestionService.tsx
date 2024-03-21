@@ -18,7 +18,6 @@ const RESEND_QUIZ = VERSION_URI + "/quiz-student-result/quiz-redo";
 const ASSOCIATE_WITH_LESSON = QUESTION_URI + "/associatelesson";
 const CHECK_QUIZ = VERSION_URI + "/quiz-student-result/check";
 
-
 //RIVEDI GLI ENDPOINT CARLO CHE NON TUTTI COINCIDONO HO USATO SOLO QUELLI CHE MI SERVIVANO PER LE ASSOCIAZIONI
 
 const getQuestions = async () => {
@@ -83,9 +82,6 @@ const getQuestionById = async (questionId: number | undefined) => {
     throw error;
   }
 };
-
-
-
 
 const QuestionService = {
   getQuestions,
