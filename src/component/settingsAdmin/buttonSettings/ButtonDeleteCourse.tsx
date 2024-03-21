@@ -12,9 +12,12 @@ const ButtonDeleteCourse = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="danger" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Course <i className="bi bi-trash3"></i>
-            </Button>
+            <button
+        className={`buttonModalDelete`}
+        onClick={handleShow}
+        style={{ margin: "0.5em" }}>
+        <span className={`frontDelete`}>Course <i className="bi bi-trash3"></i></span>
+      </button>
 
             <Modal show={show}
                 onHide={handleClose}

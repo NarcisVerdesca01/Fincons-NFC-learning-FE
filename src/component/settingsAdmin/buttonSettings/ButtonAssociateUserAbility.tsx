@@ -15,7 +15,7 @@ const ButtonAssociateUserAbility = () => {
         onClick={handleShow}
         style={{ margin: "0.5em" }}
       >
-        <span className={`front`}>User to Ability <i className="bi bi-person-fill-add"></i></span>
+        <span className={`frontAssociation`}>User to Ability <i className="bi bi-person-fill-add"></i></span>
       </button>
 
       <Modal show={show}
