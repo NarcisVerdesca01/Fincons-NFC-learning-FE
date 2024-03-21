@@ -79,7 +79,7 @@ const deleteContent = async (contentId: number | undefined) => {
     }
 };
 
-const AbilityService = {
+const ContentService = {
     getContents,
     getContentById,
     createContent,
@@ -87,4 +87,4 @@ const AbilityService = {
     deleteContent
 };
 
-export default AbilityService;
+export default ContentService;
