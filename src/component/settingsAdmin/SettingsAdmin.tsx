@@ -1,7 +1,7 @@
 import Header from "../header/Header";
 import updateImage from '../../assets/update_image.png'
 import deleteImage from '../../assets/delet_img.png'
-import createImage from '../../assets/add_image.jpg'
+import createImage from '../../assets/add_image.png'
 import associateImage from '../../assets/img_associate.jpg'
 import "./SettingsAdmin.css";
 import ButtonCreateAbility from "./buttonSettings/ButtonCreateAbility";
