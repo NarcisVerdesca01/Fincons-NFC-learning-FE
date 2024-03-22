@@ -26,7 +26,7 @@ const QuizPage = (props: Props) => {
     const [showRedoQuizButton, setShowRedoQuizButton] = useState(true);
 
     //variabile di stato per verificare se il quiz è stato già svolto dallo studente 
-    const [maxSelectableAnswers, setMaxSelectableAnswers] = useState<number>();
+    const [maxSelectableAnswers, setMaxSelectableAnswers] = useState<number>(0);
     //variabile di stato per verificare se il quiz è stato già svolto dallo studente 
     const [quizAlreadyDone, setQuizAlreadyDone] = useState<boolean>(false);
     //variabile di stato per verificare se l'utente vuole rieseguire il quiz
@@ -121,8 +121,8 @@ const QuizPage = (props: Props) => {
         setUserAnswers((prevAnswers) => {
             const updatedAnswers = { ...prevAnswers };
             const currentQuestion = questionList?.[currentQuestionIndex];
-            const maxSelectableAnswers = currentQuestion?.answers.filter(answer => answer.correct).length;
-            setMaxSelectableAnswers(maxSelectableAnswers);
+            const maxCorrectAnswers = currentQuestion?.answers.filter(answer => answer.correct).length || 0;
+            setMaxSelectableAnswers(maxCorrectAnswers);
 
             if (maxSelectableAnswers !== undefined) {
                 // Verifica se la domanda corrente ha più di una risposta corretta
@@ -214,62 +214,68 @@ const QuizPage = (props: Props) => {
     const totalScorePercentage = totalScoreQuiz !== null ? Math.floor(totalScoreQuiz) : null;
     if (totalScorePercentage !== null) {
         if (totalScorePercentage === 100) {
-            scoreMessage = <span style={{ color: 'green' }}>Ottimo lavoro {nameOfStudent}! Hai risposto correttamente a tutte le domande del quiz!</span>;
+            scoreMessage = <span style={{ color: 'green' }}>Good job, {nameOfStudent}! You answered all the quiz questions correctly!</span>;
         } else if (totalScorePercentage == 0) {
-            scoreMessage = <span style={{ color: 'red' }}>Peccato {nameOfStudent}, non hai superato il test. Hai risposto correttamente solo allo {totalScorePercentage}% delle domande del quiz.</span>;
+            scoreMessage = <span style={{ color: 'red' }}>Too bad {nameOfStudent}, you failed the test. You answered only {totalScorePercentage}% of the quiz questions correctly.</span>;
         } else if (totalScorePercentage < 40) {
-            scoreMessage = <span style={{ color: 'red' }}>Peccato {nameOfStudent}, non hai superato il test. Hai risposto correttamente solo al {totalScorePercentage}% delle domande del quiz.</span>;
+            scoreMessage = <span style={{ color: 'red' }}>Too bad {nameOfStudent}, you failed the test. You answered only {totalScorePercentage}% of the quiz questions correctly.</span>;
         } else if (totalScorePercentage >= 40 && totalScorePercentage < 60) {
-            scoreMessage = <span style={{ color: 'red' }}>Test non superato. Potresti fare di meglio {nameOfStudent}! Hai risposto correttamente al {totalScorePercentage}% delle domande del quiz. Ci sei quasi!</span>;
+            scoreMessage = <span style={{ color: 'red' }}>Failed test. You could do better {nameOfStudent}! You answered {totalScorePercentage}% of the quiz questions correctly. You are almost there!</span>;
         } else if (totalScorePercentage >= 60) {
-            scoreMessage = <span style={{ color: 'green' }}>Test superato {nameOfStudent}! Hai risposto correttamente al {totalScorePercentage}% delle domande del quiz.</span>;
+            scoreMessage = <span style={{ color: 'green' }}>Test passed {nameOfStudent}! You answered {totalScorePercentage}% of the quiz questions correctly.</span>;
         }
     }
     return (
         <div className="center-content">
             {quiz?.id && (
                 <div>
-                    <h2>Quiz della lezione: {quiz?.lesson.title} e id lesson: {quiz?.lesson?.id}</h2>
+                    <h2>Quiz Of Lesson: {quiz?.lesson.title}</h2>
                 </div>
             )}
-            {quizAlreadyDone ? (
+            {quizAlreadyDone && (
                 <div>
                     {showRedoQuizButton && (
                         <div style={{ textAlign: "center" }}>
                             <div className="alert alert-warning" role="alert">
-                                Hai già svolto questo quiz!
-                                Vuoi riprovarci?
+                            You have already taken this quiz! Do you want to try again?
                             </div>
                             <div>
-                                <button className="btn btn-outline-secondary" onClick={handleRedoQuiz}>RIESEGUI IL QUIZ</button>
+                                <button className="btn btn-outline-secondary" onClick={handleRedoQuiz}>REDO QUIZ</button>
                             </div>
                         </div>
                     )}
-                    {userWantToDoItAgain ? (
+                  
+                  {/*   {userWantToDoItAgain ? (
                         <div>
                             <p>L'utente vuole rifarlo</p>
                         </div>
                     ) : (
                         <p>L'utente non vuole rifarlo</p>
-                    )}
+                    )} */}               
+
+
                 </div>
-            ) : (
-                <div>
-                    <p>Il quiz non è stato ancora svolto</p>
-                </div>
-            )
+
+
+            ) 
             }
-            {/*NUOVO COMPONENTE QUIZ*/}
+           
             {questionList && questionList.length > 0 && (
                 <div className="card" style={{ marginTop: "10%", marginBottom: "10%", width: "50%" }} >
                     <div className="card-header header-quiz">
                         <h4 className="quiz-title"> {quiz?.title}</h4>
-                        <p className="question-index">Domanda {currentQuestionIndex + 1} su {questionList.length}</p>
+                        <p className="question-index">Question {currentQuestionIndex + 1} of {questionList.length}</p>
                     </div>
                     {!quizSubmitted && currentQuestion && (
                         <div>
                             <div className="text-question">
                                 <h5>{currentQuestion.textQuestion}</h5>
+                                {maxSelectableAnswers > 1 && (
+                                    <div>
+                                        <p>Select the {maxSelectableAnswers} correct answers.</p>
+                                    </div>
+                                )}
+
                             </div>
                             <div className="answer-section d-flex flex-column  align-items-center">
                                 {currentQuestion.answers.map((answer) => (
@@ -306,17 +312,17 @@ const QuizPage = (props: Props) => {
                             </div>
                             {showSubmitButton && (
                                 <div className="card-footer send-quiz-button">
-                                    <button className="btn btn-outline-dark" disabled={!areAllQuestionsAnswered()} onClick={sendAnswers}>Invia</button>
+                                    <button className="btn btn-outline-dark" disabled={!areAllQuestionsAnswered()} onClick={sendAnswers}>Send Quiz</button>
                                 </div>
                             )}
                         </div>
                     )}
                     {quizSubmitted && (
                         <div className="quiz-submitted-message">
-                            <h4 className="quiz-done-label">Quiz terminato!</h4>
+                            <h4 className="quiz-done-label">Quiz completed!</h4>
                             {scoreMessage && <div className="quiz-done-label-message">{scoreMessage}</div>}
                             {lessonOfQuiz && (
-                                <button onClick={() => gotToLessonPage(lessonOfQuiz)}>Torna alla lezione</button>
+                                <button className="btn btn-outline-secondary back-to-lesson-button" onClick={() => gotToLessonPage(lessonOfQuiz)}>Back to lesson</button>
                             )}
                         </div>
                     )}
