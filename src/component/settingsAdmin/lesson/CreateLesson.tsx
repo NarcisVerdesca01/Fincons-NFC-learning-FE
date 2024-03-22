@@ -26,7 +26,7 @@ const CreateLesson = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, setError: React.Dispatch<React.SetStateAction<boolean>>, setErrorMessage: React.Dispatch<React.SetStateAction<string>>) => {
     const { name, value } = event.target;
-    const inputValue = value.trim();
+    const inputValue = value;
     const inputLength = inputValue.length;
 
     if (name === 'title' && (inputLength < 1 || inputLength > 255)) {
