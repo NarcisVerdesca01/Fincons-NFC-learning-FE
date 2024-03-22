@@ -11,9 +11,12 @@ const ButtonUpdateLesson = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="warning" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Lesson <i className="bi bi-arrow-repeat"></i>
-            </Button>
+            <button
+        className={`buttonModalUpdate`}
+        onClick={handleShow}
+        style={{ margin: "0.5em" }}>
+        <span className={`frontUpdate`}>Lesson <i className="bi bi-arrow-repeat"></i></span>
+      </button>
 
             <Modal show={show}
                 onHide={handleClose}

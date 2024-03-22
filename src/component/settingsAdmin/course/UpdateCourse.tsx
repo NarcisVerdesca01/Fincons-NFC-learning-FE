@@ -43,7 +43,7 @@ const UpdateCourse = () => {
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, setError: React.Dispatch<React.SetStateAction<boolean>>, setErrorMessage: React.Dispatch<React.SetStateAction<string>>) => {
     const { name, value } = event.target;
-    const inputValue = value.trim();
+    const inputValue = value;
     const inputLength = inputValue.length;
 
    if (name === 'name' && (inputLength < 1 || inputLength > 255)) {
