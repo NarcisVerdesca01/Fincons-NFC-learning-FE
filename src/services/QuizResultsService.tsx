@@ -6,8 +6,9 @@ const API_BASE_URL =
 const VERSION_URI = API_BASE_URL + "/v1";
 const QUIZ_RESULTS_URI = VERSION_URI + "/quiz-student-result";
 const GET_ALL_URI = QUIZ_RESULTS_URI + "/list";
+const GET_ALL_FOR_SINGLE_STUDENT = QUIZ_RESULTS_URI + "/student";
 
-const getQuizResults = async () => {
+const getQuizResultsForTutor = async () => {
     const token = Cookies.get("jwt-token");
     try {
         const response = await axios.get(GET_ALL_URI,
@@ -22,8 +23,28 @@ const getQuizResults = async () => {
         throw error;
     }
 }
+
+
+const getQuizResultsForSingleStudent = async () => {
+    const token = Cookies.get("jwt-token");
+    try {
+        const response = await axios.get(GET_ALL_FOR_SINGLE_STUDENT,
+            {
+                headers: { Authorization: `Bearer ${token}` },
+            }
+        );
+        return response.data;
+    }
+    catch (error) {
+        console.log(error)
+        throw error;
+    }
+}
+
+
 const QuizResultsService = {
-    getQuizResults
+    getQuizResultsForTutor,
+    getQuizResultsForSingleStudent
 }
 
 export default QuizResultsService;

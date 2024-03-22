@@ -9,6 +9,7 @@ import Course from "../../models/CourseModel";
 import Ability from "../../models/AbilityModel";
 import Quiz from "../../models/QuizModel";
 import Lesson from "../../models/LessonModel";
+import ButtonShowQuizForStudent from "../settingsStudent/buttonSettingsStudent/ButtonShowQuizForStudent";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Profile = () => {
   const [abilities, setAbilities] = useState<Ability[]>([]);
   const [course, setCourse] = useState<Course>();
   const [lesson, setLesson] = useState<Lesson>();
+  const [isStudent, setIsStudent] = useState(false);
 
   useEffect(() => {
     LoginRegistrationService.getUserDetails().then((res) => {
@@ -27,6 +29,7 @@ const Profile = () => {
       setAbilities(res.data.abilities);
       setCourse(res.data);
       setLesson(res);
+      setIsStudent(res.data?.roles[0].name === 'ROLE_STUDENT'); 
     });
   }, []);
 
@@ -68,26 +71,13 @@ const Profile = () => {
                 ))}{" "}
               </td>
             </tr>
-            <tr>
-              <th scope="row"></th>
-              <td>Course:</td>
-              <td>corsi</td>
-            </tr>
-            <tr>
-              <th scope="row"></th>
-              <td>Lesson:</td>
-              <td>lezioni</td>
-            </tr>
-            <tr>
-              <th scope="row"></th>
-              <td>Hai partecipato a::</td>
-              <td>quiz</td>
-            </tr>
-            <tr>
-              <th scope="row"></th>
-              <td>Con punteggio:</td>
-              <td>punteggio quiz</td>
-            </tr>
+            {isStudent && (
+              <tr>
+                <th scope="row"></th>
+                <td>Performed quizzes:</td>
+                <ButtonShowQuizForStudent />
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
