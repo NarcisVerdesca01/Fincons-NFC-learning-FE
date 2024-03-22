@@ -75,7 +75,7 @@ const CreateAssociationQuestionAnswer = () => {
                                 <option selected>Select the Answer</option>
                                 {answers?.map((answer: Answer, index: any) => {
                                     return (
-                                        <option key={index} value={answer?.id}>{answer?.text}</option>
+                                        <option key={index} value={answer?.id}>{answer?.text + "[" + answer?.correct + "]"}  </option>
                                     );
                                 })}
                             </select>
