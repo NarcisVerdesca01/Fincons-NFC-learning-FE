@@ -37,40 +37,32 @@ const Profile = () => {
         <h3 className={`titleHeaderProfile`}>User Details:</h3>
       </div>
       <div className={`containerUserProfile`}>
-        <div className={`containerMenuProfile`}>
-          <div className={`userDetails`}>
-            <p className={`profileAnagraphic`}>Name:</p>
-            <p className={`profileAnagraphic`}>Surname:</p>
-            <p className={`profileAnagraphic`}>Email:</p>
-            <p className={`profileAnagraphic`}>Birthdate:</p>
-            <p className={`profileAnagraphic`}>Abilities:</p>
-            <p className={`profileAnagraphic`}>Courses:</p>
-            <p className={`profileAnagraphic`}>Lessons:</p>
-            <p className={`profileAnagraphic`}>
-              Hai partecipato a:
-              <br></br>con punteggio: {}
-              <br></br>
-            </p>
-          </div>
-        </div>
-
-        <div className={`containerMenu`}>
-          <div className={`userDetails`}>
-            <p>{user?.firstName}</p>
-            <p>{user?.lastName}</p>
-            <p>{user?.email}</p>
-            <p>{user?.birthDate?.toString()}</p>
-            <p>
-              {abilities?.map((ability: any) => (
-                <div>{ability?.ability?.name}</div>
-              ))}{" "}
-            </p>
-
-            <p>corsi</p>
-            <p>lezioni</p>
-            <p>quiz{quiz?.title}</p>
-          </div>
-        </div>
+        <td className={`tableUserProfileAnagraphic`}>
+          <tr>Name:</tr>
+          <tr>Surname:</tr>
+          <tr>Email:</tr>
+          <tr>Birthdate:</tr>
+          <tr>Abilities:</tr>
+          <tr>Courses:</tr>
+          <tr>Lesson:</tr>
+          <tr>Hai partecipato a:</tr>
+          <tr>con punteggio:</tr>
+        </td>
+        <td className={`tableUserProfile`}>
+          <tr>{user?.firstName}</tr>
+          <tr>{user?.lastName}</tr>
+          <tr>{user?.email}</tr>
+          <tr>{user?.birthDate?.toString()}</tr>
+          <tr>
+            {abilities?.map((ability: any) => (
+              <div>{ability?.ability?.name}</div>
+            ))}{" "}
+          </tr>
+          <tr>Corsi</tr>
+          <tr>Lezioni</tr>
+          <tr>Quiz</tr>
+          <tr>Punteggio Quiz</tr>
+        </td>
       </div>
     </div>
   );
