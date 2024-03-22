@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import RegisterTutor from "../registerTutor/RegisterTutor";
 
-const ButtonCreateCourse = () => {
+const ButtonRegisterTutor= () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -26,4 +26,4 @@ const ButtonCreateCourse = () => {
   );
 };
 
-export default ButtonCreateCourse;
+export default ButtonRegisterTutor;
