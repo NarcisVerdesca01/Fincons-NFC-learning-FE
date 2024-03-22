@@ -14,7 +14,7 @@ const ButtonUpdateAbility = () => {
         className={`buttonModalUpdate`}
         onClick={handleShow}
         style={{ margin: "0.5em" }}>
-        <span className={`frontUpdate`}>Ability <i className="bi bi-trash3"></i></span>
+        <span className={`frontUpdate`}>Ability <i className="bi bi-arrow-repeat"></i></span>
       </button>
 
       <Modal show={show} onHide={handleClose} keyboard={false}>
