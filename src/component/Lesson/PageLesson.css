@@ -21,10 +21,16 @@
     border: 2px solid black;
 }
 
-.containerQuizOfLesson {
-     border: 1px solid black;
-     
+.container-quiz-of-lesson {
+    
+     text-align: center;
+     margin-top: 2%;
   
+}
+
+.button-quiz-of-lesson{
+   margin-top: 1%;
+   margin-bottom: 1%;
 }
 
 .iFrameContent{

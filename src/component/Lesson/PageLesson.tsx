@@ -41,7 +41,7 @@ const PageLesson = (props: Props) => {
     console.log(idPage)
     navigate("/lesson_page/" + idPage);
   };
-  
+
   const goToQuizPage = (idQuiz: any) => {
     console.log(idQuiz)
     navigate("/quiz_page/" + idQuiz);
@@ -71,7 +71,21 @@ const PageLesson = (props: Props) => {
               frameBorder="0"
               allowFullScreen
             ></iframe>
+            <div className={`container-quiz-of-lesson`}>
+
+              {lesson?.quiz && (
+                <div>
+                  <button className="btn btn-outline-secondary button-quiz-of-lesson " onClick={() => goToQuizPage(lesson?.quiz?.id)}>Go To Quiz</button>
+                </div>
+              )}
+
+            </div>
+
+
           </div>
+
+
+
 
           <div className={`containerListLessons`}>
             {lessonList.map((lesson: any) => (
@@ -94,13 +108,11 @@ const PageLesson = (props: Props) => {
               </div>
             ))}
           </div>
-          {<div className={`containerQuizOfLesson`}>
-            <button onClick={() => goToQuizPage(lesson?.quiz?.id)}>vai al quiz</button>
-          </div>
 
-}
 
-            </div>
+        </div>
+
+
 
 
 

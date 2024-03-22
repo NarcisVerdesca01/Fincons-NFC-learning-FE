@@ -23,7 +23,7 @@ const CreateAssociationQuizLesson = () => {
     }, []);
 
     useEffect(() => {
-        LessonService.getNotAssociatedLessons().then((res2) => {
+        LessonService.getNotAssociatedLessonsWithQuiz().then((res2) => {
             setLesson(res2.data);
         })
     }, []);

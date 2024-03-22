@@ -16,13 +16,13 @@ const CreateAssociationCourseLesson = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        CourseService.getCoursesWithoutLessonsAssociated().then((res1) => {
+        CourseService.getCourses().then((res1) => {
             setCourse(res1.data);
         })
     }, []);
 
     useEffect(() => {
-        LessonService.getNotAssociatedLessons().then((res2) => {
+        LessonService.getNotAssociatedLessonsWithCourse().then((res2) => {
             setLesson(res2.data);
         })
     }, []);
