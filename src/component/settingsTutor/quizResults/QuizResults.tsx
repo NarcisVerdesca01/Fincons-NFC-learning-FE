@@ -10,7 +10,7 @@ const QuizResults = () => {
 
 
     useEffect(() => {
-        QuizResultsService.getQuizResults().then((res) => {
+        QuizResultsService.getQuizResultsForTutor().then((res) => {
             console.log(res.data)
 
             setQuizResults(res.data);
@@ -64,7 +64,7 @@ const QuizResults = () => {
                         })}
                     </tbody>
                 </table>
-                <button className='btn btn-danger text-center"' onClick={backToSettings}>Indietro</button>
+                <button className='btn btn-danger text-center"' onClick={backToSettings}>Back</button>
             </form>
 
         </div>

@@ -1,29 +1,31 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import QuizResults from '../quizResults/QuizResults';
+import ShowQuizForStudent from '../showQuizForStudent/ShowQuizForStudent';
 
-const ButtonCreateQuiz = () => {
+const ButtonCreateQuestion = () => {
     const [show, setShow] = useState(false);
 
+    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
         <>
             <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-                View <i className="bi bi-patch-question"></i>
+                Quizzes <i className="bi bi-patch-question"></i>
             </Button>
+
 
             <Modal show={show}
                 onHide={handleClose}
                 size='lg'
-                >
-                <Modal.Body>
-                    <QuizResults/>
+            >
+            <Modal.Body >
+                    <ShowQuizForStudent />
                 </Modal.Body>
             </Modal>
         </>
     );
 }
 
-export default ButtonCreateQuiz;
+export default ButtonCreateQuestion;
