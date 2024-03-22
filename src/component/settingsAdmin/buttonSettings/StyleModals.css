@@ -8,3 +8,109 @@
 .modalBody{
     align-items: center;
 }
+
+.buttonModalAssociation{
+    background-color: transparent;
+    background-color: #0e111ecc;
+    border: none;
+    color: black;
+    cursor: pointer;
+    padding: 0%;
+    border-radius: 12px;
+    outline-offset: 4px;
+}
+
+.frontAssociation{
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1rem;
+    min-width: 15em;
+    background: #696e88;
+    color: white;
+    transform: translateY(-6px);
+}
+
+.buttonModalAssociation:active .frontAssociation{
+    transform: translateY(0px)
+}
+
+
+
+.buttonModalCreate{
+    background-color: transparent;
+    background-color: #002700d2;
+    border: none;
+    color: black;
+    cursor: pointer;
+    padding: 0%;
+    border-radius: 12px;
+    outline-offset: 4px;
+}
+
+.frontCreate{
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1rem;
+    min-width: 15em;
+    background: #007c00;
+    color: white;
+    transform: translateY(-6px);
+}
+
+.buttonModalCreate:active .frontCreate{
+    transform: translateY(0px)
+}
+
+.buttonModalDelete{
+    background-color: transparent;
+    background-color: #640000d2;
+    border: none;
+    color: black;
+    cursor: pointer;
+    padding: 0%;
+    border-radius: 12px;
+    outline-offset: 4px;
+}
+
+.frontDelete{
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1rem;
+    min-width: 15em;
+    background: #c40000;
+    color: white;
+    transform: translateY(-6px);
+}
+
+.buttonModalDelete:active .frontDelete{
+    transform: translateY(0px)
+}
+
+.buttonModalUpdate{
+    background-color: transparent;
+    background-color: #011c4ed2;
+    border: none;
+    color: black;
+    cursor: pointer;
+    padding: 0%;
+    border-radius: 12px;
+    outline-offset: 4px;
+}
+
+.frontUpdate{
+    display: block;
+    padding: 12px 42px;
+    border-radius: 12px;
+    font-size: 1rem;
+    min-width: 15em;
+    background: #0065c4;
+    color: white;
+    transform: translateY(-6px);
+}
+
+.buttonModalUpdate:active .frontUpdate{
+    transform: translateY(0px)
+}

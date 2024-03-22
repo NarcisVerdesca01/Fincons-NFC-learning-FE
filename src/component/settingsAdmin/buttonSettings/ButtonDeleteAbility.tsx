@@ -11,9 +11,12 @@ const ButtonDeleteAbility = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="danger" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Ability <i className="bi bi-trash3"></i>
-            </Button>
+            <button
+        className={`buttonModalDelete`}
+        onClick={handleShow}
+        style={{ margin: "0.5em" }}>
+        <span className={`frontDelete`}>Ability <i className="bi bi-trash3"></i></span>
+      </button>
 
             <Modal show={show}
                 onHide={handleClose}

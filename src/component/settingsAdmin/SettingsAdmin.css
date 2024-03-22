@@ -1,5 +1,4 @@
 .containerSettingsAdmin{
-    margin-top: 6em;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -9,28 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.descriptionOptionSettings{
-    margin: 0%;
-
-}
-.buttonBack {
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    color: #804DF0;
-    transition: transform 0.6s;
-    margin-left: 4.5em;
-    width: 5em;
-    border: 2px solid #804DF0;
-    border-radius: 15px;
-}
-.buttonBack:hover{
-    box-shadow: 4px 4px 4px rgb(0, 0, 0);
-    transform: scale(1.05);
+    flex-direction: column;
 }
 
 .sectionContainer{
@@ -38,58 +16,21 @@
     display: flex;
     justify-content: space-around;
 }
-.containerImageSettingsCreate {
+.containerImageSettings {
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
     width: 15em;
-    height: 20em;
-    background-repeat: no-repeat;
-    background-image: url("../../assets/add_image.jpg");
-    background-position: 50%;
+    height: 15em;
+    overflow: hidden;
 }
-.text{
+
+.imageSettings{
+    width: 100%;
+}
+
+.textSettings{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 2em;
     color: #804DF0;
 }
-
-.optionSettingsCreate{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.containerImageSettingsUpdate{
-    display: flex;
-    width: 15em;
-    height: 20em;
-    margin-left: -5em;
-    background-repeat: no-repeat;
-    background-image: url("../../assets/update_image.png");
-    margin-left: 1em;
-    background-position: center;
-    background-size: 14em;
-}
-.containerImageSettingsAssociate{
-    display: flex;
-    width: 15em;
-    height: 20em;
-    margin-left: -5em;
-    background-repeat: no-repeat;
-    background-image: url("../../assets/img_associate.jpg");
-    margin-left: 1em;
-    background-position: 50%;
-}
-.containerImageSettingsDelete{
-    display: flex;
-    width: 15em;
-    height: 20em;
-    margin-left: -5em;
-    background-repeat: no-repeat;
-    background-image: url("../../assets/delet_img.png");
-    margin-left: 1em;
-    background-position: 50%;
-    background-size: 14em;
-}
-

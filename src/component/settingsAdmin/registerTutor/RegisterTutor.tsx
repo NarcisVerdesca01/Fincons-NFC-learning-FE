@@ -72,7 +72,7 @@ const RegisterTutor = () => {
     ) => {
 
         const { name, value } = event.target;
-        const inputValue = value.trim();
+        const inputValue = value;
         const inputLength = inputValue.length;
 
         if (name === "firstName" && (inputValue.length < 1 || inputValue.length > 255)) {
