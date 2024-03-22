@@ -37,32 +37,59 @@ const Profile = () => {
         <h3 className={`titleHeaderProfile`}>User Details:</h3>
       </div>
       <div className={`containerUserProfile`}>
-        <td className={`tableUserProfileAnagraphic`}>
-          <tr>Name:</tr>
-          <tr>Surname:</tr>
-          <tr>Email:</tr>
-          <tr>Birthdate:</tr>
-          <tr>Abilities:</tr>
-          <tr>Courses:</tr>
-          <tr>Lesson:</tr>
-          <tr>Hai partecipato a:</tr>
-          <tr>con punteggio:</tr>
-        </td>
-        <td className={`tableUserProfile`}>
-          <tr>{user?.firstName}</tr>
-          <tr>{user?.lastName}</tr>
-          <tr>{user?.email}</tr>
-          <tr>{user?.birthDate?.toString()}</tr>
-          <tr>
-            {abilities?.map((ability: any) => (
-              <div>{ability?.ability?.name}</div>
-            ))}{" "}
-          </tr>
-          <tr>Corsi</tr>
-          <tr>Lezioni</tr>
-          <tr>Quiz</tr>
-          <tr>Punteggio Quiz</tr>
-        </td>
+        <table className="table">
+          <tbody>
+            <tr>
+              <th scope="row"></th>
+              <td>Name:</td>
+              <td>{user?.firstName}</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>Surname:</td>
+              <td>{user?.lastName}</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>Email:</td>
+              <td>{user?.email}</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>Birthdate:</td>
+              <td>{user?.birthDate?.toString()}</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>Ability:</td>
+              <td>
+                {abilities?.map((ability: any) => (
+                  <div>{ability?.ability?.name}</div>
+                ))}{" "}
+              </td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>Course:</td>
+              <td>corsi</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>Lesson:</td>
+              <td>lezioni</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>Hai partecipato a::</td>
+              <td>quiz</td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td>Con punteggio:</td>
+              <td>punteggio quiz</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   );
