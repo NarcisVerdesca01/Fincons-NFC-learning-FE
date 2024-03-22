@@ -22,6 +22,7 @@ const Course = () => {
   return (
     <>
       <Header />
+      
       <div className={`containerCourse`}>
         <div className={`containerTitleCourse`}>
           <h1>Our Course</h1>

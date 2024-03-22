@@ -1,8 +1,8 @@
 import Header from "../header/Header";
-import updateImage from '../../assets/update_image.png'
-import deleteImage from '../../assets/delet_img.png'
-import createImage from '../../assets/add_image.png'
-import associateImage from '../../assets/img_associate.jpg'
+import updateImage from "../../assets/update_image.png";
+import deleteImage from "../../assets/delet_img.png";
+import createImage from "../../assets/add_image.png";
+import associateImage from "../../assets/img_associate.jpg";
 import "./SettingsAdmin.css";
 import ButtonCreateAbility from "./buttonSettings/ButtonCreateAbility";
 import ButtonCreateCourse from "./buttonSettings/ButtonCreateCourse";
@@ -39,7 +39,11 @@ const SettingsAdmin = () => {
           <div className={`containerOptions`}>
             <p className={`textSettings`}>Associate section</p>
             <div className={`containerImageSettings`}>
-              <img src={associateImage} alt="Associate"  className={`imageSettings`} />
+              <img
+                src={associateImage}
+                alt="Associate"
+                className={`imageSettings`}
+              />
             </div>
             <div className={`optionSettings`}>
               <ButtonAssociateUserAbility />
@@ -49,7 +53,7 @@ const SettingsAdmin = () => {
           <div className={`containerOptions`}>
             <p className={`textSettings`}>Update section</p>
             <div className={`containerImageSettings`}>
-              <img src={updateImage} alt="Update"  className={`imageSettings`} />
+              <img src={updateImage} alt="Update" className={`imageSettings`} />
             </div>
             <div className={`optionSettings`}>
               <ButtonUpdateCourse />
@@ -60,7 +64,7 @@ const SettingsAdmin = () => {
           <div className={`containerOptions`}>
             <p className={`textSettings`}>Delete section</p>
             <div className={`containerImageSettings`}>
-              <img src={deleteImage} alt="Delete"  className={`imageSettings`} />
+              <img src={deleteImage} alt="Delete" className={`imageSettings`} />
             </div>
             <div className={`optionSettings`}>
               <ButtonDeleteCourse />

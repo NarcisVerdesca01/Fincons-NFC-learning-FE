@@ -20,7 +20,7 @@
     position: fixed;
     background-color:#0E111E;
     z-index: 1;
-    border-radius: 50px;
+    border-radius: 20px;
 }
 
 .containerTitleHeader{
@@ -80,6 +80,5 @@
 .buttonNavBar:hover{
     border: 2px solid  #EDF1FA;
     border-radius: 15px;
-    box-shadow: 4px 4px 4px  #EDF1FA;
     transform: scale(1.05);
 }
