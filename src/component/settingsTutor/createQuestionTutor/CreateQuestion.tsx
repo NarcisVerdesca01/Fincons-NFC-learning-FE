@@ -24,7 +24,7 @@ const CreateQuestion = () => {
                 <div>
                     <form>
                         <div>
-                            <label>Text</label>
+                            <label htmlFor="text">Text</label>
                             <input
                                 type="string"
                                 placeholder="text"
@@ -41,13 +41,14 @@ const CreateQuestion = () => {
                         </div>
 
                         <div>
-                            <label>Value of Question</label>
+                            <label htmlFor="number">Value of Question</label>
                             <input
-                                type="string"
-                                placeholder="2"
-                                name="text"
+                                type="number"
+                                name="value"
+                                min="1"
+                                max="100"
                                 className="form-control"
-                                value={question?.valueOfQuestion}
+                                value="2"
                                 onChange={(e) => {
                                     setQuestion({
                                         ...question!,
