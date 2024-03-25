@@ -23,7 +23,7 @@ const Course = () => {
   return (
     <>
       <Header />
-      <div className={`containerCourse`}>
+      <div className={`containerCourse container`}>
         <div className={`containerTitleCourse`}>
           <h1 className={`title-course`}>Courses</h1>
         </div>
@@ -46,7 +46,7 @@ const Course = () => {
                 />
               </div>
               <div className={`titleCardCourse`}>
-                <h3>{course.name}</h3>
+                <h3 className={`realTitleCard`}>{course.name}</h3>
               </div>
             </div>
           ))}

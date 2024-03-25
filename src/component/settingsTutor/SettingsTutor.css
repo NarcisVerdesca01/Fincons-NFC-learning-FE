@@ -1,3 +1,10 @@
+.title-section-settings-tutor{
+    font-size: 30px;
+    font-weight: 300;
+    color:#7e4ee5;
+}
+
+
 .containerSettings{
     display: flex;
     align-items: center;
@@ -12,10 +19,13 @@
 
 .descriptionOptionSettings{
     margin: 0%;
+    font-size: 20px;
+    font-weight: 300;
 }
 .textSettingsTutor{
     text-align: center;
-    font-weight: 350;
+    font-weight: 300;
     font-size: 50px;
     color:#7e4ee5;
+
 }

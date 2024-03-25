@@ -20,7 +20,7 @@ const SettingsTutor = () => {
                 </div>
                 <div className={`sectionContainer`}>
                     <div className={`containerOptions`}>
-                        <p>Create section</p>
+                        <p className={`title-section-settings-tutor`}>Create section</p>
                         <div className={`optionSettings`}>
                             <p className={`descriptionOptionSettings`}>Create Quiz</p>
                             <ButtonCreateQuiz />
@@ -35,7 +35,7 @@ const SettingsTutor = () => {
                         </div>
                     </div>
                     <div className={`containerOptions`}>
-                        <p>Associate section</p>
+                        <p className={`title-section-settings-tutor`}>Associate section</p>
                         <div className={`optionSettings`}>
                             <p className={`descriptionOptionSettings`}>Associate Course to Lesson</p>
                             <ButtonCreateAssociationCourseLesson />
@@ -56,7 +56,7 @@ const SettingsTutor = () => {
                         </div>
                     </div>
                     <div className={`containerOptions`}>
-                        <p>View section</p>
+                        <p className={`title-section-settings-tutor`}>View section</p>
                         <div className={`optionSettings`}>
                             <p className={`descriptionOptionSettings`}>View Result Quiz</p>
                             <ButtonQuizResults />

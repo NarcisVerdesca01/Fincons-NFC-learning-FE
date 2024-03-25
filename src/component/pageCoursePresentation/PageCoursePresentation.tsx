@@ -5,6 +5,7 @@ import CourseService from "../../services/CourseService";
 import "./PageCoursePresentation.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
+import Footer from "../footer/Footer";
 
 const PageCoursePresentation = () => {
   const [course, setCourse] = useState<CourseModel>();
@@ -29,7 +30,7 @@ const PageCoursePresentation = () => {
       <Header />
       <div className={`containerPageCoursePresentation`}>
         <div className={`containerTitlePageCoursePresentation`}>
-          <h1>{course?.name}</h1>
+          <h1 className={`course-title-name`}>{course?.name}</h1>
         </div>
         <div className={`containerButtonBack`}>
           <button className={`buttonBack`} onClick={goBack}>
@@ -50,10 +51,10 @@ const PageCoursePresentation = () => {
         </div>
         <div className={`containerTitleResourcesCoursePresentation`}>
           <div className={`titleResourcesCoursePresentation`}>
-            <h1>Resources</h1>
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

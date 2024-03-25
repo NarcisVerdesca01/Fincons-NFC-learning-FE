@@ -94,8 +94,7 @@ const Header = () => {
                         </div>
                         <div className={`containerButtonNavBar`}>
                             <button className={`buttonNavBar`} onClick={goToPageDedicatedCourses}>
-                                <p className={`nameButton`}>Our courses</p>
-                                <p className={`nameButton lead`}>Our courses</p>
+                                <p className={`nameButton`}>My courses</p>
                             </button>
                         </div>
                         {tutorNavBar && (
