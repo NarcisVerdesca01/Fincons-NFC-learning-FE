@@ -8,6 +8,7 @@ import ButtonCreateQuiz from "./buttonSettingsTutor/ButtonCreateQuiz";
 import ButtonCreateAssociationQuestionAnswer from "./buttonSettingsTutor/ButtonCreateAssocationQuestionAnswer";
 import ButtonCreateQuestion from "./buttonSettingsTutor/ButtonCreateQuestion";
 import ButtonCreateAnswer from "./buttonSettingsTutor/ButtonCreateAnswer";
+import Footer from "../footer/Footer";
 
 const SettingsTutor = () => {
     return (
@@ -15,7 +16,7 @@ const SettingsTutor = () => {
             <Header />
             <div className={`containerSettingsTutor`}>
                 <div>
-                    <h1>Settings </h1>
+                    <h1 className={`textSettingsTutor`}>Settings </h1>
                 </div>
                 <div className={`sectionContainer`}>
                     <div className={`containerOptions`}>
@@ -63,6 +64,7 @@ const SettingsTutor = () => {
                     </div>
                 </div>
             </div>
+            <Footer/>
         </>
     );
 };
