@@ -78,18 +78,18 @@ const Header = () => {
                     <img src={imgLogo} alt="logo" className={`imageHeader`}/>
                 </div>
                 <div className={`containerTitleHeader`}>
-                    <h4 className={`titleHeader lead`}>NFC E-Learning web site</h4>
+                    <h4 className={`titleHeader`}>NFC E-Learning web site</h4>
                 </div>
                 <div className={`navbarHeader`}>
                     <div className={`containerNavBarHeader`}>
                         <div className={`containerButtonNavBar`}>
                             <button className={`buttonNavBar`} onClick={goToHomePage}>
-                                <p className={`nameButton lead`}>Home Page</p>
+                                <p className={`nameButton`}>Home Page</p>
                             </button>
                         </div>
                         <div className={`containerButtonNavBar`}>
                             <button className={`buttonNavBar`} onClick={goToCourses}>
-                                <p className={`nameButton lead`}>Courses</p>
+                                <p className={`nameButton`}>Courses</p>
                             </button>
                         </div>
                         <div className={`containerButtonNavBar`}>
@@ -101,20 +101,20 @@ const Header = () => {
                         {tutorNavBar && (
                             <div className={`containerButtonNavBar`}>
                                 <button className={`buttonNavBar`} onClick={goToSettingsTutor}>
-                                    <p className={`nameButton lead`}>Settings</p>
+                                    <p className={`nameButton`}>Settings</p>
                                 </button>
                             </div>
                         )}
                         {adminNavBar && (
                             <div className={`containerButtonNavBar`}>
                                 <button className={`buttonNavBar`} onClick={goToSettingsAdmin}>
-                                    <p className={`nameButton lead`}>Settings</p>
+                                    <p className={`nameButton`}>Settings</p>
                                 </button>
                             </div>
                         )}
                         <div className={`containerButtonNavBar`}>
                             <button className={`buttonNavBar`} onClick={handleLogout}>
-                                <p className={`nameButton lead`}>Logout</p>
+                                <p className={`nameButton`}>Logout</p>
                             </button>
                         </div>
                         <div className={`containerButtonNavBar`}>
