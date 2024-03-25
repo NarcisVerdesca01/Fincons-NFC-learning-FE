@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CourseService from "../../services/CourseService";
 import "./Course.css";
 import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 const Course = () => {
   const [courseList, setCourseList] = useState<CourseModel[]>([]);
@@ -22,10 +23,9 @@ const Course = () => {
   return (
     <>
       <Header />
-      
       <div className={`containerCourse`}>
         <div className={`containerTitleCourse`}>
-          <h1>Our Course</h1>
+          <h1 className={`title-course`}>Courses</h1>
         </div>
 
         <div className={`containerCardCourse`}>
@@ -52,6 +52,7 @@ const Course = () => {
           ))}
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

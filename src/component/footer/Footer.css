@@ -3,16 +3,17 @@
     min-width: 100% !important;
     margin-bottom: 1em;
     padding-bottom: 1em;
-    padding-top: 3em;
+    padding-top: 0.5em;
 }
 .footer-text {
     display: flex;
     color: #EDF1FA;
-    font-size: medium;
+    font-size: 1.3em;
     justify-content: center;
     margin-top: 2em;
     margin-bottom: 0;
     padding-bottom: 0;
+    font-weight: 100;
 }
 .text-center{
     color:#EDF1FA;
@@ -20,3 +21,9 @@
 .footer-icon{
     color: #d1aadd;
 }
+
+.footer-title-style{
+    font-size: 2em;
+    font-weight: 100;
+}
+

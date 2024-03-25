@@ -13,18 +13,19 @@
     background-color: #DCDDFC;
 }
 .containerTitleLegend{
-    width: 70%;
+    width: 60%;
+    margin-left: 1em;
 }
 .titleLegend{
     margin: 0;
     margin-left: 1.3em;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.3em;
-    font-weight: 900;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 1.5em;
     color:  #0E111E;
 }
 .containerButtonLegend{
-    width: 30%;
+    margin-right: 1em;
+    width: 40%;
     display: flex;
     justify-content: space-around;
 }
@@ -32,7 +33,7 @@
     background-color: transparent;
     color : white;
     border: none;
-    font-size: 1.4em;
+    font-size: 1.2em;
     padding: 1em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -57,12 +58,11 @@
 .containerImgWhoWeAre{
     width:40%;
     height: 30%;
-    background-image: url("../../assets/newImgHomePage1.jpg");
+    background-image: url("../../assets/image1home.jpeg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: auto;
-    border: 2px solid #0E111E;
     padding: 8px;
     border-radius: 25px;
     margin-right: 1em;
@@ -71,12 +71,11 @@
 .containerImgWhatIsIt{
     width: 40%;
     height: 30%;
-    background-image: url("../../assets/IMGeLearning.jpg");
+    background-image: url("../../assets/image2home.jpeg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: auto;
-    border: 2px solid #0E111E;
     padding: 8px;
     border-radius: 25px;
     margin-right: 1em;
@@ -85,12 +84,11 @@
 .containerImgWhatWeOffer{
     width: 40%;
     height: 30%;
-    background-image: url("../../assets/newImgHomePage2.jpg");
+    background-image: url("../../assets/image3home.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     height: auto;
-    border: 2px solid #0E111E;
     padding: 8px;
     border-radius: 25px;
     margin-right: 1em;
@@ -103,8 +101,10 @@
     margin-left: 1em;
     font-size: 3.5em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 0;
 }
 .containerDescription{
+    font-weight: 300;
     height: 70%;
 }
 .containerDescriptionWhatIsIt{
@@ -115,9 +115,12 @@
     margin-left: 2.5em;
     margin-right: 2.5em; 
     font-size: 1.1em;
-    /*  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;   */
+    font-weight: 300; 
+
 }
 .descriptionTitleSection{
     /*  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;   */
     color:#7e4ee5;
+    font-weight: 300; 
+
 }
