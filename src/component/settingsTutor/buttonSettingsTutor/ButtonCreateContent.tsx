@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import CreateAssociationQuizQuestion from '../createAssociationQuizQuestion/CreateAssociationQuizQuestion';
-import CreateAssociationQuestionAnswer from '../createAssociationQuestionAnswer/CreateAssociationQuestionAnswer';
+import CreateContent from '../createContentTutor/CreateContent';
 
-
-const ButtonCreateAssociationQuestionAnswer = () => {
+const ButtonCreateContent = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -13,7 +11,7 @@ const ButtonCreateAssociationQuestionAnswer = () => {
     return (
         <>
             <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-            Associate <i className="bi bi-person-fill-add"></i>
+                Create <i className="bi bi-play-btn"></i>
             </Button>
 
 
@@ -22,11 +20,11 @@ const ButtonCreateAssociationQuestionAnswer = () => {
                 backdrop="static"
                 keyboard={false}>
                 <Modal.Body>
-                    <CreateAssociationQuestionAnswer />
+                    <CreateContent/>
                 </Modal.Body>
             </Modal>
         </>
     );
 }
 
-export default ButtonCreateAssociationQuestionAnswer;
+export default ButtonCreateContent;

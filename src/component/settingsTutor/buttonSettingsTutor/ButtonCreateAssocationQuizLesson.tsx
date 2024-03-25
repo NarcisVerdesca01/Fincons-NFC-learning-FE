@@ -12,7 +12,7 @@ const ButtonCreateAssociationQuizLesson = () => {
     return (
         <>
             <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Add <i className="bi bi-person-fill-add"></i>
+            Associate <i className="bi bi-person-fill-add"></i>
             </Button>
 
 
