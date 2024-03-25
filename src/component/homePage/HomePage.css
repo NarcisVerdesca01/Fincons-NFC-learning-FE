@@ -32,8 +32,10 @@
 .buttonLegend{
     background-color: transparent;
     color : white;
+    color : white;
     border: none;
     font-size: 1.2em;
+    font-size: 1.4em;
     padding: 1em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
