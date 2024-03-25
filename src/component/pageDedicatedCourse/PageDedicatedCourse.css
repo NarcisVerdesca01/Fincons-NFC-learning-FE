@@ -1,3 +1,9 @@
+
+.title-myCourses{
+    font-weight: 300;
+    color:#7e4ee5;
+}
+
 .containerDedicatedCourse {
     display: flex;
     justify-content: center;
@@ -15,17 +21,16 @@
 }
 
 .cardDedicatedCourse {
-    border: 1px solid rgb(0, 0, 0);
     width: 90%;
     height: 23em;
     border-radius: 15px;
     transition: transform 0.5s;
     overflow: hidden;
-    box-shadow: 5px 5px 5px rgb(0, 0, 0);
+    box-shadow: 1px 1px 1px rgb(0, 0, 0);
 }
 
 .cardDedicatedCourse:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .containerTitleDedicatedCourse {
@@ -39,7 +44,6 @@
     height: 70%;
     justify-content: center;
     align-items: center;
-    border-bottom: 2px solid black;
     overflow: hidden;
 }
 
@@ -53,4 +57,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.realTitleCard{
+    font-weight: 100;
 }

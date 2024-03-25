@@ -5,6 +5,7 @@ import CourseService from "../../services/CourseService";
 import "./PageCourse.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
+import Footer from "../footer/Footer";
 interface Props {
   courseId: number;
   setCourseId: React.Dispatch<React.SetStateAction<number | undefined>>;
@@ -33,7 +34,7 @@ const PageCourse = (props: Props) => {
 
   const gotToPage = (idPage: any) => {
     navigate("/lesson_page/" + idPage);
-    
+
   };
   const goBack = () => {
     navigate(-1);
@@ -44,7 +45,7 @@ const PageCourse = (props: Props) => {
       <Header />
       <div className={`containerPageCourse`}>
         <div className={`containerTitlePageCourse`}>
-          <h1>{course?.name}</h1>
+          <h1 className={`page-single-course-title-name`}>{course?.name}</h1>
         </div>
         <div className={`containerButtonBack`}>
           <button className={`buttonBack`} onClick={goBack}>
@@ -65,7 +66,7 @@ const PageCourse = (props: Props) => {
         </div>
         <div className={`containerTitleResources`}>
           <div className={`titleResources`}>
-            <h1>Resources</h1>
+            <h1>Lessons</h1>
           </div>
         </div>
         <div className={`containerResources`}>
@@ -81,6 +82,7 @@ const PageCourse = (props: Props) => {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 };
