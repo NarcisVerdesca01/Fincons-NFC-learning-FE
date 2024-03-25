@@ -11,7 +11,7 @@ const ButtonCreateQuiz = () => {
     return (
         <>
             <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Add <i className="bi bi-patch-question"></i>
+                Create <i className="bi bi-patch-question"></i>
             </Button>
 
 

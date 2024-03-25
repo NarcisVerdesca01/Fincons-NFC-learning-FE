@@ -10,6 +10,9 @@ const GET_BY_ID = CONTENT_URI + "/find-by-id";
 const CREATE_CONTENT = CONTENT_URI + "/create";
 const UPDATE_CONTENT = CONTENT_URI + "/update";
 const DELETE_CONTENT = CONTENT_URI + "/delete";
+const GET_ALL_NOT_ASSOCIATED_CONTENT_URI = CONTENT_URI + "/list-no-association-lesson";
+
+
 
 const token = Cookies.get("jwt-token");
 const config = {
@@ -21,7 +24,17 @@ const getContents = async () => {
         const response = await axios.get(GET_ALL_URI, config);
         return response.data;
     } catch (error) {
-        console.error("Error getting abilities:", error);
+        console.error("Error getting contents:", error);
+        throw error;
+    }
+};
+
+const getContentsWithoutLessonAssociated = async () => {
+    try {
+        const response = await axios.get(GET_ALL_NOT_ASSOCIATED_CONTENT_URI, config);
+        return response.data;
+    } catch (error) {
+        console.error("Error getting contents:", error);
         throw error;
     }
 };
@@ -81,6 +94,7 @@ const deleteContent = async (contentId: number | undefined) => {
 
 const ContentService = {
     getContents,
+    getContentsWithoutLessonAssociated,
     getContentById,
     createContent,
     updateContent,

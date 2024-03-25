@@ -8,6 +8,8 @@ import ButtonCreateQuiz from "./buttonSettingsTutor/ButtonCreateQuiz";
 import ButtonCreateAssociationQuestionAnswer from "./buttonSettingsTutor/ButtonCreateAssocationQuestionAnswer";
 import ButtonCreateQuestion from "./buttonSettingsTutor/ButtonCreateQuestion";
 import ButtonCreateAnswer from "./buttonSettingsTutor/ButtonCreateAnswer";
+import ButtonCreateContent from "./buttonSettingsTutor/ButtonCreateContent";
+import ButtonCreateAssociationContentLesson from "./buttonSettingsTutor/ButtonCreateAssocationContentLesson";
 
 const SettingsTutor = () => {
     return (
@@ -32,6 +34,11 @@ const SettingsTutor = () => {
                             <p className={`descriptionOptionSettings`}>Create Answer</p>
                             <ButtonCreateAnswer />
                         </div>
+
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Create Content</p>
+                            <ButtonCreateContent />
+                        </div>
                     </div>
                     <div className={`containerOptions`}>
                         <p>Associate section</p>
@@ -39,20 +46,28 @@ const SettingsTutor = () => {
                             <p className={`descriptionOptionSettings`}>Associate Course to Lesson</p>
                             <ButtonCreateAssociationCourseLesson />
                         </div>
+
                         <div className={`optionSettings`}>
-                            <p className={`descriptionOptionSettings`}>Associate Quiz to Lesson</p>
-                            <ButtonCreateAssociationQuizLesson />
+                            <p className={`descriptionOptionSettings`}>Associate Content to Lesson</p>
+                            <ButtonCreateAssociationContentLesson />
                         </div>
 
                         <div className={`optionSettings`}>
-                            <p className={`descriptionOptionSettings`}>Associate Quiz to Question</p>
-                            <ButtonCreateAssociationQuizQuestion />
-                        </div>
+                            <p className={`descriptionOptionSettings`}>Associate Quiz to Lesson</p>
+                            <ButtonCreateAssociationQuizLesson />
+                        </div>                        
 
                         <div className={`optionSettings`}>
                             <p className={`descriptionOptionSettings`}>Associate Question to Answer</p>
                             <ButtonCreateAssociationQuestionAnswer />
                         </div>
+                        
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Associate Question to Quiz</p>
+                            <ButtonCreateAssociationQuizQuestion />
+                        </div>
+
+
                     </div>
                     <div className={`containerOptions`}>
                         <p>View section</p>
