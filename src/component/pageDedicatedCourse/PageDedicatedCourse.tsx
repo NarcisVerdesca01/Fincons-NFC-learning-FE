@@ -23,9 +23,9 @@ const PageDedicatedCourse = () => {
   return (
     <>
       <Header />
-      <div className={`containerDedicatedCourse`}>
+      <div className={`containerDedicatedCourse container`}>
         <div className={`containerTitleDedicatedCourse`}>
-          <h1>My Course</h1>
+          <h1 className={`title-myCourses`}>My Courses</h1>
         </div>
         <div className={`containerCardDedicatedCourse`}>
           {courseList.map((course: CourseModel) => (
@@ -45,7 +45,7 @@ const PageDedicatedCourse = () => {
                 />
               </div>
               <div className={`titleCardDedicatedCourse`}>
-                <h3>{course.name}</h3>
+                <h3 className={`realTitleCard`}>{course.name}</h3>
               </div>
             </div>
           ))}

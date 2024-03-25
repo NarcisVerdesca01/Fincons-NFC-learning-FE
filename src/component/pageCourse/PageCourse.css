@@ -1,3 +1,10 @@
+
+.page-single-course-title-name{
+    font-weight: 300;
+    color:#7e4ee5;
+}
+
+
 .containerPageCourse {
     display: flex;
     align-items: center;
@@ -33,6 +40,8 @@
     margin-right:9em;
     margin-left: 7em;
     text-align: center;
+    font-weight: 300;
+    font-size: 20px;
 }
 
 .containerTitlePageCourse {

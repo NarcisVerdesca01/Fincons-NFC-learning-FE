@@ -1,3 +1,10 @@
+.course-title-name{
+    color:#7e4ee5;
+    font-weight: 300;
+    font-size: 50px;
+}
+
+
 .containerPageCoursePresentation {
     display: flex;
     align-items: center;
@@ -23,6 +30,8 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    font-weight: 300;
+    font-size: 20px;
 }
 
 .containerTextCoursePresentation {
