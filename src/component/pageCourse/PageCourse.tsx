@@ -32,7 +32,6 @@ const PageCourse = (props: Props) => {
   }, [idCourse_page]);
 
   const gotToPage = (idPage: any) => {
-    console.log(idPage, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     navigate("/lesson_page/" + idPage);
     
   };

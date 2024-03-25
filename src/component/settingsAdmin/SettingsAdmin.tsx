@@ -16,7 +16,7 @@ import ButtonDeleteLesson from "./buttonSettings/ButtonDeleteLesson";
 import ButtonDeleteAbility from "./buttonSettings/ButtonDeleteAbility";
 import ButtonAssociateUserAbility from "./buttonSettings/ButtonAssociateUserAbility";
 import ButtonAssociateCourseAbility from "./buttonSettings/ButtonAssociateCourseAbility";
-import { url } from "inspector";
+import Footer from "../footer/Footer";
 
 const SettingsAdmin = () => {
   return (
@@ -74,6 +74,7 @@ const SettingsAdmin = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

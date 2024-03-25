@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CourseService from "../../services/CourseService";
 import "./PageDedicatedCourse.css";
 import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 const PageDedicatedCourse = () => {
   const [courseList, setCourseList] = useState<CourseModel[]>([]);
@@ -50,6 +51,7 @@ const PageDedicatedCourse = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

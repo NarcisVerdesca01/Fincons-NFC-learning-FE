@@ -126,9 +126,9 @@ const Login = () => {
                 Sign in
               </button>
             </div>
-            <button className={`buttonLogin`}>
+            {/*<button className={`buttonLogin`}>
               Did you forget your password?
-            </button>
+            </button>*/}
           </div>
 
         </form>
