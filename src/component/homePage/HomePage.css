@@ -30,8 +30,9 @@
 }
 .buttonLegend{
     background-color: transparent;
+    color : white;
     border: none;
-    font-size: 1.3em;
+    font-size: 1.4em;
     padding: 1em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -114,9 +115,9 @@
     margin-left: 2.5em;
     margin-right: 2.5em; 
     font-size: 1.1em;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /*  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;   */
 }
 .descriptionTitleSection{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:#6f47c5;
+    /*  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;   */
+    color:#7e4ee5;
 }
