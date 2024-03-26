@@ -17,6 +17,7 @@ const ASSOCIATE_WITH_LESSON = QUIZ_URI + "/associatelesson";
 const ASSOCIATE_WITH_QUESTION = QUIZ_URI + "/associatequestion";
 const CHECK_QUIZ = VERSION_URI + "/quiz-student-result/check";
 const UPDATE_QUIZ_URI= QUIZ_URI + "/update";
+const DELETE_QUIZ_URI= QUIZ_URI + "/update";
 
 
 const getQuizzes = async () => {
@@ -64,9 +65,9 @@ const createQuiz = async (quiz: Quiz) => {
     const response = await axios.post(CREATE_QUIZ, quiz, {
       headers: { Authorization: `Bearer ${token}` }
     });
-    return response.data;
+    return response;
   } catch (error) {
-    console.error("Error getting lessons:", error);
+    console.error("Error during creation of quiz:", error);
     throw error;
   }
 };
@@ -119,6 +120,30 @@ const updateQuiz = async (quizId: number, quiz: Quiz) => {
   }
 };
 
+const deleteQuiz = async (lessonId: number) => {
+  const token = Cookies.get("jwt-token");
+
+  try {
+      const response = await axios.put(
+          DELETE_QUIZ_URI,
+          {},
+          {
+              params: {
+                  id: lessonId
+              },
+              headers: {
+                  'Content-Type': 'application/json',
+                  Authorization: `Bearer ${token}`
+              }
+          }
+      );
+      return response.data;
+  } catch (error) {
+      console.error("Error deleting quiz:", error);
+      throw error;
+  }
+};
+
 const checkQuizResult = async (quizId: number) => {
   const token = Cookies.get("jwt-token");
   const url = `${CHECK_QUIZ}?quizId=${quizId}`;
@@ -159,6 +184,7 @@ const QuizService = {
   getQuizzes,
   getQuizzesWithoutAssociationWithLesson,
   getQuizzesWithoutAssociationWithQuestion,
+  deleteQuiz,
   createQuiz,
   updateQuiz,
   getQuizById,

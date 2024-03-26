@@ -14,6 +14,10 @@ import ButtonUpdateQuiz from "./buttonSettingsTutor/ButtonUpdateQuiz";
 import ButtonUpdateQuestion from "./buttonSettingsTutor/ButtonUpdateQuestion";
 import ButtonUpdateAnswer from "./buttonSettingsTutor/ButtonUpdateAnswer";
 import ButtonUpdateContent from "./buttonSettingsTutor/ButtonUpdateContent";
+import updateImage from "../../assets/update_image.png";
+import deleteImage from "../../assets/delet_img.png";
+import createImage from "../../assets/add_image.png";
+import ButtonDeleteQuiz from "./buttonSettingsTutor/ButtonDeleteQuiz";
 
 const SettingsTutor = () => {
     return (
@@ -59,13 +63,13 @@ const SettingsTutor = () => {
                         <div className={`optionSettings`}>
                             <p className={`descriptionOptionSettings`}>Associate Quiz to Lesson</p>
                             <ButtonCreateAssociationQuizLesson />
-                        </div>                        
+                        </div>
 
                         <div className={`optionSettings`}>
                             <p className={`descriptionOptionSettings`}>Associate Question to Answer</p>
                             <ButtonCreateAssociationQuestionAnswer />
                         </div>
-                        
+
                         <div className={`optionSettings`}>
                             <p className={`descriptionOptionSettings`}>Associate Question to Quiz</p>
                             <ButtonCreateAssociationQuizQuestion />
@@ -73,7 +77,7 @@ const SettingsTutor = () => {
 
 
                     </div>
-                    
+
                     <div className={`containerOptions`}>
                         <p>Update section</p>
                         <div className={`optionSettings`}>
@@ -93,7 +97,29 @@ const SettingsTutor = () => {
                             <ButtonUpdateContent />
                         </div>
                     </div>
-                    
+
+                    <div className={`containerOptions`}>
+                        <p>Delete section</p>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Delete Quiz</p>
+                            <ButtonDeleteQuiz />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Update Question</p>
+                            <ButtonUpdateQuestion />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Update Answer</p>
+                            <ButtonUpdateAnswer />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Update Content</p>
+                            <ButtonUpdateContent />
+                        </div>
+                    </div>
+
+                   
+
                     <div className={`containerOptions`}>
                         <p>View section</p>
                         <div className={`optionSettings`}>
