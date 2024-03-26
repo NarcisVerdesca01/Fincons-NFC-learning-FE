@@ -121,7 +121,6 @@ const Header = () => {
                                 <p className={`nameButton`}>Profile</p>
                         </button>*/}
                             <p className={`nameButton`}><ButtonProfile /></p>
-                            <p className={`nameButton`}><ButtonProfile /></p>
                         </div>
                     </div>
 
