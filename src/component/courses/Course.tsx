@@ -35,15 +35,15 @@ const Course = () => {
                 className={`containerImgCardCourse`}
                 onClick={() => gotToPage(course?.id)}
               >
-                <img
-                  src={
-                    course.backgroundImage
-                      ? course.backgroundImage
-                      : noImage
-                  }
-                  alt={course.name}
-                  className={`imgCardCourse`}
-                />
+                {course.backgroundImage ? (
+                  <img
+                    src={course.backgroundImage}
+                    alt={course.name}
+                    className={`imgCardCourse`}
+                  />
+                ) : (
+                  <img src={noImage} alt={course.name} className={`imgCardCourse`} />
+                )}
               </div>
               <div className={`titleCardCourse`}>
                 <h3 className={`realTitleCard`}>{course.name}</h3>
