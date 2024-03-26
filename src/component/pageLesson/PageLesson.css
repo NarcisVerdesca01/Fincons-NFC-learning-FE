@@ -64,13 +64,15 @@
 .containerImageLesson{
     width: 40%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     overflow: hidden;
+    margin: 0%;
+    padding: 0%;
 }
 
 .imageLesson{
-    height: 100%;
+    max-width: 100%;
 }
 
 .containerTitleLesson{

@@ -9,7 +9,7 @@ import Course from "./component/courses/Course";
 import PageCourse from "./component/pageCourse/PageCourse";
 import PageDedicatedCourse from "./component/pageDedicatedCourse/PageDedicatedCourse";
 import { useState } from "react";
-import PageLesson from "./component/Lesson/PageLesson";
+import PageLesson from "./component/pageLesson/PageLesson";
 import PageCoursePresentation from "./component/pageCoursePresentation/PageCoursePresentation";
 import SettingsAdmin from "./component/settingsAdmin/SettingsAdmin";
 import SettingsTutor from "./component/settingsTutor/SettingTutor";
