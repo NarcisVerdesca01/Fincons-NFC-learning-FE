@@ -10,6 +10,10 @@ import ButtonCreateQuestion from "./buttonSettingsTutor/ButtonCreateQuestion";
 import ButtonCreateAnswer from "./buttonSettingsTutor/ButtonCreateAnswer";
 import ButtonCreateContent from "./buttonSettingsTutor/ButtonCreateContent";
 import ButtonCreateAssociationContentLesson from "./buttonSettingsTutor/ButtonCreateAssocationContentLesson";
+import ButtonUpdateQuiz from "./buttonSettingsTutor/ButtonUpdateQuiz";
+import ButtonUpdateQuestion from "./buttonSettingsTutor/ButtonUpdateQuestion";
+import ButtonUpdateAnswer from "./buttonSettingsTutor/ButtonUpdateAnswer";
+import ButtonUpdateContent from "./buttonSettingsTutor/ButtonUpdateContent";
 
 const SettingsTutor = () => {
     return (
@@ -69,6 +73,27 @@ const SettingsTutor = () => {
 
 
                     </div>
+                    
+                    <div className={`containerOptions`}>
+                        <p>Update section</p>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Rename Quiz</p>
+                            <ButtonUpdateQuiz />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Update Question</p>
+                            <ButtonUpdateQuestion />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Update Answer</p>
+                            <ButtonUpdateAnswer />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Update Content</p>
+                            <ButtonUpdateContent />
+                        </div>
+                    </div>
+                    
                     <div className={`containerOptions`}>
                         <p>View section</p>
                         <div className={`optionSettings`}>
