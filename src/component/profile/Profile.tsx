@@ -44,37 +44,37 @@ const Profile = () => {
           <tbody>
             <tr>
               <th scope="row"></th>
-              <td>Name:</td>
-              <td>{user?.firstName}</td>
+              <td className={`title-profile`}>Name:</td>
+              <td>{user?.firstName || 'N/A'}</td>
             </tr>
             <tr>
               <th scope="row"></th>
-              <td>Surname:</td>
-              <td>{user?.lastName}</td>
+              <td className={`title-profile`}>Surname:</td>
+              <td>{user?.lastName || 'N/A'}</td>
             </tr>
             <tr>
               <th scope="row"></th>
-              <td>Email:</td>
-              <td>{user?.email}</td>
+              <td className={`title-profile`}>Email:</td>
+              <td>{user?.email || 'N/A'}</td>
             </tr>
             <tr>
               <th scope="row"></th>
-              <td>Birthdate:</td>
-              <td>{user?.birthDate?.toString()}</td>
+              <td className={`title-profile`}>Birthdate:</td>
+              <td>{user?.birthDate?.toString() || 'N/A'}</td>
             </tr>
             <tr>
               <th scope="row"></th>
-              <td>Ability:</td>
+              <td className={`title-profile`}>Ability:</td>
               <td>
                 {abilities?.map((ability: any) => (
-                  <div>{ability?.ability?.name}</div>
+                  <div>{ability?.ability?.name != null || undefined ?  ability?.ability?.name : 'N/A'}</div>
                 ))}{" "}
               </td>
             </tr>
             {isStudent && (
               <tr>
                 <th scope="row"></th>
-                <td>Performed quizzes:</td>
+                <td className={`title-profile`}>Performed quizzes:</td>
                 <ButtonShowQuizForStudent />
               </tr>
             )}
