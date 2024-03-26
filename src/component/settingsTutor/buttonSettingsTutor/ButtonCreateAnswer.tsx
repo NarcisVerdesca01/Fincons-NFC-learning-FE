@@ -21,7 +21,8 @@ const ButtonCreateAnswer = () => {
             <Modal show={show}
                 onHide={handleClose}
                 backdrop="static"
-                keyboard={false}>
+                keyboard={false}
+                scrollable>
                 <Modal.Body>
                     <CreateAnswer />
                 </Modal.Body>

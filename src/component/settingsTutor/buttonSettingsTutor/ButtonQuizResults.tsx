@@ -18,7 +18,8 @@ const ButtonCreateQuiz = () => {
             <Modal show={show}
                 onHide={handleClose}
                 size='lg'
-            >
+                scrollable
+                >
                 <Modal.Body>
                     <QuizResults />
                 </Modal.Body>

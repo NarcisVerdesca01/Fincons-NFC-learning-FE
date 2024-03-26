@@ -19,7 +19,8 @@ const ButtonDeleteAbility = () => {
 
             <Modal show={show}
                 onHide={handleClose}
-                keyboard={false}>
+                keyboard={false}
+                scrollable>
                 <Modal.Body>
                     <DeleteAbility />
                 </Modal.Body>

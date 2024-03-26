@@ -13,7 +13,9 @@ const ButtonProfile = () => {
         <i className="bi bi-person-fill"></i>
       </Button>
 
-      <Modal show={show} onHide={handleClose} keyboard={false}>
+      {show && <div style={overlayStyle} />}
+
+      <Modal show={show} onHide={handleClose} keyboard={false} scrollable>
         <Modal.Body>
           <Profile/>
         </Modal.Body>

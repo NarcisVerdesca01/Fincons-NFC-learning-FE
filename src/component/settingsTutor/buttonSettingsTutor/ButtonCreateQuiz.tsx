@@ -20,7 +20,8 @@ const ButtonCreateQuiz = () => {
             <Modal show={show}
                 onHide={handleClose}
                 backdrop="static"
-                keyboard={false}>
+                keyboard={false}
+                scrollable>
                 <Modal.Body>
                     <CreateQuiz />
                 </Modal.Body>

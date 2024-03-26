@@ -20,7 +20,8 @@ const ButtonDeleteCourse = () => {
             <Modal show={show}
                 onHide={handleClose}
                 keyboard={false}
-                className={`modal`}>
+                className={`modal`}
+                scrollable>
                 <Modal.Body
                     className={`modalBody`}>
                     <DeleteCourse />

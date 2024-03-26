@@ -17,7 +17,7 @@ const ButtonRegisterTutor = () => {
         <span className={`frontDefault frontCreate`}>Tutor <i className="bi bi-plus-circle"></i></span>
       </button>
 
-      <Modal show={show} onHide={handleClose} keyboard={false}>
+      <Modal show={show} onHide={handleClose} keyboard={false} scrollable>
         <Modal.Body>
           <RegisterTutor />
         </Modal.Body>

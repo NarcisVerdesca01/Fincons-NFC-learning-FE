@@ -19,7 +19,8 @@ const ButtonUpdateLesson = () => {
 
             <Modal show={show}
                 onHide={handleClose}
-                keyboard={false}>
+                keyboard={false}
+                scrollable>
                 <Modal.Body>
                     <UpdateLesson />
                 </Modal.Body>

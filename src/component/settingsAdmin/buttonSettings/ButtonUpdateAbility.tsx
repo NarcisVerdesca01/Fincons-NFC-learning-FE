@@ -17,7 +17,7 @@ const ButtonUpdateAbility = () => {
         <span className={`frontDefault frontUpdate`}>Ability <i className="bi bi-arrow-repeat"></i></span>
       </button>
 
-      <Modal show={show} onHide={handleClose} keyboard={false}>
+      <Modal show={show} onHide={handleClose} keyboard={false} scrollable>
         <Modal.Body>
           <UpdateAbility />
         </Modal.Body>

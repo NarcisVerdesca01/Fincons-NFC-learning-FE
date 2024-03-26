@@ -20,7 +20,8 @@ const ButtonCreateCourse = () => {
             <Modal show={show}
                 onHide={handleClose}
                 backdrop="static"
-                keyboard={false}>
+                keyboard={false}
+                scrollable>
                 <Modal.Body>
                     <CreateCourse />
                 </Modal.Body>
