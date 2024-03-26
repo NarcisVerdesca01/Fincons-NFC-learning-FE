@@ -3,7 +3,6 @@ import CourseModel from "../../models/CourseModel";
 import { useNavigate } from "react-router-dom";
 import CourseService from "../../services/CourseService";
 import noImage from '../../assets/no-image.png';
-import noImage from '../../assets/no-image.png';
 import "./Course.css";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
@@ -27,7 +26,7 @@ const Course = () => {
       <Header />
       <div className={`containerCourse container`}>
         <div className={`containerTitleCourse`}>
-          <h1 className={`title-course`}>Courses</h1>
+          <h1 className={`titleCourse`}>Courses</h1>
         </div>
         <div className={`containerCardCourse`}>
           {courseList.map((course: CourseModel) => (
@@ -36,16 +35,15 @@ const Course = () => {
                 className={`containerImgCardCourse`}
                 onClick={() => gotToPage(course?.id)}
               >
-                <img
-                  src={
-                    course.backgroundImage
-                      ? course.backgroundImage
-                      : noImage
-                      : noImage
-                  }
-                  alt={course.name}
-                  className={`imgCardCourse`}
-                />
+                {course.backgroundImage ? (
+                  <img
+                    src={course.backgroundImage}
+                    alt={course.name}
+                    className={`imgCardCourse`}
+                  />
+                ) : (
+                  <img src={noImage} alt={course.name} className={`imgCardCourse`} />
+                )}
               </div>
               <div className={`titleCardCourse`}>
                 <h3 className={`realTitleCard`}>{course.name}</h3>
@@ -54,7 +52,7 @@ const Course = () => {
           ))}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

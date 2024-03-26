@@ -1,5 +1,4 @@
-
-.title-course{
+.titleCourse{
     font-weight: 300;
     font-size: 50px;
 }
@@ -11,6 +10,7 @@
     height: auto;
     width: 100%;
 }
+
 .containerCardCourse {
     margin-top: 2em;
     display: grid;
@@ -19,17 +19,20 @@
     gap: 25px;
     margin-bottom: 5em;
 }
+
 .cardCourse {
     width: 90%;
-    height: 23em;
+    height: 20em;
     border-radius: 15px;
-    transition: transform 0.5s;
     overflow: hidden;
     box-shadow: 1px 1px 1px rgb(0, 0, 0);
+    transition: transform 0.5s;
 }
+
 .cardCourse:hover {
     transform: scale(1.02);
 }
+
 .containerTitleCourse {
     margin-top: 0;
     display: flex;
@@ -38,6 +41,7 @@
     font-weight: 300;
 
 }
+
 .containerImgCardCourse{
     display: flex;
     height: 70%;
@@ -45,16 +49,19 @@
     align-items: center;
     overflow: hidden;
 }
+
 .imgCardCourse{
     min-width: 100%;
     min-height: 100%;
 }
+
 .titleCardCourse{
     height: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .buttonBack {
     color: #804DF0
 }
