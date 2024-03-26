@@ -78,6 +78,7 @@ const SettingsTutor = () => {
                     </div>
                     <div className={`containerOptions`}>
                         <p className={`title-section-settings-tutor`}>View section</p>
+                        <p className={`title-section-settings-tutor`}>View section</p>
                         <div className={`optionSettings`}>
                             <p className={`descriptionOptionSettings`}>View Result Quiz</p>
                             <ButtonQuizResults />
