@@ -13,12 +13,10 @@ import ButtonUpdateQuiz from "./buttonSettingsTutor/ButtonUpdateQuiz";
 import ButtonUpdateQuestion from "./buttonSettingsTutor/ButtonUpdateQuestion";
 import ButtonUpdateAnswer from "./buttonSettingsTutor/ButtonUpdateAnswer";
 import ButtonUpdateContent from "./buttonSettingsTutor/ButtonUpdateContent";
-import Footer from "../footer/Footer";
-import ButtonAssociationContentLesson from "./buttonSettingsTutor/ButtonAssocationContentLesson";
-import ButtonAssociationCourseLesson from "./buttonSettingsTutor/ButtonAssocationCourseLesson";
-import ButtonAssociationQuizLesson from "./buttonSettingsTutor/ButtonAssocationQuizLesson";
-import ButtonAssociationQuestionAnswer from "./buttonSettingsTutor/ButtonAssociationQuestionAnswer";
-import ButtonAssociationQuizQuestion from "./buttonSettingsTutor/ButtonAssociationQuizQuestion";
+import updateImage from "../../assets/update_image.png";
+import deleteImage from "../../assets/delet_img.png";
+import createImage from "../../assets/add_image.png";
+import ButtonDeleteQuiz from "./buttonSettingsTutor/ButtonDeleteQuiz";
 
 const SettingsTutor = () => {
     return (
@@ -48,11 +46,23 @@ const SettingsTutor = () => {
                             />
                         </div>
                         <div className={`optionSettings`}>
-                            <ButtonAssociationCourseLesson />
-                            <ButtonAssociationContentLesson />
-                            <ButtonAssociationQuizLesson />
-                            <ButtonAssociationQuestionAnswer />
-                            <ButtonAssociationQuizQuestion />
+                            <p className={`descriptionOptionSettings`}>Associate Content to Lesson</p>
+                            <ButtonCreateAssociationContentLesson />
+                        </div>
+
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Associate Quiz to Lesson</p>
+                            <ButtonCreateAssociationQuizLesson />
+                        </div>
+
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Associate Question to Answer</p>
+                            <ButtonCreateAssociationQuestionAnswer />
+                        </div>
+
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Associate Question to Quiz</p>
+                            <ButtonCreateAssociationQuizQuestion />
                         </div>
                     </div>
 
@@ -76,6 +86,29 @@ const SettingsTutor = () => {
                         <div className={`optionSettings`}>
                         </div>
                     </div>
+
+                    <div className={`containerOptions`}>
+                        <p>Delete section</p>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Delete Quiz</p>
+                            <ButtonDeleteQuiz />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Update Question</p>
+                            <ButtonUpdateQuestion />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Update Answer</p>
+                            <ButtonUpdateAnswer />
+                        </div>
+                        <div className={`optionSettings`}>
+                            <p className={`descriptionOptionSettings`}>Update Content</p>
+                            <ButtonUpdateContent />
+                        </div>
+                    </div>
+
+                   
+
                     <div className={`containerOptions`}>
                         <p className={`title-section-settings-tutor`}>View section</p>
                         <p className={`title-section-settings-tutor`}>View section</p>
