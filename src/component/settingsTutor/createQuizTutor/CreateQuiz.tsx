@@ -5,10 +5,52 @@ import Quiz from "../../../models/QuizModel";
 
 const CreateQuiz = () => {
     const [quiz, setQuiz] = useState<Quiz>();
+    const [savedQuiz, setSavedQuiz] = useState<any>();
+    const [savedSuccessfully, setSaveSuccessfully] = useState<boolean>();
+    const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+    const [loading, setLoading] = useState(false); 
     const navigate = useNavigate();
 
-    const saveQuiz = () => {
-        QuizService.createQuiz(quiz!);
+    const saveQuiz = async () => {
+
+        try {
+            setLoading(true);
+            const tempSavedQuiz = await QuizService.createQuiz(quiz!);
+            setSavedQuiz(tempSavedQuiz)
+
+            //const statusCode= savedQuiz.status;
+            console.log("Questa è la risposta:", savedQuiz);
+            //console.log("Questa è lo stato:", statusCode);
+            console.log("Questo è il messaggio che già esiste: ", savedQuiz.data.data.message)
+            console.log("Questa l'id:", savedQuiz.data.data.id);
+            console.log("Questa lo stato:", savedQuiz.status);
+
+
+            if (savedQuiz.data.data.id != null && savedQuiz.status) {
+                console.log("Quiz salvato correttamente");
+                setSaveSuccessfully(true);
+            }
+        } catch (error: any) {
+            if (error.response && error.response.status === 409) {
+                console.log("Errore 409: Quiz già esistente.");
+                console.log("Messaggio di errore:", error.response.data.message);
+                setSaveSuccessfully(false);
+                setResourceAlreadyExists(true);
+            } else {
+                console.error("Errore durante il salvataggio del quiz:", error);
+                setSaveSuccessfully(false);
+            }
+
+        }finally {
+            setLoading(false); //reimpostare il caricamento a false anche in caso di errore
+        }
+
+
+
+
+
+        /*QuizService.createQuiz(quiz!);*/
+
         navigate("/settings_tutor")
     }
 
@@ -23,7 +65,7 @@ const CreateQuiz = () => {
                 <div>
                     <form>
                         <div>
-                            <label>Name</label>
+                            <label>Title</label>
                             <input
                                 type="string"
                                 placeholder="name"
@@ -38,7 +80,23 @@ const CreateQuiz = () => {
                                 }}
                             ></input>
                         </div>
-                        <button className='btn btn-success' onClick={saveQuiz}>Create Quiz</button>
+
+                        {savedSuccessfully && (
+                            <div>
+                                <label>Quiz salvato correttamente!</label>
+                            </div>
+                        )}
+
+                        {!savedSuccessfully && resourceAlreadyExists && (
+                            <div>
+                                <label>Quiz già esistente!</label>
+                            </div>
+                        )}
+
+
+                        <button type="button" className='btn btn-success' onClick={saveQuiz} disabled={loading}>
+                           {loading ? 'Salvataggio in corso...' : 'Create Quiz'}
+                        </button>
                         <button className='btn btn-danger' onClick={backToSettings}>Back</button>
                     </form>
                 </div>
