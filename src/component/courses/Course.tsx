@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import CourseModel from "../../models/CourseModel";
 import { useNavigate } from "react-router-dom";
 import CourseService from "../../services/CourseService";
+import noImage from '../../assets/no-image.png';
 import "./Course.css";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
@@ -27,7 +28,6 @@ const Course = () => {
         <div className={`containerTitleCourse`}>
           <h1 className={`title-course`}>Courses</h1>
         </div>
-
         <div className={`containerCardCourse`}>
           {courseList.map((course: CourseModel) => (
             <div className={`cardCourse`}>
@@ -39,7 +39,7 @@ const Course = () => {
                   src={
                     course.backgroundImage
                       ? course.backgroundImage
-                      : "https://cdn.icon-icons.com/icons2/510/PNG/512/person_icon-icons.com_50075.png"
+                      : noImage
                   }
                   alt={course.name}
                   className={`imgCardCourse`}

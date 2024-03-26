@@ -18,11 +18,11 @@ const CreateCourse = () => {
 
     const saveCourse = async () => {
         if (!course.name || !course.description || !course.backgroundImage) {
-          setErrorMessage("Name, Description, and Background Image fields are required.");
-          return;
+            setErrorMessage("Name, Description, and Background Image fields are required.");
+            return;
         } else if (course.name && course.description && course.backgroundImage) {
             CourseService.createCourse(course)
-        }    
+        }
     };
 
     const backToSettings = () => {
@@ -140,7 +140,7 @@ const CreateCourse = () => {
                     </div>
                     {errorMessage && <p className="text-danger">{errorMessage}</p>}
                     <button
-                    type="button"
+                        type="button"
                         className="btn btn-success"
                         disabled={createDisabled}
                         onClick={saveCourse}
