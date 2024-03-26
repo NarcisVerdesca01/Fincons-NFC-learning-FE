@@ -9,7 +9,7 @@ const QUESTION_URI = VERSION_URI + "/answer";
 const CREATE_QUESTION = QUESTION_URI + "/create";
 const GET_ALL_URI = QUESTION_URI + "/list";
 const GET_ALL_URI_NO_ASSOCIATED_QUESTION = QUESTION_URI + "/list-no-association-question";
-
+const UPDATE_ANSWER_URI = QUESTION_URI + "/update";
 const ASSOCIATE_ANSWER_QUESTION_URI = QUESTION_URI + "/associatequestion";
 
 const GET_BY_ID = QUESTION_URI + "/find-by-id";
@@ -56,6 +56,20 @@ const createAnswer = async (quiz: Answer) => {
   }
 };
 
+const updateAnswer = async (answerId: number, answer: Answer) => {
+  const token = Cookies.get("jwt-token");
+  const url = `${UPDATE_ANSWER_URI}/${answerId}`;
+  try {
+    const response = await axios.put(url, answer, {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error during update of the question:", error);
+    throw error;
+  }
+};
+
 const getAnswerById = async (quizId: number | undefined) => {
   const token = Cookies.get("jwt-token");
   try {
@@ -83,6 +97,7 @@ const AnswerService = {
   getAnswers,
   getAnswerWithoutAssociationWithQuestion,
   createAnswer,
+  updateAnswer,
   getAnswerById,
   associateAnswerQuestion,
 }

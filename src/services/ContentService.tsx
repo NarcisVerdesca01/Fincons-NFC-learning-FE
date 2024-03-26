@@ -60,12 +60,13 @@ const createContent = async (content: Content) => {
 };
 
 const updateContent = async (contentId: number, updateContent: Content) => {
+    const url = `${UPDATE_CONTENT}/${contentId}`;
     try {
         const response = await axios.put(
-            UPDATE_CONTENT + "/" + contentId,
+            url,
             {
-                name: updateContent.content,
-                lesson: updateContent.lesson
+                content: updateContent.content,
+               
 
             },
             {

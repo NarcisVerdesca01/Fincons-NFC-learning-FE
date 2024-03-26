@@ -5,7 +5,11 @@ import Question from "../../../models/QuestionModel";
 import QuestionService from "../../../services/QuestionService";
 
 const CreateQuestion = () => {
-    const [question, setQuestion] = useState<Question>();
+    const [question, setQuestion] = useState<Question>({   id: 0,
+        textQuestion: "",
+        answers: [],
+        quiz: { id: 0, title: "", questions: [], lesson: {title: "", backgroundImage: ""}},
+        valueOfQuestion: 2});
     const navigate = useNavigate();
 
     const saveQuestion = () => {
@@ -48,12 +52,12 @@ const CreateQuestion = () => {
                                 min="1"
                                 max="100"
                                 className="form-control"
-                                value="2"
+                                value={question?.valueOfQuestion}
                                 onChange={(e) => {
-                                    setQuestion({
-                                        ...question!,
+                                    setQuestion((prevQuestion)=>({
+                                        ...prevQuestion!,
                                         valueOfQuestion: parseInt(e.target.value),
-                                    });
+                                    }));
                                 }}
                             ></input>
                         </div>
