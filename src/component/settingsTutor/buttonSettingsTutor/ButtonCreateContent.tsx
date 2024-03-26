@@ -10,10 +10,12 @@ const ButtonCreateContent = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Create <i className="bi bi-play-btn"></i>
-            </Button>
-
+            <button
+                className={`buttonModalCreate`}
+                onClick={handleShow}
+                style={{ margin: "0.5em" }}>
+                <span className={`frontCreate`}>Content <i className="bi bi-plus-circle"></i></span>
+            </button>
 
             <Modal show={show}
                 onHide={handleClose}

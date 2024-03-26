@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import CreateQuiz from '../createQuizTutor/CreateQuiz';
+import CreateAssociationQuestionAnswer from '../createAssociationQuestionAnswer/CreateAssociationQuestionAnswer';
 
-const ButtonCreateQuiz = () => {
+
+const ButtonAssociationQuestionAnswer = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -10,10 +11,11 @@ const ButtonCreateQuiz = () => {
     return (
         <>
             <button
-                className={`buttonModalCreate`}
+                className={`buttonModalAssociation`}
                 onClick={handleShow}
-                style={{ margin: "0.5em" }}>
-                <span className={`frontCreate`}>Quiz <i className="bi bi-plus-circle"></i></span>
+                style={{ margin: "0.5em" }}
+            >
+                <span className={`frontAssociation`}>Question to Answer <i className="bi bi-arrows-angle-contract"></i></span>
             </button>
 
             <Modal show={show}
@@ -21,11 +23,11 @@ const ButtonCreateQuiz = () => {
                 backdrop="static"
                 keyboard={false}>
                 <Modal.Body>
-                    <CreateQuiz />
+                    <CreateAssociationQuestionAnswer />
                 </Modal.Body>
             </Modal>
         </>
     );
 }
 
-export default ButtonCreateQuiz;
+export default ButtonAssociationQuestionAnswer;
