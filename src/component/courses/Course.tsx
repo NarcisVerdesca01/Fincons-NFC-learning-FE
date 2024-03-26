@@ -26,7 +26,7 @@ const Course = () => {
       <Header />
       <div className={`containerCourse container`}>
         <div className={`containerTitleCourse`}>
-          <h1 className={`title-course`}>Courses</h1>
+          <h1 className={`titleCourse`}>Courses</h1>
         </div>
         <div className={`containerCardCourse`}>
           {courseList.map((course: CourseModel) => (
@@ -52,7 +52,7 @@ const Course = () => {
           ))}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
