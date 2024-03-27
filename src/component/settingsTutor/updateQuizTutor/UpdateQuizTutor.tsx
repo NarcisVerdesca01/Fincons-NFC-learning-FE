@@ -8,7 +8,7 @@ const UpdateQuiz = () => {
   const [selectedQuizId, setSelectedQuizId] = useState<number | null>(null);
   const [quiz, setQuiz] = useState<Quiz>();
   const [titleError, setTitleError] = useState(false);
-  const [titleErrorMessage, setTitleErrorMessage] = useState('');
+  const [titleErrorMessage, setTitleErrorMessage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,76 +38,90 @@ const UpdateQuiz = () => {
     navigate("/settings_tutor");
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, setError: React.Dispatch<React.SetStateAction<boolean>>, setErrorMessage: React.Dispatch<React.SetStateAction<string>>) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    setError: React.Dispatch<React.SetStateAction<boolean>>,
+    setErrorMessage: React.Dispatch<React.SetStateAction<string>>
+  ) => {
     const { title, value } = event.target;
     const inputValue = value.trim();
     const inputLength = inputValue.length;
 
-    if (title === 'title' && (inputLength < 1 || inputLength > 255)) {
+    if (title === "title" && (inputLength < 1 || inputLength > 255)) {
       setError(true);
-      setErrorMessage('Title must be between 1 and 255 characters');
+      setErrorMessage("Title must be between 1 and 255 characters");
     } else {
       setError(false);
-      setErrorMessage('');
+      setErrorMessage("");
     }
 
     setQuiz({
       ...quiz!,
-      title: inputValue
+      title: inputValue,
     });
   };
 
   return (
     <div>
-      <div>
-        <h3>Rename Quiz</h3>
-        <div>
-          <form>
-            <div className="form-group">
-              <label>Quiz</label>
-              <select
-                name="quiz"
-                className="form-select"
-                aria-label="Default select example"
-                onChange={(e) => {
-                  setSelectedQuizId(Number(e.target.value));
-                }}
-              >
-                <option selected>Select the Quiz to rename</option>
-                {quizzes.map((quiz) => {
-                  return (
-                    <option key={quiz.id} value={quiz.id}>
-                      {quiz.title}
-                    </option>
-                  );
-                })}
-              </select>
-            </div>
-            {quiz && (
-              <>
-                <div>
-                  <label>Title</label>
-                  <input
-                    type="string"
-                    placeholder={quiz.title}
-                    name="title"
-                    className={`form-control ${titleError ? 'border-red-500' : ''}`}
-                    value={quiz.title}
-                    onChange={(e) => handleInputChange(e, setTitleError, setTitleErrorMessage)}
-                  ></input>
-                  {titleErrorMessage && <p className="text-muted">{titleErrorMessage}</p>}
-                </div>
-                <button className="btn btn-success" onClick={updateQuiz} disabled={titleError}>
-                  update
-                </button>
-                <button className="btn btn-danger" onClick={backToSettings}>
-                  back
-                </button>
-              </>
-            )}
-          </form>
+      <h3 className="titleModal">Rename Quiz</h3>
+      <form>
+        <div className="form-group">
+          <label className="labelModal">Quiz</label>
+          <select
+            name="quiz"
+            className="form-select"
+            aria-label="Default select example"
+            onChange={(e) => {
+              setSelectedQuizId(Number(e.target.value));
+            }}
+          >
+            <option selected>Select the Quiz to rename</option>
+            {quizzes.map((quiz) => {
+              return (
+                <option key={quiz.id} value={quiz.id}>
+                  {quiz.title}
+                </option>
+              );
+            })}
+          </select>
         </div>
-      </div>
+        {quiz && (
+          <>
+            <div>
+              <label className="labelModal">Title</label>
+              <input
+                type="string"
+                placeholder={quiz.title}
+                name="title"
+                className={`form-control ${titleError ? "border-red-500" : ""}`}
+                value={quiz.title}
+                onChange={(e) =>
+                  handleInputChange(e, setTitleError, setTitleErrorMessage)
+                }
+              ></input>
+              {titleErrorMessage && (
+                <p className="text-muted">{titleErrorMessage}</p>
+              )}
+            </div>
+            <div className="containerButtonModal">
+              <button
+                className="buttonCheck"
+                onClick={updateQuiz}
+                disabled={titleError}
+              >
+                <span className="frontCheck">
+                  <i className="bi bi-check2"></i>
+                </span>
+              </button>
+              <button className="buttonReturn" onClick={backToSettings}>
+                <span className="frontReturn">
+                  <i className="bi bi-arrow-left"></i>
+                </span>
+              </button>
+            </div>
+          </>
+        )}
+      </form>
     </div>
   );
 };

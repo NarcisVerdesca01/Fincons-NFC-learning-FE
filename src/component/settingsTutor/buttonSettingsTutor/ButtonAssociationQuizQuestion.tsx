@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import CreateAssociationQuizQuestion from '../createAssociationQuizQuestion/CreateAssociationQuizQuestion';
+import CreateAssociationQuizQuestion from '../associationQuizQuestion/AssociationQuizQuestion';
 import '../../settingsAdmin/buttonSettings/StyleModals.css';
 
 const ButtonAssociationQuizQuestion = () => {
