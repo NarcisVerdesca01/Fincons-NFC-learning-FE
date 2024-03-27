@@ -28,6 +28,7 @@ const Course = () => {
         <div className={`containerTitleCourse`}>
           <h1 className={`titleCourse`}>Courses</h1>
         </div>
+
         <div className={`containerCardCourse`}>
           {courseList.map((course: CourseModel) => (
             <div className={`cardCourse`}>
