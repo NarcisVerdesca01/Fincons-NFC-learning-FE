@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import QuizService from "../../../services/QuizService";
 import Quiz from "../../../models/QuizModel";
@@ -8,99 +8,97 @@ const CreateQuiz = () => {
     const [savedQuiz, setSavedQuiz] = useState<any>();
     const [savedSuccessfully, setSaveSuccessfully] = useState<boolean>();
     const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
-    const [loading, setLoading] = useState(false); 
+    const [loading, setLoading] = useState(false);
+    const [isCallComplete, setIsCallComplete] = useState(false);
+
     const navigate = useNavigate();
 
     const saveQuiz = async () => {
-
         try {
             setLoading(true);
             const tempSavedQuiz = await QuizService.createQuiz(quiz!);
-            setSavedQuiz(tempSavedQuiz)
-
-            //const statusCode= savedQuiz.status;
-            console.log("Questa è la risposta:", savedQuiz);
-            //console.log("Questa è lo stato:", statusCode);
-            console.log("Questo è il messaggio che già esiste: ", savedQuiz.data.data.message)
-            console.log("Questa l'id:", savedQuiz.data.data.id);
-            console.log("Questa lo stato:", savedQuiz.status);
-
-
-            if (savedQuiz.data.data.id != null && savedQuiz.status) {
-                console.log("Quiz salvato correttamente");
-                setSaveSuccessfully(true);
-            }
+            setSavedQuiz(tempSavedQuiz);
+            setIsCallComplete(true);
         } catch (error: any) {
-            if (error.response && error.response.status === 409) {
-                console.log("Errore 409: Quiz già esistente.");
-                console.log("Messaggio di errore:", error.response.data.message);
+            console.error("Errore durante il salvataggio del quiz:", error);
+            setSavedQuiz(error.response);
+            setIsCallComplete(true);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (savedQuiz && isCallComplete) {
+            if (savedQuiz.status === 200) {
+                setSaveSuccessfully(true);
+                setResourceAlreadyExists(false);
+            } else if (savedQuiz.status === 409) {
                 setSaveSuccessfully(false);
                 setResourceAlreadyExists(true);
-            } else {
-                console.error("Errore durante il salvataggio del quiz:", error);
-                setSaveSuccessfully(false);
             }
-
-        }finally {
-            setLoading(false); //reimpostare il caricamento a false anche in caso di errore
         }
-
-
-
-
-
-        /*QuizService.createQuiz(quiz!);*/
-
-        navigate("/settings_tutor")
-    }
+    }, [savedQuiz, isCallComplete]);
 
     const backToSettings = () => {
-        navigate("/settings_tutor")
+        navigate("/settings_tutor");
     }
 
     return (
         <div>
-            <div>
-                <h3> Create Quiz </h3>
+            <h3> Create Quiz </h3>
+            <form className="was-validated">
                 <div>
-                    <form>
-                        <div>
-                            <label>Title</label>
-                            <input
-                                type="string"
-                                placeholder="name"
-                                name="name"
-                                className="form-control"
-                                value={quiz?.title}
-                                onChange={(e) => {
-                                    setQuiz({
-                                        ...quiz!,
-                                        title: e.target.value,
-                                    });
-                                }}
-                            ></input>
-                        </div>
-
-                        {savedSuccessfully && (
-                            <div>
-                                <label>Quiz salvato correttamente!</label>
-                            </div>
-                        )}
-
-                        {!savedSuccessfully && resourceAlreadyExists && (
-                            <div>
-                                <label>Quiz già esistente!</label>
-                            </div>
-                        )}
+                    <label htmlFor="title">Title</label>
+                    <input
+                        required
+                        id="validationTextarea"
+                        aria-describedby="validationServer03Feedback"
+                        type="text"
+                        placeholder="Name of quiz"
+                        name="title"
+                        className="form-control is-valid"
+                        value={quiz?.title || ''}
+                        onChange={(e) => {
+                            setQuiz({
+                                ...quiz!,
+                                title: e.target.value,
+                            });
+                        }}
+                    />
 
 
-                        <button type="button" className='btn btn-success' onClick={saveQuiz} disabled={loading}>
-                           {loading ? 'Salvataggio in corso...' : 'Create Quiz'}
-                        </button>
-                        <button className='btn btn-danger' onClick={backToSettings}>Back</button>
-                    </form>
+
                 </div>
-            </div>
+
+                {loading && <div>Saving in progress...</div>}
+
+                {!loading && savedSuccessfully && (
+                    <div>
+                        <label>Quiz saved correctly!</label>
+                    </div>
+                )}
+
+                {!loading && !savedSuccessfully && resourceAlreadyExists && (
+                    <div>
+                        <label>The quiz already exists!</label>
+                    </div>
+                )}
+
+                <div style={{ marginTop: "3%", display: "flex", justifyContent: "space-between" }}>
+                   
+                        <button disabled={loading || !quiz?.title} type="button" className='btn btn-success' onClick={saveQuiz} >
+                            {loading ? 'Saving in progress...' : 'Create Quiz'}
+                        </button>
+                    
+
+
+                    <button type="button" className='btn btn-danger' onClick={backToSettings}>Back</button>
+                </div>
+
+
+            </form>
+            <button onClick={backToSettings}>Back</button>
         </div>
     );
 };

@@ -19,7 +19,6 @@ const RESEND_QUIZ = VERSION_URI + "/quiz-student-result/quiz-redo";
 const ASSOCIATE_WITH_LESSON = QUESTION_URI + "/associatelesson";
 const CHECK_QUIZ = VERSION_URI + "/quiz-student-result/check";
 
-//RIVEDI GLI ENDPOINT CARLO CHE NON TUTTI COINCIDONO HO USATO SOLO QUELLI CHE MI SERVIVANO PER LE ASSOCIAZIONI
 
 const getQuestions = async () => {
   const token = Cookies.get("jwt-token");
@@ -62,10 +61,12 @@ const getQuestionsWithoutAssociationWithAnswer = async () => {
 
 const createQuestion = async (question: Question) => {
   const token = Cookies.get("jwt-token");
+  console.log(question);
   try {
     const response = await axios.post(CREATE_QUESTION, question, {
       headers: { Authorization: `Bearer ${token}` }
     });
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error("Error during create of question:", error);
