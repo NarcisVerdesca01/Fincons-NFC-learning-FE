@@ -65,40 +65,40 @@ const SettingsAdmin = () => {
           <div className={`cardOptions`}>
             <div className={`containerOptions`}>
               <div className={`cardFront`}>
-            <p className={`textSettings`}>Update section</p>
-            <div className={`containerImageSettings`}>
-              <img src={updateImage} alt="Update" className={`imageSettings`} />
-            </div>
-            </div>
+                <p className={`textSettings`}>Update section</p>
+                <div className={`containerImageSettings`}>
+                  <img src={updateImage} alt="Update" className={`imageSettings`} />
+                </div>
+              </div>
               <div className={`cardBack`}>
-            <div className={`optionSettings`}>
-              <ButtonUpdateCourse />
-              <ButtonUpdateLesson />
-              <ButtonUpdateAbility />
+                <div className={`optionSettings`}>
+                  <ButtonUpdateCourse />
+                  <ButtonUpdateLesson />
+                  <ButtonUpdateAbility />
+                </div>
+              </div>
             </div>
-            </div>
-          </div>
           </div>
           <div className={`cardOptions`}>
             <div className={`containerOptions`}>
               <div className={`cardFront`}>
-            <p className={`textSettings`}>Delete section</p>
-            <div className={`containerImageSettings`}>
-              <img src={deleteImage} alt="Delete" className={`imageSettings`} />
-            </div>
-            </div>
+                <p className={`textSettings`}>Delete section</p>
+                <div className={`containerImageSettings`}>
+                  <img src={deleteImage} alt="Delete" className={`imageSettings`} />
+                </div>
+              </div>
               <div className={`cardBack`}>
-            <div className={`optionSettings`}>
-              <ButtonDeleteCourse />
-              <ButtonDeleteLesson />
-              <ButtonDeleteAbility />
+                <div className={`optionSettings`}>
+                  <ButtonDeleteCourse />
+                  <ButtonDeleteLesson />
+                  <ButtonDeleteAbility />
+                </div>
+              </div>
             </div>
-            </div>
-          </div>
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

@@ -11,9 +11,12 @@ const ButtonCreateQuiz = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-                View <i className="bi bi-patch-question"></i>
-            </Button>
+            <button
+                className={`buttonDefault buttonModal`}
+                onClick={handleShow}
+                style={{ margin: "0.5em" }}>
+                <span className={`frontDefault front`}>View <i className="bi bi-patch-question"></i></span>
+            </button>
 
             <Modal show={show}
                 onHide={handleClose}

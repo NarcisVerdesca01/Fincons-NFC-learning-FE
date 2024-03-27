@@ -11,10 +11,10 @@ const ButtonCreateQuestion = () => {
     return (
         <>
             <button
-                className={`buttonDefault buttonModalCreate`}
+                className={`buttonDefault buttonModal`}
                 onClick={handleShow}
                 style={{ margin: "0.5em" }}>
-                <span className={`frontDefault frontCreate`}>Question <i className="bi bi-plus-circle"></i></span>
+                <span className={`frontDefault front`}>Question <i className="bi bi-plus-circle"></i></span>
             </button>
 
             <Modal show={show}

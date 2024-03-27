@@ -11,10 +11,10 @@ const ButtonUpdateQuiz = () => {
   return (
     <>
       <button
-        className={`buttonDefault buttonModalUpdate`}
+        className={`buttonDefault buttonModal`}
         onClick={handleShow}
         style={{ margin: "0.5em" }}>
-        <span className={`frontDefault frontUpdate`}>Quiz <i className="bi bi-arrow-repeat"></i></span>
+        <span className={`frontDefault front`}>Quiz <i className="bi bi-arrow-repeat"></i></span>
       </button>
 
       <Modal show={show} onHide={handleClose} keyboard={false}>
