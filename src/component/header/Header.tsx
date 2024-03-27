@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react';
 import imgLogo from '../../assets/logoHeader.png';
 import './Header.css';
 import Cookies from 'js-cookie';
-import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router';
 import LoginRegistrationService from '../../services/LoginRegistrationService';
 import ButtonProfile from '../profile/ButtonProfile';
-import { Navbar } from 'react-bootstrap';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -37,13 +35,8 @@ const Header = () => {
         navigate("/profile")
     }
 
-    const auth = Cookies.get("jwt-token")
-    const decodedJwt = jwtDecode(auth!)
-    const userEmail = decodedJwt.sub
-
     const [adminNavBar, setAdminNavBar] = useState<boolean>(false);
     const [tutorNavBar, setTutorNavBar] = useState<boolean>(false);
-    const token = Cookies.get("jwt-token");
 
     useEffect(() => {
         LoginRegistrationService.getUserDetails().then((res) => {
@@ -60,7 +53,7 @@ const Header = () => {
     });
 
     return (
-        <Navbar className={`bodyHeader`}>
+        <div className={`bodyHeader`}>
             <div className={`firstComponentHeader`}>
                 <div className={`containerImageHeader`}>
                     <img src={imgLogo} alt="logo" className={`imageHeader`}/>
@@ -105,16 +98,13 @@ const Header = () => {
                             </button>
                         </div>
                         <div className={`containerButtonNavBar`}>
-                            {/*<button className={`buttonNavBar`} onClick={goToProfile}>
-                                <p className={`nameButton`}>Profile</p>
-                        </button>*/}
                             <p className={`nameButton`}><ButtonProfile /></p>
                         </div>
                     </div>
 
                 </div>
             </div>
-        </Navbar>
+        </div>
     );
 };
 

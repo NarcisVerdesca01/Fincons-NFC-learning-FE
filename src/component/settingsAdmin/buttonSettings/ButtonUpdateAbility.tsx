@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import UpdateAbility from "../ability/UpdateAbility";
+import './StyleModals.css';
 
 const ButtonUpdateAbility = () => {
   const [show, setShow] = useState(false);
@@ -11,13 +11,13 @@ const ButtonUpdateAbility = () => {
   return (
     <>
       <button
-        className={`buttonModalUpdate`}
+        className={`buttonDefault buttonModalUpdate`}
         onClick={handleShow}
         style={{ margin: "0.5em" }}>
-        <span className={`frontUpdate`}>Ability <i className="bi bi-arrow-repeat"></i></span>
+        <span className={`frontDefault frontUpdate`}>Ability <i className="bi bi-arrow-repeat"></i></span>
       </button>
 
-      <Modal show={show} onHide={handleClose} keyboard={false}>
+      <Modal show={show} onHide={handleClose} keyboard={false} scrollable>
         <Modal.Body>
           <UpdateAbility />
         </Modal.Body>

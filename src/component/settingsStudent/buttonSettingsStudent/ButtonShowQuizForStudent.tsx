@@ -1,20 +1,21 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import ShowQuizForStudent from '../showQuizForStudent/ShowQuizForStudent';
+import './ButtonStyleStudent.css'
 
-const ButtonCreateQuestion = () => {
+const ButtonShowQuizForStudent = () => {
     const [show, setShow] = useState(false);
 
-    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Quizzes <i className="bi bi-patch-question"></i>
-            </Button>
-
+            <button
+                className={`buttonDefaultStudent buttonModalStudent`}
+                onClick={handleShow}
+                style={{ margin: "0.5em" }}>
+                <span className={`frontDefaultStudent frontStudent`}>Quizzes <i className="bi bi-arrow-repeat"></i></span>
+            </button>
 
             <Modal show={show}
                 onHide={handleClose}
@@ -28,4 +29,4 @@ const ButtonCreateQuestion = () => {
     );
 }
 
-export default ButtonCreateQuestion;
+export default ButtonShowQuizForStudent;

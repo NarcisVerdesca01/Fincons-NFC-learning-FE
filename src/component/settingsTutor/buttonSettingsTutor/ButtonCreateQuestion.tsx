@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import CreateQuestion from '../createQuestionTutor/CreateQuestion';
+import '../../settingsAdmin/buttonSettings/StyleModals.css';
 
 const ButtonCreateQuestion = () => {
     const [show, setShow] = useState(false);
@@ -10,18 +11,19 @@ const ButtonCreateQuestion = () => {
     return (
         <>
             <button
-                className={`buttonModalCreate`}
+                className={`buttonDefault buttonModalCreate`}
                 onClick={handleShow}
                 style={{ margin: "0.5em" }}>
-                <span className={`frontCreate`}>Question <i className="bi bi-plus-circle"></i></span>
+                <span className={`frontDefault frontCreate`}>Question <i className="bi bi-plus-circle"></i></span>
             </button>
 
             <Modal show={show}
                 onHide={handleClose}
                 backdrop="static"
-                keyboard={false}>
+                keyboard={false}
+                scrollable>
                 <Modal.Body>
-                    <CreateQuestion/>
+                    <CreateQuestion />
                 </Modal.Body>
             </Modal>
         </>

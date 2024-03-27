@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import UpdateAnswerTutor from "../updateAnswerTutor/UpdateAnswerTutor";
+import '../../settingsAdmin/buttonSettings/StyleModals.css';
 
 const ButtonUpdateQuestion = () => {
   const [show, setShow] = useState(false);
@@ -11,10 +11,10 @@ const ButtonUpdateQuestion = () => {
   return (
     <>
       <button
-        className={`buttonModalUpdate`}
+        className={`buttonDefault buttonModalUpdate`}
         onClick={handleShow}
         style={{ margin: "0.5em" }}>
-        <span className={`frontUpdate`}>Answer <i className="bi bi-arrow-repeat"></i></span>
+        <span className={`frontDefault frontUpdate`}>Answer <i className="bi bi-arrow-repeat"></i></span>
       </button>
 
       <Modal show={show} onHide={handleClose} keyboard={false}>

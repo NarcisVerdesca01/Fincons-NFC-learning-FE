@@ -1,5 +1,5 @@
 
-.title-myCourses{
+.titleMyCourses{
     font-weight: 300;
     color:#7e4ee5;
 }
@@ -22,11 +22,11 @@
 
 .cardDedicatedCourse {
     width: 90%;
-    height: 23em;
+    height: 20em;
     border-radius: 15px;
-    transition: transform 0.5s;
     overflow: hidden;
     box-shadow: 1px 1px 1px rgb(0, 0, 0);
+    transition: transform 0.5s;
 }
 
 .cardDedicatedCourse:hover {
