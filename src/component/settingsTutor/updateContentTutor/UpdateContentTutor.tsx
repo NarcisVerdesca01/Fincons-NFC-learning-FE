@@ -29,7 +29,6 @@ const UpdateContentTutor = () => {
     if (titleError) {
       return;
     }
-    console.log(content);
 
     ContentService.updateContent(selectedContentId!, content!);
     navigate("/settings_tutor");

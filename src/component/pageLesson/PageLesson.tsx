@@ -26,7 +26,7 @@ const PageLesson = (props: Props) => {
 
   useEffect(() => {
     CourseService.getCourseById(props.idCourse!).then((res) => {
-      setLessonList(res.data.lessons);
+      setLessonList(res.data.courseLessons);
     });
   }, [props.idCourse]);
 

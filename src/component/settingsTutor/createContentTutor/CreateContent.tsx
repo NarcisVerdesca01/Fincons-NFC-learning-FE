@@ -10,7 +10,6 @@ const CreateContent = () => {
 
     const saveContent = (event: FormEvent) => {
         event.preventDefault();
-        console.log(content)
         ContentService.createContent(content!);
         navigate("/settings_tutor")
     }
@@ -38,7 +37,6 @@ const CreateContent = () => {
                                         ...content!,
                                         content: e.target.value,
                                     });
-                                    console.log(content)
                                 }}
                             ></input>
                         </div>

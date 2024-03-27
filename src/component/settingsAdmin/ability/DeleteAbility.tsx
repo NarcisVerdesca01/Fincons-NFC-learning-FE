@@ -25,9 +25,7 @@ const DeleteAbility = () => {
   }, [abilityId]);
 
   const DeleteAbility = () => {
-    console.log(abilityId);
     AbilityService.deleteAbility(abilityId!);
-
     navigate("/settings_admin");
   };
 
@@ -48,7 +46,6 @@ const DeleteAbility = () => {
                 className="form-select"
                 aria-label="Default select example"
                 onChange={(e) => {
-                  console.log(Number(e.target.value));
                   setAbilityId(Number(e.target.value));
                 }}
               >

@@ -79,7 +79,6 @@ const deleteAbilityUser = async (courseId: number) => {
 
     const token = Cookies.get("jwt-token");
     try {
-        console.log(courseId)
         const response = await axios.put(
             DELETE_ABILITY_USER,
             {},

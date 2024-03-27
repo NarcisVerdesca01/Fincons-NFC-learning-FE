@@ -28,8 +28,6 @@ const CreateAssociationCourseLesson = () => {
     }, []);
 
     const saveCourseLesson = () => {
-        console.log(courseId)
-        console.log(courseLesson)
         CourseLessonService.createCourseLesson(courseId.course, courseLesson.lesson);
         navigate("/settings_tutor")
         
@@ -52,7 +50,6 @@ const CreateAssociationCourseLesson = () => {
                                 className="form-select"
                                 aria-label="Default select example"
                                 onChange={(e) => {
-                                    console.log(e.target.value)
                                     setCourseId({
                                         [e.target.name]: e.target.value
                                     });
@@ -73,7 +70,6 @@ const CreateAssociationCourseLesson = () => {
                                 className="form-select"
                                 aria-label="Default select example"
                                 onChange={(e) => {
-                                    console.log(e.target.value)
                                     setCourseLesson({
                                         [e.target.name]: e.target.value
                                     });

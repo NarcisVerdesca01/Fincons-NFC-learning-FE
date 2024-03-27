@@ -26,8 +26,6 @@ const CreateAssociationCourseLesson = () => {
   }, []);
 
   const saveCourseLesson = () => {
-    console.log("ability id ", abilityId);
-    console.log("course id ", courseId);
     AbilityCourseService.createAbilityCourse(
       abilityId.ability,
       courseId.course
@@ -52,7 +50,6 @@ const CreateAssociationCourseLesson = () => {
                 className="form-select"
                 aria-label="Default select example"
                 onChange={(e) => {
-                  console.log(Number(e.target.value));
                   setCourseId({
                     [e.target.name]: e.target.value,
                   });

@@ -98,6 +98,7 @@ const SettingsAdmin = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

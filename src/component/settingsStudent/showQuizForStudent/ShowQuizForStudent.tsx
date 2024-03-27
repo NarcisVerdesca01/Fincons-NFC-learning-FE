@@ -8,8 +8,6 @@ const ShowQuizForStudent = () => {
 
     useEffect(() => {
         QuizResultsService.getQuizResultsForSingleStudent().then((res) => {
-            console.log(res.data)
-
             setQuizResults(res.data);
         });
     }, []);

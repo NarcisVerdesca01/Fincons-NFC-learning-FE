@@ -31,8 +31,6 @@ const CreateAssociationContentLesson = () => {
   
 
     const saveAssociation = () => {
-        console.log("id content: ",contentId)
-        console.log("id lesson:", lessonId)
         LessonService.associateLessonContent(lessonId, contentId);
         navigate("/settings_tutor")        
     }

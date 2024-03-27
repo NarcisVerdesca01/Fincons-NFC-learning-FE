@@ -61,12 +61,10 @@ const getQuestionsWithoutAssociationWithAnswer = async () => {
 
 const createQuestion = async (question: Question) => {
   const token = Cookies.get("jwt-token");
-  console.log(question);
   try {
     const response = await axios.post(CREATE_QUESTION, question, {
       headers: { Authorization: `Bearer ${token}` }
     });
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error("Error during create of question:", error);

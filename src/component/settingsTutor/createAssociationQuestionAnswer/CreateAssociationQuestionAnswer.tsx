@@ -32,8 +32,6 @@ const CreateAssociationQuestionAnswer = () => {
   
 
     const saveQuestionAnswer = () => {
-        console.log("id question: ",questionId)
-        console.log("id answer:", answerId)
         AnswerService.associateAnswerQuestion(answerId, questionId);
         navigate("/settings_tutor")        
     }

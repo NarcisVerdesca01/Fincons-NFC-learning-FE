@@ -30,8 +30,6 @@ const CreateAssociationQuizQuestion = () => {
   
 
     const saveQuizQuestion = () => {
-        console.log("id quiz: ",quizId)
-        console.log("id ESTION:", questionId)
         QuizService.associateQuizToQuestion(quizId, questionId);
         navigate("/settings_tutor")        
     }
