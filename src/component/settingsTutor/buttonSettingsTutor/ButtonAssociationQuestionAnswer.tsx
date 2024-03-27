@@ -11,11 +11,11 @@ const ButtonAssociationQuestionAnswer = () => {
     return (
         <>
             <button
-                className={`buttonDefault buttonModalAssociation`}
+                className={`buttonDefault buttonModal`}
                 onClick={handleShow}
                 style={{ margin: "0.5em" }}
             >
-                <span className={`frontDefault frontAssociation`}>Question to Answer <i className="bi bi-arrows-angle-contract"></i></span>
+                <span className={`frontDefault front`}>Question to Answer <i className="bi bi-arrows-angle-contract"></i></span>
             </button>
 
             <Modal show={show}

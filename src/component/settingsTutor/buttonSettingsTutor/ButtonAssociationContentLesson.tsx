@@ -11,11 +11,11 @@ const ButtonAssociationContentLesson = () => {
     return (
         <>
             <button
-                className={`buttonDefault buttonModalAssociation`}
+                className={`buttonDefault buttonModal`}
                 onClick={handleShow}
                 style={{ margin: "0.5em" }}
             >
-                <span className={`frontDefault frontAssociation`}>Content to Lesson <i className="bi bi-arrows-angle-contract"></i></span>
+                <span className={`frontDefault front`}>Content to Lesson <i className="bi bi-arrows-angle-contract"></i></span>
             </button>
 
             <Modal show={show}

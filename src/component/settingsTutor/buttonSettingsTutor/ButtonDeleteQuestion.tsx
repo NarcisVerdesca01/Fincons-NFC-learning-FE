@@ -13,11 +13,11 @@ const ButtonDeleteQuestion = () => {
     return (
         <>
             <button
-        className={`buttonModalDelete`}
-        onClick={handleShow}
-        style={{ margin: "0.5em" }}>
-        <span className={`frontDelete`}>Question <i className="bi bi-trash3"></i></span>
-      </button>
+                className={`buttonDefault buttonModal`}
+                onClick={handleShow}
+                style={{ margin: "0.5em" }}>
+                <span className={`frontDefault front`}>Question <i className="bi bi-trash3"></i></span>
+            </button>
 
             <Modal show={show}
                 onHide={handleClose}

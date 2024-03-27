@@ -1,5 +1,4 @@
 import Header from "../header/Header";
-import "./SettingsTutor.css";
 import updateImage from "../../assets/update_image.png";
 import deleteImage from "../../assets/delet_img.png";
 import createImage from "../../assets/add_image.png";
@@ -21,8 +20,8 @@ import ButtonAssociationQuestionAnswer from "./buttonSettingsTutor/ButtonAssocia
 import ButtonAssociationQuizQuestion from "./buttonSettingsTutor/ButtonAssociationQuizQuestion";
 import ButtonDeleteQuiz from "./buttonSettingsTutor/ButtonDeleteQuiz";
 import ButtonDeleteQuestion from "./buttonSettingsTutor/ButtonDeleteQuestion";
-import ButtonDeleteAnswer from "./buttonSettingsTutor/ButtonDeleteAnswer";
 import ButtonDeleteContent from "./buttonSettingsTutor/ButtonDeleteContent";
+import './SettingsTutor.css'
 
 const SettingsTutor = () => {
     return (
@@ -30,68 +29,93 @@ const SettingsTutor = () => {
             <Header />
             <div className={`containerSettingsTutor`}>
                 <div className={`sectionContainer`}>
-                    <div className={`containerOptions`}>
-                        <p className={`textSettings`}>Create section</p>
-                        <div className={`containerImageSettings`}>
-                            <img src={createImage} alt="Create" className={`imageSettings`} />
-                        </div>
-                        <div className={`optionSettings`}>
-                            <ButtonCreateQuiz />
-                            <ButtonCreateQuestion />
-                            <ButtonCreateAnswer />
-                            <ButtonCreateContent />
+                    <div className={`cardOptions`}>
+                        <div className={`containerOptions`}>
+                            <div className={`cardFront`}>
+                                <p className={`textSettings`}>Create section</p>
+                                <div className={`containerImageSettings`}>
+                                    <img src={createImage} alt="Create" className={`imageSettings`} />
+                                </div>
+                            </div>
+                            <div className={`cardBack`}>
+                                <div className={`optionSettings`}>
+                                    <ButtonCreateQuiz />
+                                    <ButtonCreateQuestion />
+                                    <ButtonCreateAnswer />
+                                    <ButtonCreateContent />
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className={`containerOptions`}>
-                        <p className={`textSettings`}>Associate section</p>
-                        <div className={`containerImageSettings`}>
-                            <img
-                                src={associateImage}
-                                alt="Associate"
-                                className={`imageSettings`}
-                            />
-                        </div>
-                        <div className={`optionSettings`}>
-                            <ButtonAssociationCourseLesson />
-                            <ButtonAssociationContentLesson />
-                            <ButtonAssociationQuizLesson />
-                            <ButtonAssociationQuestionAnswer />
-                            <ButtonAssociationQuizQuestion />
-                        </div>
-
+                    <div className={`cardOptions`}>
                         <div className={`containerOptions`}>
-                            <p className={`textSettings`}>Update section</p>
-                            <div className={`containerImageSettings`}>
-                                <img src={updateImage} alt="Update" className={`imageSettings`} />
+                            <div className={`cardFront`}>
+                                <p className={`textSettings`}>Associate section</p>
+                                <div className={`containerImageSettings`}>
+                                    <img src={associateImage} alt="Associate" className={`imageSettings`} />
+                                </div>
                             </div>
-                            <div className={`optionSettings`}>
-                                <ButtonUpdateQuiz />
-                                <ButtonUpdateQuestion />
-                                <ButtonUpdateAnswer />
-                                <ButtonUpdateContent />
+                            <div className={`cardBack`}>
+                                <div className={`optionSettings`}>
+                                    <ButtonAssociationCourseLesson />
+                                    <ButtonAssociationContentLesson />
+                                    <ButtonAssociationQuizLesson />
+                                    <ButtonAssociationQuestionAnswer />
+                                    <ButtonAssociationQuizQuestion />
+                                </div>
                             </div>
                         </div>
+                    </div>
+                    <div className={`cardOptions`}>
                         <div className={`containerOptions`}>
-                            <p className={`textSettings`}>Delete section</p>
-                            <div className={`containerImageSettings`}>
+                            <div className={`cardFront`}>
+                                <p className={`textSettings`}>Update section</p>
+                                <div className={`containerImageSettings`}>
+                                    <img src={updateImage} alt="Update" className={`imageSettings`} />
+                                </div>
+                            </div>
+                            <div className={`cardBack`}>
+                                <div className={`optionSettings`}>
+                                    <ButtonUpdateQuiz />
+                                    <ButtonUpdateQuestion />
+                                    <ButtonUpdateAnswer />
+                                    <ButtonUpdateContent />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={`cardOptions`}>
+                        <div className={`containerOptions`}>
+                            <div className={`cardFront`}>
+                                <p className={`textSettings`}>Delete section</p>
+                                <div className={`containerImageSettings`}>
+                                    <img src={deleteImage} alt="Delete" className={`imageSettings`} />
+                                </div>
+                            </div>
+                            <div className={`cardBack`}>
+                                <div className={`optionSettings`}>
+                                    <ButtonDeleteQuiz />
+                                    <ButtonDeleteQuestion />
+                                    <ButtonDeleteContent />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={`cardOptions`}>
+                        <div className={`containerOptions`}>
+                            <div className={`cardFront`}>
+                                <p className={`textSettings`}>View section</p>
                                 <img src={deleteImage} alt="Delete" className={`imageSettings`} />
                             </div>
-                            <div className={`optionSettings`}>
-                                <ButtonDeleteQuiz/>
-                                <ButtonDeleteQuestion/>
-                                <ButtonDeleteContent/>
-                            </div>
-                        </div>
-                        <div className={`containerOptions`}>
-                            <p className={`title-section-settings-tutor`}>View section</p>
-                            <div className={`optionSettings`}>
-                                <p className={`descriptionOptionSettings`}>View Result Quiz</p>
-                                <ButtonQuizResults />
+                            <div className={`cardBack`}>
+                                <div className={`optionSettings`}>
+                                    <ButtonQuizResults />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
             <Footer />
         </>
     );
