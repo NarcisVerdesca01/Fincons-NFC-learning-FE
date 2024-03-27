@@ -9,15 +9,10 @@ const Spinner = () => {
   useEffect(() => {
     setTimeout(() => {
       setShowSpinner(false);
-      navigate("/homePage");
+      navigate("/home");
       window.location.reload(); // Reload the page
     }, 2000);
   }, []);
-
-  /*const handleTransitionEnd = () => {
-    navigate("/homePage");
-    window.location.reload(); // ricarica la pagina
-  };*/
 
   return (
     <div>
