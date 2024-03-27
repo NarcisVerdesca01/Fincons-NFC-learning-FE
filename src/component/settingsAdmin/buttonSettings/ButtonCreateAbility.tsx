@@ -11,10 +11,10 @@ const ButtonCreateAbility = () => {
     return (
         <>
             <button
-                className={`buttonDefault buttonModalCreate`}
+                className={`buttonDefault buttonModal`}
                 onClick={handleShow}
                 style={{ margin: "0.5em" }}>
-                <span className={`frontDefault frontCreate`}>Ability <i className="bi bi-plus-circle"></i></span>
+                <span className={`frontDefault front`}>Ability <i className="bi bi-plus-circle"></i></span>
             </button>
 
             <Modal show={show}

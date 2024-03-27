@@ -24,7 +24,6 @@ const DeleteLesson = () => {
   }, [lessonId]);
 
   const DeleteLesson = () => {
-    console.log(lessonId);
     LessonService.deleteLesson(lessonId!);
     navigate("/settings_admin");
   };
@@ -46,7 +45,6 @@ const DeleteLesson = () => {
                 className="form-select"
                 aria-label="Default select example"
                 onChange={(e) => {
-                  console.log(Number(e.target.value));
                   setLessonId(Number(e.target.value));
                 }}
               >

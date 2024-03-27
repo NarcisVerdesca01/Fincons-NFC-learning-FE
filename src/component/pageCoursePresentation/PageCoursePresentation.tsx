@@ -17,7 +17,6 @@ const PageCoursePresentation = () => {
   useEffect(() => {
     CourseService.getCourseById(idCourse_page).then((res) => {
       setCourse(res.data);
-      console.log(res.data.lessons);
       setLessonList(res.data.lessons);
     });
   }, [idCourse]);

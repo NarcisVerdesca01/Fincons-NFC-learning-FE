@@ -11,8 +11,6 @@ const QuizResults = () => {
 
     useEffect(() => {
         QuizResultsService.getQuizResultsForTutor().then((res) => {
-            console.log(res.data)
-
             setQuizResults(res.data);
         });
     }, []);

@@ -14,7 +14,6 @@ const CreateAssociationCourseLesson = () => {
 
   useEffect(() => {
     LoginRegistrationService.getUserDetails().then((res) => {
-      console.log(res.data, "get userDetails");
       setUser(res.data);
     });
   }, []);
@@ -26,8 +25,6 @@ const CreateAssociationCourseLesson = () => {
   }, []);
 
   const saveCourseLesson = () => {
-    console.log("ability id ", abilityId.ability);
-    console.log("user id ", user);
     AbilityUserService.createAbilityUser(abilityId.ability);
     navigate("/settings_admin");
   };

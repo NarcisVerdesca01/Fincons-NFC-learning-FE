@@ -1,46 +1,49 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import CourseLessonService from "../../../services/CourseLessonService";
 import Course from "../../../models/CourseModel";
+import Lesson from "../../../models/LessonModel";
 import CourseService from "../../../services/CourseService";
-import AbilityService from "../../../services/AbilityService";
-import AbilityCourseService from "../../../services/AbilityCourseService";
-import Ability from "../../../models/AbilityModel";
+import LessonService from "../../../services/LessonService";
+import CourseLessonModel from "../../../models/CourseLessonModel";
 
 const CreateAssociationCourseLesson = () => {
+  const [courseLesson, setCourseLesson] = useState<CourseLessonModel | any>();
+  const [courseId, setCourseId] = useState<CourseLessonModel | any>();
   const [course, setCourse] = useState<any>();
-  const [ability, setAbility] = useState<any>();
-  const [courseId, setCourseId] = useState<any>();
-  const [abilityId, setAbilityId] = useState<any>();
+  const [lesson, setLesson] = useState<any>();
   const navigate = useNavigate();
 
   useEffect(() => {
-    CourseService.getCourses().then((res) => {
-      setCourse(res.data);
+    CourseService.getCourses().then((res1) => {
+      setCourse(res1.data);
     });
   }, []);
 
   useEffect(() => {
-    AbilityService.getAbilities().then((res) => {
-      setAbility(res.data);
+    LessonService.getNotAssociatedLessonsWithCourse().then((res2) => {
+      setLesson(res2.data);
     });
   }, []);
 
   const saveCourseLesson = () => {
-    AbilityCourseService.createAbilityCourse(
-      abilityId.ability,
-      courseId.course
+    console.log(courseId);
+    console.log(courseLesson);
+    CourseLessonService.createCourseLesson(
+      courseId.course,
+      courseLesson.lesson
     );
-    navigate("/settings_admin");
+    navigate("/settings_tutor");
   };
 
   const backToSettingsCourseLesson = () => {
-    navigate("/settings_admin");
+    navigate("/settings_tutor");
   };
 
   return (
     <div>
       <div>
-        <h3 className="titleModal"> Associate Course with Ability </h3>
+        <h3 className="titleModal"> Associate Course with Lesson </h3>
         <div>
           <form>
             <div className="form-group">
@@ -50,6 +53,7 @@ const CreateAssociationCourseLesson = () => {
                 className="form-select"
                 aria-label="Default select example"
                 onChange={(e) => {
+                  console.log(e.target.value);
                   setCourseId({
                     [e.target.name]: e.target.value,
                   });
@@ -59,48 +63,49 @@ const CreateAssociationCourseLesson = () => {
                 {course?.map((courses: Course, index: any) => {
                   return (
                     <option key={index} value={courses.id}>
-                      {courses.name}
+                      {courses?.name}
                     </option>
                   );
                 })}
               </select>
             </div>
             <div className="form-group">
-              <label className="labelModal">Ability</label>
+              <label className="labelModal">Lesson</label>
               <select
-                name="ability"
+                name="lesson"
                 className="form-select"
                 aria-label="Default select example"
                 onChange={(e) => {
-                  setAbilityId({
+                  console.log(e.target.value);
+                  setCourseLesson({
                     [e.target.name]: e.target.value,
                   });
                 }}
               >
-                <option selected>Select the Ability</option>
-                {ability?.map((ability: Ability, index: any) => {
+                <option selected>Select the Lesson</option>
+                {lesson?.map((lesson: Lesson, index: any) => {
                   return (
-                    <option key={index} value={ability.id}>
-                      {ability.name}
+                    <option key={index} value={lesson?.id}>
+                      {lesson?.title}
                     </option>
                   );
                 })}
               </select>
             </div>
             <div className="containerButtonModal">
-            <button className="buttonCheck" onClick={saveCourseLesson}>
-              <span className="frontCheck">
-                <i className="bi bi-check2"></i>
-              </span>
-            </button>
-            <button
-              className="buttonReturn"
-              onClick={backToSettingsCourseLesson}
-            >
-              <span className="frontReturn">
-                <i className="bi bi-arrow-left"></i>
-              </span>
-            </button>
+              <button className="buttonCheck" onClick={saveCourseLesson}>
+                <span className="frontCheck">
+                  <i className="bi bi-check2"></i>
+                </span>
+              </button>
+              <button
+                className="buttonReturn"
+                onClick={backToSettingsCourseLesson}
+              >
+                <span className="frontReturn">
+                  <i className="bi bi-arrow-left"></i>
+                </span>
+              </button>
             </div>
           </form>
         </div>

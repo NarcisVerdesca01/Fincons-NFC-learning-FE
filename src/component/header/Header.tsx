@@ -11,7 +11,6 @@ const Header = () => {
 
     const handleLogout = () => {
         Cookies.remove("jwt-token");
-        console.log("sono appena uscito");
         navigate("/authentication");
         window.location.reload(); // Reload the page to ensure that the old token is removed
     };
@@ -40,10 +39,7 @@ const Header = () => {
 
     useEffect(() => {
         LoginRegistrationService.getUserDetails().then((res) => {
-            console.log(res.data.roles[0].name, "get userDetails");
-            console.log(res.data.email, "get userDetails");
             if (res.data.roles[0].name === "ROLE_ADMIN") {
-                console.log(res.data.roles[0].name, "getUserDetails res.data.roles[0].name");
                 setAdminNavBar(true);
             } else if (res.data.roles[0].name === "ROLE_TUTOR") {
                 setTutorNavBar(true);

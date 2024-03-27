@@ -59,7 +59,7 @@ const CreateLesson = () => {
               <label className="labelModal">Title</label>
               <input
                 type="string"
-                placeholder={lesson?.title}
+                placeholder="Title"
                 name="title"
                 className={`form-control ${titleError ? "border-red-500" : ""}`}
                 value={lesson?.title}

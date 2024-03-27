@@ -21,14 +21,8 @@ const PageCourse = (props: Props) => {
   useEffect(() => {
     CourseService.getCourseById(idCourse_page!).then((res) => {
       setCourse(res.data);
-      console.log(res.data);
-      console.log(idCourse_page, " idCourse_page");
       props.setCourseId(idCourse_page);
-      console.log(
-        res.data.lessons,
-        "sono qui in PageCourse res.data.data.lessons"
-      );
-      setLessonList(res.data.lessons);
+      setLessonList(res.data.courseLessons);
     });
   }, [idCourse_page]);
 
@@ -70,11 +64,15 @@ const PageCourse = (props: Props) => {
           </div>
         </div>
         <div className={`containerResources`}>
-          {lessonList.map((lessons: any) => (
+          {lessonList?.map((lessons: any) => (
             <div className={`cardLessonPageCorse`}>
               <button
                 className={`buttonLessonCourse`}
-                onClick={() => gotToPage(lessons?.lesson.id)}
+                onClick={
+                  () => 
+                  gotToPage(lessons.lesson.id)
+                }
+                
               >
                 {lessons.lesson.title}
               </button>
