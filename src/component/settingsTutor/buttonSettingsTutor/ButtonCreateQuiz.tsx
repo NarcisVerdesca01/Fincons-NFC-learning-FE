@@ -19,7 +19,6 @@ const ButtonCreateQuiz = () => {
 
             <Modal show={show}
                 onHide={handleClose}
-                backdrop="static"
                 keyboard={false}
                 scrollable>
                 <Modal.Body>

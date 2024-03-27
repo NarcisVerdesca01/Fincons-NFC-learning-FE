@@ -54,34 +54,33 @@ const SettingsTutor = () => {
                             <ButtonAssociationQuestionAnswer />
                             <ButtonAssociationQuizQuestion />
                         </div>
-                    </div>
 
-                    <div className={`containerOptions`}>
-                        <p className={`textSettings`}>Update section</p>
-                        <div className={`containerImageSettings`}>
-                            <img src={updateImage} alt="Update" className={`imageSettings`} />
+                        <div className={`containerOptions`}>
+                            <p className={`textSettings`}>Update section</p>
+                            <div className={`containerImageSettings`}>
+                                <img src={updateImage} alt="Update" className={`imageSettings`} />
+                            </div>
+                            <div className={`optionSettings`}>
+                                <ButtonUpdateQuiz />
+                                <ButtonUpdateQuestion />
+                                <ButtonUpdateAnswer />
+                                <ButtonUpdateContent />
+                            </div>
                         </div>
-                        <div className={`optionSettings`}>
-                            <ButtonUpdateQuiz />
-                            <ButtonUpdateQuestion />
-                            <ButtonUpdateAnswer />
-                            <ButtonUpdateContent />
+                        <div className={`containerOptions`}>
+                            <p className={`textSettings`}>Delete section</p>
+                            <div className={`containerImageSettings`}>
+                                <img src={deleteImage} alt="Delete" className={`imageSettings`} />
+                            </div>
+                            <div className={`optionSettings`}>
+                            </div>
                         </div>
-                    </div>
-                    <div className={`containerOptions`}>
-                        <p className={`textSettings`}>Delete section</p>
-                        <div className={`containerImageSettings`}>
-                            <img src={deleteImage} alt="Delete" className={`imageSettings`} />
-                        </div>
-                        <div className={`optionSettings`}>
-                        </div>
-                    </div>
-                    <div className={`containerOptions`}>
-                        <p className={`title-section-settings-tutor`}>View section</p>
-                        <p className={`title-section-settings-tutor`}>View section</p>
-                        <div className={`optionSettings`}>
-                            <p className={`descriptionOptionSettings`}>View Result Quiz</p>
-                            <ButtonQuizResults />
+                        <div className={`containerOptions`}>
+                            <p className={`title-section-settings-tutor`}>View section</p>
+                            <div className={`optionSettings`}>
+                                <p className={`descriptionOptionSettings`}>View Result Quiz</p>
+                                <ButtonQuizResults />
+                            </div>
                         </div>
                     </div>
                 </div>

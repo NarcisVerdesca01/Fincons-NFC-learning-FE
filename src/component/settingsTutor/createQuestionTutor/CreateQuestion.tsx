@@ -62,7 +62,7 @@ const CreateQuestion = () => {
                             ></input>
                         </div>
 
-                        <button className='btn btn-success' onClick={saveQuestion}>Create Question</button>
+                        <button type="button" className='btn btn-success' onClick={saveQuestion}>Create Question</button>
                         <button className='btn btn-danger' onClick={backToSettings}>Back</button>
                     </form>
                 </div>

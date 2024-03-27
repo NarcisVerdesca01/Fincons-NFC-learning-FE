@@ -12,7 +12,7 @@ import { useState } from "react";
 import PageLesson from "./component/pageLesson/PageLesson";
 import PageCoursePresentation from "./component/pageCoursePresentation/PageCoursePresentation";
 import SettingsAdmin from "./component/settingsAdmin/SettingsAdmin";
-import SettingsTutor from "./component/settingsTutor/SettingTutor";
+import SettingsTutor from "./component/settingsTutor/SettingsTutor";
 import QuizPage from "./component/quizPage/QuizPage";
 import LoginRegister from "./component/loginRegister/LoginRegister";
 import Spinner from "./component/spinner/Spinner";
