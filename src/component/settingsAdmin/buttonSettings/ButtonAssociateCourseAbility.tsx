@@ -11,11 +11,11 @@ const ButtonAssociateCourseAbility = () => {
   return (
     <>
       <button
-        className={`buttonDefault buttonModalAssociation`}
+        className={`buttonDefault buttonModal`}
         onClick={handleShow}
         style={{ margin: "0.5em" }}
       >
-        <span className={`frontDefault frontAssociation`}>Course to Ability <i className="bi bi-person-fill-add"></i></span>
+        <span className={`frontDefault front`}>Course to Ability <i className="bi bi-person-fill-add"></i></span>
       </button>
 
       <Modal show={show}

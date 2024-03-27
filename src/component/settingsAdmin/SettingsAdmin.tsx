@@ -24,57 +24,80 @@ const SettingsAdmin = () => {
       <Header />
       <div className={`containerSettingsAdmin`}>
         <div className={`sectionContainer`}>
-          <div className={`containerOptions`}>
-            <p className={`textSettings`}>Create section</p>
-            <div className={`containerImageSettings`}>
-              <img src={createImage} alt="Create" className={`imageSettings`} />
-            </div>
-            <div className={`optionSettings`}>
-              <ButtonCreateCourse />
-              <ButtonCreateLesson />
-              <ButtonCreateAbility />
-              <ButtonRegisterTutor />
-            </div>
-          </div>
-          <div className={`containerOptions`}>
-            <p className={`textSettings`}>Associate section</p>
-            <div className={`containerImageSettings`}>
-              <img
-                src={associateImage}
-                alt="Associate"
-                className={`imageSettings`}
-              />
-            </div>
-            <div className={`optionSettings`}>
-              <ButtonAssociateUserAbility />
-              <ButtonAssociateCourseAbility />
+          <div className={`cardOptions`}>
+            <div className={`containerOptions`}>
+              <div className={`cardFront`}>
+                <p className={`textSettings`}>Create section</p>
+                <div className={`containerImageSettings`}>
+                  <img src={createImage} alt="Create" className={`imageSettings`} />
+                </div>
+              </div>
+              <div className={`cardBack`}>
+                <div className={`optionSettings`}>
+                  <ButtonCreateCourse />
+                  <ButtonCreateLesson />
+                  <ButtonCreateAbility />
+                  <ButtonRegisterTutor />
+                </div>
+              </div>
             </div>
           </div>
-          <div className={`containerOptions`}>
+          <div className={`cardOptions`}>
+            <div className={`containerOptions`}>
+              <div className={`cardFront`}>
+                <p className={`textSettings`}>Associate section</p>
+                <div className={`containerImageSettings`}>
+                  <img
+                    src={associateImage}
+                    alt="Associate"
+                    className={`imageSettings`}
+                  />
+                </div>
+              </div>
+              <div className={`cardBack`}>
+                <div className={`optionSettings`}>
+                  <ButtonAssociateUserAbility />
+                  <ButtonAssociateCourseAbility />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={`cardOptions`}>
+            <div className={`containerOptions`}>
+              <div className={`cardFront`}>
             <p className={`textSettings`}>Update section</p>
             <div className={`containerImageSettings`}>
               <img src={updateImage} alt="Update" className={`imageSettings`} />
             </div>
+            </div>
+              <div className={`cardBack`}>
             <div className={`optionSettings`}>
               <ButtonUpdateCourse />
               <ButtonUpdateLesson />
               <ButtonUpdateAbility />
             </div>
+            </div>
           </div>
-          <div className={`containerOptions`}>
+          </div>
+          <div className={`cardOptions`}>
+            <div className={`containerOptions`}>
+              <div className={`cardFront`}>
             <p className={`textSettings`}>Delete section</p>
             <div className={`containerImageSettings`}>
               <img src={deleteImage} alt="Delete" className={`imageSettings`} />
             </div>
+            </div>
+              <div className={`cardBack`}>
             <div className={`optionSettings`}>
               <ButtonDeleteCourse />
               <ButtonDeleteLesson />
               <ButtonDeleteAbility />
             </div>
+            </div>
+          </div>
           </div>
         </div>
       </div>
-      <Footer/>
     </>
   );
 };

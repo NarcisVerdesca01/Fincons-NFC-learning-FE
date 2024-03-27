@@ -17,24 +17,9 @@
     outline-offset: 4px;
 }
 
-.buttonModalAssociation{
-    background-color: #0e111ecc;
-    color: black;
-}
-
-.buttonModalCreate{
-    background-color: #002700d2;
-    color: black;
-}
-
-.buttonModalDelete{
-    background-color: #640000d2;
-    color: black;
-}
-
-.buttonModalUpdate{
-    background-color: #011c4ed2;
-    color: black;
+.buttonModal{
+    background-color: #8b8ed6;
+    color: #0E111E;
 }
 
 .frontDefault{
@@ -46,27 +31,11 @@
     transform: translateY(-6px);
 }
 
-.frontAssociation{
-    background: #696e88;
-    color: white;
+.front{
+    background-color: #DCDDFC;
+    color: #0E111E;
 }
 
-.frontCreate{
-    background: #007c00;
-    color: white;
-}
-
-.frontDelete{
-    background: #c40000;
-    color: white;
-}
-
-.frontUpdate{
-    background: #0065c4;
-    color: white;
-}
-
-.buttonModalAssociation:active .frontAssociation, .buttonModalUpdate:active .frontUpdate,
-.buttonModalDelete:active .frontDelete, .buttonModalCreate:active .frontCreate {
+.buttonModal:active .front{
     transform: translateY(0px)
 }

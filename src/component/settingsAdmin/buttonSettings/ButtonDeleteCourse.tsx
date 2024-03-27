@@ -11,10 +11,10 @@ const ButtonDeleteCourse = () => {
     return (
         <>
             <button
-                className={`buttonDefault buttonModalDelete`}
+                className={`buttonDefault buttonModal`}
                 onClick={handleShow}
                 style={{ margin: "0.5em" }}>
-                <span className={`frontDefault frontDelete`}>Course <i className="bi bi-trash3"></i></span>
+                <span className={`frontDefault front`}>Course <i className="bi bi-trash3"></i></span>
             </button>
 
             <Modal show={show}

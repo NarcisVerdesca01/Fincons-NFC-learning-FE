@@ -11,10 +11,10 @@ const ButtonRegisterTutor = () => {
   return (
     <>
       <button
-        className={`buttonDefault buttonModalCreate`}
+        className={`buttonDefault buttonModal`}
         onClick={handleShow}
         style={{ margin: "0.5em" }}>
-        <span className={`frontDefault frontCreate`}>Tutor <i className="bi bi-plus-circle"></i></span>
+        <span className={`frontDefault front`}>Tutor <i className="bi bi-plus-circle"></i></span>
       </button>
 
       <Modal show={show} onHide={handleClose} keyboard={false} scrollable>

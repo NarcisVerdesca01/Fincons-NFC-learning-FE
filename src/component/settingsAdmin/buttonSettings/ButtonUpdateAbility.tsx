@@ -11,10 +11,10 @@ const ButtonUpdateAbility = () => {
   return (
     <>
       <button
-        className={`buttonDefault buttonModalUpdate`}
+        className={`buttonDefault buttonModal`}
         onClick={handleShow}
         style={{ margin: "0.5em" }}>
-        <span className={`frontDefault frontUpdate`}>Ability <i className="bi bi-arrow-repeat"></i></span>
+        <span className={`frontDefault front`}>Ability <i className="bi bi-arrow-repeat"></i></span>
       </button>
 
       <Modal show={show} onHide={handleClose} keyboard={false} scrollable>

@@ -11,10 +11,10 @@ const ButtonDeleteLesson = () => {
     return (
         <>
             <button
-                className={`buttonDefault buttonModalDelete`}
+                className={`buttonDefault buttonModal`}
                 onClick={handleShow}
                 style={{ margin: "0.5em" }}>
-                <span className={`frontDefault frontDelete`}>Lesson <i className="bi bi-trash3"></i></span>
+                <span className={`frontDefault front`}>Lesson <i className="bi bi-trash3"></i></span>
             </button>
 
       <Modal show={show} onHide={handleClose} keyboard={false} scrollable>

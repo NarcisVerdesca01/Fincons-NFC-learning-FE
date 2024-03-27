@@ -11,10 +11,10 @@ const ButtonUpdateCourse = () => {
     return (
         <>
             <button
-                className={`buttonDefault buttonModalUpdate`}
+                className={`buttonDefault buttonModal`}
                 onClick={handleShow}
                 style={{ margin: "0.5em" }}>
-                <span className={`frontDefault frontUpdate`}>Course <i className="bi bi-arrow-repeat"></i></span>
+                <span className={`frontDefault front`}>Course <i className="bi bi-arrow-repeat"></i></span>
             </button>
 
             <Modal show={show}
