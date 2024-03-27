@@ -46,18 +46,15 @@ const CreateQuiz = () => {
 
     return (
         <div>
-            <h3> Create Quiz </h3>
-            <form className="was-validated">
+            <h3 style={{textAlign:"center"}}> Create Quiz </h3>
+            <form>
                 <div>
-                    <label htmlFor="title">Title</label>
+                    <label htmlFor="title" style={{marginBottom: "2%"}}>Title</label>
                     <input
-                        required
-                        id="validationTextarea"
-                        aria-describedby="validationServer03Feedback"
                         type="text"
                         placeholder="Name of quiz"
                         name="title"
-                        className="form-control is-valid"
+                        className="form-control"
                         value={quiz?.title || ''}
                         onChange={(e) => {
                             setQuiz({
@@ -66,9 +63,6 @@ const CreateQuiz = () => {
                             });
                         }}
                     />
-
-
-
                 </div>
 
                 {loading && <div>Saving in progress...</div>}
@@ -89,16 +83,14 @@ const CreateQuiz = () => {
                    
                         <button disabled={loading || !quiz?.title} type="button" className='btn btn-success' onClick={saveQuiz} >
                             {loading ? 'Saving in progress...' : 'Create Quiz'}
-                        </button>
-                    
+                        </button>                 
 
 
-                    <button type="button" className='btn btn-danger' onClick={backToSettings}>Back</button>
+                    <button  className='btn btn-danger' onClick={backToSettings}>Back</button>
                 </div>
-
-
             </form>
-            <button onClick={backToSettings}>Back</button>
+
+           
         </div>
     );
 };
