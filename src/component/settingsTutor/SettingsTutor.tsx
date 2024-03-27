@@ -19,6 +19,10 @@ import ButtonAssociationCourseLesson from "./buttonSettingsTutor/ButtonAssocatio
 import ButtonAssociationQuizLesson from "./buttonSettingsTutor/ButtonAssocationQuizLesson";
 import ButtonAssociationQuestionAnswer from "./buttonSettingsTutor/ButtonAssociationQuestionAnswer";
 import ButtonAssociationQuizQuestion from "./buttonSettingsTutor/ButtonAssociationQuizQuestion";
+import ButtonDeleteQuiz from "./buttonSettingsTutor/ButtonDeleteQuiz";
+import ButtonDeleteQuestion from "./buttonSettingsTutor/ButtonDeleteQuestion";
+import ButtonDeleteAnswer from "./buttonSettingsTutor/ButtonDeleteAnswer";
+import ButtonDeleteContent from "./buttonSettingsTutor/ButtonDeleteContent";
 
 const SettingsTutor = () => {
     return (
@@ -73,6 +77,9 @@ const SettingsTutor = () => {
                                 <img src={deleteImage} alt="Delete" className={`imageSettings`} />
                             </div>
                             <div className={`optionSettings`}>
+                                <ButtonDeleteQuiz/>
+                                <ButtonDeleteQuestion/>
+                                <ButtonDeleteContent/>
                             </div>
                         </div>
                         <div className={`containerOptions`}>

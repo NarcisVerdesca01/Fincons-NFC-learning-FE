@@ -1,36 +1,36 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import QuizService from "../../../services/QuizService";
-import Quiz from "../../../models/QuizModel";
+import Answer from "../../../models/AnswerModel";
+import AnswerService from "../../../services/AnswerService";
 
-const DeleteQuizTutor = () => {
-  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
-  const [selectedQuizId, setSelectedQuizId] = useState<number | null>(null);
-  const [quiz, setQuiz] = useState<Quiz>();
+const DeleteAnswerTutor = () => {
+  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [selectedAnswerId, setSelectedAnswerId] = useState<number | null>(null);
+  const [answer, setAnswer] = useState<Answer>();
   const [titleError, setTitleError] = useState(false);
   const [titleErrorMessage, setTitleErrorMessage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    QuizService.getQuizzes().then((res) => {
-      setQuizzes(res.data);
+    AnswerService.getAnswers().then((res) => {
+      setAnswers(res.data);
     });
   }, []);
 
   useEffect(() => {
-    if (selectedQuizId !== null) {
-      QuizService.getQuizById(selectedQuizId).then((res) => {
-        setQuiz(res.data);
+    if (selectedAnswerId !== null) {
+      AnswerService.getAnswerById(selectedAnswerId).then((res) => {
+        setAnswer(res.data);
       });
     }
-  }, [selectedQuizId]);
+  }, [selectedAnswerId]);
 
-  const deleteQuiz = () => {
+  const deleteAnswer = () => {
     if (titleError) {
       return;
     }
 
-    QuizService.deleteQuiz(selectedQuizId!);
+    AnswerService.deleteAnswer(selectedAnswerId!);
     navigate("/settings_tutor");
   };
 
@@ -51,41 +51,41 @@ const DeleteQuizTutor = () => {
       setErrorMessage('');
     }
 
-    setQuiz({
-      ...quiz!,
-      title: inputValue
+    setAnswer({
+      ...answer!,
+      text: inputValue
     });
   };
 
   return (
     <div>
       <div>
-        <h3>Delete Quiz</h3> 
+        <h3>Delete Answer</h3> 
         <div>
           <form>
             <div className="form-group">
-              <label>Quiz</label>
+              <label>Answer</label>
               <select
                 name="quiz"
                 className="form-select"
                 aria-label="Default select example"
                 onChange={(e) => {
-                  setSelectedQuizId(Number(e.target.value));
+                  setSelectedAnswerId(Number(e.target.value));
                 }}
               >
-                <option selected>Select the Quiz to delete</option>
-                {quizzes.map((quiz) => {
+                <option selected>Select the Answer to delete</option>
+                {answers.map((answer) => {
                   return (
-                    <option key={quiz.id} value={quiz.id}>
-                      {quiz.title}
+                    <option key={answer.id} value={answer.id}>
+                      {answer.text}
                     </option>
                   );
                 })}
               </select>
             </div>
-            {quiz && (
+            {answer && (
               <>
-                <button type="button" className="btn btn-success" onClick={deleteQuiz} disabled={titleError}>
+                <button type="button" className="btn btn-success" onClick={deleteAnswer} disabled={titleError}>
                   delete
                 </button>
                 <button className="btn btn-danger" onClick={backToSettings}>
@@ -99,4 +99,4 @@ const DeleteQuizTutor = () => {
     </div>
   );
 };
-export default DeleteQuizTutor;
+export default DeleteAnswerTutor;

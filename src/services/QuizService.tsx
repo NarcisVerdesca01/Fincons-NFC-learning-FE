@@ -16,8 +16,8 @@ const RESEND_QUIZ = VERSION_URI + "/quiz-student-result/quiz-redo";
 const ASSOCIATE_WITH_LESSON = QUIZ_URI + "/associatelesson";
 const ASSOCIATE_WITH_QUESTION = QUIZ_URI + "/associatequestion";
 const CHECK_QUIZ = VERSION_URI + "/quiz-student-result/check";
-const UPDATE_QUIZ_URI= QUIZ_URI + "/update";
-const DELETE_QUIZ_URI= QUIZ_URI + "/update";
+const UPDATE_QUIZ_URI = QUIZ_URI + "/update";
+const DELETE_QUIZ_URI = QUIZ_URI + "/delete";
 
 
 const getQuizzes = async () => {
@@ -120,27 +120,18 @@ const updateQuiz = async (quizId: number, quiz: Quiz) => {
   }
 };
 
-const deleteQuiz = async (lessonId: number) => {
+const deleteQuiz = async (quizId: number) => {
   const token = Cookies.get("jwt-token");
+  const url = `${DELETE_QUIZ_URI}?idQuiz=${quizId}`;
 
   try {
-      const response = await axios.put(
-          DELETE_QUIZ_URI,
-          {},
-          {
-              params: {
-                  id: lessonId
-              },
-              headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${token}`
-              }
-          }
-      );
-      return response.data;
+    const response = await axios.put(url, {}, {
+          headers: {Authorization: `Bearer ${token}`}
+      });
+    return response.data;
   } catch (error) {
-      console.error("Error deleting quiz:", error);
-      throw error;
+    console.error("Error deleting quiz:", error);
+    throw error;
   }
 };
 

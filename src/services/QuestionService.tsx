@@ -8,6 +8,7 @@ const VERSION_URI = API_BASE_URL + "/v1";
 const QUESTION_URI = VERSION_URI + "/question";
 const CREATE_QUESTION = QUESTION_URI + "/create";
 const UPDATE_QUESTION = QUESTION_URI + "/update";
+const DELETE_QUESTION = QUESTION_URI + "/delete";
 const GET_ALL_URI = QUESTION_URI + "/list";
 
 const GET_ALL_URI_NO_ASSOCIATED_QUIZ = QUESTION_URI + "/list-no-association-quiz";
@@ -74,6 +75,21 @@ const createQuestion = async (question: Question) => {
   }
 };
 
+const deleteQuestion = async (questionId: number) => {
+  const token = Cookies.get("jwt-token");
+  const url = `${DELETE_QUESTION}?idQuestion=${questionId}`;
+
+  try {
+    const response = await axios.put(url, {}, {
+          headers: {Authorization: `Bearer ${token}`}
+      });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting question:", error);
+    throw error;
+  }
+};
+
 const updateQuestion = async (questionId: number, question: Question) => {
   const token = Cookies.get("jwt-token");
   const url = `${UPDATE_QUESTION}/${questionId}`;
@@ -103,6 +119,7 @@ const QuestionService = {
   getQuestions,
   getQuestionsWithoutAssociationWithQuiz,
   updateQuestion,
+  deleteQuestion,
   getQuestionsWithoutAssociationWithAnswer,
   createQuestion,
   getQuestionById,
