@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import CreateAssociationContentLesson from '../createAssociationContentLesson/CreateAssociationContentLesson';
+import CreateAssociationContentLesson from '../associationContentLesson/AssociationContentLesson';
 import '../../settingsAdmin/buttonSettings/StyleModals.css';
 
 const ButtonAssociationContentLesson = () => {

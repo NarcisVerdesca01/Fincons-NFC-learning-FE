@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import CreateAssociationQuizLesson from '../createAssociationQuizLesson/CreateAssociationQuizLesson';
+import AssociationCourseLesson from '../associationCourseLesson/AssociationCourseLesson';
 import '../../settingsAdmin/buttonSettings/StyleModals.css';
 
-const ButtonAssociationQuizLesson = () => {
+const ButtonAssociationCourseLesson = () => {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -15,8 +15,9 @@ const ButtonAssociationQuizLesson = () => {
                 onClick={handleShow}
                 style={{ margin: "0.5em" }}
             >
-                <span className={`frontDefault frontAssociation`}>Quiz to Lesson <i className="bi bi-arrows-angle-contract"></i></span>
+                <span className={`frontDefault frontAssociation`}>Course to Lesson <i className="bi bi-arrows-angle-contract"></i></span>
             </button>
+
 
             <Modal show={show}
                 onHide={handleClose}
@@ -24,11 +25,11 @@ const ButtonAssociationQuizLesson = () => {
                 keyboard={false}
                 scrollable>
                 <Modal.Body>
-                    <CreateAssociationQuizLesson />
+                    <AssociationCourseLesson />
                 </Modal.Body>
             </Modal>
         </>
     );
 }
 
-export default ButtonAssociationQuizLesson;
+export default ButtonAssociationCourseLesson;

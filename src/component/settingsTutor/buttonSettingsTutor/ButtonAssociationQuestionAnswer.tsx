@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import CreateAssociationQuestionAnswer from '../createAssociationQuestionAnswer/CreateAssociationQuestionAnswer';
+import AssociationQuestionAnswer from '../associationQuestionAnswer/AssociationQuestionAnswer';
 import '../../settingsAdmin/buttonSettings/StyleModals.css';
 
 const ButtonAssociationQuestionAnswer = () => {
@@ -24,7 +24,7 @@ const ButtonAssociationQuestionAnswer = () => {
                 keyboard={false}
                 scrollable>
                 <Modal.Body>
-                    <CreateAssociationQuestionAnswer />
+                    <AssociationQuestionAnswer />
                 </Modal.Body>
             </Modal>
         </>
