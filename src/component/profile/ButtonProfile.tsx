@@ -4,9 +4,9 @@ import { useState } from "react";
 
 const ButtonProfile = () => {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
   return (
     <>
       <Button variant="light" onClick={handleShow} style={{ margin: "0.5em"}}>

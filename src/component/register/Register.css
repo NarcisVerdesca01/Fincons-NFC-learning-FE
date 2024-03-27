@@ -1,11 +1,7 @@
-
-
 .cardRegister{
     border-radius: 15px;
     background-color: #EDF1FA;
-
 }
-
 
 .formRegister {
     display: flex;
@@ -84,7 +80,6 @@
     justify-content: center;
     align-items: center;
 }
-
 
 .btnRegister{
     display: flex;

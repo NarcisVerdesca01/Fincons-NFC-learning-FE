@@ -22,10 +22,8 @@
 }
 
 .container-quiz-of-lesson {
-    
-     text-align: center;
-     margin-top: 2%;
-  
+    text-align: center;
+    margin-top: 2%;
 }
 
 .button-quiz-of-lesson{
@@ -100,7 +98,6 @@
     border-radius: 15px;
 }
 .buttonBack:hover{
-
     box-shadow: 4px 4px 4px rgb(0, 0, 0);
     transform: scale(1.05);
 }

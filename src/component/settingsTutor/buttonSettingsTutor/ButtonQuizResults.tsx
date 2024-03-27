@@ -6,9 +6,9 @@ import '../../settingsAdmin/buttonSettings/StyleModals.css';
 
 const ButtonCreateQuiz = () => {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    
     return (
         <>
             <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>

@@ -11,6 +11,7 @@
     flex-direction: row;
     justify-content: center;
 }
+
 .containerMenuProfile{
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -18,9 +19,11 @@
     flex-direction: column;
     margin-top: 2em;
 }
+
 .containerMenu{
     margin-top: 2em;
 }
+
 .containerAll{
     width: 70%;
     background-color: rgb(255, 255, 255);
@@ -28,6 +31,7 @@
     justify-content: center;
     flex-direction: column;
 }
+
 .userDetails{
     background-color: rgb(255, 255, 255);
     text-align: center;
@@ -39,6 +43,7 @@
     justify-content: flex-start;
     align-items: center;
 }
+
 .titleHeaderProfile {
     margin: 0;
     margin-left: 4.2em;
@@ -47,4 +52,3 @@
     font-weight: 500;
     color: #804DF0;
 }
-

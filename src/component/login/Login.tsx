@@ -6,7 +6,6 @@ import LoginRegistrationService from "../../services/LoginRegistrationService";
 import 'react-bootstrap-icons';
 import './Login.css';
 
-
 const Login = () => {
   const [errorMessage, setErrorMessage] = useState<string>();
   const [passwordShow, setPasswordShow] = useState("password");
@@ -21,7 +20,6 @@ const Login = () => {
     email: "",
     password: "",
   });
-
 
   useEffect(() => {
     if (Cookies.get("jwt-token") !== undefined) {
@@ -130,7 +128,6 @@ const Login = () => {
               Did you forget your password?
             </button>*/}
           </div>
-
         </form>
       </div>
     </div>

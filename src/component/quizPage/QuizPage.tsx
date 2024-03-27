@@ -24,30 +24,22 @@ const QuizPage = (props: Props) => {
     const [showSubmitButton, setShowSubmitButton] = useState<boolean>(false);
     const [quizSubmitted, setQuizSubmitted] = useState(false);
     const [showRedoQuizButton, setShowRedoQuizButton] = useState(true);
-
-    //variabile di stato per verificare se il quiz è stato già svolto dallo studente 
     const [maxSelectableAnswers, setMaxSelectableAnswers] = useState<number>(0);
-    //variabile di stato per verificare se il quiz è stato già svolto dallo studente 
     const [quizAlreadyDone, setQuizAlreadyDone] = useState<boolean>(false);
-    //variabile di stato per verificare se l'utente vuole rieseguire il quiz
     const [userWantToDoItAgain, setuserWantToDoItAgain] = useState<boolean>(false);
 
     useEffect(() => {
         const areAllQuestionsAnswered = () => {
             return questionList?.every(question => userAnswers?.[question.id] !== undefined) ?? false;
         };
-
         setShowSubmitButton(areAllQuestionsAnswered());
     }, [questionList, userAnswers]);
 
-
     useEffect(() => {
-
         const checkQuizStatus = async () => {
             try {
                 const response = await QuizService.checkQuizResult(quizId);
                 console.log(response);
-
                 if (response.data) {
                     console.log("Il quiz è stato già svolto dallo studente.");
                     setQuizAlreadyDone(true);
@@ -60,9 +52,7 @@ const QuizPage = (props: Props) => {
                         setTotalScoreQuiz(null);
                         setShowSubmitButton(false);
                         setQuizSubmitted(false);
-
                         getTheQuizById();
-
                         console.log("Sto richiamando il corso" + quiz?.title);
                     }
                 } else {
@@ -83,7 +73,6 @@ const QuizPage = (props: Props) => {
                 setQuestionList(res.data.questions);
             } catch (error) {
                 console.error("Errore durante il recupero del quiz:", error);
-                // Gestisci gli errori in base alle tue esigenze
             }
         };
 
@@ -98,21 +87,18 @@ const QuizPage = (props: Props) => {
         }
     }, [currentQuestion]);
 
-    //prossima domanda
     const goToNextQuestion = () => {
         if (currentQuestionIndex < (questionList?.length ?? 0) - 1) {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         }
     };
 
-    //domanda precedente
     const goToPreviousQuestion = () => {
         if (currentQuestionIndex > 0) {
             setCurrentQuestionIndex(currentQuestionIndex - 1);
         }
     };
 
-    //verifica se tutte le domande sono state valorizzate
     const areAllQuestionsAnswered = () => {
         return questionList?.every(question => userAnswers?.[question.id] !== undefined);
     };
@@ -125,25 +111,24 @@ const QuizPage = (props: Props) => {
             setMaxSelectableAnswers(maxCorrectAnswers);
 
             if (maxSelectableAnswers !== undefined) {
-                // Verifica se la domanda corrente ha più di una risposta corretta
+                
                 const multipleCorrectAnswers = maxSelectableAnswers > 1;
-                // Verifica se la risposta selezionata è già presente nell'array delle risposte per la domanda corrente
                 const isAnswerSelected = updatedAnswers[questionId]?.includes(answerId);
-                // Se l'opzione è già selezionata, rimuoviamola
+                
                 if (isAnswerSelected) {
                     updatedAnswers[questionId] = updatedAnswers[questionId]?.filter(id => id !== answerId);
                 } else {
-                    // Controlla se il numero massimo di risposte selezionate è stato raggiunto
+                    
                     if (updatedAnswers[questionId]?.length >= maxSelectableAnswers && multipleCorrectAnswers) {
-                        // Se sì, non aggiungere ulteriori risposte
+
                         return updatedAnswers;
                     }
-                    // Altrimenti, aggiungiamola all'array delle risposte
+                    
                     updatedAnswers[questionId] = updatedAnswers[questionId]
                         ? [...updatedAnswers[questionId], answerId]
                         : [answerId];
                 }
-                // Disabilita le checkbox non selezionate quando il numero massimo di risposte corrette è stato raggiunto
+                
                 if (multipleCorrectAnswers) {
                     const checkboxes = document.querySelectorAll<HTMLInputElement>(`input[type="checkbox"][name="question-${questionId}"]`);
                     checkboxes.forEach(checkbox => {
@@ -253,10 +238,7 @@ const QuizPage = (props: Props) => {
                         <p>L'utente non vuole rifarlo</p>
                     )} */}               
 
-
                 </div>
-
-
             ) 
             }
            

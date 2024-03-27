@@ -4,7 +4,6 @@
     color:#7e4ee5;
 }
 
-
 .containerSettings{
     display: flex;
     align-items: center;
@@ -27,5 +26,4 @@
     font-weight: 300;
     font-size: 50px;
     color:#7e4ee5;
-
 }

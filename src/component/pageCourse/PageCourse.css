@@ -1,9 +1,7 @@
-
 .page-single-course-title-name{
     font-weight: 300;
     color:#7e4ee5;
 }
-
 
 .containerPageCourse {
     display: flex;
@@ -111,11 +109,9 @@
     border-radius: 15px;
 }
 .buttonBack:hover{
-
     box-shadow: 4px 4px 4px rgb(0, 0, 0);
     transform: scale(1.05);
 }
 .containerButtonBack{
     margin-left: 1em;
-
 }

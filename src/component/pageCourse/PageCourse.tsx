@@ -72,7 +72,6 @@ const PageCourse = (props: Props) => {
                   () => 
                   gotToPage(lessons.lesson.id)
                 }
-                
               >
                 {lessons.lesson.title}
               </button>

@@ -81,7 +81,6 @@ const CreateQuestion = () => {
                   <i className="bi bi-check2"></i>
                 </span>
               </button>
-
               <button className="buttonReturn" onClick={backToSettings}>
                 <span className="frontReturn">
                   <i className="bi bi-arrow-left"></i>

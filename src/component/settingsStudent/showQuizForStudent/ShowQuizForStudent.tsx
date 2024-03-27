@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import QuizResultsModel from "../../../models/QuizResultsModel";
 import QuizResultsService from "../../../services/QuizResultsService";
 
@@ -21,8 +20,6 @@ const ShowQuizForStudent = () => {
             return "text-warning";
         }
     };
-
-
 
     return (
         <div style={{ overflowX: "auto" }}>

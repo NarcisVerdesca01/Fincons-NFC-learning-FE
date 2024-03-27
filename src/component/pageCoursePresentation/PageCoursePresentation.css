@@ -4,7 +4,6 @@
     font-size: 50px;
 }
 
-
 .containerPageCoursePresentation {
     display: flex;
     align-items: center;
@@ -83,5 +82,4 @@
 }
 .containerButtonBack{
     margin-right: 115em;
-
 }

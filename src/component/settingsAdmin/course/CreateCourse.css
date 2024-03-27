@@ -26,9 +26,11 @@
   transform: translateY(-6px);
   background-color: #DCDDFC;
 }
+
 .buttonCheck:active .frontCheck, .buttonReturn:active .frontReturn{
   transform: translateY(0px);
 }
+
 .buttonReturn{
   margin-top: 1em;
   margin-right: 1em;
@@ -40,6 +42,7 @@
   border-radius: 12px;
   outline-offset: 4px;
 }
+
 .frontReturn{
   display: block;
   border-radius: 12px;
@@ -47,12 +50,14 @@
   transform: translateY(-6px);
   background-color:#0E111E;
 }
+
 .titleModal{
   color:#8b8ed6;
   font-size: large;
   font-weight: 700;
   text-align: center;
 }
+
 .labelModal{
   color: #8b8ed6;
   font-weight: 700;

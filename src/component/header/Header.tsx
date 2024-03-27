@@ -12,7 +12,7 @@ const Header = () => {
     const handleLogout = () => {
         Cookies.remove("jwt-token");
         navigate("/authentication");
-        window.location.reload(); // Reload the page to ensure that the old token is removed
+        window.location.reload(); 
     };
 
     const goToCourses = () => {
@@ -29,9 +29,6 @@ const Header = () => {
     }
     const goToSettingsAdmin = () => {
         navigate("/settings_admin")
-    }
-    const goToProfile = () => {
-        navigate("/profile")
     }
 
     const [adminNavBar, setAdminNavBar] = useState<boolean>(false);

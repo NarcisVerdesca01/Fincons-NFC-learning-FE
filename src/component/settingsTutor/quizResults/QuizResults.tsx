@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import QuizResultsModel from "../../../models/QuizResultsModel";
 import QuizResultsService from "../../../services/QuizResultsService";
-import { Modal } from "react-bootstrap";
 
 const QuizResults = () => {
     const [quizResults, setQuizResults] = useState<QuizResultsModel[]>([]);
     const navigate = useNavigate();
-
 
     useEffect(() => {
         QuizResultsService.getQuizResultsForTutor().then((res) => {
@@ -64,7 +62,6 @@ const QuizResults = () => {
                 </table>
                 <button className='btn btn-danger text-center"' onClick={backToSettings}>Back</button>
             </form>
-
         </div>
     );
 };

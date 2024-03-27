@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Ability from "../../../models/AbilityModel";
 import AbilityService from "../../../services/AbilityService";
-import Cookies from "js-cookie";
 
 const DeleteAbility = () => {
   const [abilities, setAblilities] = useState<Ability[]>([]);
