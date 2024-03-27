@@ -68,7 +68,6 @@ const updateAbility = async (abilityId: number, updatedAbility: Ability) => {
 const deleteAbility = async (abilityId: number) => {
     const token = Cookies.get("jwt-token");
     try {
-        console.log(abilityId, "ability service");
         const response = await axios.put(
             DELETE_ABILITY,
             {},
@@ -81,10 +80,8 @@ const deleteAbility = async (abilityId: number) => {
                 }
             }
         )
-        console.log(response, "carllo")
         return response.data;
     } catch (error) {
-        console.log("sono in error")
         console.error("Error deleting course:", error);
         throw error;
     }

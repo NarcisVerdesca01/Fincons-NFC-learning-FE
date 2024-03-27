@@ -8,12 +8,11 @@ const Footer = () => {
         <div className={`container`}>
           <div className="row">
             <div className={`col text-center`}>
-              <h4>Follow us</h4>
+              <h4 className={`footer-title-style`}>Follow us</h4>
               <div>
                 <p>
                   Instagram <i className={`footer-icon bi bi-instagram`}></i>
                 </p>
-
                 <p>
                   Twitter <i className={`footer-icon bi bi-twitter-x`}></i>
                 </p>
@@ -23,7 +22,7 @@ const Footer = () => {
               </div>
             </div>
             <div className={`col text-center`}>
-              <h4>Contacts</h4>
+              <h4 className={`footer-title-style`}>Contacts</h4>
               <div>
                 <p>
                   Telephone <i className={`footer-icon bi bi-telephone`}></i>
@@ -36,7 +35,7 @@ const Footer = () => {
               </div>
             </div>
             <div className={`col text-center`}>
-              <h4>Team</h4>
+              <h4 className={`footer-title-style`} >Team</h4>
               <div>
                 <p>
                   NFC E-LEARNING TEAM{" "}

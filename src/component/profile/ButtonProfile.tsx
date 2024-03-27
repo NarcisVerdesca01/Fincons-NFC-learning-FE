@@ -9,14 +9,13 @@ const ButtonProfile = () => {
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button variant="light" onClick={handleShow} style={{ margin: "0.5em" }}>
+      <Button variant="light" onClick={handleShow} style={{ margin: "0.5em"}}>
         <i className="bi bi-person-fill"></i>
       </Button>
 
-      <Modal show={show} onHide={handleClose} keyboard={false}>
+      <Modal show={show} onHide={handleClose} keyboard={false} scrollable>
         <Modal.Body>
-          <Profile 
-          />
+          <Profile/>
         </Modal.Body>
       </Modal>
     </>

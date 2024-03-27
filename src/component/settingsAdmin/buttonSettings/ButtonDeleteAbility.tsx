@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DeleteAbility from '../ability/DeleteAbility';
-
+import './StyleModals.css';
 
 const ButtonDeleteAbility = () => {
     const [show, setShow] = useState(false);
@@ -11,13 +10,17 @@ const ButtonDeleteAbility = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="danger" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Ability <i className="bi bi-trash3"></i>
-            </Button>
+            <button
+                className={`buttonDefault buttonModal`}
+                onClick={handleShow}
+                style={{ margin: "0.5em" }}>
+                <span className={`frontDefault front`}>Ability <i className="bi bi-trash3"></i></span>
+            </button>
 
             <Modal show={show}
                 onHide={handleClose}
-                keyboard={false}>
+                keyboard={false}
+                scrollable>
                 <Modal.Body>
                     <DeleteAbility />
                 </Modal.Body>

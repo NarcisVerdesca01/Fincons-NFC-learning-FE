@@ -6,7 +6,7 @@ import Ability from "../../../models/AbilityModel";
 const CreateAbility = () => {
   const [ability, setAbility] = useState<Ability>();
   const [nameError, setNameError] = useState(false);
-  const [nameErrorMessage, setNameErrorMessage] = useState('');
+  const [nameErrorMessage, setNameErrorMessage] = useState("");
   const navigate = useNavigate();
 
   const saveAbility = () => {
@@ -22,45 +22,67 @@ const CreateAbility = () => {
     navigate("/settings_admin");
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, setError: React.Dispatch<React.SetStateAction<boolean>>, setErrorMessage: React.Dispatch<React.SetStateAction<string>>) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    setError: React.Dispatch<React.SetStateAction<boolean>>,
+    setErrorMessage: React.Dispatch<React.SetStateAction<string>>
+  ) => {
     const { name, value } = event.target;
     const inputValue = value.trim();
     const inputLength = inputValue.length;
 
-    if (name === 'name' && (inputLength < 1 || inputLength > 255)) {
+    if (name === "name" && (inputLength < 1 || inputLength > 255)) {
       setError(true);
-      setErrorMessage('Name must be between 1 and 255 characters');
+      setErrorMessage("Name must be between 1 and 255 characters");
     } else {
       setError(false);
-      setErrorMessage('');
+      setErrorMessage("");
     }
 
     setAbility({
       ...ability!,
-      [name]: inputValue
+      [name]: inputValue,
     });
   };
 
   return (
     <div>
       <div>
-        <h3> Create Ability </h3>
+        <h3 className="titleModal">Create Ability</h3>
         <div>
           <form>
             <div>
-              <label>Name</label>
+              <label className="labelModal">Name</label>
               <input
                 type="string"
-                placeholder="name"
+                placeholder="Name"
                 name="name"
-                className={`form-control ${nameError ? 'border-red-500' : ''}`}
+                className={`form-control ${nameError ? "border-red-500" : ""}`}
                 value={ability?.name}
-                onChange={(e) => handleInputChange(e, setNameError, setNameErrorMessage)}
+                onChange={(e) =>
+                  handleInputChange(e, setNameError, setNameErrorMessage)
+                }
               ></input>
-              {nameErrorMessage && <p className="text-muted">{nameErrorMessage}</p>}
+              {nameErrorMessage && (
+                <p className="text-muted">{nameErrorMessage}</p>
+              )}
             </div>
-            <button className='btn btn-success' onClick={saveAbility} disabled={nameError}>add</button>
-            <button className='btn btn-danger' onClick={backToSettings}>back</button>
+            <div className="containerButtonModal">
+              <button
+                className="buttonCheck"
+                onClick={saveAbility}
+                disabled={nameError}
+              >
+                <span className="frontCheck">
+                  <i className="bi bi-check2"></i>
+                </span>
+              </button>
+              <button className="buttonReturn" onClick={backToSettings}>
+                <span className="frontReturn">
+                  <i className="bi bi-arrow-left"></i>
+                </span>
+              </button>
+            </div>
           </form>
         </div>
       </div>

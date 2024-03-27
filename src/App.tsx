@@ -9,10 +9,10 @@ import Course from "./component/courses/Course";
 import PageCourse from "./component/pageCourse/PageCourse";
 import PageDedicatedCourse from "./component/pageDedicatedCourse/PageDedicatedCourse";
 import { useState } from "react";
-import PageLesson from "./component/Lesson/PageLesson";
+import PageLesson from "./component/pageLesson/PageLesson";
 import PageCoursePresentation from "./component/pageCoursePresentation/PageCoursePresentation";
 import SettingsAdmin from "./component/settingsAdmin/SettingsAdmin";
-import SettingsTutor from "./component/settingsTutor/SettingTutor";
+import SettingsTutor from "./component/settingsTutor/SettingsTutor";
 import QuizPage from "./component/quizPage/QuizPage";
 import LoginRegister from "./component/loginRegister/LoginRegister";
 import Spinner from "./component/spinner/Spinner";
@@ -31,7 +31,7 @@ function App() {
             element={<ProtectedRoutes />}
           >
             <Route
-              path="/homePage"
+              path="/home"
               element={<HomePage />}
             ></Route>
             <Route

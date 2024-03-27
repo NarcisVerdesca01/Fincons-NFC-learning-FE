@@ -1,24 +1,23 @@
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import RegisterTutor from "../registerTutor/RegisterTutor";
+import './StyleModals.css';
 
-const ButtonCreateCourse = () => {
+const ButtonRegisterTutor = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
     <>
-      <Button
-        variant="success"
+      <button
+        className={`buttonDefault buttonModal`}
         onClick={handleShow}
-        style={{ margin: "0.5em" }}
-      >
-        Tutor <i className="bi bi-plus-circle"></i>
-      </Button>
+        style={{ margin: "0.5em" }}>
+        <span className={`frontDefault front`}>Tutor <i className="bi bi-plus-circle"></i></span>
+      </button>
 
-      <Modal show={show} onHide={handleClose} keyboard={false}>
+      <Modal show={show} onHide={handleClose} keyboard={false} scrollable>
         <Modal.Body>
           <RegisterTutor />
         </Modal.Body>
@@ -27,4 +26,4 @@ const ButtonCreateCourse = () => {
   );
 };
 
-export default ButtonCreateCourse;
+export default ButtonRegisterTutor;

@@ -16,6 +16,8 @@ const RESEND_QUIZ = VERSION_URI + "/quiz-student-result/quiz-redo";
 const ASSOCIATE_WITH_LESSON = QUIZ_URI + "/associatelesson";
 const ASSOCIATE_WITH_QUESTION = QUIZ_URI + "/associatequestion";
 const CHECK_QUIZ = VERSION_URI + "/quiz-student-result/check";
+const UPDATE_QUIZ_URI = QUIZ_URI + "/update";
+const DELETE_QUIZ_URI = QUIZ_URI + "/delete";
 
 
 const getQuizzes = async () => {
@@ -63,9 +65,9 @@ const createQuiz = async (quiz: Quiz) => {
     const response = await axios.post(CREATE_QUIZ, quiz, {
       headers: { Authorization: `Bearer ${token}` }
     });
-    return response.data;
+    return response;
   } catch (error) {
-    console.error("Error getting lessons:", error);
+    console.error("Error during creation of quiz:", error);
     throw error;
   }
 };
@@ -102,6 +104,33 @@ const reSendQuizResult = async (quizId: number, answersMap: any) => {
     return response.data;
   } catch (error) {
     console.error("Error getting lessons:", error);
+    throw error;
+  }
+};
+
+const updateQuiz = async (quizId: number, quiz: Quiz) => {
+  const token = Cookies.get("jwt-token");
+  const url = `${UPDATE_QUIZ_URI}/${quizId}`;
+  try {
+    const response = await axios.put(url, quiz, { headers: { Authorization: `Bearer ${token}` } });
+    return response.data;
+  } catch (error) {
+    console.error("Error during update of quiz:", error);
+    throw error;
+  }
+};
+
+const deleteQuiz = async (quizId: number) => {
+  const token = Cookies.get("jwt-token");
+  const url = `${DELETE_QUIZ_URI}?idQuiz=${quizId}`;
+
+  try {
+    const response = await axios.put(url, {}, {
+          headers: {Authorization: `Bearer ${token}`}
+      });
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting quiz:", error);
     throw error;
   }
 };
@@ -146,7 +175,9 @@ const QuizService = {
   getQuizzes,
   getQuizzesWithoutAssociationWithLesson,
   getQuizzesWithoutAssociationWithQuestion,
+  deleteQuiz,
   createQuiz,
+  updateQuiz,
   getQuizById,
   sendQuizResult,
   reSendQuizResult,

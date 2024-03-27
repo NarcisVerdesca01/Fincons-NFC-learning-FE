@@ -5,6 +5,7 @@ import CourseService from "../../services/CourseService";
 import "./PageCoursePresentation.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
+import Footer from "../footer/Footer";
 
 const PageCoursePresentation = () => {
   const [course, setCourse] = useState<CourseModel>();
@@ -16,7 +17,6 @@ const PageCoursePresentation = () => {
   useEffect(() => {
     CourseService.getCourseById(idCourse_page).then((res) => {
       setCourse(res.data);
-      console.log(res.data.lessons);
       setLessonList(res.data.lessons);
     });
   }, [idCourse]);
@@ -28,9 +28,6 @@ const PageCoursePresentation = () => {
     <>
       <Header />
       <div className={`containerPageCoursePresentation`}>
-        <div className={`containerTitlePageCoursePresentation`}>
-          <h1>{course?.name}</h1>
-        </div>
         <div className={`containerButtonBack`}>
           <button className={`buttonBack`} onClick={goBack}>
             <i className="bi bi-arrow-left"></i>
@@ -43,17 +40,20 @@ const PageCoursePresentation = () => {
               alt=""
               className={`imageStyleCoursePresentation`}
             />
+            <label>Created by: {course?.createdBy}</label>
+            <label>Modified by: {course?.lastModifiedBy || "/"}</label>
           </div>
           <div className={`containerTextCoursePresentation`}>
+            <h1 className={`course-title-name`}>{course?.name}</h1>
             <p className={`textCoursePresentation`}>{course?.description}</p>
           </div>
         </div>
         <div className={`containerTitleResourcesCoursePresentation`}>
           <div className={`titleResourcesCoursePresentation`}>
-            <h1>Resources</h1>
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

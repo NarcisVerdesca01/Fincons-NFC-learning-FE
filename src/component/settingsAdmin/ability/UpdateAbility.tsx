@@ -5,10 +5,12 @@ import Ability from "../../../models/AbilityModel";
 
 const UpdateAbility = () => {
   const [abilities, setAbilities] = useState<Ability[]>([]);
-  const [selectedAbilityId, setSelectedAbilityId] = useState<number | null>(null);
+  const [selectedAbilityId, setSelectedAbilityId] = useState<number | null>(
+    null
+  );
   const [ability, setAbility] = useState<Ability>();
   const [nameError, setNameError] = useState(false);
-  const [nameErrorMessage, setNameErrorMessage] = useState('');
+  const [nameErrorMessage, setNameErrorMessage] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,33 +40,37 @@ const UpdateAbility = () => {
     navigate("/settings_admin");
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, setError: React.Dispatch<React.SetStateAction<boolean>>, setErrorMessage: React.Dispatch<React.SetStateAction<string>>) => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    setError: React.Dispatch<React.SetStateAction<boolean>>,
+    setErrorMessage: React.Dispatch<React.SetStateAction<string>>
+  ) => {
     const { name, value } = event.target;
     const inputValue = value.trim();
     const inputLength = inputValue.length;
 
-    if (name === 'name' && (inputLength < 1 || inputLength > 255)) {
+    if (name === "name" && (inputLength < 1 || inputLength > 255)) {
       setError(true);
-      setErrorMessage('Name mustbe between 1 and 255 characters');
+      setErrorMessage("Name mustbe between 1 and 255 characters");
     } else {
       setError(false);
-      setErrorMessage('');
+      setErrorMessage("");
     }
 
     setAbility({
       ...ability!,
-      [name]: inputValue
+      [name]: inputValue,
     });
   };
 
   return (
     <div>
       <div>
-        <h3>Update Ability</h3>
+        <h3 className="titleModal">Update Ability</h3>
         <div>
           <form>
             <div className="form-group">
-              <label>Ability</label>
+              <label className="labelModal">Ability</label>
               <select
                 name="ability"
                 className="form-select"
@@ -86,23 +92,39 @@ const UpdateAbility = () => {
             {ability && (
               <>
                 <div>
-                  <label>Name</label>
+                  <label className="labelModal">Name</label>
                   <input
                     type="string"
                     placeholder={ability.name}
                     name="name"
-                    className={`form-control ${nameError ? 'border-red-500' : ''}`}
+                    className={`form-control ${
+                      nameError ? "border-red-500" : ""
+                    }`}
                     value={ability.name}
-                    onChange={(e) => handleInputChange(e, setNameError, setNameErrorMessage)}
+                    onChange={(e) =>
+                      handleInputChange(e, setNameError, setNameErrorMessage)
+                    }
                   ></input>
-                  {nameErrorMessage && <p className="text-muted">{nameErrorMessage}</p>}
+                  {nameErrorMessage && (
+                    <p className="text-muted">{nameErrorMessage}</p>
+                  )}
                 </div>
-                <button className="btn btn-success" onClick={UpdateAbility} disabled={nameError}>
-                  update
-                </button>
-                <button className="btn btn-danger" onClick={backToSettings}>
-                  back
-                </button>
+                <div className="containerButtonModal">
+                  <button
+                    className="buttonCheck"
+                    onClick={UpdateAbility}
+                    disabled={nameError}
+                  >
+                    <span className="frontCheck">
+                      <i className="bi bi-check2"></i>
+                    </span>
+                  </button>
+                  <button className="buttonReturn" onClick={backToSettings}>
+                    <span className="frontReturn">
+                      <i className="bi bi-arrow-left"></i>
+                    </span>
+                  </button>
+                </div>
               </>
             )}
           </form>

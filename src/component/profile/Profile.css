@@ -1,12 +1,18 @@
+.detail{
+    font-size: 20px;
+    font-weight: 300;
+    color:#7e4ee5!important;
+}
+
 .containerUserProfile{
     width: 100%;
     height: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: center;
 }
 .containerMenuProfile{
     background-color: rgb(255, 255, 255);
- 
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -38,9 +44,7 @@
     margin-left: 4.2em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 2em;
-    font-weight: 900;
+    font-weight: 500;
     color: #804DF0;
 }
-.profileAnagraphic{
- color: #804DF0;
-}
+

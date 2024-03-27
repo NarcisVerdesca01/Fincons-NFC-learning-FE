@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import CreateAbility from '../ability/CreateAbility';
-
+import './StyleModals.css';
 
 const ButtonCreateAbility = () => {
     const [show, setShow] = useState(false);
@@ -11,14 +10,18 @@ const ButtonCreateAbility = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Ability <i className="bi bi-plus-circle"></i>
-            </Button>
+            <button
+                className={`buttonDefault buttonModal`}
+                onClick={handleShow}
+                style={{ margin: "0.5em" }}>
+                <span className={`frontDefault front`}>Ability <i className="bi bi-plus-circle"></i></span>
+            </button>
 
             <Modal show={show}
                 onHide={handleClose}
                 backdrop="static"
-                keyboard={false}>
+                keyboard={false}
+                scrollable>
                 <Modal.Body>
                     <CreateAbility />
                 </Modal.Body>

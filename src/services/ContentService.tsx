@@ -9,7 +9,10 @@ const GET_ALL_URI = CONTENT_URI + "/list";
 const GET_BY_ID = CONTENT_URI + "/find-by-id";
 const CREATE_CONTENT = CONTENT_URI + "/create";
 const UPDATE_CONTENT = CONTENT_URI + "/update";
-const DELETE_CONTENT = CONTENT_URI + "/delete";
+const DELETE_CONTENT_URI = CONTENT_URI + "/delete";
+const GET_ALL_NOT_ASSOCIATED_CONTENT_URI = CONTENT_URI + "/list-no-association-lesson";
+
+
 
 const token = Cookies.get("jwt-token");
 const config = {
@@ -21,7 +24,17 @@ const getContents = async () => {
         const response = await axios.get(GET_ALL_URI, config);
         return response.data;
     } catch (error) {
-        console.error("Error getting abilities:", error);
+        console.error("Error getting contents:", error);
+        throw error;
+    }
+};
+
+const getContentsWithoutLessonAssociated = async () => {
+    try {
+        const response = await axios.get(GET_ALL_NOT_ASSOCIATED_CONTENT_URI, config);
+        return response.data;
+    } catch (error) {
+        console.error("Error getting contents:", error);
         throw error;
     }
 };
@@ -47,12 +60,13 @@ const createContent = async (content: Content) => {
 };
 
 const updateContent = async (contentId: number, updateContent: Content) => {
+    const url = `${UPDATE_CONTENT}/${contentId}`;
     try {
         const response = await axios.put(
-            UPDATE_CONTENT + "/" + contentId,
+            url,
             {
-                name: updateContent.content,
-                lesson: updateContent.lesson
+                content: updateContent.content,
+               
 
             },
             {
@@ -69,18 +83,25 @@ const updateContent = async (contentId: number, updateContent: Content) => {
     }
 };
 
-const deleteContent = async (contentId: number | undefined) => {
+const deleteContent = async (contentId: number) => {
+    const token = Cookies.get("jwt-token");
+    const url = `${DELETE_CONTENT_URI}?idContent=${contentId}`;
+  
     try {
-        const response = await axios.put(DELETE_CONTENT, { params: { id: contentId } });
-        return response.data;
+      const response = await axios.put(url, {}, {
+            headers: {Authorization: `Bearer ${token}`}
+        });
+      return response.data;
     } catch (error) {
-        console.error("Error deleting content:", error);
-        throw error;
+      console.error("Error deleting content:", error);
+      throw error;
     }
-};
+  };
+  
 
 const ContentService = {
     getContents,
+    getContentsWithoutLessonAssociated,
     getContentById,
     createContent,
     updateContent,

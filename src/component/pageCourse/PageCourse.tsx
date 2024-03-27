@@ -5,6 +5,7 @@ import CourseService from "../../services/CourseService";
 import "./PageCourse.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
+import Footer from "../footer/Footer";
 interface Props {
   courseId: number;
   setCourseId: React.Dispatch<React.SetStateAction<number | undefined>>;
@@ -20,21 +21,14 @@ const PageCourse = (props: Props) => {
   useEffect(() => {
     CourseService.getCourseById(idCourse_page!).then((res) => {
       setCourse(res.data);
-      console.log(res.data);
-      console.log(idCourse_page, " idCourse_page");
       props.setCourseId(idCourse_page);
-      console.log(
-        res.data.lessons,
-        "sono qui in PageCourse res.data.data.lessons"
-      );
-      setLessonList(res.data.lessons);
+      setLessonList(res.data.courseLessons);
     });
   }, [idCourse_page]);
 
   const gotToPage = (idPage: any) => {
-    console.log(idPage, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
     navigate("/lesson_page/" + idPage);
-    
+
   };
   const goBack = () => {
     navigate(-1);
@@ -45,7 +39,7 @@ const PageCourse = (props: Props) => {
       <Header />
       <div className={`containerPageCourse`}>
         <div className={`containerTitlePageCourse`}>
-          <h1>{course?.name}</h1>
+          <h1 className={`page-single-course-title-name`}>{course?.name}</h1>
         </div>
         <div className={`containerButtonBack`}>
           <button className={`buttonBack`} onClick={goBack}>
@@ -66,15 +60,19 @@ const PageCourse = (props: Props) => {
         </div>
         <div className={`containerTitleResources`}>
           <div className={`titleResources`}>
-            <h1>Resources</h1>
+            <h1>Lessons</h1>
           </div>
         </div>
         <div className={`containerResources`}>
-          {lessonList.map((lessons: any) => (
+          {lessonList?.map((lessons: any) => (
             <div className={`cardLessonPageCorse`}>
               <button
                 className={`buttonLessonCourse`}
-                onClick={() => gotToPage(lessons?.lesson.id)}
+                onClick={
+                  () => 
+                  gotToPage(lessons.lesson.id)
+                }
+                
               >
                 {lessons.lesson.title}
               </button>
@@ -82,6 +80,7 @@ const PageCourse = (props: Props) => {
           ))}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

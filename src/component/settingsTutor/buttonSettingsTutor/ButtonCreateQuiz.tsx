@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import CreateQuiz from '../createQuizTutor/CreateQuiz';
+import '../../settingsAdmin/buttonSettings/StyleModals.css';
 
 const ButtonCreateQuiz = () => {
     const [show, setShow] = useState(false);
@@ -10,17 +10,19 @@ const ButtonCreateQuiz = () => {
     const handleShow = () => setShow(true);
     return (
         <>
-            <Button variant="success" onClick={handleShow} style={{ margin: "0.5em" }}>
-                Add <i className="bi bi-patch-question"></i>
-            </Button>
-
+            <button
+                className={`buttonDefault buttonModal`}
+                onClick={handleShow}
+                style={{ margin: "0.5em" }}>
+                <span className={`frontDefault front`}>Quiz <i className="bi bi-plus-circle"></i></span>
+            </button>
 
             <Modal show={show}
                 onHide={handleClose}
-                backdrop="static"
-                keyboard={false}>
+                keyboard={false}
+                scrollable>
                 <Modal.Body>
-                    <CreateQuiz/>
+                    <CreateQuiz />
                 </Modal.Body>
             </Modal>
         </>
