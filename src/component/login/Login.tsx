@@ -25,7 +25,7 @@ const Login = () => {
 
   useEffect(() => {
     if (Cookies.get("jwt-token") !== undefined) {
-      navigate("/homePage")
+      navigate("/home")
     }
   }, [])
 

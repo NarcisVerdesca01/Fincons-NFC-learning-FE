@@ -28,9 +28,6 @@ const PageCoursePresentation = () => {
     <>
       <Header />
       <div className={`containerPageCoursePresentation`}>
-        <div className={`containerTitlePageCoursePresentation`}>
-          <h1 className={`course-title-name`}>{course?.name}</h1>
-        </div>
         <div className={`containerButtonBack`}>
           <button className={`buttonBack`} onClick={goBack}>
             <i className="bi bi-arrow-left"></i>
@@ -43,8 +40,11 @@ const PageCoursePresentation = () => {
               alt=""
               className={`imageStyleCoursePresentation`}
             />
+            <label>Created by: {course?.createdBy}</label>
+            <label>Modified by: {course?.lastModifiedBy || "/"}</label>
           </div>
           <div className={`containerTextCoursePresentation`}>
+            <h1 className={`course-title-name`}>{course?.name}</h1>
             <p className={`textCoursePresentation`}>{course?.description}</p>
           </div>
         </div>
@@ -53,7 +53,7 @@ const PageCoursePresentation = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };

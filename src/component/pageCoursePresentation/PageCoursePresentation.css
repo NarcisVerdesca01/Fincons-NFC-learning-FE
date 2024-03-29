@@ -15,10 +15,12 @@
 }
 
 .imageCardCoursePresentation {
-    width: 50%;
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    border-right: 1px solid black;
 }
 
 .imageStyleCoursePresentation {
@@ -35,15 +37,15 @@
 }
 
 .containerTextCoursePresentation {
-    width: 50%;
+    width: 60%;
     display: flex;
-    justify-content: flex-start;
-    margin-top: 10em;
-    margin-right:9em;
-    margin-left: 7em;
     text-align: center;
+    flex-direction: column;
 }
 
+.textCoursePresentation{
+    margin: 1em;
+}
 .containerTitlePageCoursePresentation {
     margin-left: 1em;
     font-size: 2em;

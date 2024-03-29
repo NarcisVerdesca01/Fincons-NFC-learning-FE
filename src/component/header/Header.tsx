@@ -19,7 +19,7 @@ const Header = () => {
         navigate("/courses")
     }
     const goToHomePage = () => {
-        navigate("/homePage")
+        navigate("/home")
     }
     const goToPageDedicatedCourses = () => {
         navigate("/page_dedicated_courses")
