@@ -50,7 +50,7 @@ const createAnswer = async (quiz: Answer) => {
     const response = await axios.post(CREATE_QUESTION_URI, quiz, {
       headers: { Authorization: `Bearer ${token}` }
     });
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error getting lessons:", error);
     throw error;
@@ -65,7 +65,7 @@ const deleteAnswer = async (answerId: number) => {
     const response = await axios.put(url, {}, {
           headers: {Authorization: `Bearer ${token}`}
       });
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error deleting answer:", error);
     throw error;
