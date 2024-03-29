@@ -110,10 +110,10 @@ const reSendQuizResult = async (quizId: number, answersMap: any) => {
 
 const updateQuiz = async (quizId: number, quiz: Quiz) => {
   const token = Cookies.get("jwt-token");
-  const url = `${UPDATE_QUIZ_URI}/${quizId}`;
+  const url = `${UPDATE_QUIZ_URI}?idQuiz=${quizId}`;
   try {
     const response = await axios.put(url, quiz, { headers: { Authorization: `Bearer ${token}` } });
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error during update of quiz:", error);
     throw error;

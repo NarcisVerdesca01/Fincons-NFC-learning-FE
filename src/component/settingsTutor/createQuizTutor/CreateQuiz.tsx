@@ -67,7 +67,10 @@ const CreateQuiz = () => {
                     />
                 </div>
 
-                {loading && <div>Saving in progress...</div>}
+                {loading &&  
+                    <div>
+                        <label className="labelModal">Saving in progress...</label>
+                    </div>}
 
                 {!loading && savedSuccessfully && (
                     <div>
@@ -84,7 +87,6 @@ const CreateQuiz = () => {
                 <div className="containerButtonModal">
                     <button disabled={loading || !quiz?.title} type="button" className="buttonCheck" onClick={saveQuiz}>
                         <span className="frontCheck"> <i className="bi bi-check2"></i> </span>
-                        {loading ? "Saving in progress..." : " "}
                     </button>
 
                     <button className="buttonReturn" onClick={backToSettings}>
