@@ -5,7 +5,11 @@ interface Quiz {
     id: number,
     title: string,
     questions: Question[],
-    lesson: Lesson
+    lesson: Lesson,
+    createDate?: Date;
+    lastModified?: Date;
+    createdBy?: string;
+    lastModifiedBy?: string;
 }
 
 export default Quiz;

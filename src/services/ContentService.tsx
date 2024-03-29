@@ -52,7 +52,7 @@ const getContentById = async (contentId: number | undefined) => {
 const createContent = async (content: Content) => {
     try {
         const response = await axios.post(CREATE_CONTENT, content, config);
-        return response.data;
+        return response;
     } catch (error) {
         console.error("Error creating content:", error);
         throw error;

@@ -9,6 +9,18 @@ const UpdateQuiz = () => {
   const [quiz, setQuiz] = useState<Quiz>();
   const [titleError, setTitleError] = useState(false);
   const [titleErrorMessage, setTitleErrorMessage] = useState("");
+  const [updatedQuiz, setUpdatedQuiz] = useState<any>();
+  const [updatedSuccessfully, setUpdatedSuccessfully] = useState<boolean>();
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+
+
+
+
+
+
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,14 +37,40 @@ const UpdateQuiz = () => {
     }
   }, [selectedQuizId]);
 
-  const updateQuiz = () => {
+  const updateQuiz = async () => {
     if (titleError) {
       return;
     }
 
-    QuizService.updateQuiz(selectedQuizId!, quiz!);
-    navigate("/settings_tutor");
+    try {
+      setLoading(true);
+      const tempUpdatedQuiz = await QuizService.updateQuiz(selectedQuizId!, quiz!);
+      setUpdatedQuiz(tempUpdatedQuiz);
+      console.log("UpdatedQuiz: " + tempUpdatedQuiz)
+      setIsCallComplete(true);
+    } catch (error: any) {
+      console.error("Errore durante l'aggiornamento del quiz:", error);
+      setUpdatedQuiz(error.response);
+      setIsCallComplete(true);
+    } finally {
+      setLoading(false);
+    }
   };
+
+
+  useEffect(() => {
+    console.log("Use effect saved quiz:" + updatedQuiz);
+
+    if (updatedQuiz && isCallComplete) {
+      if (updatedQuiz.status === 200) {
+        setUpdatedSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (updatedQuiz.status === 409) {
+        setUpdatedSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [updatedQuiz, isCallComplete]);
 
   const backToSettings = () => {
     navigate("/settings_tutor");
@@ -90,7 +128,7 @@ const UpdateQuiz = () => {
             <div>
               <label className="labelModal">Title</label>
               <input
-                type="string"
+                type="text"
                 placeholder={quiz.title}
                 name="title"
                 className={`form-control ${titleError ? "border-red-500" : ""}`}
@@ -103,12 +141,25 @@ const UpdateQuiz = () => {
                 <p className="text-muted">{titleErrorMessage}</p>
               )}
             </div>
+
+            {loading && <div>Saving in progress...</div>}
+
+            {!loading && updatedSuccessfully && (
+              <div>
+                <label className="labelModal">Quiz saved correctly!</label>
+              </div>
+            )}
+
+            {!loading && !updatedSuccessfully && resourceAlreadyExists && (
+              <div>
+                <label className="labelModal">The quiz already exists!</label>
+              </div>
+            )}
+
+
+
             <div className="containerButtonModal">
-              <button
-                className="buttonCheck"
-                onClick={updateQuiz}
-                disabled={titleError}
-              >
+              <button className="buttonCheck" onClick={updateQuiz} disabled={titleError} type="button"  >
                 <span className="frontCheck">
                   <i className="bi bi-check2"></i>
                 </span>
