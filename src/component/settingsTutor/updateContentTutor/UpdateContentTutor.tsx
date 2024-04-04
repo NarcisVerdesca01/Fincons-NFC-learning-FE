@@ -5,35 +5,73 @@ import Content from "../../../models/ContentModel";
 
 const UpdateContentTutor = () => {
   const [contents, setContents] = useState<Content[]>([]);
-  const [selectedContentId, setSelectedContentId] = useState<number | null>(
-    null
-  );
+  const [selectedContentId, setSelectedContentId] = useState<number | null>(null);
   const [content, setContent] = useState<Content>();
   const [titleError, setTitleError] = useState(false);
   const [titleErrorMessage, setTitleErrorMessage] = useState("");
+  const [updatedContent, setUpdatedContent] = useState<any>();
+  const [updatedSuccessfully, setUpdatedSuccessfully] = useState<boolean>();
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const refreshList = () => {
     ContentService.getContents().then((res) => {
-      setContents(res.data);
+      setContents(res.data.data);
     });
+  };
+
+  useEffect(() => {
+    refreshList();
   }, []);
 
   useEffect(() => {
     if (selectedContentId !== null) {
       ContentService.getContentById(selectedContentId).then((res) => {
-        setContent(res.data);
+        setContent(res.data.data);
       });
     }
   }, [selectedContentId]);
 
-  const updateContent = () => {
+
+  useEffect(() => {
+    console.log("Use effect saved content:" + updatedContent);
+
+    if (updatedContent && isCallComplete) {
+      if (updatedContent.status === 200) {
+        setUpdatedSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (updatedContent.status === 409) {
+        setUpdatedSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [updatedContent, isCallComplete]);
+
+  const updateContent = async () => {
     if (titleError) {
       return;
     }
 
-    ContentService.updateContent(selectedContentId!, content!);
-    navigate("/settings_tutor");
+    try {
+      setLoading(true);
+      const tempUpdatedContent = await ContentService.updateContent(selectedContentId!, content!);
+      setUpdatedContent(tempUpdatedContent);
+      console.log("Updated Content: " + tempUpdatedContent)
+      setIsCallComplete(true);
+      refreshList();
+    } catch (error: any) {
+      console.error("Errore durante l'aggiornamento del contenuto:", error);
+      console.log("L'oggetto che sto inviando è questo: ", content!);
+      setUpdatedContent(error.response);
+      setIsCallComplete(true);
+      refreshList();
+    } finally {
+      setLoading(false);
+    }
+
+
   };
 
   const backToSettings = () => {
@@ -45,13 +83,12 @@ const UpdateContentTutor = () => {
     setError: React.Dispatch<React.SetStateAction<boolean>>,
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>
   ) => {
-    const { title, value } = event.target;
-    const inputValue = value.trim();
+    const inputValue = event.target.value.trim();
     const inputLength = inputValue.length;
 
-    if (title === "title" && (inputLength < 1 || inputLength > 255)) {
+    if (inputLength < 1 || inputLength > 255) {
       setError(true);
-      setErrorMessage("Title must be between 1 and 255 characters");
+      setErrorMessage("The url must be between 1 and 255 characters");
     } else {
       setError(false);
       setErrorMessage("");
@@ -77,7 +114,7 @@ const UpdateContentTutor = () => {
               setSelectedContentId(Number(e.target.value));
             }}
           >
-            <option selected>Select the Content to update</option>
+            <option selected disabled hidden>Select the Content to update</option>
             {contents.map((content) => {
               return (
                 <option key={content.id} value={content.id}>
@@ -92,7 +129,7 @@ const UpdateContentTutor = () => {
             <div>
               <label className="labelModal">Update the Content</label>
               <input
-                type="string"
+                type="text"
                 placeholder={content.content}
                 name="content"
                 className={`form-control ${titleError ? "border-red-500" : ""}`}
@@ -105,6 +142,24 @@ const UpdateContentTutor = () => {
                 <p className="text-muted">{titleErrorMessage}</p>
               )}
             </div>
+
+            {loading && <div>Saving in progress...</div>}
+
+            {!loading && updatedSuccessfully && (
+              <div>
+                <label className="labelModal">Content updated correctly!</label>
+              </div>
+            )}
+
+            {!loading && !updatedSuccessfully && resourceAlreadyExists && (
+              <div>
+                <label className="labelModal">The content already exists!</label>
+              </div>
+            )}
+
+
+
+
             <div className="containerButtonModal">
               <button
                 type="button"

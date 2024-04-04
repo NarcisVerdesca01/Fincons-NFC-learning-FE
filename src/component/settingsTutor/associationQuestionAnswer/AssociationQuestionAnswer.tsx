@@ -49,7 +49,7 @@ const CreateAssociationQuestionAnswer = () => {
               setQuestionId(parseInt(e.target.value));
             }}
           >
-            <option selected>Select the Question</option>
+            <option selected hidden disabled>Select the Question</option>
             {questions?.map((question: Question, index: any) => {
               return (
                 <option key={index} value={question.id}>
@@ -69,7 +69,7 @@ const CreateAssociationQuestionAnswer = () => {
               setAnswerId(parseInt(e.target.value));
             }}
           >
-            <option selected>Select the Answer</option>
+            <option selected hidden disabled>Select the Answer</option>
             {answers?.map((answer: Answer, index: any) => {
               return (
                 <option key={index} value={answer?.id}>

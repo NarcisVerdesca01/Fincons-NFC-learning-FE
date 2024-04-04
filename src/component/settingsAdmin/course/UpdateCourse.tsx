@@ -14,6 +14,8 @@ const UpdateCourse = () => {
   const [descriptionErrorMessage, setDescriptionErrorMessage] = useState("");
   const navigate = useNavigate();
 
+  
+
   useEffect(() => {
     CourseService.getCourses().then((res) => {
       setCourses(res.data);

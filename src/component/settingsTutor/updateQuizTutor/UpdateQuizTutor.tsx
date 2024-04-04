@@ -23,19 +23,24 @@ const UpdateQuiz = () => {
 
   const navigate = useNavigate();
 
+  const refreshList = () =>{
+         QuizService.getQuizzes().then((res)=> {
+          setQuizzes(res.data.data);
+         })
+  };
+
   useEffect(() => {
-    QuizService.getQuizzes().then((res) => {
-      setQuizzes(res.data);
-    });
+    refreshList();
   }, []);
 
   useEffect(() => {
     if (selectedQuizId !== null) {
       QuizService.getQuizById(selectedQuizId).then((res) => {
-        setQuiz(res.data);
+        setQuiz(res.data.data);
       });
     }
   }, [selectedQuizId]);
+  
 
   const updateQuiz = async () => {
     if (titleError) {
@@ -48,10 +53,12 @@ const UpdateQuiz = () => {
       setUpdatedQuiz(tempUpdatedQuiz);
       console.log("UpdatedQuiz: " + tempUpdatedQuiz)
       setIsCallComplete(true);
+      refreshList();
     } catch (error: any) {
       console.error("Errore durante l'aggiornamento del quiz:", error);
       setUpdatedQuiz(error.response);
       setIsCallComplete(true);
+      refreshList();
     } finally {
       setLoading(false);
     }
@@ -81,17 +88,18 @@ const UpdateQuiz = () => {
     setError: React.Dispatch<React.SetStateAction<boolean>>,
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>
   ) => {
-    const { title, value } = event.target;
-    const inputValue = value.trim();
+    const inputValue = event.target.value;
     const inputLength = inputValue.length;
 
-    if (title === "title" && (inputLength < 1 || inputLength > 255)) {
+    if (inputLength < 1 || inputLength > 255) {
       setError(true);
       setErrorMessage("Title must be between 1 and 255 characters");
     } else {
       setError(false);
       setErrorMessage("");
     }
+
+    console.log(inputValue);
 
     setQuiz({
       ...quiz!,
@@ -113,7 +121,7 @@ const UpdateQuiz = () => {
               setSelectedQuizId(Number(e.target.value));
             }}
           >
-            <option selected>Select the Quiz to rename</option>
+            <option selected disabled hidden>Select the Quiz to rename</option>
             {quizzes.map((quiz) => {
               return (
                 <option key={quiz.id} value={quiz.id}>
@@ -129,10 +137,9 @@ const UpdateQuiz = () => {
               <label className="labelModal">Title</label>
               <input
                 type="text"
-                placeholder={quiz.title}
                 name="title"
                 className={`form-control ${titleError ? "border-red-500" : ""}`}
-                value={quiz.title}
+                value={quiz?.title}
                 onChange={(e) =>
                   handleInputChange(e, setTitleError, setTitleErrorMessage)
                 }
@@ -146,7 +153,7 @@ const UpdateQuiz = () => {
 
             {!loading && updatedSuccessfully && (
               <div>
-                <label className="labelModal">Quiz saved correctly!</label>
+                <label className="labelModal">Quiz updated correctly!</label>
               </div>
             )}
 
