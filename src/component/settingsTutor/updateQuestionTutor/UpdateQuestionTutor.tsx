@@ -5,35 +5,72 @@ import QuestionService from "../../../services/QuestionService";
 
 const UpdateQuestionTutor = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [selectedQuestionId, setSelectedQuestionId] = useState<number | null>(
-    null
-  );
+  const [selectedQuestionId, setSelectedQuestionId] = useState<number | null>(null);
   const [question, setQuestion] = useState<Question>();
   const [textError, setTextError] = useState(false);
   const [textErrorMessage, setTextErrorMessage] = useState("");
+  const [updatedQuestion, setUpdatedQuestion] = useState<any>();
+  const [updatedSuccessfully, setUpdatedSuccessfully] = useState<boolean>();
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+
+
   const navigate = useNavigate();
 
-  useEffect(() => {
+
+  const refreshList = () => {
     QuestionService.getQuestions().then((res) => {
-      setQuestions(res.data);
+      setQuestions(res.data.data);
     });
+  };
+
+  useEffect(() => {
+    refreshList();
   }, []);
+
+  useEffect(() => {
+    console.log("Use effect saved question:" + updatedQuestion);
+
+    if (updatedQuestion && isCallComplete) {
+      if (updatedQuestion.status === 200) {
+        setUpdatedSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (updatedQuestion.status === 409) {
+        setUpdatedSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [updatedQuestion, isCallComplete]);
 
   useEffect(() => {
     if (selectedQuestionId !== null) {
       QuestionService.getQuestionById(selectedQuestionId).then((res) => {
-        setQuestion(res.data);
+        setQuestion(res.data.data);
       });
     }
   }, [selectedQuestionId]);
 
-  const updateQuestion = () => {
+  const updateQuestion = async () => {
     if (textError) {
       return;
     }
+    try {
+      setLoading(true);
+      const tempUpdatedQuestion = await QuestionService.updateQuestion(selectedQuestionId!, question!);
+      setUpdatedQuestion(tempUpdatedQuestion);
+      console.log("Updated Answer: " + tempUpdatedQuestion)
+      setIsCallComplete(true);
+      refreshList();
+    } catch (error: any) {
+      console.error("Errore durante l'aggiornamento della domanda:", error);
+      setUpdatedQuestion(error.response);
+      setIsCallComplete(true);
+      refreshList();
+    } finally {
+      setLoading(false);
+    }
 
-    QuestionService.updateQuestion(selectedQuestionId!, question!);
-    navigate("/settings_tutor");
   };
 
   const backToSettings = () => {
@@ -45,13 +82,12 @@ const UpdateQuestionTutor = () => {
     setError: React.Dispatch<React.SetStateAction<boolean>>,
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>
   ) => {
-    const { name, value } = event.target;
-    const inputValue = value.trim();
+    const inputValue = event.target.value;
     const inputLength = inputValue.length;
 
-    if (name === "textQuestion" && (inputLength < 1 || inputLength > 255)) {
+    if (inputLength < 1 || inputLength > 255) {
       setError(true);
-      setErrorMessage("Title must be between 1 and 255 characters");
+      setErrorMessage("Question must be between 1 and 255 characters");
     } else {
       setError(false);
       setErrorMessage("");
@@ -77,7 +113,7 @@ const UpdateQuestionTutor = () => {
               setSelectedQuestionId(Number(e.target.value));
             }}
           >
-            <option selected>Select the Question to update</option>
+            <option selected disabled hidden>Select the Question to update</option>
             {questions.map((question) => {
               return (
                 <option key={question.id} value={question.id}>
@@ -125,12 +161,26 @@ const UpdateQuestionTutor = () => {
                 }}
               ></input>
             </div>
+
+            {loading && <div>Saving in progress...</div>}
+
+            {!loading && updatedSuccessfully && (
+              <div>
+                <label className="labelModal">Question updated correctly!</label>
+              </div>
+            )}
+
+            {!loading && !updatedSuccessfully && resourceAlreadyExists && (
+              <div>
+                <label className="labelModal">The question already exists!</label>
+              </div>
+            )}
+
+
+
+
             <div className="containerButtonModal">
-              <button
-                className="buttonCheck"
-                onClick={updateQuestion}
-                disabled={textError}
-              >
+              <button className="buttonCheck" onClick={updateQuestion} disabled={textError} type="button">
                 <span className="frontCheck">
                   <i className="bi bi-check2"></i>
                 </span>

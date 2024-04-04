@@ -51,7 +51,7 @@ const CreateAssociationQuizLesson = () => {
               setQuizId(parseInt(e.target.value));
             }}
           >
-            <option selected>Select the Quiz</option>
+            <option selected hidden disabled>Select the Quiz</option>
             {quiz?.map((quizzes: Quiz, index: any) => {
               return (
                 <option key={index} value={quizzes.id}>
@@ -71,7 +71,7 @@ const CreateAssociationQuizLesson = () => {
               setLessonId(parseInt(e.target.value));
             }}
           >
-            <option selected>Select the Lesson</option>
+            <option selected hidden disabled>Select the Lesson</option>
             {lesson?.map((lesson: Lesson, index: any) => {
               return (
                 <option key={index} value={lesson?.id}>

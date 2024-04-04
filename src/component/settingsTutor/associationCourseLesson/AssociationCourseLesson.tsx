@@ -59,7 +59,7 @@ const CreateAssociationCourseLesson = () => {
                   });
                 }}
               >
-                <option selected>Select the Course</option>
+                <option selected hidden disabled>Select the Course</option>
                 {course?.map((courses: Course, index: any) => {
                   return (
                     <option key={index} value={courses.id}>
@@ -82,7 +82,7 @@ const CreateAssociationCourseLesson = () => {
                   });
                 }}
               >
-                <option selected>Select the Lesson</option>
+                <option selected hidden disabled>Select the Lesson</option>
                 {lesson?.map((lesson: Lesson, index: any) => {
                   return (
                     <option key={index} value={lesson?.id}>
