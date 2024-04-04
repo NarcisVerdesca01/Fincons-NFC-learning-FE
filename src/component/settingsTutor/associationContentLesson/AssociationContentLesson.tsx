@@ -51,7 +51,7 @@ const CreateAssociationContentLesson = () => {
                   setContentId(parseInt(e.target.value));
                 }}
               >
-                <option selected>Select the Content</option>
+                <option selected hidden disabled>Select the Content</option>
                 {contents?.map((content: Content, index: any) => {
                   return (
                     <option key={index} value={content.id}>
@@ -71,7 +71,7 @@ const CreateAssociationContentLesson = () => {
                   setLessonId(parseInt(e.target.value));
                 }}
               >
-                <option selected>Select the Answer</option>
+                <option selected hidden disabled>Select the Lesson</option>
                 {lessons?.map((lesson: Lesson, index: any) => {
                   return (
                     <option key={index} value={lesson?.id}>

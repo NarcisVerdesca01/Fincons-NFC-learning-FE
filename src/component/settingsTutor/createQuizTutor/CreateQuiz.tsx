@@ -10,6 +10,8 @@ const CreateQuiz = () => {
     const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
     const [loading, setLoading] = useState(false);
     const [isCallComplete, setIsCallComplete] = useState(false);
+    const [textError, setTextError] = useState(false);
+    const [textErrorMessage, setTextErrorMessage] = useState("");
 
     const navigate = useNavigate();
 
@@ -40,6 +42,28 @@ const CreateQuiz = () => {
         }
     }, [savedQuiz, isCallComplete]);
 
+    const handleInputChange = (
+        event: React.ChangeEvent<HTMLInputElement>,
+        setError: React.Dispatch<React.SetStateAction<boolean>>,
+        setErrorMessage: React.Dispatch<React.SetStateAction<string>>
+    ) => {
+        const inputValue = event.target.value;
+        const inputLength = inputValue.length;
+
+        if (inputLength < 1 || inputLength > 255) {
+            setError(true);
+            setErrorMessage("The quiz must be between 1 and 255 characters");
+        } else {
+            setError(false);
+            setErrorMessage("");
+        }
+
+        setQuiz({
+            ...quiz!,
+            title: inputValue,
+        });
+    };
+
     const backToSettings = () => {
         navigate("/settings_tutor");
     };
@@ -59,15 +83,15 @@ const CreateQuiz = () => {
                         className="form-control"
                         value={quiz?.title || ""}
                         onChange={(e) => {
-                                setQuiz({
-                                ...quiz!,
-                                title: e.target.value,
-                            });
+                            handleInputChange(e, setTextError, setTextErrorMessage)
                         }}
                     />
+                    {textErrorMessage && (
+                        <p className="text-muted">{textErrorMessage}</p>
+                    )}
                 </div>
 
-                {loading &&  
+                {loading &&
                     <div>
                         <label className="labelModal">Saving in progress...</label>
                     </div>}
