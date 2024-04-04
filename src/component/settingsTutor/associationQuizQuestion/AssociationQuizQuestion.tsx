@@ -14,13 +14,13 @@ const CreateAssociationQuizQuestion = () => {
 
   useEffect(() => {
     QuizService.getQuizzes().then((res1) => {
-      setQuiz(res1.data);
+      setQuiz(res1.data.data);
     });
   }, []);
 
   useEffect(() => {
     QuestionService.getQuestionsWithoutAssociationWithQuiz().then((res2) => {
-      setQuestions(res2.data);
+      setQuestions(res2.data.data);
     });
   }, []);
 
@@ -49,7 +49,7 @@ const CreateAssociationQuizQuestion = () => {
               setQuizId(parseInt(e.target.value));
             }}
           >
-            <option selected>Select the Quiz</option>
+            <option selected hidden disabled>Select the Quiz</option>
             {quiz?.map((quizzes: Quiz, index: any) => {
               return (
                 <option key={index} value={quizzes.id}>
@@ -69,7 +69,7 @@ const CreateAssociationQuizQuestion = () => {
               setQuestionId(parseInt(e.target.value));
             }}
           >
-            <option selected>Select the Question</option>
+            <option selected hidden disabled>Select the Question</option>
             {questions?.map((question: QuestionModel, index: any) => {
               return (
                 <option key={index} value={question?.id}>

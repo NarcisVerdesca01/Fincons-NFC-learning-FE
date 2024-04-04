@@ -26,7 +26,7 @@ const getQuizzes = async () => {
     const response = await axios.get(GET_ALL_URI, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error getting lessons:", error);
     throw error;
@@ -76,9 +76,9 @@ const getQuizById = async (quizId: number | undefined) => {
   const token = Cookies.get("jwt-token");
   try {
     const response = await axios.get(GET_BY_ID + "/" + quizId, { headers: { Authorization: `Bearer ${token}` } })
-    return response.data;
+    return response;
   } catch (error) {
-    console.error("Error getting lessons:", error);
+    console.error("Error getting quiz with id:" + quizId, error);
     throw error;
   }
 };

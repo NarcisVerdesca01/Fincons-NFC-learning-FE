@@ -24,7 +24,7 @@ const getAnswers = async () => {
     const response = await axios.get(GET_ALL_URI, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error getting lessons:", error);
     throw error;
@@ -74,12 +74,10 @@ const deleteAnswer = async (answerId: number) => {
 
 const updateAnswer = async (answerId: number, answer: Answer) => {
   const token = Cookies.get("jwt-token");
-  const url = `${UPDATE_ANSWER_URI}/${answerId}`;
+  const url = `${UPDATE_ANSWER_URI}?idAnswer=${answerId}`;
   try {
-    const response = await axios.put(url, answer, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    return response.data;
+    const response = await axios.put(url, answer, {headers: { Authorization: `Bearer ${token}` }});
+    return response;
   } catch (error) {
     console.error("Error during update of the answer:", error);
     throw error;
@@ -88,10 +86,10 @@ const updateAnswer = async (answerId: number, answer: Answer) => {
 
 const getAnswerById = async (answerId: number | undefined) => {
   const token = Cookies.get("jwt-token");
-  const url = `${GET_BY_ID_URI}/${answerId}`;
+  const url = `${GET_BY_ID_URI}?idAnswer=${answerId}`;
   try {
     const response = await axios.get(url, { headers: { Authorization: `Bearer ${token}` } })
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error getting answer:", error);
     throw error;
@@ -103,7 +101,7 @@ const associateAnswerQuestion = async (answerId: number, questionId: number) => 
   const url = `${ASSOCIATE_ANSWER_QUESTION_URI}?idAnswer=${answerId}&idQuestion=${questionId}`;
   try {
     const response = await axios.put(url, {}, { headers: { Authorization: `Bearer ${token}` } });
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error associate the answer to the question:", error);
     throw error;

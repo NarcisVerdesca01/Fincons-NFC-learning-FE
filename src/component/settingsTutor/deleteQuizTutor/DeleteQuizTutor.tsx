@@ -7,60 +7,63 @@ const DeleteQuizTutor = () => {
   const [quizzes, setQuizzes] = useState<Quiz[]>([]);
   const [selectedQuizId, setSelectedQuizId] = useState<number | null>(null);
   const [quiz, setQuiz] = useState<Quiz>();
-  const [titleError, setTitleError] = useState(false);
-  const [titleErrorMessage, setTitleErrorMessage] = useState('');
+  const [deletedQuiz, setDeletedQuiz] = useState<any>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+  const [deletionMessage, setDeletionMessage] = useState<string>("");
+
+
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const refreshList = () => {
     QuizService.getQuizzes().then((res) => {
-      setQuizzes(res.data);
+      setQuizzes(res.data.data);
     });
+  }
+
+  useEffect(() => {
+    refreshList();
   }, []);
 
   useEffect(() => {
     if (selectedQuizId !== null) {
       QuizService.getQuizById(selectedQuizId).then((res) => {
-        setQuiz(res.data);
+        setQuiz(res.data.data);
       });
     }
   }, [selectedQuizId]);
 
-  const deleteQuiz = () => {
-    if (titleError) {
-      return;
+  const deleteQuiz = async () => {
+    try {
+      setLoading(true);
+      const tempDeletedQuiz = await QuizService.deleteQuiz(selectedQuizId!);
+      setDeletedQuiz(tempDeletedQuiz);
+      setIsCallComplete(true);
+      setDeletionMessage("Quiz deleted successfully! ");
+      refreshList();
+    } catch (error: any) {
+      console.error("Errore durante eliminazione quiz:", error);
+      setDeletedQuiz(error.response);
+      setIsCallComplete(true);
+      setDeletionMessage("Problems were encountered during deletion! ");
+      refreshList();
+    } finally {
+      setLoading(false);
     }
-
-    QuizService.deleteQuiz(selectedQuizId!);
-    navigate("/settings_tutor");
   };
+
+
+
 
   const backToSettings = () => {
     navigate("/settings_tutor");
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, setError: React.Dispatch<React.SetStateAction<boolean>>, setErrorMessage: React.Dispatch<React.SetStateAction<string>>) => {
-    const { title, value } = event.target;
-    const inputValue = value.trim();
-    const inputLength = inputValue.length;
-
-    if (title === 'title' && (inputLength < 1 || inputLength > 255)) {
-      setError(true);
-      setErrorMessage('Title must be between 1 and 255 characters');
-    } else {
-      setError(false);
-      setErrorMessage('');
-    }
-
-    setQuiz({
-      ...quiz!,
-      title: inputValue
-    });
-  };
 
   return (
     <div>
       <div>
-        <h3>Delete Quiz</h3> 
+        <h3>Delete Quiz</h3>
         <div>
           <form>
             <div className="form-group">
@@ -73,7 +76,7 @@ const DeleteQuizTutor = () => {
                   setSelectedQuizId(Number(e.target.value));
                 }}
               >
-                <option selected>Select the Quiz to delete</option>
+                <option selected hidden disabled>Select the Quiz to delete</option>
                 {quizzes.map((quiz) => {
                   return (
                     <option key={quiz.id} value={quiz.id}>
@@ -83,9 +86,20 @@ const DeleteQuizTutor = () => {
                 })}
               </select>
             </div>
+            {loading && <div>Delete in progress...</div>}
+
+            {isCallComplete && (
+              <div>
+                <label className="labelModal">{deletionMessage}</label>
+              </div>
+            )}
+
+            
+
+
             {quiz && (
               <>
-                <button type="button" className="btn btn-success" onClick={deleteQuiz} disabled={titleError}>
+                <button type="button" className="btn btn-success" onClick={deleteQuiz} disabled={loading}>
                   delete
                 </button>
                 <button className="btn btn-danger" onClick={backToSettings}>

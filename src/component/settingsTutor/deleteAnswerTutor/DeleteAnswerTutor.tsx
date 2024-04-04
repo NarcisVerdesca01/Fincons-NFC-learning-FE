@@ -73,7 +73,7 @@ const DeleteAnswerTutor = () => {
                   setSelectedAnswerId(Number(e.target.value));
                 }}
               >
-                <option selected>Select the Answer to delete</option>
+                <option selected hidden disabled>Select the Answer to delete</option>
                 {answers.map((answer) => {
                   return (
                     <option key={answer.id} value={answer.id}>
