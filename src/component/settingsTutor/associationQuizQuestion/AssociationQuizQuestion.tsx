@@ -10,66 +10,28 @@ const CreateAssociationQuizQuestion = () => {
   const [questionId, setQuestionId] = useState<number | any>();
   const [questions, setQuestions] = useState<QuestionModel | any>();
   const [quiz, setQuiz] = useState<any>();
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [association, setAssociation] = useState<any>();
-  const [associatedSuccessfully, setAssociatedSuccessfully] = useState<boolean | null>(null);
-  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
-  const [loading, setLoading] = useState<boolean | null>(null);
-  const [isCallComplete, setIsCallComplete] = useState(false);
   const navigate = useNavigate();
 
-  const refreshList = () => {
+  useEffect(() => {
     QuizService.getQuizzes().then((res1) => {
       setQuiz(res1.data.data);
-      setQuiz(res1.data.data);
     });
-
-    QuestionService.getQuestionsWithoutAssociationWithQuiz().then((res2) => {
-            setQuestions(res2.data.data);
-    });
-
-  }
-
-  useEffect(() => {
-    refreshList();
   }, []);
 
   useEffect(() => {
-    console.log("Use effect association:" + association);
+    QuestionService.getQuestionsWithoutAssociationWithQuiz().then((res2) => {
+      setQuestions(res2.data.data);
+    });
+  }, []);
 
-    if (association && isCallComplete) {
-      if (association.status === 200) {
-        setAssociatedSuccessfully(true);
-        setResourceAlreadyExists(false);
-      } else if (association.status === 409) {
-        setAssociatedSuccessfully(false);
-        setResourceAlreadyExists(true);
-        setErrorMessage(association.data.message);
-      }
-    }
-  }, [association, isCallComplete]);
-
-  const saveQuizQuestion = async () => {
-    console.log("id quiz:" + quizId);
-    console.log("id quiz:" + questionId);
-    try {
-      setLoading(true);
-      const tempAssociation = await QuizService.associateQuizToQuestion(quizId, questionId);
-      setAssociation(tempAssociation);
-      console.log("Association: " + tempAssociation)
-      setIsCallComplete(true);
-      refreshList();
-    } catch (error: any) {
-      console.error("Errore durante l'associazione corso-lezione:", error);
-      setAssociation(error.response);
-      setIsCallComplete(true);
-      refreshList();
-    } finally {
-      setLoading(false);
-    }
+  const saveQuizQuestion = () => {
+    console.log("id quiz: ", quizId);
+    console.log("id ESTION:", questionId);
+    QuizService.associateQuizToQuestion(quizId, questionId);
+    navigate("/settings_tutor");
   };
 
-  const backToSettings = () => {
+  const backToSettingsCourseLesson = () => {
     navigate("/settings_tutor");
   };
 
@@ -117,31 +79,13 @@ const CreateAssociationQuizQuestion = () => {
             })}
           </select>
         </div>
-
-        {loading && <div>Saving in progress...</div>}
-
-        {!loading && associatedSuccessfully && isCallComplete && (
-          <div>
-            <label className="labelModal">The quiz was successfully associated with the question.</label>
-          </div>
-        )}
-
-        {!loading && !associatedSuccessfully && isCallComplete && (
-          <div>
-            <label className="labelModal">Problems were encountered during the association!</label>
-            {errorMessage && (
-              <div><p>{errorMessage}</p></div>
-            )}
-          </div>
-        )}
-
         <div className="containerButtonModal">
-          <button className="buttonCheck" onClick={saveQuizQuestion} type="button" disabled={loading== true}>
+          <button className="buttonCheck" onClick={saveQuizQuestion}>
             <span className="frontCheck">
               <i className="bi bi-check2"></i>
             </span>
           </button>
-          <button className="buttonReturn" onClick={backToSettings}>
+          <button className="buttonReturn" onClick={backToSettingsCourseLesson}>
             <span className="frontReturn">
               <i className="bi bi-arrow-left"></i>
             </span>
