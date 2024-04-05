@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import DeleteQuestionTutor from '../deleteQuestionTutor/DeleteQuestionTutor';
-
-
+import './StyleModalsTutor.css';
 
 const ButtonDeleteQuestion = () => {
     const [show, setShow] = useState(false);

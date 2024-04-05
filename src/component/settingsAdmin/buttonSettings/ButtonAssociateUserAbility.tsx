@@ -22,7 +22,7 @@ const ButtonAssociateUserAbility = () => {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-        scrollable>
+        >
         <Modal.Body>
           <AssociationUserAbility />
         </Modal.Body>

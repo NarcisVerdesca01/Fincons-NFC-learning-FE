@@ -22,7 +22,7 @@ const ButtonAssociateCourseAbility = () => {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-        scrollable>
+        >
         <Modal.Body>
           <AssociationAbilityCourse />
         </Modal.Body>

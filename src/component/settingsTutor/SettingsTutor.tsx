@@ -3,6 +3,7 @@ import updateImage from "../../assets/update_image.png";
 import deleteImage from "../../assets/delet_img.png";
 import createImage from "../../assets/add_image.png";
 import associateImage from "../../assets/img_associate.jpg";
+import viewResultsQuizImage from "../../assets/results.jpg";
 import ButtonQuizResults from "./buttonSettingsTutor/ButtonQuizResults";
 import ButtonCreateQuiz from "./buttonSettingsTutor/ButtonCreateQuiz";
 import ButtonCreateQuestion from "./buttonSettingsTutor/ButtonCreateQuestion";
@@ -10,7 +11,6 @@ import ButtonCreateAnswer from "./buttonSettingsTutor/ButtonCreateAnswer";
 import ButtonCreateContent from "./buttonSettingsTutor/ButtonCreateContent";
 import ButtonUpdateQuiz from "./buttonSettingsTutor/ButtonUpdateQuiz";
 import ButtonUpdateQuestion from "./buttonSettingsTutor/ButtonUpdateQuestion";
-import ButtonUpdateAnswer from "./buttonSettingsTutor/ButtonUpdateAnswer";
 import ButtonUpdateContent from "./buttonSettingsTutor/ButtonUpdateContent";
 import Footer from "../footer/Footer";
 import ButtonAssociationContentLesson from "./buttonSettingsTutor/ButtonAssociationContentLesson";
@@ -78,7 +78,6 @@ const SettingsTutor = () => {
                                 <div className={`optionSettings`}>
                                     <ButtonUpdateQuiz />
                                     <ButtonUpdateQuestion />
-                                    <ButtonUpdateAnswer />
                                     <ButtonUpdateContent />
                                 </div>
                             </div>
@@ -105,7 +104,7 @@ const SettingsTutor = () => {
                         <div className={`containerOptions`}>
                             <div className={`cardFront`}>
                                 <p className={`textSettings`}>View section</p>
-                                <img src={deleteImage} alt="Delete" className={`imageSettings`} />
+                                <img src={viewResultsQuizImage} alt="Delete" className={`imageSettings`} />
                             </div>
                             <div className={`cardBack`}>
                                 <div className={`optionSettings`}>

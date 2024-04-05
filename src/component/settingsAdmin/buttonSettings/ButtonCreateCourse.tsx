@@ -21,7 +21,7 @@ const ButtonCreateCourse = () => {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
-                scrollable>
+                >
                 <Modal.Body>
                     <CreateCourse />
                 </Modal.Body>

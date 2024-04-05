@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import CreateQuiz from '../createQuizTutor/CreateQuiz';
-import '../../settingsAdmin/buttonSettings/StyleModals.css';
+import './StyleModalsTutor.css';
 
 const ButtonCreateQuiz = () => {
     const [show, setShow] = useState(false);
@@ -20,7 +20,7 @@ const ButtonCreateQuiz = () => {
             <Modal show={show}
                 onHide={handleClose}
                 keyboard={false}
-                scrollable>
+                >
                 <Modal.Body>
                     <CreateQuiz />
                 </Modal.Body>

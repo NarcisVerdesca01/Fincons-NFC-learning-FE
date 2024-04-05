@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import AssociationQuizLesson from '../associationQuizLesson/AssociationQuizLesson';
-import '../../settingsAdmin/buttonSettings/StyleModals.css';
+import './StyleModalsTutor.css';
 
 const ButtonAssociationQuizLesson = () => {
     const [show, setShow] = useState(false);
@@ -22,7 +22,7 @@ const ButtonAssociationQuizLesson = () => {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
-                scrollable>
+                >
                 <Modal.Body>
                     <AssociationQuizLesson />
                 </Modal.Body>

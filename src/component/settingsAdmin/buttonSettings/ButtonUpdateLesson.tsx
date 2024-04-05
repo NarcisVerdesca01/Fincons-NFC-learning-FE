@@ -20,7 +20,7 @@ const ButtonUpdateLesson = () => {
             <Modal show={show}
                 onHide={handleClose}
                 keyboard={false}
-                scrollable>
+                scrolable>
                 <Modal.Body>
                     <UpdateLesson />
                 </Modal.Body>

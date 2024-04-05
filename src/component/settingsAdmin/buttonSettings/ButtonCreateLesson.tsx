@@ -22,7 +22,7 @@ const ButtonCreateLesson = () => {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-        scrollable
+        
       >
         <Modal.Body>
           <CreateLesson />

@@ -17,7 +17,7 @@ const ButtonDeleteLesson = () => {
                 <span className={`frontDefault front`}>Lesson <i className="bi bi-trash3"></i></span>
             </button>
 
-      <Modal show={show} onHide={handleClose} keyboard={false} scrollable>
+      <Modal show={show} onHide={handleClose} keyboard={false} >
         <Modal.Body>
           <DeleteLesson />
         </Modal.Body>

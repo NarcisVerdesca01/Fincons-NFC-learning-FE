@@ -11,7 +11,6 @@ const DeleteContentTutor = () => {
   const [isCallComplete, setIsCallComplete] = useState(false);
   const [deletionMessage, setDeletionMessage] = useState<string>("");
 
-
   const navigate = useNavigate();
 
   const refreshList = () => {
@@ -53,8 +52,6 @@ const DeleteContentTutor = () => {
     navigate("/settings_tutor");
   };
 
-
-
   return (
     <div>
       <div>
@@ -89,19 +86,24 @@ const DeleteContentTutor = () => {
                 <label className="labelModal">{deletionMessage}</label>
               </div>
             )}
-
-
-
-
             {content && (
-              <>
-                <button type="button" className="btn btn-success" onClick={deleteContent} disabled={loading}>
-                  delete
+              <div className="containerButtonModal">
+                <button
+                  type="button"
+                  className="buttonCheck"
+                  onClick={deleteContent}
+                >
+                  <span className="frontCheck">
+                    <i className="bi bi-check2"></i>
+                  </span>
                 </button>
-                <button className="btn btn-danger" onClick={backToSettings}>
-                  back
+
+                <button className="buttonReturn" onClick={backToSettings}>
+                  <span className="frontReturn">
+                    <i className="bi bi-arrow-left"></i>
+                  </span>
                 </button>
-              </>
+              </div>
             )}
           </form>
         </div>

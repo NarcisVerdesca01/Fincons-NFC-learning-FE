@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import CreateAssociationContentLesson from '../associationContentLesson/AssociationContentLesson';
-import '../../settingsAdmin/buttonSettings/StyleModals.css';
+import './StyleModalsTutor.css';
 
 const ButtonAssociationContentLesson = () => {
     const [show, setShow] = useState(false);
@@ -13,14 +13,12 @@ const ButtonAssociationContentLesson = () => {
             <button
                 className={`buttonDefault buttonModal`}
                 onClick={handleShow}
-                style={{ margin: "0.5em" }}
-            >
+                style={{ margin: "0.5em" }}>
                 <span className={`frontDefault front`}>Content to Lesson <i className="bi bi-arrows-angle-contract"></i></span>
             </button>
 
             <Modal show={show}
                 onHide={handleClose}
-                backdrop="static"
                 keyboard={false}>
                 <Modal.Body>
                     <CreateAssociationContentLesson />

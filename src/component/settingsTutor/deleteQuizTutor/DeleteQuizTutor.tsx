@@ -93,19 +93,24 @@ const DeleteQuizTutor = () => {
                 <label className="labelModal">{deletionMessage}</label>
               </div>
             )}
-
-            
-
-
             {quiz && (
-              <>
-                <button type="button" className="btn btn-success" onClick={deleteQuiz} disabled={loading}>
-                  delete
+              <div className="containerButtonModal">
+                <button
+                  type="button"
+                  className="buttonCheck"
+                  onClick={deleteQuiz}
+                >
+                  <span className="frontCheck">
+                    <i className="bi bi-check2"></i>
+                  </span>
                 </button>
-                <button className="btn btn-danger" onClick={backToSettings}>
-                  back
+
+                <button className="buttonReturn" onClick={backToSettings}>
+                  <span className="frontReturn">
+                    <i className="bi bi-arrow-left"></i>
+                  </span>
                 </button>
-              </>
+              </div>
             )}
           </form>
         </div>

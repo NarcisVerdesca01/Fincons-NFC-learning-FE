@@ -8,7 +8,6 @@ const DeleteAnswerTutor = () => {
   const [selectedAnswerId, setSelectedAnswerId] = useState<number | null>(null);
   const [answer, setAnswer] = useState<Answer>();
   const [titleError, setTitleError] = useState(false);
-  const [titleErrorMessage, setTitleErrorMessage] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,25 +35,6 @@ const DeleteAnswerTutor = () => {
 
   const backToSettings = () => {
     navigate("/settings_tutor");
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, setError: React.Dispatch<React.SetStateAction<boolean>>, setErrorMessage: React.Dispatch<React.SetStateAction<string>>) => {
-    const { title, value } = event.target;
-    const inputValue = value.trim();
-    const inputLength = inputValue.length;
-
-    if (title === 'title' && (inputLength < 1 || inputLength > 255)) {
-      setError(true);
-      setErrorMessage('Title must be between 1 and 255 characters');
-    } else {
-      setError(false);
-      setErrorMessage('');
-    }
-
-    setAnswer({
-      ...answer!,
-      text: inputValue
-    });
   };
 
   return (

@@ -21,7 +21,7 @@ const ButtonCreateAbility = () => {
                 onHide={handleClose}
                 backdrop="static"
                 keyboard={false}
-                scrollable>
+                >
                 <Modal.Body>
                     <CreateAbility />
                 </Modal.Body>

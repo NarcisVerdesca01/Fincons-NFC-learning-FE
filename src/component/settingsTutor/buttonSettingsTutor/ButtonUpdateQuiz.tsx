@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import UpdateQuiz from "../updateQuizTutor/UpdateQuizTutor";
-import '../../settingsAdmin/buttonSettings/StyleModals.css';
+import './StyleModalsTutor.css';
 
 const ButtonUpdateQuiz = () => {
   const [show, setShow] = useState(false);

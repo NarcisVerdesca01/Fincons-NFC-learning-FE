@@ -13,7 +13,7 @@ const ButtonProfile = () => {
         <i className="bi bi-person-fill"></i>
       </Button>
 
-      <Modal show={show} onHide={handleClose} keyboard={false} scrollable>
+      <Modal show={show} onHide={handleClose} keyboard={false}>
         <Modal.Body>
           <Profile/>
         </Modal.Body>
