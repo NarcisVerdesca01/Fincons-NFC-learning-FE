@@ -30,12 +30,13 @@ const Header = () => {
     const goToSettingsAdmin = () => {
         navigate("/settings_admin")
     }
-    const goToProfile = () => {
-        navigate("/profile")
+    const goToSettingsStudent = () => {
+        navigate("/settings_student")
     }
 
     const [adminNavBar, setAdminNavBar] = useState<boolean>(false);
     const [tutorNavBar, setTutorNavBar] = useState<boolean>(false);
+    const [studentNavBar, setStudentNavBar] = useState<boolean>(false);
 
     useEffect(() => {
         LoginRegistrationService.getUserDetails().then((res) => {
@@ -43,6 +44,8 @@ const Header = () => {
                 setAdminNavBar(true);
             } else if (res.data.roles[0].name === "ROLE_TUTOR") {
                 setTutorNavBar(true);
+            } else if (res.data.roles[0].name === "ROLE_STUDENT") {
+                setStudentNavBar(true);
             }
         });
 
@@ -84,6 +87,13 @@ const Header = () => {
                         {adminNavBar && (
                             <div className={`containerButtonNavBar`}>
                                 <button className={`buttonNavBar`} onClick={goToSettingsAdmin}>
+                                    <p className={`nameButton`}>Settings</p>
+                                </button>
+                            </div>
+                        )}
+                        {studentNavBar && (
+                            <div className={`containerButtonNavBar`}>
+                                <button className={`buttonNavBar`} onClick={goToSettingsStudent}>
                                     <p className={`nameButton`}>Settings</p>
                                 </button>
                             </div>

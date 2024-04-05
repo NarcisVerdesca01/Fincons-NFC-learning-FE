@@ -25,9 +25,8 @@ const LoginRegister = () => {
                 </div>
                 <div className="card__face card__face--back">
                     <div className="card__content">
-
                         <div className={`containerButtonSelectForm`}>
-                            <button className={`buttonSelectForm`} onClick={handleFlip}>login</button>
+                            <button className={`buttonSelectForm`} onClick={handleFlip}>Login</button>
                         </div>
                         <div className="card__form">
                             <Register />

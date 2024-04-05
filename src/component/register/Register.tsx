@@ -5,9 +5,12 @@ import "bootstrap/dist/css/bootstrap.css";
 import User from "../../models/UserModel";
 import LoginRegistrationService from "../../services/LoginRegistrationService";
 import "./Register.css";
+import RegisterModel from "../../models/RegisterModel";
+import { date } from "yup";
 
 const RegisterPageComponent = () => {
   const [input, setInput] = useState<User>();
+  const [errorMessage, setErrorMessage] = useState<string>();
   const [passwordShow, setPasswordShow] = useState("password");
   const [confirmPasswordShow, setConfirmPasswordShow] = useState("password");
   const [iconToShowConfirm, setIconToShowConfirm] = useState(
@@ -73,20 +76,50 @@ const RegisterPageComponent = () => {
     }
   };
 
-  const handleRegistration = () => {
-    if (!input?.firstName || !input?.lastName || !input?.email || !input?.password || !input?.confirmPassword) {
-      alert("Please fill out all the fields before submitting the form.");
+
+  const [errorFirstNameMessage, setErrorFirstNameMessage] = useState<string>();
+  const [errorLastNameMessage, setErrorLastNameMessage] = useState<string>();
+  const [errorEmailMessage, setErrorEmailMessage] = useState<string>();
+  const [errorPasswordMessage, setErrorPasswordMessage] = useState<string>();
+  const [errorConfirmPasswordMessage, setErrorConfirmPasswordMessage] = useState<string>();
+
+  const handleRegistration = async () => {
+    if (!input?.firstName) {
+      setErrorFirstNameMessage("Please fill out the first name field before submitting the form.");
+    }
+    if (!input?.lastName) {
+      setErrorLastNameMessage("Please fill out the last name field before submitting the form.");
+    }
+    if (!input?.email) {
+      setErrorEmailMessage("Please fill out the email field before submitting the form.");
+    }
+    if (!input?.password) {
+      setErrorPasswordMessage("Please fill out the password field before submitting the form.");
+    }
+    if (!input?.confirmPassword) {
+      setErrorConfirmPasswordMessage("Please fill out the confirm password field before submitting the form.");
+    }
+
+    if (input?.password !== input?.confirmPassword) {
+      setErrorConfirmPasswordMessage("The passwords do not match. Please try again.");
       return;
     }
-  
-    if (input.password !== input.confirmPassword) {
-      alert("The passwords do not match. Please try again.");
-      return;
+
+    try {
+      await LoginRegistrationService.registrationStudentService(input!);
+      navigate("/authentication");
+    } catch (error) {
+      console.error("Error during registration:", error);
+      setErrorMessage("An error occurred during registration. Please try again later.");
     }
-  
-    LoginRegistrationService.registrationStudentService(input!);
-    navigate("/authentication");
   };
+
+  const isFormValid =
+    input?.firstName &&
+    input?.lastName &&
+    input?.email &&
+    input?.password &&
+    input.password == input?.confirmPassword;
 
   return (
     <div className={`containerRegister`}>
@@ -111,6 +144,7 @@ const RegisterPageComponent = () => {
               placeholder="First Name"
             />
           </div>
+          <p style={{ color: "red", display: errorMessage ? "block" : "none" }}>{errorFirstNameMessage}</p>
           <div className={`fieldRegister`}>
             <input
               name="lastName"
@@ -126,6 +160,8 @@ const RegisterPageComponent = () => {
               placeholder="Last Name"
             />
           </div>
+
+          <p style={{ color: "red", display: errorMessage ? "block" : "none" }}>{errorLastNameMessage}</p>
           <div className={`fieldRegister`}>
             <input
               name="email"
@@ -142,6 +178,7 @@ const RegisterPageComponent = () => {
               placeholder="Email"
             />
           </div>
+          <p style={{ color: "red", display: errorMessage ? "block" : "none" }}>{errorEmailMessage}</p>
           <div className={`fieldRegister`}>
             <input
               type="date"
@@ -180,6 +217,7 @@ const RegisterPageComponent = () => {
               {iconToShow}
             </button>
           </div>
+          <p style={{ color: "red", display: errorMessage ? "block" : "none" }}>{errorPasswordMessage}</p>
           <div className={`fieldRegister`}>
             <input
               type={confirmPasswordShow}
@@ -202,10 +240,12 @@ const RegisterPageComponent = () => {
               {iconToShowConfirm}
             </button>
           </div>
+          <p style={{ color: "red", display: errorMessage ? "block" : "none" }}>{errorConfirmPasswordMessage}</p>
 
           <div className={`btnRegister`}>
             <button
-              className={`buttonRegister`}
+              className={`buttonRegister ${!isFormValid ? "disabled-button" : ""}`}
+              disabled={!isFormValid}
               onClick={handleRegistration}
             >
               Registration
