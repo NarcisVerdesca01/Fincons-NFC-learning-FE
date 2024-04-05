@@ -21,11 +21,10 @@ const CreateAssociationQuizQuestion = () => {
   const refreshList = () => {
     QuizService.getQuizzes().then((res1) => {
       setQuiz(res1.data.data);
-      setQuiz(res1.data.data);
     });
 
     QuestionService.getQuestionsWithoutAssociationWithQuiz().then((res2) => {
-            setQuestions(res2.data.data);
+      setQuestions(res2.data.data);
     });
 
   }
