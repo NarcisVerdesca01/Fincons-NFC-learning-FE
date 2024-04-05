@@ -10,28 +10,62 @@ const CreateAssociationQuestionAnswer = () => {
   const [answerId, setAnswerId] = useState<number | any>();
   const [questions, setQuestions] = useState<Question | any>();
   const [answers, setAnswers] = useState<any>();
+  const [association, setAssociation] = useState<any>();
+  const [associatedSuccessfully, setAssociatedSuccessfully] = useState<boolean | null>(null);
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState<boolean | null>(null);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const refreshList = () => {
     QuestionService.getQuestions().then((res1) => {
-      setQuestions(res1.data);
+      setQuestions(res1.data.data);
     });
-  }, []);
+
+    AnswerService.getAnswerWithoutAssociationWithQuestion().then((res2) => {
+      setAnswers(res2.data.data);
+    });
+  }
 
   useEffect(() => {
-    AnswerService.getAnswerWithoutAssociationWithQuestion().then((res2) => {
-      setAnswers(res2.data);
-    });
+    refreshList();
   }, []);
 
-  const saveQuestionAnswer = () => {
-    console.log("id question: ", questionId);
-    console.log("id answer:", answerId);
-    AnswerService.associateAnswerQuestion(answerId, questionId);
-    navigate("/settings_tutor");
+
+  useEffect(() => {
+    console.log("Use effect association:" + association);
+
+    if (association && isCallComplete) {
+      if (association.status === 200) {
+        setAssociatedSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (association.status === 409) {
+        setAssociatedSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [association, isCallComplete]);
+
+  const saveQuestionAnswer = async () => {
+    try {
+      setLoading(true);
+      const tempAssociation = await AnswerService.associateAnswerQuestion(answerId, questionId);
+      setAssociation(tempAssociation);
+      console.log("Association: " + tempAssociation)
+      setIsCallComplete(true);
+      refreshList();
+    } catch (error: any) {
+      console.error("Errore durante l'associazione corso-lezione:", error);
+      setAssociation(error.response);
+      setIsCallComplete(true);
+      refreshList();
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const backToSettingsCourseLesson = () => {
+  const backToSettings = () => {
     navigate("/settings_tutor");
   };
 
@@ -79,13 +113,28 @@ const CreateAssociationQuestionAnswer = () => {
             })}
           </select>
         </div>
+        {loading && <div>Saving in progress...</div>}
+
+        {!loading && associatedSuccessfully && isCallComplete && (
+          <div>
+            <label className="labelModal">The question was successfully associated with the answer.</label>
+          </div>
+        )}
+
+        {!loading && !associatedSuccessfully && isCallComplete && (
+          <div>
+            <label className="labelModal">Problems were encountered during the association!</label>
+          </div>
+        )}
+
+
         <div className="containerButtonModal">
-          <button className="buttonCheck" onClick={saveQuestionAnswer}>
+          <button className="buttonCheck" onClick={saveQuestionAnswer} type="button" disabled={loading==true}>
             <span className="frontCheck">
               <i className="bi bi-check2"></i>
             </span>
           </button>
-          <button className="buttonReturn" onClick={backToSettingsCourseLesson}>
+          <button className="buttonReturn" onClick={backToSettings}>
             <span className="frontReturn">
               <i className="bi bi-arrow-left"></i>
             </span>

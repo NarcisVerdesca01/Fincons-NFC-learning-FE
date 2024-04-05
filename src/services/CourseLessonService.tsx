@@ -45,7 +45,7 @@ const createCourseLesson = async (courseId: number, lessonId: number) => {
                 },
             }
         );
-        return response.data;
+        return response;
     } catch (error) {
         console.error("Error getting courses:", error);
         throw error;

@@ -37,7 +37,7 @@ const getAnswerWithoutAssociationWithQuestion = async () => {
     const response = await axios.get(GET_ALL_URI_NO_ASSOCIATED_QUESTION, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error getting lessons:", error);
     throw error;
