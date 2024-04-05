@@ -1,16 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Answer from "../../../models/AnswerModel";
 import AnswerService from "../../../services/AnswerService";
 
 const CreateAnswer = () => {
-  const [answer, setAnswer] = useState<Answer>();
+    const [answer, setAnswer] = useState<Answer>();
+    const [savedAnswer, setSavedAnswer] = useState<any>();
+    const [savedSuccessfully, setSaveSuccessfully] = useState<boolean>();
+    const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+    const [loading, setLoading] = useState(false);
+    const [isCallComplete, setIsCallComplete] = useState(false);
+
+
+
   const navigate = useNavigate();
 
-  const saveAnswer = () => {
-    AnswerService.createAnswer(answer!);
-    navigate("/settings_tutor");
-  };
+  const saveAnswer = async () => {
+    try {
+      setLoading(true);
+      const tempSavedAnswer = await AnswerService.createAnswer(answer!);
+      setSavedAnswer(tempSavedAnswer);
+      setIsCallComplete(true);
+  } catch (error: any) {
+      console.error("Errore durante il salvataggio del quiz:", error);
+      setSavedAnswer(error.response);
+      setIsCallComplete(true);
+  } finally {
+      setLoading(false);
+  }
+ };
+
+
+ useEffect(() => {
+  console.log("Use effect saved answer:" + savedAnswer);
+
+  if (savedAnswer && isCallComplete) {
+      if (savedAnswer.status === 200) {
+          setSaveSuccessfully(true);
+          setResourceAlreadyExists(false);
+      } else if (savedAnswer.status === 409) {
+          setSaveSuccessfully(false);
+          setResourceAlreadyExists(true);
+      }
+  }
+}, [savedAnswer, isCallComplete]);
 
   const backToSettings = () => {
     navigate("/settings_tutor");
@@ -53,8 +86,23 @@ const CreateAnswer = () => {
                 }}
               ></input>
             </div>
+
+            {loading && <div>Saving in progress...</div>}
+
+                {!loading && savedSuccessfully && (
+                    <div>
+                        <label className="labelModal">Answer saved correctly!</label>
+                    </div>
+                )}
+
+                {!loading && !savedSuccessfully && resourceAlreadyExists && (
+                    <div>
+                        <label className="labelModal">The answer already exists!</label>
+                    </div>
+                )}
+
             <div className="containerButtonModal">
-              <button className="buttonCheck" onClick={saveAnswer}>
+              <button className="buttonCheck" disabled={loading || !answer?.text} onClick={saveAnswer}>
                 <span className="frontCheck">
                   <i className="bi bi-check2"></i>
                 </span>

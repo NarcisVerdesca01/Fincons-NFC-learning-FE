@@ -89,3 +89,8 @@
 .btnRegister{
     display: flex;
 }
+
+.disabled-button {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }

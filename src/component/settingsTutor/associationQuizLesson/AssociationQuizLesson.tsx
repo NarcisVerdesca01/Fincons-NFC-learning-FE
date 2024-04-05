@@ -12,28 +12,69 @@ const CreateAssociationQuizLesson = () => {
   const [lessonId, setLessonId] = useState<number | any>();
   const [lesson, setLesson] = useState<QuizLessonModel | any>();
   const [quiz, setQuiz] = useState<any>();
+  const [association, setAssociation] = useState<any>();
+  const [associatedSuccessfully, setAssociatedSuccessfully] = useState<boolean | null>(null);
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState<boolean | null>(null);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+
+
+
   const navigate = useNavigate();
 
-  useEffect(() => {
+
+  const refreshList = () => {
     QuizService.getQuizzesWithoutAssociationWithLesson().then((res1) => {
-      setQuiz(res1.data);
+      setQuiz(res1.data.data);
     });
-  }, []);
 
-  useEffect(() => {
     LessonService.getNotAssociatedLessonsWithQuiz().then((res2) => {
-      setLesson(res2.data);
+      setLesson(res2.data.data);
     });
-  }, []);
 
-  const saveQuizLesson = () => {
-    console.log("id quiz: ", quizId);
-    console.log("id lesson:", quizLesson);
-    QuizService.associateQuizToLesson(quizId, lessonId);
-    navigate("/settings_tutor");
   };
 
-  const backToSettingsCourseLesson = () => {
+  useEffect(() => {
+    refreshList();
+  }, []);
+
+
+  const saveQuizLesson = async () => {
+    try {
+      setLoading(true);
+      const tempAssociation = await QuizService.associateQuizToLesson(quizId, lessonId);
+      setAssociation(tempAssociation);
+      console.log("Association: " + tempAssociation)
+      setIsCallComplete(true);
+      refreshList();
+    } catch (error: any) {
+      console.error("Errore durante l'associazione corso-lezione:", error);
+      setAssociation(error.response);
+      setIsCallComplete(true);
+      refreshList();
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  useEffect(() => {
+    console.log("Use effect association:" + association);
+
+    if (association && isCallComplete) {
+      if (association.status === 200) {
+        setAssociatedSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (association.status === 409) {
+        setAssociatedSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [association, isCallComplete]);
+
+
+
+  const backToSettings = () => {
     navigate("/settings_tutor");
   };
 
@@ -51,7 +92,7 @@ const CreateAssociationQuizLesson = () => {
               setQuizId(parseInt(e.target.value));
             }}
           >
-            <option selected>Select the Quiz</option>
+            <option selected hidden disabled>Select the Quiz</option>
             {quiz?.map((quizzes: Quiz, index: any) => {
               return (
                 <option key={index} value={quizzes.id}>
@@ -71,7 +112,7 @@ const CreateAssociationQuizLesson = () => {
               setLessonId(parseInt(e.target.value));
             }}
           >
-            <option selected>Select the Lesson</option>
+            <option selected hidden disabled>Select the Lesson</option>
             {lesson?.map((lesson: Lesson, index: any) => {
               return (
                 <option key={index} value={lesson?.id}>
@@ -81,13 +122,30 @@ const CreateAssociationQuizLesson = () => {
             })}
           </select>
         </div>
+
+
+        {loading && <div>Saving in progress...</div>}
+
+        {!loading && associatedSuccessfully && isCallComplete && (
+          <div>
+            <label className="labelModal">The quiz was successfully associated with the lesson.</label>
+          </div>
+        )}
+
+        {!loading && !associatedSuccessfully && isCallComplete && (
+          <div>
+            <label className="labelModal">Problems were encountered during the association!</label>
+          </div>
+        )}
+
+
         <div className="containerButtonModal">
-          <button className="buttonCheck" onClick={saveQuizLesson}>
+          <button className="buttonCheck" onClick={saveQuizLesson} type="button" disabled={loading==true}>
             <span className="frontCheck">
               <i className="bi bi-check2"></i>
             </span>
           </button>
-          <button className="buttonReturn" onClick={backToSettingsCourseLesson}>
+          <button className="buttonReturn" onClick={backToSettings}>
             <span className="frontReturn">
               <i className="bi bi-arrow-left"></i>
             </span>

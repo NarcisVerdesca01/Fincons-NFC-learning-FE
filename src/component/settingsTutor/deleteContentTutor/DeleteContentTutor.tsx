@@ -7,60 +7,58 @@ const DeleteContentTutor = () => {
   const [contents, setContents] = useState<Content[]>([]);
   const [selectedContentId, setSelectedContentId] = useState<number | null>(null);
   const [content, setContent] = useState<Content>();
-  const [titleError, setTitleError] = useState(false);
-  const [titleErrorMessage, setTitleErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+  const [deletionMessage, setDeletionMessage] = useState<string>("");
+
+
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const refreshList = () => {
     ContentService.getContents().then((res) => {
-      setContents(res.data);
+      setContents(res.data.data);
     });
+  }
+
+  useEffect(() => {
+    refreshList();
   }, []);
 
   useEffect(() => {
     if (selectedContentId !== null) {
       ContentService.getContentById(selectedContentId).then((res) => {
-        setContent(res.data);
+        setContent(res.data.data);
       });
     }
   }, [selectedContentId]);
 
-  const deleteContent = () => {
-    if (titleError) {
-      return;
+  const deleteContent = async () => {
+    try {
+      setLoading(true);
+      const tempDeletedQuiz = await ContentService.deleteContent(selectedContentId!);
+      setIsCallComplete(true);
+      setDeletionMessage("Content deleted successfully! ");
+      refreshList();
+    } catch (error: any) {
+      console.error("Errore durante eliminazione contenuto:", error);
+      setIsCallComplete(true);
+      setDeletionMessage("Problems were encountered during deletion! ");
+      refreshList();
+    } finally {
+      setLoading(false);
     }
-
-    ContentService.deleteContent(selectedContentId!);
-    navigate("/settings_tutor");
   };
 
   const backToSettings = () => {
     navigate("/settings_tutor");
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>, setError: React.Dispatch<React.SetStateAction<boolean>>, setErrorMessage: React.Dispatch<React.SetStateAction<string>>) => {
-    const { title, value } = event.target;
-    const inputValue = value.trim();
-    const inputLength = inputValue.length;
 
-    if (title === 'title' && (inputLength < 1 || inputLength > 255)) {
-      setError(true);
-      setErrorMessage('Title must be between 1 and 255 characters');
-    } else {
-      setError(false);
-      setErrorMessage('');
-    }
-
-    setContent({
-      ...content!,
-      content: inputValue
-    });
-  };
 
   return (
     <div>
       <div>
-        <h3>Delete Content</h3> 
+        <h3>Delete Content</h3>
         <div>
           <form>
             <div className="form-group">
@@ -73,7 +71,7 @@ const DeleteContentTutor = () => {
                   setSelectedContentId(Number(e.target.value));
                 }}
               >
-                <option selected>Select the Content to delete</option>
+                <option selected hidden disabled>Select the Content to delete</option>
                 {contents.map((content) => {
                   return (
                     <option key={content.id} value={content.id}>
@@ -83,9 +81,21 @@ const DeleteContentTutor = () => {
                 })}
               </select>
             </div>
+
+            {loading && <div>Delete in progress...</div>}
+
+            {isCallComplete && (
+              <div>
+                <label className="labelModal">{deletionMessage}</label>
+              </div>
+            )}
+
+
+
+
             {content && (
               <>
-                <button type="button" className="btn btn-success" onClick={deleteContent} disabled={titleError}>
+                <button type="button" className="btn btn-success" onClick={deleteContent} disabled={loading}>
                   delete
                 </button>
                 <button className="btn btn-danger" onClick={backToSettings}>

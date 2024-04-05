@@ -12,31 +12,66 @@ const CreateAssociationCourseLesson = () => {
   const [courseId, setCourseId] = useState<CourseLessonModel | any>();
   const [course, setCourse] = useState<any>();
   const [lesson, setLesson] = useState<any>();
+  const [association, setAssociation] = useState<any>();
+  const [associatedSuccessfully, setAssociatedSuccessfully] = useState<boolean| null>(null);
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState<boolean | null >(null);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const refreshList = () => {
     CourseService.getCourses().then((res1) => {
       setCourse(res1.data);
     });
-  }, []);
 
-  useEffect(() => {
     LessonService.getNotAssociatedLessonsWithCourse().then((res2) => {
       setLesson(res2.data);
     });
+
+  }
+
+  useEffect(() => {
+    refreshList();
   }, []);
 
-  const saveCourseLesson = () => {
+  const saveCourseLesson = async () => {
     console.log(courseId);
     console.log(courseLesson);
-    CourseLessonService.createCourseLesson(
-      courseId.course,
-      courseLesson.lesson
-    );
-    navigate("/settings_tutor");
+
+    try {
+      setLoading(true);
+      const tempAssociation = await CourseLessonService.createCourseLesson(courseId.course, courseLesson.lesson);
+      setAssociation(tempAssociation);
+      console.log("Association: " + tempAssociation)
+      setIsCallComplete(true);
+      refreshList();
+    } catch (error: any) {
+      console.error("Errore durante l'associazione corso-lezione:", error);
+      setAssociation(error.response);
+      setIsCallComplete(true);
+      refreshList();
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const backToSettingsCourseLesson = () => {
+
+  useEffect(() => {
+    console.log("Use effect association:" + association);
+
+    if (association && isCallComplete) {
+      if (association.status === 200) {
+        setAssociatedSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (association.status === 409) {
+        setAssociatedSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [association, isCallComplete]);
+
+  const backToSettings = () => {
     navigate("/settings_tutor");
   };
 
@@ -59,7 +94,7 @@ const CreateAssociationCourseLesson = () => {
                   });
                 }}
               >
-                <option selected>Select the Course</option>
+                <option selected hidden disabled>Select the Course</option>
                 {course?.map((courses: Course, index: any) => {
                   return (
                     <option key={index} value={courses.id}>
@@ -82,7 +117,7 @@ const CreateAssociationCourseLesson = () => {
                   });
                 }}
               >
-                <option selected>Select the Lesson</option>
+                <option selected hidden disabled>Select the Lesson</option>
                 {lesson?.map((lesson: Lesson, index: any) => {
                   return (
                     <option key={index} value={lesson?.id}>
@@ -92,15 +127,33 @@ const CreateAssociationCourseLesson = () => {
                 })}
               </select>
             </div>
+
+
+            {loading && <div>Saving in progress...</div>}
+
+            {!loading && associatedSuccessfully && isCallComplete && (
+              <div>
+                <label className="labelModal">The course was successfully associated with the lesson.</label>
+              </div>
+            )}
+
+            {!loading && !associatedSuccessfully && isCallComplete && (
+              <div>
+                <label className="labelModal">Problems were encountered during the association!</label>
+              </div>
+            )}
+
+
+
             <div className="containerButtonModal">
-              <button className="buttonCheck" onClick={saveCourseLesson}>
+              <button className="buttonCheck" onClick={saveCourseLesson} type="button" disabled= {loading==true}>
                 <span className="frontCheck">
                   <i className="bi bi-check2"></i>
                 </span>
               </button>
               <button
                 className="buttonReturn"
-                onClick={backToSettingsCourseLesson}
+                onClick={backToSettings}
               >
                 <span className="frontReturn">
                   <i className="bi bi-arrow-left"></i>

@@ -26,7 +26,7 @@ const getQuizzes = async () => {
     const response = await axios.get(GET_ALL_URI, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error getting lessons:", error);
     throw error;
@@ -39,7 +39,7 @@ const getQuizzesWithoutAssociationWithLesson = async () => {
     const response = await axios.get(GET_ALL_URI_NO_ASSOCIATED_LESSON, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error getting lessons:", error);
     throw error;
@@ -76,9 +76,9 @@ const getQuizById = async (quizId: number | undefined) => {
   const token = Cookies.get("jwt-token");
   try {
     const response = await axios.get(GET_BY_ID + "/" + quizId, { headers: { Authorization: `Bearer ${token}` } })
-    return response.data;
+    return response;
   } catch (error) {
-    console.error("Error getting lessons:", error);
+    console.error("Error getting quiz with id:" + quizId, error);
     throw error;
   }
 };
@@ -110,10 +110,10 @@ const reSendQuizResult = async (quizId: number, answersMap: any) => {
 
 const updateQuiz = async (quizId: number, quiz: Quiz) => {
   const token = Cookies.get("jwt-token");
-  const url = `${UPDATE_QUIZ_URI}/${quizId}`;
+  const url = `${UPDATE_QUIZ_URI}?idQuiz=${quizId}`;
   try {
     const response = await axios.put(url, quiz, { headers: { Authorization: `Bearer ${token}` } });
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error during update of quiz:", error);
     throw error;
@@ -152,7 +152,7 @@ const associateQuizToLesson = async (quizId: number, lessonId: number) => {
   const url = `${ASSOCIATE_WITH_LESSON}?idQuiz=${quizId}&idLesson=${lessonId}`;
   try {
     const response = await axios.put(url, {}, { headers: { Authorization: `Bearer ${token}` } });
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error getting lessons:", error);
     throw error;
@@ -164,7 +164,7 @@ const associateQuizToQuestion = async (quizId: number, questionId: number) => {
   const url = `${ASSOCIATE_WITH_QUESTION}?idQuiz=${quizId}&idQuestion=${questionId}`;
   try {
     const response = await axios.put(url, {}, { headers: { Authorization: `Bearer ${token}` } });
-    return response.data;
+    return response;
   } catch (error) {
     console.error("Error getting lessons:", error);
     throw error;
