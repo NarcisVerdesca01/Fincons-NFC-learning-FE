@@ -39,7 +39,7 @@ const getNotAssociatedLessonsWithQuiz = async () => {
         const response = await axios.get(GET_ALL_NOT_ASSOCIATED_WITH_QUIZ_URI, {
             headers: { Authorization: `Bearer ${token}` },
         });
-        return response.data;
+        return response;
     } catch (error) {
         console.error("Error getting lessons:", error);
         throw error;
@@ -67,7 +67,7 @@ const getNotAssociatedLessonsWithContent = async () => {
         const response = await axios.get(GET_ALL_NOT_ASSOCIATED_WITH_CONTENT_URI, {
             headers: { Authorization: `Bearer ${token}` },
         });
-        return response.data;
+        return response;
     } catch (error) {
         console.error("Error getting lessons:", error);
         throw error;
@@ -128,7 +128,7 @@ const associateLessonContent = async (lessonId: number, contentId: number) => {
     const url = `${ASSOCIATE_CONTENT_TO_LESSON}?lesson=${lessonId}&content=${contentId}`;
     try {
       const response = await axios.put(url, {}, { headers: { Authorization: `Bearer ${token}` } });
-      return response.data;
+      return response;
     } catch (error) {
       console.error("Error during association lesson-content:", error);
       throw error;
