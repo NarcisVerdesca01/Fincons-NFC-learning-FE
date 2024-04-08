@@ -38,9 +38,6 @@ const PageCourse = (props: Props) => {
     <>
       <Header />
       <div className={`containerPageCourse`}>
-        <div className={`containerTitlePageCourse`}>
-          <h1 className={`page-single-course-title-name`}>{course?.name}</h1>
-        </div>
         <div className={`containerButtonBack`}>
           <button className={`buttonBack`} onClick={goBack}>
             <i className="bi bi-arrow-left"></i>
@@ -55,6 +52,7 @@ const PageCourse = (props: Props) => {
             />
           </div>
           <div className={`containerTextCourse`}>
+            <h1 className={`coursTitle`}>{course?.name}</h1>
             <p className={`textCourse`}>{course?.description}</p>
           </div>
         </div>
