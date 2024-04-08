@@ -20,8 +20,6 @@ const PageCoursePresentation = () => {
     CourseService.getCourseById(idCourse_page).then((res) => {
       setCourse(res.data);
       setLessonList(res.data.lessons);
-      const date = res.data.lastModified.toString()
-      console.log(date)
     });
   }, [idCourse]);
 
@@ -30,7 +28,7 @@ const PageCoursePresentation = () => {
   };
 
   const formattedDate = course?.lastModified ? new Date(course?.lastModified).toLocaleString('it-IT', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '/';
-  
+
   return (
     <>
       <Header />
@@ -52,12 +50,8 @@ const PageCoursePresentation = () => {
             <label>Last modified: {formattedDate}</label>
           </div>
           <div className={`containerTextCoursePresentation`}>
-            <h1 className={`course-title-name`}>{course?.name}</h1>
+            <h1 className={`coursTitle`}>{course?.name}</h1>
             <p className={`textCoursePresentation`}>{course?.description}</p>
-          </div>
-        </div>
-        <div className={`containerTitleResourcesCoursePresentation`}>
-          <div className={`titleResourcesCoursePresentation`}>
           </div>
         </div>
       </div>

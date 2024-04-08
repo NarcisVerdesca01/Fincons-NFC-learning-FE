@@ -14,11 +14,21 @@
     margin-bottom: 6em;
 }
 
+.containerContextCourse {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    font-weight: 300;
+    font-size: 20px;
+}
+
 .imageCardCourse {
-    width: 50%;
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    border-right: 1px solid black;
 }
 
 .imageStyleCourse {
@@ -33,15 +43,14 @@
 }
 
 .containerTextCourse {
-    width: 50%;
+    width: 60%;
     display: flex;
-    justify-content: flex-start;
-    margin-top: 10em;
-    margin-right:9em;
-    margin-left: 7em;
     text-align: center;
-    font-weight: 300;
-    font-size: 20px;
+    flex-direction: column;
+}
+
+.textCourse{
+    margin: 1em;
 }
 
 .containerTitlePageCourse {
@@ -67,29 +76,24 @@
 .containerResources {
     margin-top: 2em;
     width: 90%;
-    display: grid;
-    align-items: center;
-    justify-content: flex-start;
-    justify-items: center;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 3em;
+    display: flex;
+    flex-direction: column;
 }
 
 .cardLessonPageCorse {
     border: 1px solid black;
+    border-radius: 15px;
+    margin-bottom: 1em;
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 2em;
+    justify-content: flex-start;
+    height: 3em;
     transition: transform 0.5s;
 }
 
 .cardLessonPageCorse:hover {
     border: none;
-    transform: scale(1.05);
-    border-bottom: 1px solid rgb(0, 102, 255);
-    border-top: 1px solid rgb(0, 102, 255);
-    color: white;
+    background-color: #DCDDFC;
 }
 
 .buttonLessonCourse{
