@@ -6,7 +6,6 @@ import "./PageCoursePresentation.css";
 import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
 import Footer from "../footer/Footer";
-import { format } from 'date-fns';
 
 
 const PageCoursePresentation = () => {
