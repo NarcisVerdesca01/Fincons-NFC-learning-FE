@@ -14,7 +14,6 @@ import ButtonRegisterTutor from "./buttonSettings/ButtonRegisterTutor";
 import ButtonDeleteCourse from "./buttonSettings/ButtonDeleteCourse";
 import ButtonDeleteLesson from "./buttonSettings/ButtonDeleteLesson";
 import ButtonDeleteAbility from "./buttonSettings/ButtonDeleteAbility";
-import ButtonAssociateUserAbility from "./buttonSettings/ButtonAssociateUserAbility";
 import ButtonAssociateCourseAbility from "./buttonSettings/ButtonAssociateCourseAbility";
 import Footer from "../footer/Footer";
 
@@ -56,7 +55,6 @@ const SettingsAdmin = () => {
               </div>
               <div className={`cardBack`}>
                 <div className={`optionSettings`}>
-                  <ButtonAssociateUserAbility />
                   <ButtonAssociateCourseAbility />
                 </div>
               </div>

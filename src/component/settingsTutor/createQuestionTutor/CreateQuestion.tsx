@@ -50,7 +50,7 @@ const CreateQuestion = () => {
     setError: React.Dispatch<React.SetStateAction<boolean>>,
     setErrorMessage: React.Dispatch<React.SetStateAction<string>>
   ) => {
-    const inputValue = event.target.value.trim();
+    const inputValue = event.target.value;
     const inputLength = inputValue.length;
 
     if (inputLength < 1 || inputLength > 255) {

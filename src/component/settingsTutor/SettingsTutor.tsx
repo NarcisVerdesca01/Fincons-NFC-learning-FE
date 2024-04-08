@@ -3,6 +3,7 @@ import updateImage from "../../assets/update_image.png";
 import deleteImage from "../../assets/delet_img.png";
 import createImage from "../../assets/add_image.png";
 import associateImage from "../../assets/img_associate.jpg";
+import associateAbilityImage from "../../assets/AssociateAbility.png";
 import viewResultsQuizImage from "../../assets/results.jpg";
 import ButtonQuizResults from "./buttonSettingsTutor/ButtonQuizResults";
 import ButtonCreateQuiz from "./buttonSettingsTutor/ButtonCreateQuiz";
@@ -22,6 +23,7 @@ import ButtonDeleteQuiz from "./buttonSettingsTutor/ButtonDeleteQuiz";
 import ButtonDeleteQuestion from "./buttonSettingsTutor/ButtonDeleteQuestion";
 import ButtonDeleteContent from "./buttonSettingsTutor/ButtonDeleteContent";
 import './SettingsTutor.css'
+import AssociationAbilityUser from "./user_ability/AssociationUserAbility";
 
 const SettingsTutor = () => {
     return (
@@ -109,6 +111,19 @@ const SettingsTutor = () => {
                             <div className={`cardBack`}>
                                 <div className={`optionSettings`}>
                                     <ButtonQuizResults />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={`cardOptions`}>
+                        <div className={`containerOptions`}>
+                            <div className={`cardFront`}>
+                                <p className={`textSettings`}>Associate ability</p>
+                                <img src={associateAbilityImage} alt="Delete" className={`imageSettings`} />
+                            </div>
+                            <div className={`cardBack`}>
+                                <div className={`optionSettings`}>
+                                    <AssociationAbilityUser />
                                 </div>
                             </div>
                         </div>
