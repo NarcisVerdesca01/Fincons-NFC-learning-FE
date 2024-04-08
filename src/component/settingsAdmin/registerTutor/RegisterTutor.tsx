@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./RegisterTutor.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -33,6 +33,13 @@ const RegisterTutor = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
   const [createDisabled, setCreateDisabled] = useState(true);
+  const [savedSuccessfully, setSaveSuccessfully] = useState<boolean>();
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+  const [savedTutor, setSavedTutor] = useState<any>();
+
+
 
   const showPassword = () => {
     if (passwordShow === "password") {
@@ -78,10 +85,35 @@ const RegisterTutor = () => {
     navigate("/settings_admin");
   };
 
-  const handleRegistrationTutor = () => {
-    LoginRegistrationService.registrationTutorService(input!);
-    navigate("/settings_admin");
+  const handleRegistrationTutor = async () => {
+
+    try {
+      setLoading(true);
+      const tempSavedTutor = await LoginRegistrationService.registrationTutorService(input!);
+
+      setSavedTutor(tempSavedTutor);
+      setIsCallComplete(true);
+    } catch (error: any) {
+      console.error("Errore durante il salvataggio del quiz:", error);
+      setSavedTutor(error.response);
+      setIsCallComplete(true);
+    } finally {
+      setLoading(false);
+    }
+
   };
+
+  useEffect(() => {
+    if (savedTutor && isCallComplete) {
+      if (savedTutor.status === 201) {
+        setSaveSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (savedTutor.status === 400 && savedTutor.data=== "Invalid or existing email") {
+        setSaveSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [savedTutor, isCallComplete]);
 
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -154,7 +186,7 @@ const RegisterTutor = () => {
 
     setCreateDisabled(
       (inputLength === 0 && firstNameError) ||
-        (lastNameError && emailError && passwordError && birthDateError)
+      (lastNameError && emailError && passwordError && birthDateError)
     );
   };
 
@@ -170,9 +202,8 @@ const RegisterTutor = () => {
             <input
               name="firstName"
               value={input?.firstName}
-              className={`form-control ${
-                firstNameError ? "border-red-500" : ""
-              }`}
+              className={`form-control ${firstNameError ? "border-red-500" : ""
+                }`}
               onChange={(e) =>
                 handleInputChange(
                   e,
@@ -194,9 +225,8 @@ const RegisterTutor = () => {
               onChange={(e) =>
                 handleInputChange(e, setLastNameError, setLastNameErrorMessage)
               }
-              className={`form-control ${
-                lastNameError ? "border-red-500" : ""
-              }`}
+              className={`form-control ${lastNameError ? "border-red-500" : ""
+                }`}
               placeholder="Surname"
             />
             {lastNameError && (
@@ -223,9 +253,8 @@ const RegisterTutor = () => {
               onFocus={showDetails}
               onBlur={showDetails}
               type={passwordShow}
-              className={`form-control ${
-                passwordError ? "border-red-500" : ""
-              }`}
+              className={`form-control ${passwordError ? "border-red-500" : ""
+                }`}
               name="password"
               value={input?.password}
               placeholder="Insert your password here"
@@ -250,9 +279,8 @@ const RegisterTutor = () => {
               type="date"
               placeholder="Birthdate"
               name="birthDate"
-              className={`form-control ${
-                birthDateError ? "border-red-500" : ""
-              }`}
+              className={`form-control ${birthDateError ? "border-red-500" : ""
+                }`}
               onChange={(e) =>
                 handleInputChange(
                   e,
@@ -265,11 +293,33 @@ const RegisterTutor = () => {
               <p className="text-muted">{birthDateErrorMessage}</p>
             )}
           </div>
+
+          {loading &&
+            <div>
+              <label className="labelModal">Saving in progress...</label>
+            </div>}
+
+          {!loading && savedSuccessfully && (
+            <div>
+              <label className="labelModal">Tutor registered correctly!</label>
+            </div>
+          )}
+
+          {!loading && !savedSuccessfully && resourceAlreadyExists && (
+            <div>
+              <label className="labelModal">The tutor already exists!</label>
+            </div>
+          )}
+
+
+
+
           <div className="containerButtonModal">
             <button
               className="buttonCheck"
               onClick={handleRegistrationTutor}
               disabled={createDisabled}
+              type="button"
             >
               <span className="frontCheck">
                 <i className="bi bi-check2"></i>

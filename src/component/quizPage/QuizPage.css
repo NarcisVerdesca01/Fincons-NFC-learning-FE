@@ -17,8 +17,8 @@
     margin-top: 2%;
 }
 
-.answer-section {
-    text-align: center;
+.answer-section {   
+    align-items: initial !important;
     margin-bottom: 2%;
 }
 
@@ -50,9 +50,8 @@
 
 .single-answer-section {
 
-    /* border-radius: 10%;*/
     background-color: #f8f8f8;
-    text-align: center;
+    text-align: left;
     margin: 1%;
     min-width: 50%;
     max-width: 100%;
@@ -63,40 +62,22 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
+}
+
+.card-quiz{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 50%;
+}
+
+.audit-quiz{
+    margin-top: 2%;
+    margin-bottom: 5% !important;
 }
 
 .back-to-lesson-button{
     margin-bottom: 2%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .quizBox {

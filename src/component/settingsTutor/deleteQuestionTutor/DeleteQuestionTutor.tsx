@@ -5,13 +5,14 @@ import Question from "../../../models/QuestionModel";
 
 const DeleteQuestionTutor = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [selectedQuestionId, setSelectedQuestionId] = useState<number | null>(null);
+  const [selectedQuestionId, setSelectedQuestionId] = useState<number | null>(
+    null
+  );
   const [question, setQuestion] = useState<Question>();
 
   const [loading, setLoading] = useState(false);
   const [isCallComplete, setIsCallComplete] = useState(false);
   const [deletionMessage, setDeletionMessage] = useState<string>("");
-
 
   const navigate = useNavigate();
 
@@ -19,7 +20,7 @@ const DeleteQuestionTutor = () => {
     QuestionService.getQuestions().then((res) => {
       setQuestions(res.data.data);
     });
-  }
+  };
 
   useEffect(() => {
     refreshList();
@@ -36,7 +37,9 @@ const DeleteQuestionTutor = () => {
   const deleteQuestion = async () => {
     try {
       setLoading(true);
-      const tempDeletedQuiz = await QuestionService.deleteQuestion(selectedQuestionId!);
+      const tempDeletedQuiz = await QuestionService.deleteQuestion(
+        selectedQuestionId!
+      );
       setIsCallComplete(true);
       setDeletionMessage("Question deleted successfully! ");
       refreshList();
@@ -48,25 +51,20 @@ const DeleteQuestionTutor = () => {
     } finally {
       setLoading(false);
     }
-
-
-
   };
 
   const backToSettings = () => {
     navigate("/settings_tutor");
   };
 
-
-
   return (
     <div>
       <div>
-        <h3>Delete Question</h3>
+        <h3 className="titleModal">Delete Question</h3>
         <div>
           <form>
             <div className="form-group">
-              <label>Question</label>
+              <label className="labelModal">Question</label>
               <select
                 name="quiz"
                 className="form-select"
@@ -75,7 +73,9 @@ const DeleteQuestionTutor = () => {
                   setSelectedQuestionId(Number(e.target.value));
                 }}
               >
-                <option selected hidden disabled>Select the Question to delete</option>
+                <option selected hidden disabled>
+                  Select the Question to delete
+                </option>
                 {questions.map((question) => {
                   return (
                     <option key={question.id} value={question.id}>
@@ -86,7 +86,6 @@ const DeleteQuestionTutor = () => {
               </select>
             </div>
 
-
             {loading && <div>Delete in progress...</div>}
 
             {isCallComplete && (
@@ -96,23 +95,25 @@ const DeleteQuestionTutor = () => {
             )}
 
             {question && (
-              <div className="containerButtonModal">
-                <button
-                  type="button"
-                  className="buttonCheck"
-                  onClick={deleteQuestion}
-                >
-                  <span className="frontCheck">
-                    <i className="bi bi-check2"></i>
-                  </span>
-                </button>
-
-                <button className="buttonReturn" onClick={backToSettings}>
-                  <span className="frontReturn">
-                    <i className="bi bi-arrow-left"></i>
-                  </span>
-                </button>
-              </div>
+              <>
+                <div className="containerButtonModal">
+                  <button
+                    type="button"
+                    className="buttonCheck"
+                    onClick={deleteQuestion}
+                    disabled={loading}
+                  >
+                    <span className="frontCheck">
+                      <i className="bi bi-check2"></i>
+                    </span>
+                  </button>
+                  <button className="buttonReturn" onClick={backToSettings}>
+                    <span className="frontReturn">
+                      <i className="bi bi-arrow-left"></i>
+                    </span>
+                  </button>
+                </div>
+              </>
             )}
           </form>
         </div>

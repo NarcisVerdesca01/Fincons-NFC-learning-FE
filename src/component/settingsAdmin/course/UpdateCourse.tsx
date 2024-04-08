@@ -12,14 +12,24 @@ const UpdateCourse = () => {
   const [nameErrorMessage, setNameErrorMessage] = useState("");
   const [descriptionError, setDescriptionError] = useState(false);
   const [descriptionErrorMessage, setDescriptionErrorMessage] = useState("");
+  const [updatedCourse, setUpdatedCourse] = useState<any>();
+  const [updatedSuccessfully, setUpdatedSuccessfully] = useState<boolean>();
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+
   const navigate = useNavigate();
 
-  
-
-  useEffect(() => {
+  const refreshList = () => {
     CourseService.getCourses().then((res) => {
       setCourses(res.data);
     });
+
+
+  }
+
+  useEffect(() => {
+    refreshList();
   }, []);
 
   useEffect(() => {
@@ -30,13 +40,38 @@ const UpdateCourse = () => {
     }
   }, [selectedCourseId]);
 
-  const UpdateCourse = () => {
+  useEffect(() => {
+    console.log("Use effect saved content:" + updatedCourse);
+
+    if (updatedCourse && isCallComplete) {
+      if (updatedCourse.status === 200) {
+        setUpdatedSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (updatedCourse.status === 409) {
+        setUpdatedSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [updatedCourse, isCallComplete]);
+
+  const UpdateCourse = async () => {
     if (nameError || descriptionError) {
       return;
     }
-
-    CourseService.updateCourse(selectedCourseId!, course!);
-    navigate("/settings_admin");
+    try {
+      setLoading(true);
+      const tempUpdatedCourse = await CourseService.updateCourse(selectedCourseId!, course!);
+      setUpdatedCourse(tempUpdatedCourse);
+      console.log("Updated course: " + tempUpdatedCourse)
+      setIsCallComplete(true);
+      refreshList();
+    } catch (error: any) {
+      setUpdatedCourse(error.response);
+      setIsCallComplete(true);
+      refreshList();
+    } finally {
+      setLoading(false);
+    }
   };
 
   const backToSettings = () => {
@@ -88,7 +123,7 @@ const UpdateCourse = () => {
                   setSelectedCourseId(Number(e.target.value));
                 }}
               >
-                <option selected>Select the Course to update</option>
+                <option selected disabled hidden>Select the Course to update</option>
                 {courses.map((course) => {
                   return (
                     <option key={course.id} value={course.id}>
@@ -106,9 +141,8 @@ const UpdateCourse = () => {
                     type="string"
                     placeholder={course.name}
                     name="name"
-                    className={`form-control ${
-                      nameError ? "border-red-500" : ""
-                    }`}
+                    className={`form-control ${nameError ? "border-red-500" : ""
+                      }`}
                     value={course.name}
                     onChange={(e) =>
                       handleInputChange(e, setNameError, setNameErrorMessage)
@@ -124,9 +158,8 @@ const UpdateCourse = () => {
                     type="string"
                     placeholder="description"
                     name="description"
-                    className={`form-control ${
-                      descriptionError ? "border-red-500" : ""
-                    }`}
+                    className={`form-control ${descriptionError ? "border-red-500" : ""
+                      }`}
                     value={course.description}
                     onChange={(e) =>
                       handleInputChange(
@@ -172,8 +205,27 @@ const UpdateCourse = () => {
                     }}
                   ></input>
                 </div>
+
+                {loading && <div>Saving in progress...</div>}
+
+                {!loading && updatedSuccessfully && (
+                  <div>
+                    <label className="labelModal">Course updated correctly!</label>
+                  </div>
+                )}
+
+                {!loading && !updatedSuccessfully && resourceAlreadyExists && (
+                  <div>
+                    <label className="labelModal">The course already exists!</label>
+                  </div>
+                )}
+
+
+
+
                 <div className="containerButtonModal">
                   <button
+                    type="button"
                     className="buttonCheck"
                     onClick={UpdateCourse}
                     disabled={nameError || descriptionError}

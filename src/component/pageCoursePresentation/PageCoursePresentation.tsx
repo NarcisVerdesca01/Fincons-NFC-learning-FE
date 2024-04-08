@@ -7,6 +7,7 @@ import Header from "../header/Header";
 import LessonModel from "../../models/LessonModel";
 import Footer from "../footer/Footer";
 
+
 const PageCoursePresentation = () => {
   const [course, setCourse] = useState<CourseModel>();
   const [lessonList, setLessonList] = useState<LessonModel[]>([]);
@@ -24,6 +25,9 @@ const PageCoursePresentation = () => {
   const goBack = () => {
     navigate(-1);
   };
+
+  const formattedDate = course?.lastModified ? new Date(course?.lastModified).toLocaleString('it-IT', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '/';
+
   return (
     <>
       <Header />
@@ -42,14 +46,11 @@ const PageCoursePresentation = () => {
             />
             <label>Created by: {course?.createdBy}</label>
             <label>Modified by: {course?.lastModifiedBy || "/"}</label>
+            <label>Last modified: {formattedDate}</label>
           </div>
           <div className={`containerTextCoursePresentation`}>
-            <h1 className={`course-title-name`}>{course?.name}</h1>
+            <h1 className={`coursTitle`}>{course?.name}</h1>
             <p className={`textCoursePresentation`}>{course?.description}</p>
-          </div>
-        </div>
-        <div className={`containerTitleResourcesCoursePresentation`}>
-          <div className={`titleResourcesCoursePresentation`}>
           </div>
         </div>
       </div>

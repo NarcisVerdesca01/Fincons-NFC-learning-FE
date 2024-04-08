@@ -62,8 +62,6 @@ const UpdateContentTutor = () => {
       setIsCallComplete(true);
       refreshList();
     } catch (error: any) {
-      console.error("Errore durante l'aggiornamento del contenuto:", error);
-      console.log("L'oggetto che sto inviando è questo: ", content!);
       setUpdatedContent(error.response);
       setIsCallComplete(true);
       refreshList();

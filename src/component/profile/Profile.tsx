@@ -4,6 +4,7 @@ import User from "../../models/UserModel";
 import "./Profile.css";
 import Ability from "../../models/AbilityModel";
 import ButtonShowQuizForStudent from "../settingsStudent/buttonSettingsStudent/ButtonShowQuizForStudent";
+import AbilityUserService from "../../services/AbilityUserService";
 
 const Profile = () => {
 
@@ -14,10 +15,15 @@ const Profile = () => {
   useEffect(() => {
     LoginRegistrationService.getUserDetails().then((res) => {
       setUser(res.data);
-      setAbilities(res.data.abilities);
       setIsStudent(res.data?.roles[0].name === 'ROLE_STUDENT');
     });
   }, []);
+
+  useEffect(() => {
+    AbilityUserService.getAbilityUserOfOneUser().then((res) =>{
+      setAbilities(res.data)
+    })
+  }, [])
 
   return (
     <div className={`componentPageProfile`}>
@@ -52,7 +58,7 @@ const Profile = () => {
               <td className={`detail`}>Ability:</td>
               <td>
                 {abilities?.map((ability: any) => (
-                  <div>{ability?.ability?.name != null || undefined ? ability?.ability?.name : 'N/A'}</div>
+                  <div>{ability.ability.name != null || undefined ? ability.ability.name : 'N/A'}</div>
                 ))}{" "}
               </td>
             </tr>

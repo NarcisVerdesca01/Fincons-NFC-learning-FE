@@ -1,30 +1,72 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CourseService from "../../../services/CourseService";
 import Course from "../../../models/CourseModel";
 import "./CreateCourse.css";
+import { template } from "@babel/core";
 
 const CreateCourse = () => {
   const [course, setCourse] = useState<Course>({} as Course);
   const [nameError, setNameError] = useState(false);
   const [nameErrorMessage, setNameErrorMessage] = useState("");
-  const [backgroundImageErrorMessage, setBackgroundImageErrorMessage] =
-    useState("");
+  const [backgroundImageErrorMessage, setBackgroundImageErrorMessage] = useState("");
   const [descriptionError, setDescriptionError] = useState(false);
   const [backgroundImageError, setBackgroundImageError] = useState(false);
   const [descriptionErrorMessage, setDescriptionErrorMessage] = useState("");
   const [createDisabled, setCreateDisabled] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [savedSuccessfully, setSaveSuccessfully] = useState<boolean>();
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+  const [savedCourse, setSavedCourse] = useState<any>();
+
+
+
+
+
+
+
   const navigate = useNavigate();
 
-    const saveCourse = async () => {
-        if (!course.name || !course.description || !course.backgroundImage) {
-            setErrorMessage("Name, Description, and Background Image fields are required.");
-            return;
-        } else if (course.name && course.description && course.backgroundImage) {
-            CourseService.createCourse(course)
-        }
-    };
+  const saveCourse = async () => {
+    try {
+      setLoading(true);
+      if (!course.name || !course.description || !course.backgroundImage) {
+        setErrorMessage("Name, Description, and Background Image fields are required.");
+        return;
+      } else if (course.name && course.description && course.backgroundImage) {
+        const tempSavedCourse = await CourseService.createCourse(course);
+        setSavedCourse(tempSavedCourse);
+      }
+      setIsCallComplete(true);
+    } catch (error: any) {
+      console.error("Errore durante il salvataggio del quiz:", error);
+      setSavedCourse(error.response);
+      setIsCallComplete(true);
+    } finally {
+      setLoading(false);
+    }
+
+      
+
+
+
+
+  };
+
+  useEffect(() => {
+    if (savedCourse && isCallComplete) {
+      if (savedCourse.status === 200) {
+        setSaveSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (savedCourse.status === 409) {
+        setSaveSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [savedCourse, isCallComplete]);
+
 
   const backToSettings = () => {
     navigate("/settings_admin");
@@ -32,7 +74,7 @@ const CreateCourse = () => {
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    const inputValue = value.trim();
+    const inputValue = value;
     const inputLength = inputValue.length;
 
     if (name === "name" && (inputLength < 1 || inputLength > 255)) {
@@ -122,9 +164,8 @@ const CreateCourse = () => {
               type="string"
               placeholder="Description"
               name="description"
-              className={`form-control ${
-                descriptionError ? "border-red-500" : ""
-              }`}
+              className={`form-control ${descriptionError ? "border-red-500" : ""
+                }`}
               value={course?.description || ""}
               onChange={(e) => handleDescriptionChange(e)}
             />
@@ -140,9 +181,8 @@ const CreateCourse = () => {
               type="string"
               placeholder="Background Image"
               name="backgroundImage"
-              className={`form-control ${
-                backgroundImageError ? "border-red-500" : ""
-              }`}
+              className={`form-control ${backgroundImageError ? "border-red-500" : ""
+                }`}
               value={course?.backgroundImage || ""}
               onChange={(e) => handleBackgroundImageChange(e)}
             ></input>
@@ -169,6 +209,29 @@ const CreateCourse = () => {
             ></input>
           </div>
           {errorMessage && <p className="text-danger">{errorMessage}</p>}
+
+
+          {loading &&
+            <div>
+              <label className="labelModal">Saving in progress...</label>
+            </div>}
+
+          {!loading && savedSuccessfully && (
+            <div>
+              <label className="labelModal">Course saved correctly!</label>
+            </div>
+          )}
+
+          {!loading && !savedSuccessfully && resourceAlreadyExists && (
+            <div>
+              <label className="labelModal">The course already exists!</label>
+            </div>
+          )}
+
+
+
+
+
           <div className="containerButtonModal">
             <button
               type="button"

@@ -8,12 +8,20 @@ const DeleteAbility = () => {
   const [abilities, setAblilities] = useState<Ability[]>([]);
   const [abilityId, setAbilityId] = useState<number | null>(null);
   const [ability, setAbility] = useState<Ability>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+  const [deletionMessage, setDeletionMessage] = useState<string>("");
+
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const refreshList =() =>{
     AbilityService.getAbilities().then((res) => {
       setAblilities(res.data);
     });
+  }
+
+  useEffect(() => {
+    refreshList();
   }, []);
 
   useEffect(() => {
@@ -24,9 +32,21 @@ const DeleteAbility = () => {
     }
   }, [abilityId]);
 
-  const DeleteAbility = () => {
-    AbilityService.deleteAbility(abilityId!);
-    navigate("/settings_admin");
+  const DeleteAbility = async () => {
+    try {
+      setLoading(true);
+      const tempDeletedLesson = await  AbilityService.deleteAbility(abilityId!);;
+      setIsCallComplete(true);
+      setDeletionMessage("Ability deleted successfully! ");
+      refreshList();
+    } catch (error: any) {
+      console.error("Errore durante eliminazione ability:", error);
+      setIsCallComplete(true);
+      setDeletionMessage("Problems were encountered during deletion! ");
+      refreshList();
+    } finally {
+      setLoading(false);
+    }   
   };
 
   const backToSettings = () => {
@@ -49,7 +69,7 @@ const DeleteAbility = () => {
                   setAbilityId(Number(e.target.value));
                 }}
               >
-                <option selected>Select the Course to Delete</option>
+                <option selected hidden disabled>Select the Ability to Delete</option>
                 {abilities.map((ability) => {
                   return (
                     <option key={ability.id} value={ability.id}>
@@ -65,8 +85,19 @@ const DeleteAbility = () => {
                   <label className="labelModal">Name</label>
                   <p>{ability.name}</p>
                 </div>
+                
+                {loading && <div>Delete in progress...</div>}
+
+                {isCallComplete && (
+                  <div>
+                    <label className="labelModal">{deletionMessage}</label>
+                  </div>
+                )}
+
+ 
+
                 <div className="containerButtonModal">
-                  <button className="buttonCheck" onClick={DeleteAbility}>
+                  <button className="buttonCheck" onClick={DeleteAbility} type="button">
                     <span className="frontCheck">
                       <i className="bi bi-check2"></i>
                     </span>{" "}
