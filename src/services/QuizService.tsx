@@ -76,7 +76,7 @@ const getQuizById = async (quizId: number | undefined) => {
   const token = Cookies.get("jwt-token");
   try {
     const response = await axios.get(GET_BY_ID + "/" + quizId, { headers: { Authorization: `Bearer ${token}` } })
-    return response;
+    return response.data;
   } catch (error) {
     console.error("Error getting quiz with id:" + quizId, error);
     throw error;

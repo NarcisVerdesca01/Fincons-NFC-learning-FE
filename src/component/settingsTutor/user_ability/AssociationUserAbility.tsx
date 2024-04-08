@@ -59,7 +59,7 @@ const AssociationAbilityUser = () => {
                   });
                 }}
               >
-                <option selected>Select the Ability</option>
+                <option selected  hidden disabled>Select the Ability</option>
                 {ability?.map((ability: Ability, index: any) => {
                   return (
                     <option key={index} value={ability.id}>

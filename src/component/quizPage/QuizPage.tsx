@@ -5,6 +5,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import QuizService from "../../services/QuizService";
 
 import "./QuizPage.css";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 interface Props {
     quizId: number | undefined;
     setQuizId: React.Dispatch<React.SetStateAction<number | undefined>>;
@@ -226,6 +228,8 @@ const QuizPage = (props: Props) => {
         }
     }
     return (
+        <>
+        <Header/>
         <div className="center-content">
             {quiz?.id && (
                 <div>
@@ -244,24 +248,14 @@ const QuizPage = (props: Props) => {
                             </div>
                         </div>
                     )}
-                  
-                  {/*   {userWantToDoItAgain ? (
-                        <div>
-                            <p>L'utente vuole rifarlo</p>
-                        </div>
-                    ) : (
-                        <p>L'utente non vuole rifarlo</p>
-                    )} */}               
-
-
-                </div>
+                    </div>
 
 
             ) 
             }
            
             {questionList && questionList.length > 0 && (
-                <div className="card" style={{ marginTop: "10%", marginBottom: "10%", width: "50%" }} >
+                <div className="card card-quiz">
                     <div className="card-header header-quiz">
                         <h4 className="quiz-title"> {quiz?.title}</h4>
                         <p className="question-index">Question {currentQuestionIndex + 1} of {questionList.length}</p>
@@ -329,6 +323,9 @@ const QuizPage = (props: Props) => {
                 </div>
             )}
         </div>
+        <Footer/>
+        </>
+        
     );
 };
 export default QuizPage;
