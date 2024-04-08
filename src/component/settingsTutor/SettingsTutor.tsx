@@ -22,6 +22,7 @@ import ButtonDeleteQuiz from "./buttonSettingsTutor/ButtonDeleteQuiz";
 import ButtonDeleteQuestion from "./buttonSettingsTutor/ButtonDeleteQuestion";
 import ButtonDeleteContent from "./buttonSettingsTutor/ButtonDeleteContent";
 import './SettingsTutor.css'
+import AssociationAbilityUser from "./user_ability/AssociationUserAbility";
 
 const SettingsTutor = () => {
     return (
@@ -109,6 +110,19 @@ const SettingsTutor = () => {
                             <div className={`cardBack`}>
                                 <div className={`optionSettings`}>
                                     <ButtonQuizResults />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={`cardOptions`}>
+                        <div className={`containerOptions`}>
+                            <div className={`cardFront`}>
+                                <p className={`textSettings`}>View section</p>
+                                <img src={viewResultsQuizImage} alt="Delete" className={`imageSettings`} />
+                            </div>
+                            <div className={`cardBack`}>
+                                <div className={`optionSettings`}>
+                                    <AssociationAbilityUser />
                                 </div>
                             </div>
                         </div>
