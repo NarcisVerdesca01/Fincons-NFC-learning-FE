@@ -19,6 +19,8 @@ const PageCoursePresentation = () => {
     CourseService.getCourseById(idCourse_page).then((res) => {
       setCourse(res.data);
       setLessonList(res.data.lessons);
+      const date = res.data.lastModified.toString()
+      console.log(date)
     });
   }, [idCourse]);
 
