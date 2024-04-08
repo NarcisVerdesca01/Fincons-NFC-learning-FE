@@ -70,7 +70,7 @@ const createAbilityCourse = async (abilityId: number, courseId: number) => {
                 }
             }
         );
-        return response.data;
+        return response;
     } catch (error) {
         console.error("Error creating course:", error);
         throw error;

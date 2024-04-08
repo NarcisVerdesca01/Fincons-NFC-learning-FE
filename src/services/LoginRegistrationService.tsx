@@ -20,13 +20,13 @@ const registrationStudentService = async (user: User) => {
 const registrationTutorService = async (user: User) => {
   const token = Cookies.get("jwt-token")
 
-  return await axios.post(
-    REGISTRATION_TUTOR_URI,
-    user,
-    {
-      headers: { Authorization: `Bearer ${token}` }
-    }
-  );
+  try {
+    const response = await axios.post(REGISTRATION_TUTOR_URI, user,{headers: { Authorization: `Bearer ${token}` }});
+    return response;
+  } catch (error) {
+    console.error("Error during registration:", error);
+    throw error;
+  }
 }
 
 const updateUserData = async (updatedUserDetails: UserDetailsModel) => {

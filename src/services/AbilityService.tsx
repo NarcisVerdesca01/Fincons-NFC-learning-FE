@@ -37,7 +37,7 @@ const createAbility = async (ability: Ability) => {
     const token = Cookies.get("jwt-token");
     try {
         const response = await axios.post(CREATE_ABILITY, ability, { headers: { Authorization: `Bearer ${token}` } });
-        return response.data;
+        return response;
     } catch (error) {
         console.error("Error creating ability:", error);
         throw error;

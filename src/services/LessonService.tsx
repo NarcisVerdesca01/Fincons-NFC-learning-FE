@@ -93,7 +93,7 @@ const createLesson = async (lesson: Lesson) => {
         const response = await axios.post(CREATE_LESSON, lesson, {
             headers: { Authorization: `Bearer ${token}` },
         });
-        return response.data;
+        return response;
     } catch (error) {
         console.error("Error creating lesson:", error);
         throw error;

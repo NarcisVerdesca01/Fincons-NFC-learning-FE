@@ -102,7 +102,7 @@ const createCourse = async (course: Course) => {
                 }
             }
         );
-        return response.data;
+        return response;
     } catch (error) {
         console.error("Error creating course:", error);
         throw error;
