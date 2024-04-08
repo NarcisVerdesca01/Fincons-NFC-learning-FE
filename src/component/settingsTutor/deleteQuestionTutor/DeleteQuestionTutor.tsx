@@ -96,23 +96,14 @@ const DeleteQuestionTutor = () => {
             )}
 
             {question && (
-              <div className="containerButtonModal">
-                <button
-                  type="button"
-                  className="buttonCheck"
-                  onClick={deleteQuestion}
-                >
-                  <span className="frontCheck">
-                    <i className="bi bi-check2"></i>
-                  </span>
+              <>
+                <button type="button" className="btn btn-success" onClick={deleteQuestion} disabled={loading}>
+                  delete
                 </button>
-
-                <button className="buttonReturn" onClick={backToSettings}>
-                  <span className="frontReturn">
-                    <i className="bi bi-arrow-left"></i>
-                  </span>
+                <button className="btn btn-danger" onClick={backToSettings}>
+                  back
                 </button>
-              </div>
+              </>
             )}
           </form>
         </div>
