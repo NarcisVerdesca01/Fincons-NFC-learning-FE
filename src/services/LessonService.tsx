@@ -116,7 +116,7 @@ const updateLesson = async (lessonId: number, updatedLesson: Lesson) => {
                 }
             }
         );
-        return response.data;
+        return response;
     } catch (error) {
         console.error("Error updating lesson:", error);
         throw error;

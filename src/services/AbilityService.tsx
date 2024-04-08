@@ -58,7 +58,7 @@ const updateAbility = async (abilityId: number, updatedAbility: Ability) => {
                 }
             }
         );
-        return response.data;
+        return response;
     } catch (error) {
         console.error("Error updating ability:", error);
         throw error;

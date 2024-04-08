@@ -9,14 +9,23 @@ const UpdateLesson = () => {
   const [selectedLessonId, setSelectedLessonId] = useState<number | null>(null);
   const [lesson, setLesson] = useState<Lesson>();
   const [updateDisabled, setUpdateDisabled] = useState(true);
-
   const [titleError, setTitleError] = useState(false);
+  const [updatedLesson, setUpdatedCourse] = useState<any>();
+  const [updatedSuccessfully, setUpdatedSuccessfully] = useState<boolean>();
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const refreshList = () => {
     LessonService.getLessons().then((res) => {
       setLessons(res.data);
     });
+  }
+
+  useEffect(() => {
+    refreshList();
   }, []);
 
   useEffect(() => {
@@ -27,9 +36,35 @@ const UpdateLesson = () => {
     }
   }, [selectedLessonId]);
 
-  const UpdateLesson = () => {
-    LessonService.updateLesson(selectedLessonId!, lesson!);
-    navigate("/settings_admin");
+  useEffect(() => {
+    console.log("Use effect updated lesson:" + updatedLesson);
+
+    if (updatedLesson && isCallComplete) {
+      if (updatedLesson.status === 200) {
+        setUpdatedSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (updatedLesson.status === 409) {
+        setUpdatedSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [updatedLesson, isCallComplete]);
+
+  const UpdateLesson = async () => {
+    try {
+      setLoading(true);
+      const tempUpdatedLesson = await LessonService.updateLesson(selectedLessonId!, lesson!);
+      setUpdatedCourse(tempUpdatedLesson);
+      console.log("Updated lesson: " + tempUpdatedLesson)
+      setIsCallComplete(true);
+      refreshList();
+    } catch (error: any) {
+      setUpdatedCourse(error.response);
+      setIsCallComplete(true);
+      refreshList();
+    } finally {
+      setLoading(false);
+    }
   };
 
   const backToSettings = () => {
@@ -52,7 +87,7 @@ const UpdateLesson = () => {
                   setSelectedLessonId(Number(e.target.value));
                 }}
               >
-                <option selected>Select the Course to update</option>
+                <option selected disabled hidden>Select the Lesson to update</option>
                 {lessons.map((lesson) => {
                   return (
                     <option key={lesson.id} value={lesson.id}>
@@ -70,9 +105,8 @@ const UpdateLesson = () => {
                     type="string"
                     placeholder={lesson.title}
                     name="name"
-                    className={`form-control ${
-                      titleError ? "border-red-500" : ""
-                    }`}
+                    className={`form-control ${titleError ? "border-red-500" : ""
+                      }`}
                     value={lesson.title}
                     onChange={(e) => {
                       if (e.target.value.length > 255) {
@@ -106,20 +140,38 @@ const UpdateLesson = () => {
                     }}
                   ></input>
                 </div>
+
+                {loading && <div>Saving in progress...</div>}
+
+                {!loading && updatedSuccessfully && (
+                  <div>
+                    <label className="labelModal">Lesson updated correctly!</label>
+                  </div>
+                )}
+
+                {!loading && !updatedSuccessfully && resourceAlreadyExists && (
+                  <div>
+                    <label className="labelModal">The lesson already exists!</label>
+                  </div>
+                )}
+
+
+
                 <div className="containerButtonModal">
                   <button
                     className="buttonCheck"
                     disabled={updateDisabled}
                     onClick={UpdateLesson}
+                    type="button"
                   >
                     <span className="frontCheck">
                       <i className="bi bi-check2"></i>
                     </span>
                   </button>
                   <button className="buttonReturn" onClick={backToSettings}>
-                  <span className="frontReturn">
-                  <i className="bi bi-arrow-left"></i>
-                </span>
+                    <span className="frontReturn">
+                      <i className="bi bi-arrow-left"></i>
+                    </span>
                   </button>
                 </div>
               </>

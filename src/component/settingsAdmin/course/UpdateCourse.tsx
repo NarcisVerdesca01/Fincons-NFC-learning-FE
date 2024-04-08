@@ -62,7 +62,7 @@ const UpdateCourse = () => {
       setLoading(true);
       const tempUpdatedCourse = await CourseService.updateCourse(selectedCourseId!, course!);
       setUpdatedCourse(tempUpdatedCourse);
-      console.log("Updated Content: " + tempUpdatedCourse)
+      console.log("Updated course: " + tempUpdatedCourse)
       setIsCallComplete(true);
       refreshList();
     } catch (error: any) {
