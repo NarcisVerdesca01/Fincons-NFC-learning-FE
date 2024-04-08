@@ -227,105 +227,122 @@ const QuizPage = (props: Props) => {
             scoreMessage = <span style={{ color: 'green' }}>Test passed {nameOfStudent}! You answered {totalScorePercentage}% of the quiz questions correctly.</span>;
         }
     }
+
+    const formattedDate = quiz?.lastModified ? new Date(quiz?.lastModified).toLocaleString('it-IT', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '/';
     return (
         <>
-        <Header/>
-        <div className="center-content">
-            {quiz?.id && (
-                <div>
-                    <h2>Quiz Of Lesson: {quiz?.lesson.title}</h2>
-                </div>
-            )}
-            {quizAlreadyDone && (
-                <div>
-                    {showRedoQuizButton && (
-                        <div style={{ textAlign: "center" }}>
-                            <div className="alert alert-warning" role="alert">
-                            You have already taken this quiz! Do you want to try again?
+            <Header />
+            <div className="center-content">
+                {quiz?.id && (
+                    <div>
+                        <h2>Quiz Of Lesson: {quiz?.lesson.title}</h2>
+                    </div>
+                )}
+                {quizAlreadyDone && (
+                    <div>
+                        {showRedoQuizButton && (
+                            <div style={{ textAlign: "center" }}>
+                                <div className="alert alert-warning" role="alert">
+                                    You have already taken this quiz! Do you want to try again?
+                                </div>
+                                <div>
+                                    <button className="btn btn-outline-secondary" onClick={handleRedoQuiz}>REDO QUIZ</button>
+                                </div>
                             </div>
-                            <div>
-                                <button className="btn btn-outline-secondary" onClick={handleRedoQuiz}>REDO QUIZ</button>
-                            </div>
+                        )}
+                    </div>
+
+
+                )
+                }
+
+                {questionList && questionList.length > 0 && (
+                    <div className="card card-quiz">
+                        <div className="card-header header-quiz">
+                            <h4 className="quiz-title"> {quiz?.title}</h4>
+                            <p className="question-index">Question {currentQuestionIndex + 1} of {questionList.length}</p>
                         </div>
-                    )}
-                    </div>
+                        {!quizSubmitted && currentQuestion && (
+                            <div>
+                                <div className="text-question">
+                                    <h5>{currentQuestion.textQuestion}</h5>
+                                    {maxSelectableAnswers > 1 && (
+                                        <div>
+                                            <p>Select the {maxSelectableAnswers} correct answers.</p>
+                                        </div>
+                                    )}
 
-
-            ) 
-            }
-           
-            {questionList && questionList.length > 0 && (
-                <div className="card card-quiz">
-                    <div className="card-header header-quiz">
-                        <h4 className="quiz-title"> {quiz?.title}</h4>
-                        <p className="question-index">Question {currentQuestionIndex + 1} of {questionList.length}</p>
-                    </div>
-                    {!quizSubmitted && currentQuestion && (
-                        <div>
-                            <div className="text-question">
-                                <h5>{currentQuestion.textQuestion}</h5>
-                                {maxSelectableAnswers > 1 && (
-                                    <div>
-                                        <p>Select the {maxSelectableAnswers} correct answers.</p>
+                                </div>
+                                <div className="answer-section d-flex flex-column  align-items-center">
+                                    {currentQuestion.answers.map((answer) => (
+                                        <div key={answer.id} className="form-check single-answer-section ">
+                                            {currentQuestion.answers.filter(ans => ans.correct).length > 1 ? (
+                                                // Se ci sono più risposte corrette, utilizza checkbox
+                                                <input type="checkbox"
+                                                    id={`answer-${answer.id}`}
+                                                    name={`question-${currentQuestion.id}`}
+                                                    value={answer.id}
+                                                    checked={userAnswers?.[currentQuestion.id]?.includes(answer.id) || false}
+                                                    onChange={() => handleAnswerSelection(currentQuestion.id, answer.id)} />
+                                            ) : (
+                                                // Altrimenti, utilizza radio button per vero o falso o per domande che contengono solo una risposta esatta
+                                                <input type="radio"
+                                                    id={`answer-${answer.id}`}
+                                                    name={`question-${currentQuestion.id}`}
+                                                    value={answer.id}
+                                                    checked={userAnswers?.[currentQuestion.id]?.includes(answer.id) || false}
+                                                    onChange={() => handleAnswerSelection(currentQuestion.id, answer.id)}
+                                                    className="form-check-input" />
+                                            )}
+                                            <label className="form-check-label" htmlFor={`answer-${answer.id}`}>{answer.text}</label>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="card-footer navigationButtons question-buttons-div">
+                                    <button className="btn btn-light quiz-control-button" onClick={goToPreviousQuestion} disabled={currentQuestionIndex === 0}>
+                                        <i className="bi bi-arrow-left-circle"></i>
+                                    </button>
+                                    <button className="btn btn-light quiz-control-button" onClick={goToNextQuestion} disabled={currentQuestionIndex === questionList.length - 1 || !userAnswers?.[currentQuestion.id] || userAnswers[currentQuestion.id]?.length === 0}>
+                                        <i className="bi bi-arrow-right-circle"></i>
+                                    </button>
+                                </div>
+                                {showSubmitButton && (
+                                    <div className="card-footer send-quiz-button">
+                                        <button className="btn btn-outline-dark" disabled={!areAllQuestionsAnswered()} onClick={sendAnswers}>Send Quiz</button>
                                     </div>
                                 )}
+                            </div>
+                        )}
+                        {quizSubmitted && (
+                            <div className="quiz-submitted-message">
+                                <h4 className="quiz-done-label">Quiz completed!</h4>
+                                {scoreMessage && <div className="quiz-done-label-message">{scoreMessage}</div>}
+                                {lessonOfQuiz && (
+                                    <button className="btn btn-outline-secondary back-to-lesson-button" onClick={() => gotToLessonPage(lessonOfQuiz)}>Back to lesson</button>
+                                )}
+                            </div>
+                        )}
 
-                            </div>
-                            <div className="answer-section d-flex flex-column  align-items-center">
-                                {currentQuestion.answers.map((answer) => (
-                                    <div key={answer.id} className="form-check single-answer-section ">
-                                        {currentQuestion.answers.filter(ans => ans.correct).length > 1 ? (
-                                            // Se ci sono più risposte corrette, utilizza checkbox
-                                            <input type="checkbox"
-                                                id={`answer-${answer.id}`}
-                                                name={`question-${currentQuestion.id}`}
-                                                value={answer.id}
-                                                checked={userAnswers?.[currentQuestion.id]?.includes(answer.id) || false}
-                                                onChange={() => handleAnswerSelection(currentQuestion.id, answer.id)} />
-                                        ) : (
-                                            // Altrimenti, utilizza radio button per vero o falso o per domande che contengono solo una risposta esatta
-                                            <input type="radio"
-                                                id={`answer-${answer.id}`}
-                                                name={`question-${currentQuestion.id}`}
-                                                value={answer.id}
-                                                checked={userAnswers?.[currentQuestion.id]?.includes(answer.id) || false}
-                                                onChange={() => handleAnswerSelection(currentQuestion.id, answer.id)}
-                                                className="form-check-input" />
-                                        )}
-                                        <label className="form-check-label" htmlFor={`answer-${answer.id}`}>{answer.text}</label>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="card-footer navigationButtons question-buttons-div">
-                                <button className="btn btn-light quiz-control-button" onClick={goToPreviousQuestion} disabled={currentQuestionIndex === 0}>
-                                    <i className="bi bi-arrow-left-circle"></i>
-                                </button>
-                                <button className="btn btn-light quiz-control-button" onClick={goToNextQuestion} disabled={currentQuestionIndex === questionList.length - 1 || !userAnswers?.[currentQuestion.id] || userAnswers[currentQuestion.id]?.length === 0}>
-                                    <i className="bi bi-arrow-right-circle"></i>
-                                </button>
-                            </div>
-                            {showSubmitButton && (
-                                <div className="card-footer send-quiz-button">
-                                    <button className="btn btn-outline-dark" disabled={!areAllQuestionsAnswered()} onClick={sendAnswers}>Send Quiz</button>
-                                </div>
-                            )}
-                        </div>
-                    )}
-                    {quizSubmitted && (
-                        <div className="quiz-submitted-message">
-                            <h4 className="quiz-done-label">Quiz completed!</h4>
-                            {scoreMessage && <div className="quiz-done-label-message">{scoreMessage}</div>}
-                            {lessonOfQuiz && (
-                                <button className="btn btn-outline-secondary back-to-lesson-button" onClick={() => gotToLessonPage(lessonOfQuiz)}>Back to lesson</button>
-                            )}
-                        </div>
-                    )}
+
+
+                    </div>
+                )}
+
+                <div className="card text-dark bg-light mb-3 audit-quiz" style={{ maxWidth: "18rem;" }}>
+                    <div className="card-header">Quiz info</div>
+                    <div className="card-body">
+                        <p className="card-text">Created by: {quiz?.createdBy} </p>
+                        <p className="card-text">Modified by: {quiz?.lastModifiedBy || "/"} </p>
+                        <p className="card-text">Last modified: {formattedDate} </p>
+                    </div>
                 </div>
-            )}
-        </div>
-        <Footer/>
+
+            </div>
+
+
+            <Footer />
         </>
-        
+
     );
 };
 export default QuizPage;

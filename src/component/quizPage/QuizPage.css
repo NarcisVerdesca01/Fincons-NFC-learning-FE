@@ -62,7 +62,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 100vh;
 }
 
 .card-quiz{
@@ -71,37 +70,14 @@
     width: 50%;
 }
 
+.audit-quiz{
+    margin-top: 2%;
+    margin-bottom: 5% !important;
+}
+
 .back-to-lesson-button{
     margin-bottom: 2%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .quizBox {
