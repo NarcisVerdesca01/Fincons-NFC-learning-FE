@@ -127,7 +127,7 @@ const updateCourse = async (courseId: number, updatedCourse: Course) => {
                 }
             }
         );
-        return response.data;
+        return response;
     } catch (error) {
         console.error("Error updating course:", error);
         throw error;
