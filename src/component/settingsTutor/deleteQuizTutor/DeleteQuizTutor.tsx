@@ -12,14 +12,13 @@ const DeleteQuizTutor = () => {
   const [isCallComplete, setIsCallComplete] = useState(false);
   const [deletionMessage, setDeletionMessage] = useState<string>("");
 
-
   const navigate = useNavigate();
 
   const refreshList = () => {
     QuizService.getQuizzes().then((res) => {
       setQuizzes(res.data.data);
     });
-  }
+  };
 
   useEffect(() => {
     refreshList();
@@ -52,22 +51,18 @@ const DeleteQuizTutor = () => {
     }
   };
 
-
-
-
   const backToSettings = () => {
     navigate("/settings_tutor");
   };
 
-
   return (
     <div>
       <div>
-        <h3>Delete Quiz</h3>
+        <h3 className="titleModal">Delete Quiz</h3>
         <div>
           <form>
             <div className="form-group">
-              <label>Quiz</label>
+              <label className="labelModal">Quiz</label>
               <select
                 name="quiz"
                 className="form-select"
@@ -76,7 +71,9 @@ const DeleteQuizTutor = () => {
                   setSelectedQuizId(Number(e.target.value));
                 }}
               >
-                <option selected hidden disabled>Select the Quiz to delete</option>
+                <option selected hidden disabled>
+                  Select the Quiz to delete
+                </option>
                 {quizzes.map((quiz) => {
                   return (
                     <option key={quiz.id} value={quiz.id}>
@@ -94,22 +91,23 @@ const DeleteQuizTutor = () => {
               </div>
             )}
 
-            
-
-
             {quiz && (
-               <div className="containerButtonModal">
-               <button className="buttonCheck" onClick={deleteQuiz} type="button">
-                 <span className="frontCheck">
-                   <i className="bi bi-check2"></i>
-                 </span>
-               </button>
-               <button className="buttonReturn" onClick={backToSettings}>
-                 <span className="frontReturn">
-                   <i className="bi bi-arrow-left"></i>
-                 </span>
-               </button>
-             </div>
+              <div className="containerButtonModal">
+                <button
+                  className="buttonCheck"
+                  onClick={deleteQuiz}
+                  type="button"
+                >
+                  <span className="frontCheck">
+                    <i className="bi bi-check2"></i>
+                  </span>
+                </button>
+                <button className="buttonReturn" onClick={backToSettings}>
+                  <span className="frontReturn">
+                    <i className="bi bi-arrow-left"></i>
+                  </span>
+                </button>
+              </div>
             )}
           </form>
         </div>
