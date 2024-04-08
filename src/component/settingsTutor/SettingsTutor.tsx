@@ -3,6 +3,7 @@ import updateImage from "../../assets/update_image.png";
 import deleteImage from "../../assets/delet_img.png";
 import createImage from "../../assets/add_image.png";
 import associateImage from "../../assets/img_associate.jpg";
+import associateAbilityImage from "../../assets/AssociateAbility.png";
 import viewResultsQuizImage from "../../assets/results.jpg";
 import ButtonQuizResults from "./buttonSettingsTutor/ButtonQuizResults";
 import ButtonCreateQuiz from "./buttonSettingsTutor/ButtonCreateQuiz";
@@ -117,8 +118,8 @@ const SettingsTutor = () => {
                     <div className={`cardOptions`}>
                         <div className={`containerOptions`}>
                             <div className={`cardFront`}>
-                                <p className={`textSettings`}>View section</p>
-                                <img src={viewResultsQuizImage} alt="Delete" className={`imageSettings`} />
+                                <p className={`textSettings`}>Associate ability</p>
+                                <img src={associateAbilityImage} alt="Delete" className={`imageSettings`} />
                             </div>
                             <div className={`cardBack`}>
                                 <div className={`optionSettings`}>
