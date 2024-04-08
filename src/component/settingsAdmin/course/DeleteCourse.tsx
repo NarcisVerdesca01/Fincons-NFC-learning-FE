@@ -8,12 +8,22 @@ const DeleteCourse = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [selectedCourseId, setSelectedCourseId] = useState<number | null>(null);
   const [course, setCourse] = useState<Course>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+  const [deletionMessage, setDeletionMessage] = useState<string>("");
+
+
+
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const refreshList = () => {
     CourseService.getCourses().then((res) => {
       setCourses(res.data);
     });
+  }
+
+  useEffect(() => {
+    refreshList();
   }, []);
 
   useEffect(() => {
@@ -24,9 +34,22 @@ const DeleteCourse = () => {
     }
   }, [selectedCourseId]);
 
-  const DeleteCourse = () => {
-    CourseService.deleteCourse(selectedCourseId!);
-    navigate("/settings_admin");
+
+  const DeleteCourse = async () => {
+    try {
+      setLoading(true);
+      const tempDeletedCourse = await CourseService.deleteCourse(selectedCourseId!);
+      setIsCallComplete(true);
+      setDeletionMessage("Course deleted successfully! ");
+      refreshList();
+    } catch (error: any) {
+      console.error("Errore durante eliminazione corso:", error);
+      setIsCallComplete(true);
+      setDeletionMessage("Problems were encountered during deletion! ");
+      refreshList();
+    } finally {
+      setLoading(false);
+    }
   };
 
   const backToSettings = () => {
@@ -49,7 +72,7 @@ const DeleteCourse = () => {
                   setSelectedCourseId(Number(e.target.value));
                 }}
               >
-                <option selected>Select the Course to Delete</option>
+                <option selected hidden disabled>Select the Course to Delete</option>
                 {courses.map((course) => {
                   return (
                     <option key={course.id} value={course.id}>
@@ -77,8 +100,17 @@ const DeleteCourse = () => {
                   <label className="labelModal">Image Resource</label>
                   <p>{course.imageResource}</p>
                 </div>
+
+                {loading && <div>Delete in progress...</div>}
+
+                {isCallComplete && (
+                  <div>
+                    <label className="labelModal">{deletionMessage}</label>
+                  </div>
+                )}
+
                 <div className="containerButtonModal">
-                  <button className="buttonCheck" onClick={DeleteCourse}>
+                  <button className="buttonCheck" onClick={DeleteCourse} type="button">
                     <span className="frontCheck">
                       <i className="bi bi-check2"></i>
                     </span>

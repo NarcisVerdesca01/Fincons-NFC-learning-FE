@@ -7,12 +7,20 @@ const DeleteLesson = () => {
   const [lessons, setLessons] = useState<Lesson[]>([]);
   const [lessonId, setLessonId] = useState<number | null>(null);
   const [lesson, setLesson] = useState<Lesson>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+  const [deletionMessage, setDeletionMessage] = useState<string>("");
+
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const refreshList = () => {
     LessonService.getLessons().then((res) => {
       setLessons(res.data);
     });
+  }
+
+  useEffect(() => {
+    refreshList();
   }, []);
 
   useEffect(() => {
@@ -23,9 +31,21 @@ const DeleteLesson = () => {
     }
   }, [lessonId]);
 
-  const DeleteLesson = () => {
-    LessonService.deleteLesson(lessonId!);
-    navigate("/settings_admin");
+  const DeleteLesson = async () => {
+    try {
+      setLoading(true);
+      const tempDeletedLesson = await LessonService.deleteLesson(lessonId!);
+      setIsCallComplete(true);
+      setDeletionMessage("Lesson deleted successfully! ");
+      refreshList();
+    } catch (error: any) {
+      console.error("Errore durante eliminazione corso:", error);
+      setIsCallComplete(true);
+      setDeletionMessage("Problems were encountered during deletion! ");
+      refreshList();
+    } finally {
+      setLoading(false);
+    }
   };
 
   const backToSettings = () => {
@@ -48,7 +68,7 @@ const DeleteLesson = () => {
                   setLessonId(Number(e.target.value));
                 }}
               >
-                <option selected>Select the Course to Delete</option>
+                <option selected hidden disabled>Select the Lesson to Delete</option>
                 {lessons.map((lesson) => {
                   return (
                     <option key={lesson.id} value={lesson.id}>
@@ -72,8 +92,17 @@ const DeleteLesson = () => {
                   <label className="labelModal">Created by</label>
                   <p>{lesson.createdBy}</p>
                 </div>
+                {loading && <div>Delete in progress...</div>}
+
+                {isCallComplete && (
+                  <div>
+                    <label className="labelModal">{deletionMessage}</label>
+                  </div>
+                )}
+
+
                 <div className="containerButtonModal">
-                  <button className="buttonCheck" onClick={DeleteLesson}>
+                  <button className="buttonCheck" onClick={DeleteLesson} type="button">
                     <span className="frontCheck">
                       <i className="bi bi-check2"></i>
                     </span>

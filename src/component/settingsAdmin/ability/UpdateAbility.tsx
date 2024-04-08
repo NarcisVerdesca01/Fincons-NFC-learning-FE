@@ -5,18 +5,26 @@ import Ability from "../../../models/AbilityModel";
 
 const UpdateAbility = () => {
   const [abilities, setAbilities] = useState<Ability[]>([]);
-  const [selectedAbilityId, setSelectedAbilityId] = useState<number | null>(
-    null
-  );
+  const [selectedAbilityId, setSelectedAbilityId] = useState<number | null>(null);
   const [ability, setAbility] = useState<Ability>();
   const [nameError, setNameError] = useState(false);
   const [nameErrorMessage, setNameErrorMessage] = useState("");
+  const [updatedAbility, setUpdatedAbility] = useState<any>();
+  const [updatedSuccessfully, setUpdatedSuccessfully] = useState<boolean>();
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const refreshList = () => {
     AbilityService.getAbilities().then((res) => {
       setAbilities(res.data);
     });
+  }
+
+  useEffect(() => {
+    refreshList();
   }, []);
 
   useEffect(() => {
@@ -27,13 +35,40 @@ const UpdateAbility = () => {
     }
   }, [selectedAbilityId]);
 
-  const UpdateAbility = () => {
+  useEffect(() => {
+    console.log("Use effect updated ability:" + updatedAbility);
+
+    if (updatedAbility && isCallComplete) {
+      if (updatedAbility.status === 200) {
+        setUpdatedSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (updatedAbility.status === 409) {
+        setUpdatedSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [updatedAbility, isCallComplete]);
+
+
+  const UpdateAbility = async () => {
     if (nameError) {
       return;
     }
 
-    AbilityService.updateAbility(selectedAbilityId!, ability!);
-    navigate("/settings_admin");
+    try {
+      setLoading(true);
+      const tempUpdatedAbility = await AbilityService.updateAbility(selectedAbilityId!, ability!);
+      setUpdatedAbility(tempUpdatedAbility);
+      console.log("Updated ability: " + tempUpdatedAbility)
+      setIsCallComplete(true);
+      refreshList();
+    } catch (error: any) {
+      setUpdatedAbility(error.response);
+      setIsCallComplete(true);
+      refreshList();
+    } finally {
+      setLoading(false);
+    }
   };
 
   const backToSettings = () => {
@@ -97,9 +132,8 @@ const UpdateAbility = () => {
                     type="string"
                     placeholder={ability.name}
                     name="name"
-                    className={`form-control ${
-                      nameError ? "border-red-500" : ""
-                    }`}
+                    className={`form-control ${nameError ? "border-red-500" : ""
+                      }`}
                     value={ability.name}
                     onChange={(e) =>
                       handleInputChange(e, setNameError, setNameErrorMessage)
@@ -109,11 +143,29 @@ const UpdateAbility = () => {
                     <p className="text-muted">{nameErrorMessage}</p>
                   )}
                 </div>
+
+                {loading && <div>Saving in progress...</div>}
+
+                {!loading && updatedSuccessfully && (
+                  <div>
+                    <label className="labelModal">Ability updated correctly!</label>
+                  </div>
+                )}
+
+                {!loading && !updatedSuccessfully && resourceAlreadyExists && (
+                  <div>
+                    <label className="labelModal">The ability already exists!</label>
+                  </div>
+                )}
+
+
+
                 <div className="containerButtonModal">
                   <button
                     className="buttonCheck"
                     onClick={UpdateAbility}
                     disabled={nameError}
+                    type="button"
                   >
                     <span className="frontCheck">
                       <i className="bi bi-check2"></i>

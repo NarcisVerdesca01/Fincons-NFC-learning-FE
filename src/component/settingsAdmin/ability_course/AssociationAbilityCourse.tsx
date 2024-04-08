@@ -11,27 +11,55 @@ const CreateAssociationCourseLesson = () => {
   const [ability, setAbility] = useState<any>();
   const [courseId, setCourseId] = useState<any>();
   const [abilityId, setAbilityId] = useState<any>();
+  const [savedSuccessfully, setSaveSuccessfully] = useState<boolean>();
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+  const [savedAssociation, setSavedAssociation] = useState<any>();
+  
   const navigate = useNavigate();
 
-  useEffect(() => {
+  const refreshList = () =>{
     CourseService.getCourses().then((res) => {
       setCourse(res.data);
     });
-  }, []);
 
-  useEffect(() => {
     AbilityService.getAbilities().then((res) => {
       setAbility(res.data);
     });
+  }
+
+  useEffect(() => {
+     refreshList();
   }, []);
 
-  const saveCourseLesson = () => {
-    AbilityCourseService.createAbilityCourse(
-      abilityId.ability,
-      courseId.course
-    );
-    navigate("/settings_admin");
+
+  const saveCourseLesson = async () => {
+    try {
+      setLoading(true);
+      const tempSavedAssociation = await  AbilityCourseService.createAbilityCourse(abilityId.ability,courseId.course);
+      setSavedAssociation(tempSavedAssociation);
+      setIsCallComplete(true);
+    } catch (error: any) {
+      console.error("Errore durante il salvataggio del quiz:", error);
+      setSavedAssociation(error.response);
+      setIsCallComplete(true);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  useEffect(() => {
+    if (savedAssociation && isCallComplete) {
+      if (savedAssociation.status === 200) {
+        setSaveSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (savedAssociation.status === 409) {
+        setSaveSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [savedAssociation, isCallComplete]);
 
   const backToSettingsCourseLesson = () => {
     navigate("/settings_admin");
@@ -55,7 +83,7 @@ const CreateAssociationCourseLesson = () => {
                   });
                 }}
               >
-                <option selected>Select the Course</option>
+                <option selected hidden disabled>Select the Course</option>
                 {course?.map((courses: Course, index: any) => {
                   return (
                     <option key={index} value={courses.id}>
@@ -77,7 +105,7 @@ const CreateAssociationCourseLesson = () => {
                   });
                 }}
               >
-                <option selected>Select the Ability</option>
+                <option selected hidden disabled>Select the Ability</option>
                 {ability?.map((ability: Ability, index: any) => {
                   return (
                     <option key={index} value={ability.id}>
@@ -87,8 +115,28 @@ const CreateAssociationCourseLesson = () => {
                 })}
               </select>
             </div>
+            
+            {loading &&
+              <div>
+                <label className="labelModal">Saving in progress...</label>
+              </div>}
+
+            {!loading && savedSuccessfully && (
+              <div>
+                <label className="labelModal">Association successfully!</label>
+              </div>
+            )}
+
+            {!loading && !savedSuccessfully && resourceAlreadyExists && (
+              <div>
+                <label className="labelModal">The association already exists!</label>
+              </div>
+            )}
+
+
+
             <div className="containerButtonModal">
-            <button className="buttonCheck" onClick={saveCourseLesson}>
+            <button className="buttonCheck" onClick={saveCourseLesson} type="button" disabled={loading}>
               <span className="frontCheck">
                 <i className="bi bi-check2"></i>
               </span>

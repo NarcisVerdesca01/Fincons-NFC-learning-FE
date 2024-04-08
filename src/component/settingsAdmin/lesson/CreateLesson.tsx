@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Lesson from "../../../models/LessonModel";
 import LessonService from "../../../services/LessonService";
@@ -9,16 +9,44 @@ const CreateLesson = () => {
   const [titleError, setTitleError] = useState(false);
   const [titleErrorMessage, setTitleErrorMessage] = useState("");
   const [createDisabled, setCreateDisabled] = useState(true);
+  const [savedSuccessfully, setSaveSuccessfully] = useState<boolean>();
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+  const [savedLesson, setSavedLesson] = useState<any>();
   const navigate = useNavigate();
 
-  const saveLesson = () => {
+  const saveLesson = async () => {
     if (titleError) {
       return;
     }
 
-    LessonService.createLesson(lesson!);
-    navigate("/settings_admin");
+    try {
+      setLoading(true);
+      const tempSavedLesson = await LessonService.createLesson(lesson!);
+      setSavedLesson(tempSavedLesson);
+      setIsCallComplete(true);
+    } catch (error: any) {
+      console.error("Errore durante il salvataggio del quiz:", error);
+      setSavedLesson(error.response);
+      setIsCallComplete(true);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  useEffect(() => {
+    if (savedLesson && isCallComplete) {
+      if (savedLesson.status === 200) {
+        setSaveSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (savedLesson.status === 409) {
+        setSaveSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [savedLesson, isCallComplete]);
+
 
   const backToSettings = () => {
     navigate("/settings_admin");
@@ -87,11 +115,32 @@ const CreateLesson = () => {
                 }}
               ></input>
             </div>
+
+            {loading &&
+              <div>
+                <label className="labelModal">Saving in progress...</label>
+              </div>}
+
+            {!loading && savedSuccessfully && (
+              <div>
+                <label className="labelModal">Lesson saved correctly!</label>
+              </div>
+            )}
+
+            {!loading && !savedSuccessfully && resourceAlreadyExists && (
+              <div>
+                <label className="labelModal">The lesson already exists!</label>
+              </div>
+            )}
+
+
+
             <div className="containerButtonModal">
               <button
                 className="buttonCheck"
                 disabled={createDisabled}
                 onClick={saveLesson}
+                type="button"
               >
                 <span className="frontCheck">
                   <i className="bi bi-check2"></i>

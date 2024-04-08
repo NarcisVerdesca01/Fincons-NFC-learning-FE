@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AbilityService from "../../../services/AbilityService";
 import Ability from "../../../models/AbilityModel";
@@ -7,16 +7,44 @@ const CreateAbility = () => {
   const [ability, setAbility] = useState<Ability>();
   const [nameError, setNameError] = useState(false);
   const [nameErrorMessage, setNameErrorMessage] = useState("");
+  const [savedSuccessfully, setSaveSuccessfully] = useState<boolean>();
+  const [resourceAlreadyExists, setResourceAlreadyExists] = useState<boolean>();
+  const [loading, setLoading] = useState(false);
+  const [isCallComplete, setIsCallComplete] = useState(false);
+  const [savedAbility, setSavedAbility] = useState<any>();
+
   const navigate = useNavigate();
 
-  const saveAbility = () => {
+  const saveAbility = async () => {
     if (nameError) {
       return;
     }
 
-    AbilityService.createAbility(ability!);
-    navigate("/settings_admin");
+    try {
+      setLoading(true);
+      const tempSavedAbility = await AbilityService.createAbility(ability!);
+      setSavedAbility(tempSavedAbility);
+      setIsCallComplete(true);
+    } catch (error: any) {
+      console.error("Errore durante il salvataggio del quiz:", error);
+      setSavedAbility(error.response);
+      setIsCallComplete(true);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  useEffect(() => {
+    if (savedAbility && isCallComplete) {
+      if (savedAbility.status === 200) {
+        setSaveSuccessfully(true);
+        setResourceAlreadyExists(false);
+      } else if (savedAbility.status === 409) {
+        setSaveSuccessfully(false);
+        setResourceAlreadyExists(true);
+      }
+    }
+  }, [savedAbility, isCallComplete]);
 
   const backToSettings = () => {
     navigate("/settings_admin");
@@ -67,11 +95,31 @@ const CreateAbility = () => {
                 <p className="text-muted">{nameErrorMessage}</p>
               )}
             </div>
+            {loading &&
+              <div>
+                <label className="labelModal">Saving in progress...</label>
+              </div>}
+
+            {!loading && savedSuccessfully && (
+              <div>
+                <label className="labelModal">Ability saved correctly!</label>
+              </div>
+            )}
+
+            {!loading && !savedSuccessfully && resourceAlreadyExists && (
+              <div>
+                <label className="labelModal">The ability already exists!</label>
+              </div>
+            )}
+
+
+
             <div className="containerButtonModal">
               <button
                 className="buttonCheck"
                 onClick={saveAbility}
                 disabled={nameError}
+                type="button"
               >
                 <span className="frontCheck">
                   <i className="bi bi-check2"></i>
