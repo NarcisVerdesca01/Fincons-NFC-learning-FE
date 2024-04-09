@@ -7,6 +7,7 @@ import LoginRegistrationService from "../../services/LoginRegistrationService";
 import "./Register.css";
 import RegisterModel from "../../models/RegisterModel";
 import { date } from "yup";
+import { toBeEmptyDOMElement } from "@testing-library/jest-dom/matchers";
 
 const RegisterPageComponent = () => {
   const [input, setInput] = useState<User>();
@@ -100,6 +101,12 @@ const RegisterPageComponent = () => {
   const passwordErrorMatch =
     input?.confirmPassword !== input?.password;
 
+  const validateEmailInput = 
+    validateEmail(input?.email);
+
+ 
+    
+
 
   return (
     <div className={`containerRegister`}>
@@ -139,7 +146,7 @@ const RegisterPageComponent = () => {
               placeholder="Last Name"
             />
           </div>
-          <div className={`fieldRegister`}>
+          <div className={`fieldRegister ${!validateEmailInput ? 'emailValidate' : ''}`}>
             <input
               name="email"
               value={input?.email}

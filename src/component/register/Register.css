@@ -44,8 +44,16 @@
     border-color: green;
     box-shadow: inset 2px 5px 10px rgb(38, 255, 0);
 }
+.emailEmpty {
+    border-color: rgb(163, 210, 163);
+    box-shadow: inset 2px 5px 10px rgb(38, 255, 0);
+}
 
 .password-error {
+    border-color: red;
+    box-shadow: inset 2px 5px 10px rgb(255, 0, 0);
+}
+.emailValidate {
     border-color: red;
     box-shadow: inset 2px 5px 10px rgb(255, 0, 0);
 }
