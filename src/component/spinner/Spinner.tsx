@@ -10,26 +10,14 @@ const Spinner = () => {
     setTimeout(() => {
       setShowSpinner(false);
       navigate("/home");
-      window.location.reload(); // Reload the page
     }, 2000);
   }, []);
 
   return (
     <div>
       {showSpinner && (
-        <div className="lds-spinner" >
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
+        <div className={`containerLoader`}>
+          <span className="loader"></span>
         </div>
       )}
     </div>

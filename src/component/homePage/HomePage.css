@@ -9,7 +9,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     background-color: #DCDDFC;
 }
 .containerTitleLegend{
@@ -31,7 +30,7 @@
 }
 .buttonLegend{
     background-color: transparent;
-    color : white;
+    color : rgb(0, 0, 0);
     border: none;
     font-size: 1.2em;
     padding: 1em;

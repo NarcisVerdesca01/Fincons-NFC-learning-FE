@@ -24,7 +24,7 @@ function App() {
   const [idCourse, setIdCourse] = useState<number | undefined>();
   const [idQuiz, setIdQuiz] = useState<number | undefined>();
   return (
-    <div id="app">
+    <div id="app" className="app">
       <Router>
         <Routes>
           <Route
