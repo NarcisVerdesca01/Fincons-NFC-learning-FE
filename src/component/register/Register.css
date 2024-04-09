@@ -1,6 +1,4 @@
-
-
-.cardRegister{
+.cardRegister {
     border-radius: 15px;
     background-color: #EDF1FA;
 
@@ -40,12 +38,17 @@
     background-color: #ffffff;
     box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
     transition: border-color 0.3s ease-in-out;
-  }
-  
-  .password-match {
+}
+
+.password-match {
     border-color: green;
     box-shadow: inset 2px 5px 10px rgb(38, 255, 0);
-  }
+}
+
+.password-error {
+    border-color: red;
+    box-shadow: inset 2px 5px 10px rgb(255, 0, 0);
+}
 
 .input-iconRegister {
     height: 1.5em;
@@ -63,9 +66,9 @@
 }
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
     -webkit-background-clip: text;
     -webkit-text-fill-color: #000000;
 }
@@ -100,7 +103,7 @@ input:-webkit-autofill:active{
 }
 
 
-.btnRegister{
+.btnRegister {
     display: flex;
 }
 

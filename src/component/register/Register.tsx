@@ -76,48 +76,18 @@ const RegisterPageComponent = () => {
     }
   };
 
+  const validateEmail = (email:any) => {
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
 
-  const [errorFirstNameMessage, setErrorFirstNameMessage] = useState<string>();
-  const [errorLastNameMessage, setErrorLastNameMessage] = useState<string>();
-  const [errorEmailMessage, setErrorEmailMessage] = useState<string>();
-  const [errorPasswordMessage, setErrorPasswordMessage] = useState<string>();
-  const [errorConfirmPasswordMessage, setErrorConfirmPasswordMessage] = useState<string>();
 
-  const handleRegistration = async () => {
-    if (!input?.firstName) {
-      setErrorFirstNameMessage("Please fill out the first name field before submitting the form.");
-    }
-    if (!input?.lastName) {
-      setErrorLastNameMessage("Please fill out the last name field before submitting the form.");
-    }
-    if (!input?.email) {
-      setErrorEmailMessage("Please fill out the email field before submitting the form.");
-    }
-    if (!input?.password) {
-      setErrorPasswordMessage("Please fill out the password field before submitting the form.");
-    }
-    if (!input?.confirmPassword) {
-      setErrorConfirmPasswordMessage("Please fill out the confirm password field before submitting the form.");
-    }
-
-    if (input?.password !== input?.confirmPassword) {
-      setErrorConfirmPasswordMessage("The passwords do not match. Please try again.");
-      return;
-    }
-
-    try {
-      await LoginRegistrationService.registrationStudentService(input!);
-      navigate("/authentication");
-    } catch (error) {
-      console.error("Error during registration:", error);
-      setErrorMessage("An error occurred during registration. Please try again later.");
-    }
-  };
+  
 
   const isFormValid =
     input?.firstName &&
     input?.lastName &&
-    input?.email &&
+    validateEmail(input?.email) &&
     input?.password &&
     input.password == input?.confirmPassword;
 
@@ -126,6 +96,9 @@ const RegisterPageComponent = () => {
     input?.confirmPassword == input?.password &&
     input?.confirmPassword !== '' &&
     input?.confirmPassword !== undefined;
+
+  const passwordErrorMatch =
+    input?.confirmPassword !== input?.password;
 
 
   return (
@@ -151,7 +124,6 @@ const RegisterPageComponent = () => {
               placeholder="First Name"
             />
           </div>
-          <p style={{ color: "red", display: errorMessage ? "block" : "none" }}>{errorFirstNameMessage}</p>
           <div className={`fieldRegister`}>
             <input
               name="lastName"
@@ -167,8 +139,6 @@ const RegisterPageComponent = () => {
               placeholder="Last Name"
             />
           </div>
-
-          <p style={{ color: "red", display: errorMessage ? "block" : "none" }}>{errorLastNameMessage}</p>
           <div className={`fieldRegister`}>
             <input
               name="email"
@@ -185,7 +155,6 @@ const RegisterPageComponent = () => {
               placeholder="Email"
             />
           </div>
-          <p style={{ color: "red", display: errorMessage ? "block" : "none" }}>{errorEmailMessage}</p>
           <div className={`fieldRegister`}>
             <input
               type="date"
@@ -224,8 +193,7 @@ const RegisterPageComponent = () => {
               {iconToShow}
             </button>
           </div>
-          <p style={{ color: "red", display: errorMessage ? "block" : "none" }}>{errorPasswordMessage}</p>
-          <div className={`fieldRegister ${passwordMatch ? 'password-match' : ''}`}>
+          <div className={`fieldRegister ${passwordMatch ? 'password-match' : ''} ${passwordErrorMatch ? 'password-error' : ''}`}>
             <input
               type={confirmPasswordShow}
               name="confirmPassword"
@@ -247,13 +215,10 @@ const RegisterPageComponent = () => {
               {iconToShowConfirm}
             </button>
           </div>
-          <p style={{ color: "red", display: errorMessage ? "block" : "none" }}>{errorConfirmPasswordMessage}</p>
-
           <div className={`btnRegister`}>
             <button
               className={`buttonRegister ${!isFormValid ? "disabled-button" : ""}`}
               disabled={!isFormValid}
-              onClick={handleRegistration}
             >
               Registration
             </button>
