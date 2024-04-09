@@ -10,17 +10,18 @@
 .formRegister {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.5em;
     padding-left: 4em;
     padding-right: 4em;
     padding-bottom: 0.4em;
     border-radius: 20px;
+    padding-top: 0%;
 }
 
 .titleRegister {
     text-align: center;
     margin: 2em;
-    margin-top: 4em;
+    margin-bottom: 1em;
     color: rgb(0, 0, 0);
     font-size: 1.2em;
 }
@@ -32,18 +33,23 @@
     gap: 0.5em;
     border-radius: 25px;
     padding: 0.6em;
-    border: none;
+    border: 2px solid #ccc;
     outline: none;
     text-align: center;
-    color: white;
+    color: rgb(0, 0, 0);
     background-color: #ffffff;
     box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
-}
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .password-match {
+    border-color: green;
+    box-shadow: inset 2px 5px 10px rgb(38, 255, 0);
+  }
 
 .input-iconRegister {
     height: 1.5em;
     width: 1.5em;
-    fill: rgb(0, 255, 200);
 }
 
 .input-fieldRegister {
@@ -54,6 +60,14 @@
     font-size: large;
     color: rgb(0, 0, 0);
     overflow: hidden;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #000000;
 }
 
 .buttonRegister {
@@ -93,4 +107,4 @@
 .disabled-button {
     opacity: 0.5;
     cursor: not-allowed;
-  }
+}

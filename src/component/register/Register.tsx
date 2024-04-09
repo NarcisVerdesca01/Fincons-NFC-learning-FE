@@ -121,6 +121,13 @@ const RegisterPageComponent = () => {
     input?.password &&
     input.password == input?.confirmPassword;
 
+
+  const passwordMatch =
+    input?.confirmPassword == input?.password &&
+    input?.confirmPassword !== '' &&
+    input?.confirmPassword !== undefined;
+
+
   return (
     <div className={`containerRegister`}>
       <div className={`cardRegister`}>
@@ -218,7 +225,7 @@ const RegisterPageComponent = () => {
             </button>
           </div>
           <p style={{ color: "red", display: errorMessage ? "block" : "none" }}>{errorPasswordMessage}</p>
-          <div className={`fieldRegister`}>
+          <div className={`fieldRegister ${passwordMatch ? 'password-match' : ''}`}>
             <input
               type={confirmPasswordShow}
               name="confirmPassword"
