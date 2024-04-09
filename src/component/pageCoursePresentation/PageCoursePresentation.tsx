@@ -26,7 +26,8 @@ const PageCoursePresentation = () => {
     navigate(-1);
   };
 
-  const formattedDate = course?.lastModified ? new Date(course?.lastModified).toLocaleString('it-IT', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '/';
+  const formattedDateLastModified = course?.lastModified ? new Date(course?.lastModified).toLocaleString('it-IT', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '/';
+  const formattedDateCreate = course?.createDate ? new Date(course?.createDate).toLocaleString('it-IT', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '/';
 
   return (
     <>
@@ -45,8 +46,9 @@ const PageCoursePresentation = () => {
               className={`imageStyleCoursePresentation`}
             />
             <label>Created by: {course?.createdBy}</label>
-            <label>Modified by: {course?.lastModifiedBy || "/"}</label>
-            <label>Last modified: {formattedDate}</label>
+            <label>Created on: {formattedDateCreate}</label>
+            <label>Modified by: {course?.lastModifiedBy || "N/A"}</label>
+            <label>Last modified: {formattedDateLastModified}</label>
           </div>
           <div className={`containerTextCoursePresentation`}>
             <h1 className={`coursTitle`}>{course?.name}</h1>
