@@ -228,7 +228,9 @@ const QuizPage = (props: Props) => {
         }
     }
 
-    const formattedDate = quiz?.lastModified ? new Date(quiz?.lastModified).toLocaleString('it-IT', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '/';
+    const formattedDateLastModified = quiz?.lastModified ? new Date(quiz?.lastModified).toLocaleString('it-IT', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '/';
+    const formattedDateCreate = quiz?.createDate ? new Date(quiz?.createDate).toLocaleString('it-IT', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '/';
+
     return (
         <>
             <Header />
@@ -327,20 +329,34 @@ const QuizPage = (props: Props) => {
 
                     </div>
                 )}
+                {userWantToDoItAgain && (
+                    <div className="card text-dark bg-light mb-3 audit-quiz" style={{ maxWidth: "18rem;" }}>
+                        <div className="card-header">Quiz info</div>
+                        <div className="card-body">
+                            <p className="card-text">Created by: {quiz?.createdBy} </p>
+                            <p className="card-text">Created on: {formattedDateCreate} </p>
+                            {quiz?.lastModified === null ? (
+                                <p className="card-text">Modified by: {quiz?.createdBy}</p>
+                            ) : (
+                                <p className="card-text">Modified by: {quiz?.lastModifiedBy}</p>
+                            )}
 
-                <div className="card text-dark bg-light mb-3 audit-quiz" style={{ maxWidth: "18rem;" }}>
-                    <div className="card-header">Quiz info</div>
-                    <div className="card-body">
-                        <p className="card-text">Created by: {quiz?.createdBy} </p>
-                        <p className="card-text">Modified by: {quiz?.lastModifiedBy || "/"} </p>
-                        <p className="card-text">Last modified: {formattedDate} </p>
+                            {quiz?.lastModifiedBy === null ? (
+                                <p className="card-text">Modified on: {formattedDateCreate}</p>
+                            ) : (
+                                <p className="card-text">Modified on: {formattedDateLastModified}</p>
+                            )}
+                        </div>
                     </div>
-                </div>
+                )
+
+                }
+
 
             </div>
 
 
-            <Footer />
+
         </>
 
     );

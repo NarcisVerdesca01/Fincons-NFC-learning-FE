@@ -47,8 +47,22 @@ const PageCoursePresentation = () => {
             />
             <label>Created by: {course?.createdBy}</label>
             <label>Created on: {formattedDateCreate}</label>
-            <label>Modified by: {course?.lastModifiedBy || "N/A"}</label>
-            <label>Last modified: {formattedDateLastModified}</label>
+            
+            {course?.lastModified===null ? (
+              <label>Modified by: {course?.createdBy}</label>
+            ):(
+              <label>Modified by: {course?.lastModifiedBy}</label>
+            )}
+
+           {course?.lastModifiedBy===null ? (
+               <label>Modified on: {formattedDateCreate}</label>
+            ):(
+              <label>Modified on: {formattedDateLastModified}</label>
+            )}
+
+
+           
+           
           </div>
           <div className={`containerTextCoursePresentation`}>
             <h1 className={`coursTitle`}>{course?.name}</h1>
