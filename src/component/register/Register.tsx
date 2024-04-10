@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import User from "../../models/UserModel";
@@ -12,6 +12,7 @@ import { toBeEmptyDOMElement } from "@testing-library/jest-dom/matchers";
 const RegisterPageComponent = () => {
   const [input, setInput] = useState<User>();
   const [errorMessage, setErrorMessage] = useState<string>();
+  const [messageSuccess, setMessageSuccess] = useState<string>();
   const [passwordShow, setPasswordShow] = useState("password");
   const [confirmPasswordShow, setConfirmPasswordShow] = useState("password");
   const [iconToShowConfirm, setIconToShowConfirm] = useState(
@@ -82,7 +83,20 @@ const RegisterPageComponent = () => {
     return re.test(email);
   }
 
-
+const handleRegister = async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      try {
+        const response = await LoginRegistrationService.registrationStudentService(input!);
+        if (response.status === 201) {
+          window.location.reload()
+          setMessageSuccess("Registration successful!");
+        } else {
+          setErrorMessage("Errore nel register. Controlla le tue credenziali e riprova.");
+        }
+      } catch (error) {
+        setErrorMessage("Errore nel register. Controlla le tue credenziali e riprova.");
+      }
+    };
   
 
   const isFormValid =
@@ -111,7 +125,7 @@ const RegisterPageComponent = () => {
   return (
     <div className={`containerRegister`}>
       <div className={`cardRegister`}>
-        <form className={`formRegister`}>
+        <form className={`formRegister`} onSubmit={handleRegister}>
           <div className={`titleRegister`}>
             <h3>
               Register
@@ -222,10 +236,14 @@ const RegisterPageComponent = () => {
               {iconToShowConfirm}
             </button>
           </div>
+          {messageSuccess &&(
+            <p>{messageSuccess}</p>
+          )}
           <div className={`btnRegister`}>
             <button
               className={`buttonRegister ${!isFormValid ? "disabled-button" : ""}`}
               disabled={!isFormValid}
+              type="submit"
             >
               Registration
             </button>
