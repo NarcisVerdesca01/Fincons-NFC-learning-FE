@@ -18,7 +18,7 @@ import LoginRegister from "./component/loginRegister/LoginRegister";
 import Spinner from "./component/spinner/Spinner";
 import Profile from "./component/profile/Profile";
 import SettingsStudent from "./component/settingsStudent/SettingsStudent";
-
+import Charts from "../src/component/settingsAdmin/charts/charts"
 
 function App() {
   const [idCourse, setIdCourse] = useState<number | undefined>();
@@ -82,6 +82,10 @@ function App() {
             <Route
               path="/profile"
               element={<Profile />}
+            ></Route>
+            <Route
+              path="/charts"
+              element={<Charts />}
             ></Route>
             
             
