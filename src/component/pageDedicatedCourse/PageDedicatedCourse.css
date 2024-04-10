@@ -25,12 +25,13 @@
     height: 20em;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 1px 1px 1px rgb(0, 0, 0);
-    transition: transform 0.5s;
+    box-shadow: 5px 5px 5px #804DF0;
+    transition: transform 0.3s;
 }
 
 .cardDedicatedCourse:hover {
     transform: scale(1.02);
+    box-shadow: 12px 12px 12px #804DF0;
 }
 
 .containerTitleDedicatedCourse {
@@ -45,6 +46,7 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    border-bottom: 1px solid black;
 }
 
 .imgCardDedicatedCourse {
@@ -57,6 +59,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 .realTitleCard{

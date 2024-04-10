@@ -45,19 +45,19 @@ const PageCoursePresentation = () => {
               alt=""
               className={`imageStyleCoursePresentation`}
             />
-            <label>Created by: {course?.createdBy}</label>
-            <label>Created on: {formattedDateCreate}</label>
+            <label className={`labelInfo`}>Created by: {course?.createdBy}</label>
+            <label className={`labelInfo`}>Created on: {formattedDateCreate}</label>
             
             {course?.lastModified===null ? (
-              <label>Modified by: {course?.createdBy}</label>
+              <label className={`labelInfo`}>Modified by: {course?.createdBy}</label>
             ):(
-              <label>Modified by: {course?.lastModifiedBy}</label>
+              <label className={`labelInfo`}>Modified by: {course?.lastModifiedBy}</label>
             )}
 
            {course?.lastModifiedBy===null ? (
-               <label>Modified on: {formattedDateCreate}</label>
+               <label className={`labelInfo`}>Modified on: {formattedDateCreate}</label>
             ):(
-              <label>Modified on: {formattedDateLastModified}</label>
+              <label className={`labelInfo`}>Modified on: {formattedDateLastModified}</label>
             )}
 
 

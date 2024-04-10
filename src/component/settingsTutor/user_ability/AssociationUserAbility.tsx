@@ -77,6 +77,7 @@ const AssociationAbilityUser = () => {
               </button>
               <button
                 className="buttonReturn"
+                type= "button"
                 onClick={backToSettingsCourseLesson}
               >
                 <span className="frontReturn">
