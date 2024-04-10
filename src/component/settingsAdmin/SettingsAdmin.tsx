@@ -3,6 +3,7 @@ import updateImage from "../../assets/update_image.png";
 import deleteImage from "../../assets/delet_img.png";
 import createImage from "../../assets/add_image.png";
 import associateImage from "../../assets/img_associate.png";
+import viewResultsQuizImage from '../../assets/results.png'
 import "./SettingsAdmin.css";
 import ButtonCreateAbility from "./buttonSettings/ButtonCreateAbility";
 import ButtonCreateCourse from "./buttonSettings/ButtonCreateCourse";
@@ -16,6 +17,7 @@ import ButtonDeleteLesson from "./buttonSettings/ButtonDeleteLesson";
 import ButtonDeleteAbility from "./buttonSettings/ButtonDeleteAbility";
 import ButtonAssociateCourseAbility from "./buttonSettings/ButtonAssociateCourseAbility";
 import Footer from "../footer/Footer";
+import ButtonCharts from "./buttonSettings/ButtonCharts";
 
 const SettingsAdmin = () => {
   return (
@@ -90,6 +92,19 @@ const SettingsAdmin = () => {
                   <ButtonDeleteCourse />
                   <ButtonDeleteLesson />
                   <ButtonDeleteAbility />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={`cardOptions`}>
+            <div className={`containerOptions`}>
+              <div className={`cardFront`}>
+                <p className={`textSettings`}>View section</p>
+                <img src={viewResultsQuizImage} alt="Delete" className={`imageSettings`} />
+              </div>
+              <div className={`cardBack`}>
+                <div className={`optionSettings`}>
+                  <ButtonCharts />
                 </div>
               </div>
             </div>

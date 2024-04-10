@@ -14,12 +14,11 @@ const ButtonCharts = () => {
                 className={`buttonDefault buttonModal`}
                 onClick={handleShow}
                 style={{ margin: "0.5em" }}>
-                <span className={`frontDefault front`}>Ability <i className="bi bi-plus-circle"></i></span>
+                <span className={`frontDefault front`}>Chart <i className="bi bi-plus-circle"></i></span>
             </button>
 
             <Modal show={show}
                 onHide={handleClose}
-                backdrop="static"
                 keyboard={false}
                 >
                 <Modal.Body>
