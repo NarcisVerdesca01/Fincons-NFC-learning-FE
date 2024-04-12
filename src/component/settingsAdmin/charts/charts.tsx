@@ -38,11 +38,11 @@ const Charts = () => {
                     labels: ["COURSE", "QUIZ"],
                     datasets: [
                         {
-                            label: "created",
+                            label: "Created",
                             data: [countCourse.created, countQuiz.created],
                         },
                         {
-                            label: "modified",
+                            label: "Modified",
                             data: [countCourse.modified, countQuiz.modified],
                         }
                     ]
